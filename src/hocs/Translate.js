@@ -1,6 +1,7 @@
 import React, {IntrinsicElements as PropTypes} from 'react';
 import { connect } from 'react-redux';
-import ru from 'constants/strings/ru';
+
+import ru from '@/constants/strings/ru';
 
 // Object for languages strings
 export const languages = {
@@ -20,9 +21,11 @@ export function getCustomTranslatedStrings(language, key) {
 }
 
 export default function translate(key) {
+
     return (Component) => {
         const stateToProps = store => ({
-            currentLanguage: store.stringReducer.language
+            currentLanguage: store.stringReducer.language,
+            store: store
         });
 
         const TranslationComponent = (props) => {
@@ -54,11 +57,6 @@ export default function translate(key) {
                     currentLanguage={props.currentLanguage}
                 />
             );
-        };
-
-        TranslationComponent.propTypes = {
-            strings: PropTypes.object,
-            currentLanguage: PropTypes.string.isRequired
         };
 
         return connect(stateToProps)(TranslationComponent);
