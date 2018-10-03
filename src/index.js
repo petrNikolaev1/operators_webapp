@@ -4,9 +4,9 @@ import {AppContainer} from 'react-hot-loader'
 import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 
-import MainMenu from 'containers/MainMenu'
-import 'assets/styles/index.css'
-import obj from 'store/index'
+import MainMenu from '@/containers/MainMenu'
+import '@/assets/styles/index.scss'
+import obj from '@/store/index'
 
 const {store, persistor} = obj();
 

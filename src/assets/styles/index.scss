@@ -1,9 +1,5 @@
-body{
-  margin: 0;
+$dooglysColor: rgb(1, 186, 191);
 
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-}
 
 @keyframes spinner {
   from {
@@ -12,4 +8,14 @@ body{
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0;
+
+  margin: 0;
+  padding: 0;
+
+  background: rgb(223, 237, 238);
 }

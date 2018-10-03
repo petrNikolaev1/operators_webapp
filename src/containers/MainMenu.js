@@ -2,17 +2,14 @@ import React, {Component, Fragment} from "react"
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
-import 'assets/styles/MainMenu.css'
-import logo2 from 'assets/img/logo2.svg'
+import '@/assets/styles/MainMenu.scss'
+import TopPanel from "@/components/InfoPanel";
 
 class MainMenu extends Component {
     render() {
         return (
             <div className='main-menu-container'>
-                <div className='main-menu-container-text'>
-                    Let`s build the best interface ever!
-                </div>
-                <img src={logo2}/>
+                <TopPanel/>
             </div>
         )
     }
