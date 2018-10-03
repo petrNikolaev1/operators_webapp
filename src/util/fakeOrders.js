@@ -13,15 +13,15 @@ export default [
     },
 
     {
-        "id": 10018,
-        "From": "Poland",
-        "Full-From": "Poland, Warszawa, Senatorska 2/28",
-        "To": "Russia",
-        "Full-To": "Russia, Omsk, Komarova 41/45",
-        "Status": 2,
-        "Weight": 15,
-        "Worth": 1400,
-        "Description": "2 big suitcases with a Personal Computer",
+        id: 10018,
+        from: "Poland, Warszawas",
+        fullFrom: "Poland, Warszawa, Senatorska 2/28",
+        to: "Russia, Omsk",
+        fullTo: "Russia, Omsk, Komarova 41/45",
+        status: 2,
+        weight: 15,
+        worth: 1400,
+        description: "2 big suitcases with a Personal Computer",
         birthDate: '12.04.2018'
     },
     {
