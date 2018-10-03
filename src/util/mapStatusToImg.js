@@ -1,5 +1,5 @@
 import React from 'react';
-import {Error, Autorenew, AssignmentTurnedIn, AssignmentLate, Unarchive} from '@material-ui/icons';
+import {Error, AssignmentTurnedIn, Unarchive} from '@material-ui/icons';
 
 export default (status) => {
     switch (status) {

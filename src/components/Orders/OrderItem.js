@@ -2,7 +2,7 @@
 Component representing the table of the devices list.
  */
 
-import React, {Fragment, Component} from 'react';
+import React, {Component} from 'react';
 
 import '@/assets/styles/OrderList.scss'
 import mapStatusToImg from '@/util/mapStatusToImg.js'

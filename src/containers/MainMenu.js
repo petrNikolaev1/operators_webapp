@@ -1,17 +1,12 @@
-import React, {Component, Fragment} from "react"
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
+import React, {Component} from "react"
 
 import '@/assets/styles/MainMenu.scss'
 import TopPanel from "@/components/InfoPanel";
 import OrderList from "@/components/Orders/OrderList";
 import fakeOrders from "@/util/fakeOrders.js"
 
-
-class MainMenu extends Component {
-
+export default class MainMenu extends Component {
     render() {
-        const {strings} = this.props;
         return (
             <div className='main-menu-container'>
                 <TopPanel/>
@@ -20,16 +15,3 @@ class MainMenu extends Component {
         )
     }
 }
-
-const
-    mapStateToProps = (state) => {
-        return {}
-    };
-
-
-const
-    mapDispatchToProps = (dispatch) => {
-        return {}
-    };
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainMenu)
