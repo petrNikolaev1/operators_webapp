@@ -27,7 +27,7 @@ renderApp(MainMenu);
 
 // Hot module replacement
 if (module.hot) {
-    module.hot.accept('./containers/MainMenu', () => {
+    module.hot.accept('@/containers/MainMenu', () => {
         renderApp(MainMenu)
     })
 }

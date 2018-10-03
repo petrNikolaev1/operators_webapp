@@ -1,5 +1,7 @@
 import {combineReducers} from 'redux'
 
-export default combineReducers({
+import * as StringReducer from './stringReducer';
 
-});
+export default combineReducers(Object.assign(
+    StringReducer
+));
