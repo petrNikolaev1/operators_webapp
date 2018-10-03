@@ -1,5 +1,5 @@
-const orders = [{
-    "Order1": {
+export default [
+    {
         "id": 10017,
         "From": "Kazakhstan",
         "Full-From": "Kazakhstan, Astana, Mailina 45/76",
@@ -8,10 +8,11 @@ const orders = [{
         "Status": 0,
         "Weight": 0.5,
         "Worth": 2000,
-        "Description": "Small bag with the best chocolate"
+        "Description": "Small bag with the best chocolate",
+        birthDate: '12.04.2018'
     },
 
-    "Order2": {
+    {
         "id": 10018,
         "From": "Poland",
         "Full-From": "Poland, Warszawa, Senatorska 2/28",
@@ -20,9 +21,10 @@ const orders = [{
         "Status": 2,
         "Weight": 15,
         "Worth": 1400,
-        "Description": "2 big suitcases with a Personal Computer"
+        "Description": "2 big suitcases with a Personal Computer",
+        birthDate: '12.04.2018'
     },
-    "Order3": {
+    {
         "id": 10019,
         "From": "Russia",
         "Full-From": "Russia, Saratov, Kirova 20/17",
@@ -31,9 +33,10 @@ const orders = [{
         "Status": 1,
         "Weight": 4,
         "Worth": 500,
-        "Description": "Laptop in the red casket"
+        "Description": "Laptop in the red casket",
+        birthDate: '12.04.2018'
     },
-    "Order4": {
+    {
         "id": 10020,
         "From": "Russia",
         "Full-From": "Russia, Omsk, Komarova 41/45",
@@ -42,9 +45,10 @@ const orders = [{
         "Status": 1,
         "Weight": 15,
         "Worth": 0,
-        "Description": "Broken Personal Computer"
+        "Description": "Broken Personal Computer",
+        birthDate: '12.04.2018'
     },
-    "Order5": {
+    {
         "id": 10021,
         "From": "India",
         "Full-From": "India, Jabalpur, Madhya Pradesh, 718/1817 ",
@@ -53,6 +57,7 @@ const orders = [{
         "Status": 0,
         "Weight": 50,
         "Worth": 3000000,
-        "Description": "7 valises with 50 new Iphones from India"
-    }
-}]
+        "Description": "7 valises with 50 new Iphones from India",
+        birthDate: '12.04.2018'
+    },
+]

@@ -19,7 +19,7 @@ export default {
         DESCRIPTION: 'Описание',
         PHONE_NUM: 'Номер телефона',
         DUE_DATE: 'Доставка до',
-        BIRTH_DATE: 'Дата заявка'
+        BIRTH_DATE: 'Дата заявки'
     }
 
 };

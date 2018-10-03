@@ -4,21 +4,22 @@ Component representing the table of the devices list.
 
 import React, {Component} from 'react';
 
-import '../../assets/styles/OrderList.css'
+import Translate from '@/hocs/Translate'
+import '../../assets/styles/OrderList.scss'
 import OrderItem from './OrderItem'
 
+@Translate('OrderList')
 export default class OrderList extends Component {
 
     renderHeader = () => {
+        const {strings} = this.props;
         return (
             <div className="Table-row Table-header">
-                <div className="Table-row-item">
-                    id
-                </div>
-                <div className="Table-row-item">
-                </div>
-                <div className="Table-row-item">Подключение</div>
-                <div className="Table-row-item">Состояние</div>
+                <div className="Table-row-item">{strings.ID}</div>
+                <div className="Table-row-item">{strings.FROM}</div>
+                <div className="Table-row-item">{strings.TO}</div>
+                <div className="Table-row-item">{strings.BIRTH_DATE}</div>
+                <div className="Table-row-item">{strings.STATUS}</div>
             </div>
         )
     };
@@ -32,19 +33,12 @@ export default class OrderList extends Component {
     };
 
     renderDevices = () => {
-        return this.props.devicesInfo.result.map(device => {
+        return this.props.orders.map((order, index) => {
+            console.log(order)
             return (
                 <OrderItem
-                    key={device.deviceId}
-                    id={device.deviceId}
-                    name={device.ModelName}
-                    specName={device.deviceSpecName}
-                    type={device.DeviceType}
-                    connectionType={device.connectionType}
-                    connectionInfo={device.connectionParam}
-                    status={device.status}
-                    settings={device.settings}
-                    {...this.props}
+                    key={index}
+                    {...order}
                 />
             )
         })
@@ -55,9 +49,8 @@ export default class OrderList extends Component {
 
         return (
             <div className="Table">
-
-                {(!isError && !isEmpty) && this.renderHeader()}
-                {(!isError && !isEmpty) && this.renderDevices()}
+                {this.renderHeader()}
+                {this.renderDevices()}
             </div>
         )
     }
