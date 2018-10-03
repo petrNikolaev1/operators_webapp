@@ -13,7 +13,7 @@ export default {
         FROM: 'Ұшу нүктесі',
         TO: 'Жеткізу орны',
         STATUS: 'Күйі',
-        FULL_TO: 'Test',
+        FULL_TO: 'Толық жеткізу мекенжайы',
         FUll_FROM: 'Жеткізу мекен-жайы',
         WEIGHT: 'Салмақ',
         WORTH: 'Құны',
