@@ -5,7 +5,7 @@ import Cog from '@material-ui/icons/Settings';
 import React, {PureComponent} from 'react';
 
 import '@/assets/styles/Panel.scss';
-import logo from '@/assets/img/logo1.svg'
+import logo from '@/assets/img/logo1_colored.svg'
 
 export default class TopPanel extends PureComponent {
     render() {

@@ -13,9 +13,9 @@ export default class OrderList extends Component {
         return (
             <div className="Table-row Table-header">
                 <div className="Table-row-item">
-                    №
+                    id
                 </div>
-                <div className="Table-row-item">Наименование оборудования
+                <div className="Table-row-item">
                 </div>
                 <div className="Table-row-item">Подключение</div>
                 <div className="Table-row-item">Состояние</div>
