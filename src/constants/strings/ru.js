@@ -14,6 +14,7 @@ export default {
         TO: 'Место доставки',
         STATUS: 'Статус',
         FUll_FROM: 'Адрес отправки',
+        FUll_TO: 'Адрес доставки',
         WEIGHT: 'Вес',
         WORTH: 'Стоимость',
         DESCRIPTION: 'Описание',

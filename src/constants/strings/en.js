@@ -14,6 +14,7 @@ export default {
         TO: 'Delivery address',
         STATUS: 'Status',
         FUll_FROM: 'Full departure address',
+        FUll_TO: 'Full delivery address',
         WEIGHT: 'Weight',
         WORTH: 'Worth',
         DESCRIPTION: 'Description',
