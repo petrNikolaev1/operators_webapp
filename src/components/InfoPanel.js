@@ -4,8 +4,8 @@ Component representing the top panel showing the system info.
 import Cog from '@material-ui/icons/Settings';
 import React, {PureComponent} from 'react';
 
-import 'assets/styles/Panel.css';
-import logo from 'assets/img/logo1.svg'
+import '@/assets/styles/Panel.scss';
+import logo from '@/assets/img/logo1.svg'
 
 export default class TopPanel extends PureComponent {
     render() {
