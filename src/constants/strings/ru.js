@@ -1,26 +1,25 @@
 export default {
-    NumPad: {
-        MAX: 'Максимум',
-        CURRENT_BONUS_QUANTITY: 'Будет списано',
-        QUANTITY_NUMPAD: 'Количество',
-        GUESTS_QUANTITY: 'Количество гостей',
-        SUM_NUMPAD: 'Сумма',
-        WEIGH_NUMPAD: 'Взвесить',
-        APPLY: 'Применить',
-        ONE: '1',
-        TWO: '2',
-        THREE: '3',
-        FOUR: '4',
-        FIVE: '5',
-        SIX: '6',
-        SEVEN: '7',
-        EIGHT: '8',
-        NINE: '9',
-        ZERO: '0',
-        DOT: '.',
-        COMMA: ',',
-        CLEAR: 'C',
-        OK: 'OK',
-        MEASURE_PIECES: 'шт',
+
+    OrderList: {
+        ID: 'id',
+        FROM: 'Место отправления',
+        TO: 'Место доставки',
+        STATUS: 'Статус',
+        BIRTH_DATE: 'Дата заявки'
+    },
+
+    OrderItem: {
+        ID: 'id',
+        FROM: 'Место отправления',
+        TO: 'Место доставки',
+        STATUS: 'Статус',
+        FUll_FROM: 'Адрес отправки',
+        WEIGHT: 'Вес',
+        WORTH: 'Стоимость',
+        DESCRIPTION: 'Описание',
+        PHONE_NUM: 'Номер телефона',
+        DUE_DATE: 'Доставка до',
+        BIRTH_DATE: 'Дата заявка'
     }
+
 };
