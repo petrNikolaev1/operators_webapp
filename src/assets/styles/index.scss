@@ -1,5 +1,7 @@
 $dooglysColor: rgb(1, 186, 191);
 $errColor: rgb(210, 87, 89);
+$initialBack: darken(rgb(223, 237, 238), 5%);
+$finalBack: $dooglysColor;
 
 @keyframes spinner {
   from {
@@ -7,6 +9,18 @@ $errColor: rgb(210, 87, 89);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes color-change {
+  0% {
+    background: $initialBack;
+  }
+  50% {
+    background: $finalBack;
+  }
+  100% {
+    background: $initialBack;
   }
 }
 

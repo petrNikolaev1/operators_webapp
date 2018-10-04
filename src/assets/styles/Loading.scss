@@ -1,4 +1,4 @@
-$dooglysColor: rgb(1, 186, 191);
+@import 'index.scss';
 
 .loading-screen {
   display: none;
@@ -20,53 +20,26 @@ $dooglysColor: rgb(1, 186, 191);
   background-color: rgba(94, 143, 147, 0.8);
 }
 
-$initialBack: darken(rgb(223, 237, 238), 5%);
-$finalBack: $dooglysColor;
-
 .loading-container {
+  $iconContainerSize: 20vw;
+  $iconSize: 18vw;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius:50%;
+  border-radius: 50%;
 
-  width: 25vw;
-  height: 25vw;
+  width: $iconContainerSize;
+  height: $iconContainerSize;
 
   background: $initialBack;
-  animation: color-change infinite linear 5s;
+  animation: spinner infinite linear 10s, color-change infinite linear 5s;
 
   z-index: 101;
 
-  margin: 0;
-  padding: 0;
-}
-
-.loading-item {
-  .second {
-    width: 22vw;
-    height: 22vw;
-    animation: loading-spin infinite 10s linear;
-  }
-}
-
-@keyframes loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes color-change {
-  0% {
-    background: $initialBack;
-  }
-  50% {
-    background: $finalBack;
-  }
-  100% {
-    background: $initialBack;
+  img {
+    width: $iconSize;
+    height: $iconSize;
   }
 }
