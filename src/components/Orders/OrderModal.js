@@ -14,7 +14,7 @@ import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
-        show: store.orderModalViewReducer.orderModalShown
+        show: store.viewReducer.orderModalShown
     }), {hideOrderModal}
 )
 @translate('OrderModal')

@@ -1,11 +1,15 @@
-import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import React, {Component} from "react";
+import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 
 import '@/assets/styles/Login.scss'
 import translate from '@/hocs/Translate'
 import logo from '@/assets/img/logo2white.svg'
-//import FormValidator from '@/hocs/FormValidator'
+import connect from "react-redux/es/connect/connect";
+import {hideLogin} from '@/actions/viewActions'
 
+@connect(
+    store => ({}), {hideLogin}
+)
 @translate('Login')
 export default class Login extends Component {
     constructor(props) {
@@ -29,6 +33,7 @@ export default class Login extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        this.props.hideLogin()
     }
 
     render() {

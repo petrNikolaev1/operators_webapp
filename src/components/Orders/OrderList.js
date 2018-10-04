@@ -14,7 +14,7 @@ import {connect} from 'react-redux'
 @connect(
     store => ({
         orders: store.ordersReducer.orders,
-        show: store.orderModalViewReducer.orderModalShown
+        show: store.viewReducer.orderModalShown
     }), {}
 )
 @translate('OrderList')
