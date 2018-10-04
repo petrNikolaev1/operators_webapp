@@ -1,14 +1,14 @@
-export default [
+export const langs = [
     {
-        RU: 'Русский'
+        ru: 'Русский',
     },
     {
-        EN: 'English'
+        en: 'English'
     },
     {
-        KZ: 'Қазақша'
+        kz: 'Қазақша'
     },
     {
-        IT: 'Italiano'
+        it: 'Italiano'
     }
 ];

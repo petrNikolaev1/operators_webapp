@@ -21,6 +21,11 @@ export default {
         PHONE_NUM: 'Numero di telefono',
         DUE_DATE: 'Data di consegna',
         BIRTH_DATE: 'Data di nascita'
+    },
+
+    InfoPanel:{
+        SELECT_NO_LANG: 'Такого языка нет',
+        SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
     }
 
 };

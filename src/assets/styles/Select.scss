@@ -1,0 +1,131 @@
+$selectBackground: rgb(223, 237, 238);
+$dooglysColor: rgb(1, 186, 191);
+
+.css-rsyb7x {
+  width: 100% !important;
+}
+
+.add-device-select {
+  $deviceSettingsBtnHeight: 3vw;
+
+  $controlFontSize: 1.15vw;
+
+  $menuListFontSize: 1.15vw;
+  $menuListMaxHeight: 30vh;
+  $menuListLineHeight: 1.55vw;
+
+  $dropdownSize: 1.5vw;
+
+  $noOptionsFontSize: 1.2vw;
+  $noOptionsHeight: 3vw;
+
+  &__input {
+    width: 100% !important;
+  }
+
+  &-container {
+    flex-basis: 100%;
+    * {
+      border: none !important;
+    }
+  }
+
+  &__control:hover {
+    cursor: pointer;
+  }
+
+  &__control {
+    min-height: $deviceSettingsBtnHeight !important;
+    line-height: $deviceSettingsBtnHeight !important;
+    height: $deviceSettingsBtnHeight !important;
+
+    border-radius: 0 !important;
+    background: $selectBackground !important;
+
+    font-size: $controlFontSize;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+
+    &--is-focused {
+      * {
+        border: none !important;
+      }
+      box-shadow: 0 0 0 1px $dooglysColor !important;
+    }
+  }
+
+  &__placeholder {
+    width: 100%;
+  }
+
+  &__value-container {
+    line-height: $deviceSettingsBtnHeight !important;
+    height: $deviceSettingsBtnHeight !important;
+    background: $selectBackground;
+    padding: 0.5vw 1vw !important;
+
+    input {
+      width: 100% !important;
+    }
+    input:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__indicators {
+    background: $selectBackground;
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+
+  &__dropdown-indicator {
+    svg {
+      width: $dropdownSize;
+      height: $dropdownSize;
+    }
+  }
+
+  &__menu-list {
+    font-size: $menuListFontSize;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    max-height: $menuListMaxHeight !important;
+    line-height: $menuListLineHeight;
+  }
+
+  &__option {
+    padding: 0.8vw 1vw !important;
+    transition: 0.5s ease-out;
+  }
+
+  &__option:hover {
+    cursor: pointer;
+    background: $selectBackground;
+  }
+
+  &__option--is-selected:hover {
+    background: $dooglysColor;
+
+  }
+
+  &__option--is-selected {
+    background: $dooglysColor !important;
+  }
+
+  &__menu-notice--no-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $noOptionsHeight;
+    font-size: $noOptionsFontSize;
+  }
+
+}
+
+.open {
+  .add-device-select__dropdown-indicator {
+    transform: rotate(180deg);
+  }
+}

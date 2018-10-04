@@ -21,6 +21,11 @@ export default {
         PHONE_NUM: 'Телефон нөмірі',
         DUE_DATE: 'Жеткізу',
         BIRTH_DATE: 'Қолданба сыгын'
+    },
+
+    InfoPanel:{
+        SELECT_NO_LANG: 'Такого языка нет',
+        SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
     }
 
 };
