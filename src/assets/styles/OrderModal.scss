@@ -1,26 +1,7 @@
 @import "index.scss";
 
-.add-device-menu {
-  display: none;
-}
-
 .add-device-menu.-show {
-  display: flex;
-  align-self: stretch;
-  flex-direction: column;
   width: 80%;
-  z-index: 1;
-}
-
-.add-device-menu::before {
-  content: '';
-  position: fixed;
-  top: -5555px;
-  left: -5555px;
-  bottom: -5555px;
-  right: -5555px;
-  z-index: 100;
-  background-color: rgba(94, 143, 147, 0.8);
 }
 
 .add-container {
@@ -41,8 +22,6 @@
   flex-flow: column nowrap;
   justify-content: space-around;
   align-self: stretch;
-
-  z-index: 101;
 
   font-family: 'Poppins', sans-serif;
   font-weight: 500;

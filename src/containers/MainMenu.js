@@ -17,14 +17,15 @@ export default class MainMenu extends Component {
     render() {
         const {loadingShow, loginShow} = this.props;
         return (
-            <div className='main-menu-container'>
+            <Fragment>
                 {loginShow && <Login/>}
-                {!loginShow && <Fragment>
+                {!loginShow && <div className='main-menu-container'>
                     <InfoPanel/>
                     <OrderList/>
-                </Fragment>}
+                </div>}
                 {loadingShow && <Loading/>}
-            </div>
+
+            </Fragment>
         )
     }
 }

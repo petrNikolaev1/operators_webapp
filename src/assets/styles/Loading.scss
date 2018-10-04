@@ -1,28 +1,9 @@
 @import 'index.scss';
 
-.loading-screen {
-  display: none;
-}
-
-.loading-screen.-show {
-  display: flex;
-  z-index: 101;
-}
-
-.loading-screen::before {
-  content: '';
-  position: fixed;
-  top: -5555px;
-  left: -5555px;
-  bottom: -5555px;
-  right: -5555px;
-  z-index: 100;
-  background-color: rgba(94, 143, 147, 0.8);
-}
-
 .loading-container {
-  $iconContainerSize: 20vw;
-  $iconSize: 18vw;
+  $iconContainerSize: 15.5vw;
+  $cogSize: 14.3vw;
+  $logoSize: 13vw;
 
   display: flex;
   align-items: center;
@@ -33,13 +14,27 @@
   width: $iconContainerSize;
   height: $iconContainerSize;
 
-  background: $initialBack;
-  animation: spinner infinite linear 10s, color-change infinite linear 5s;
+  background: $initialBackground;
+  animation: 10s, color-change infinite linear 5s;
 
-  z-index: 101;
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+  }
 
-  img {
-    width: $iconSize;
-    height: $iconSize;
+  &-cog {
+    animation: spinner infinite linear 10s;
+    img {
+      height: $cogSize;
+      width: $cogSize;
+    }
+  }
+  &-logo {
+    img {
+      width: $logoSize;
+      height: $logoSize;
+    }
   }
 }

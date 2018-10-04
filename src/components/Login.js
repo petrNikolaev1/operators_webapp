@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 
 import '@/assets/styles/Login.scss'
 import translate from '@/hocs/Translate'
@@ -21,55 +20,50 @@ export default class Login extends Component {
         };
     }
 
-    validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
-    }
-
-    handleChange = event => {
+    onChange = event => {
         this.setState({
-            [event.target.id]: event.target.value
+            [event.target.name]: event.target.value
         });
-    }
+    };
 
-    handleSubmit = event => {
+    onSubmit = (event) => {
         event.preventDefault();
         this.props.hideLogin()
-    }
+    };
 
     render() {
-        const {strings} = this.props
+        const {strings} = this.props;
         return (
-            <div className='Login'>
-                <div className='Login-icon'><img src={logo} alt="logo"/></div>
-                <form className='Login-form' onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="email" bsSize="large">
-                        <ControlLabel>Email</ControlLabel>
-                        <FormControl
+            <div className='login-container'>
+                <div className='login-container-icon'><img src={logo} alt="logo"/></div>
+                <form className='login-container-form'>
+                    <div className='login-container-form-item'>
+                        <div className='login-container-form-item-label'>
+                            {strings.LOGIN}
+                        </div>
+                        <input className='login-container-form-item-input'
+                            name='email'
                             autoFocus
-                            type="text"
                             placeholder={strings.LOGIN}
                             value={this.state.email}
-                            onChange={this.handleChange}
+                            onChange={this.onChange}
                         />
-                    </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl
+                    </div>
+                    <div className='login-container-form-item'>
+                        <div className='login-container-form-item-label'>
+                            {strings.PASSWORD}
+                        </div>
+                        <input className='login-container-form-item-input'
+                            name='password'
                             value={this.state.password}
-                            onChange={this.handleChange}
+                            onChange={this.onChange}
                             placeholder={strings.PASSWORD}
                             type="password"
                         />
-                    </FormGroup>
-                    <Button
-                        className='Login-button'
-                        block
-                        bsSize="xlarge"
-                        disabled={!this.validateForm()}
-                        type="submit"
-                    >
+                    </div>
+                    <button className='login-container-form-enter' onClick={this.onSubmit}>
                         {strings.ENTER}
-                    </Button>
+                    </button>
                 </form>
             </div>
         );

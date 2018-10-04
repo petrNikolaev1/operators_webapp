@@ -1,10 +1,30 @@
-/*
-Hoc for showing a child component before.
- */
-
 import React, {Component} from 'react';
 import ReactResizeDetector from 'react-resize-detector';
+import {css} from 'react-emotion'
+import classNames from 'classnames'
 
+const hocClassName = css({
+    display: 'none',
+    '&.-show': {
+        display: 'flex',
+        zIndex: 1,
+        flexDirection: 'column',
+    },
+    '&:before': {
+        content: '""',
+        position: 'fixed',
+        top: '-5555px',
+        left: '-5555px',
+        bottom: '-5555px',
+        right: '-5555px',
+        backgroundColor: 'rgba(94, 143, 147, 0.8)',
+    }
+
+});
+
+const childClassName = css({
+    zIndex: 1,
+});
 
 export default (WrapperClass, transitionEnabled = true) => (ChildComponent) => {
 
@@ -71,6 +91,7 @@ export default (WrapperClass, transitionEnabled = true) => (ChildComponent) => {
             window.removeEventListener("resize", this.transform);
         }
 
+
         render() {
             const {xOffset, yOffset, posStyle, transitionStyle} = this.state;
             const transformStyle = {transform: `translate(-${xOffset}px, -${yOffset}px)`};
@@ -78,9 +99,9 @@ export default (WrapperClass, transitionEnabled = true) => (ChildComponent) => {
             const style = {...posStyle, ...transformStyle, ...transitionStyle};
 
             return (
-                <div className={wrapperClass} style={style}
+                <div className={classNames(hocClassName, wrapperClass)} style={style}
                      ref={(divElement) => this.divElement = divElement}>
-                    <ChildComponent {...this.props}/>
+                    <ChildComponent {...this.props} className={childClassName}/>
                     <ReactResizeDetector handleWidth handleHeight onResize={this.transform}/>
                 </div>
             )

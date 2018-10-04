@@ -1,33 +1,92 @@
 @import "index.scss";
 
-.Login {
-  width: 100%;
-  height: 100%;
-  $back-color: #00a6e2;
-  $button-color: #01babf;
+.login-container {
+  $startColor: #01b9c1;
+  $endColod: #007ac3;
+  $logoSize: 15vw;
+  $fontize: 1.4vw;
+  $formFr: 30%;
+  $formLabelFr: 20%;
 
-  background: $back-color;
+  font-size: $fontize;
+  width: 100%;
+  height: 100vh;
+  color: white;
+  background: linear-gradient($startColor, $endColod);
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
   &-icon {
-    flex-basis: auto;
+    flex-shrink: 0;
+    margin-top: 3vw;
     display: flex;
     align-items: center;
-    width: max-content;
-    height: max-content;
-    margin: auto;
-    margin-top: 10%;
-  }
-
-  &-form {
-    margin-top: 10%;
-    align-items: center;
     justify-content: center;
-    display: grid;
-  }
 
-  &-button{
-    background: $button-color;
-    color: white;
-    margin-top: 10%;
+    margin-bottom: 4vw;
+
+    img {
+      width: $logoSize;
+      height: $logoSize;
+    }
+  }
+  &-form {
+    margin-left: -($formLabelFr/100*$formFr/100)/1%*100;
+    display: flex;
+    flex-flow: column nowrap;
+    width: $formFr;
+
+    &-item {
+      width: 100%;
+      justify-content: space-between;
+      flex-shrink: 0;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      margin-bottom: 1vw;
+
+      &-label {
+        color: $inputBackground;
+        flex-basis: $formLabelFr;
+        flex-shrink: 0;
+      }
+
+      &-input {
+        box-sizing: border-box;
+        height: 3vw;
+        padding: 0 1vw;
+        color: $inputBackgroundContrast;
+        font-size: $fontize;
+        background: $inputBackground;
+        width: 100%;
+        transition: 0.3s ease-out;
+      }
+      &-input::placeholder {
+        color: $inputBackgroundContrast;
+      }
+      &-input:focus {
+        box-shadow: 0 0 0 2px $dooglysColor;
+      }
+    }
+
+    &-enter {
+      font-size: $fontize;
+      color: white;
+      margin-top: 1vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 4vw;
+      background: $dooglysColor;
+      width: 100%-$formLabelFr;
+      align-self: flex-end;
+      transition: 0.5s ease-out;
+    }
+    &-enter:hover {
+      cursor: pointer;
+      background: darken($dooglysColor, 3%);
+    }
   }
 }

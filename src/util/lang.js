@@ -9,7 +9,6 @@ export const langsOptions = langs.map((lang, index) => {
 });
 
 export const selectedOptionToLang = (selectedOption) => {
-    console.log(selectedOption)
     return selectedOption.formalLabel
 };
 

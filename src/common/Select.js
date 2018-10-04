@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import Select from 'react-select';
 
 import '@/assets/styles/Select.scss'
@@ -31,8 +31,6 @@ export default class SelectComponent extends Component {
         } = this.props;
 
         const selectImgClass = `${formClassName}-container ${this.state.isMenuOpen ? 'open' : 'close'}`;
-
-        console.log('selected option', selectedOption)
 
         return (
             <Select
