@@ -21,6 +21,12 @@ export default {
         PHONE_NUM: 'Номер телефона',
         DUE_DATE: 'Доставка до',
         BIRTH_DATE: 'Дата заявки'
+    },
+
+    Login: {
+        LOGIN: 'Логин',
+        PASSWORD: 'Пароль',
+        ENTER: 'Войти'
     }
 
 };
