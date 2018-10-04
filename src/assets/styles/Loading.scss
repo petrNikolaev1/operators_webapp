@@ -24,10 +24,14 @@ $initialBack: darken(rgb(223, 237, 238), 5%);
 $finalBack: $dooglysColor;
 
 .loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius:50%;
 
-  width: 15vw;
-  height: 15vw;
+  width: 25vw;
+  height: 25vw;
 
   background: $initialBack;
   animation: color-change infinite linear 5s;
@@ -39,17 +43,9 @@ $finalBack: $dooglysColor;
 }
 
 .loading-item {
-  .first {
-    position: fixed;
-    left: 3.7vw;
-    top: 3.7vw;
-    width: 50%;
-  }
   .second {
-    position: fixed;
-    left: 0.7vw;
-    top: 0.7vw;
-    width: 90%;
+    width: 22vw;
+    height: 22vw;
     animation: loading-spin infinite 10s linear;
   }
 }
