@@ -5,6 +5,7 @@ import InfoPanel from "@/components/InfoPanel";
 import OrderList from "@/components/Orders/OrderList";
 import Login from "@/components/Login";
 import connect from "react-redux/es/connect/connect";
+import Loading from "../common/Loading";
 
 @connect(
     store => ({
@@ -22,6 +23,7 @@ export default class MainMenu extends Component {
                     <InfoPanel/>
                     <OrderList/>
                 </Fragment>}
+                {loadingShow && <Loading/>}
             </div>
         )
     }

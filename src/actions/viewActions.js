@@ -28,8 +28,16 @@ export const showLogin = (id) => {
 export const hideLogin = () => {
     return dispatch => {
         dispatch({
-            type: constants.HIDE_LOGIN
+            type: constants.SHOW_LOADING
         });
+        setTimeout(() => {
+            dispatch({
+                type: constants.HIDE_LOADING
+            });
+            dispatch({
+                type: constants.HIDE_LOGIN
+            })
+        }, 2000)
     }
 };
 
