@@ -2,10 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ru from '@/constants/strings/ru';
+import en from '@/constants/strings/en'
+import it from '@/constants/strings/it'
+import kz from '@/constants/strings/kz'
+
 
 // Object for languages strings
 export const languages = {
-    ru
+    ru,
+    en,
+    it,
+    kz
 };
 
 export function translatedStrings(store, key) {

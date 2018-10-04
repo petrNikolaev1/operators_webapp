@@ -1,0 +1,76 @@
+$dooglysColor: rgb(1, 186, 191);
+
+.loading-screen {
+  display: none;
+}
+
+.loading-screen.-show {
+  display: flex;
+  z-index: 101;
+}
+
+.loading-screen::before {
+  content: '';
+  position: fixed;
+  top: -5555px;
+  left: -5555px;
+  bottom: -5555px;
+  right: -5555px;
+  z-index: 100;
+  background-color: rgba(94, 143, 147, 0.8);
+}
+
+$initialBack: darken(rgb(223, 237, 238), 5%);
+$finalBack: $dooglysColor;
+
+.loading-container {
+  border-radius:50%;
+
+  width: 15vw;
+  height: 15vw;
+
+  background: $initialBack;
+  animation: color-change infinite linear 5s;
+
+  z-index: 101;
+
+  margin: 0;
+  padding: 0;
+}
+
+.loading-item {
+  .first {
+    position: fixed;
+    left: 3.7vw;
+    top: 3.7vw;
+    width: 50%;
+  }
+  .second {
+    position: fixed;
+    left: 0.7vw;
+    top: 0.7vw;
+    width: 90%;
+    animation: loading-spin infinite 10s linear;
+  }
+}
+
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes color-change {
+  0% {
+    background: $initialBack;
+  }
+  50% {
+    background: $finalBack;
+  }
+  100% {
+    background: $initialBack;
+  }
+}

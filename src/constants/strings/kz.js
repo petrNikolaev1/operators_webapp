@@ -21,6 +21,25 @@ export default {
         PHONE_NUM: 'Телефон нөмірі',
         DUE_DATE: 'Жеткізу',
         BIRTH_DATE: 'Қолданба сыгын'
+    },
+
+    InfoPanel:{
+        SELECT_NO_LANG: 'Мұндай тіл жоқ',
+        SELECT_LANG_PLACEHOLDER: 'Интерфейс тілі таңдаңыз'
+    },
+
+    OrderModal: {
+        id: 'id',
+        fullFrom: 'Мекен-жайы',
+        fullTo: 'Алушының мекен-жайы',
+        status: 'Күйі',
+        weight: 'Бөліктің салмағы',
+        worth: 'Жүк тасымалдау құны',
+        description: 'Сипаттама',
+        birthDate: 'Өтінім жасау күні',
+        title: 'Ақпаратқа тапсырыс беру',
+        approve: 'Қабылдау үшін',
+        reject: 'Қабылдамау'
     }
 
 };

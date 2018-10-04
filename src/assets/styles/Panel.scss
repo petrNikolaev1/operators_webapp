@@ -74,30 +74,6 @@
       }
     }
   }
-  &-hostname {
-    padding-left: 0;
-    font-size: $fontSizeMed;
-    flex: 1;
-    &-label {
-      flex-basis: auto;
-      flex-shrink: 0;
-    }
-    &-value {
-      display: flex;
-      align-items: center;
-      padding-left: 0.6vw;
-      .outer {
-        display: flex;
-        align-items: center;
-        position: relative;
-        top: 0.1vw;
-      }
-      img {
-        position: absolute;
-        height: 6vw;
-      }
-    }
-  }
   &-settings {
     padding: 0;
     flex-basis: 7%;
@@ -113,5 +89,10 @@
   &-settings:hover {
     cursor: pointer;
     background: darken($dooglysColor, 5%);
+  }
+  &-lang {
+    padding: 0;
+    margin-right: 3%;
+    flex-basis: 25%;
   }
 }

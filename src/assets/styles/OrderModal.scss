@@ -1,0 +1,150 @@
+@import "index.scss";
+
+.add-device-menu {
+  display: none;
+}
+
+.add-device-menu.-show {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  width: 80%;
+  z-index: 1;
+}
+
+.add-device-menu::before {
+  content: '';
+  position: fixed;
+  top: -5555px;
+  left: -5555px;
+  bottom: -5555px;
+  right: -5555px;
+  z-index: 100;
+  background-color: rgba(94, 143, 147, 0.8);
+}
+
+.add-container {
+  $dooglysColor: rgb(1, 186, 191);
+  $lightBlue: rgb(223, 237, 238);
+  $footerImgHeight: 3vw;
+  $headerHeight: 1.7vw;
+  $buttonHeight: 4vw;
+  $tableRowHeight: 3vw;
+  $headerVerPadding: 1.1vw;
+  $horPadding: 3vw;
+  $closeColor: #c5c3c4;
+  $borderColor: rgb(233, 233, 233);
+  $dark-color: #f2f2f2;
+  $lineHeight: 1.3vw;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-self: stretch;
+
+  z-index: 101;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+
+  &-header {
+    background: white;
+
+    padding: $headerVerPadding $horPadding;
+    line-height: $headerHeight;
+
+    font-size: 1.3vw;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid $borderColor;
+
+    &-label {
+      flex: 1;
+    }
+
+    &-img {
+      flex-basis: auto;
+
+      .close-icon {
+        vertical-align: middle;
+        font-size: 3vw;
+        fill: $closeColor;
+        transition: 0.3s ease-out;
+      }
+
+      .close-icon:hover {
+        cursor: pointer;
+        fill: darken($closeColor, 10%);
+      }
+
+    }
+
+  }
+
+  &-table {
+    background: white;
+
+    line-height: $lineHeight;
+    padding: 2vw $horPadding;
+    font-size: 1vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+  }
+}
+
+.order-props-item {
+  border-bottom: solid 1px silver;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1vw 0;
+
+  &-label {
+    font-weight: 600;
+    font-size: 1.3vw;
+    color: rgb(153, 153, 153);
+    margin-right: 2vw;
+  }
+
+  &-value {
+    font-size: 1.4vw;
+  }
+}
+
+.btns {
+  margin-top: 2vw;
+  align-self: center;
+  display: flex;
+
+  &-item {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 4vw;
+    transition: 0.5s ease-out;
+  }
+  &-item:hover {
+    cursor: pointer;
+  }
+  &-approve {
+    margin-right: 10vw;
+    background: $dooglysColor;
+  }
+  &-reject {
+    background: $errColor;
+  }
+  &-approve:hover {
+    background: darken($dooglysColor, 10%);
+  }
+  &-reject:hover {
+    background: darken($errColor, 10%);
+  }
+}
+

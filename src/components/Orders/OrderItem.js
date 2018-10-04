@@ -6,13 +6,21 @@ import React, {Component} from 'react';
 
 import '@/assets/styles/OrderList.scss'
 import mapStatusToImg from '@/util/mapStatusToImg.js'
+import connect from "react-redux/es/connect/connect";
+import {showOrderModal} from "@/actions/viewActions";
 
+
+@connect(
+    store => ({}), {
+showOrderModal
+}
+)
 export default class OrderItem extends Component {
 
     render() {
-        const {id, from, to, status, birthDate} = this.props;
+        const {id, from, to, status, birthDate, showOrderModal} = this.props;
         return (
-            <div key={id} className="Table-row">
+            <div key={id} className="Table-row" onClick={() => showOrderModal(id)}>
                 <div className="Table-row-item">{id}</div>
                 <div className="Table-row-item">{from}</div>
                 <div className="Table-row-item">{to}</div>
