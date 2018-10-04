@@ -4,11 +4,18 @@ Component representing the table of the devices list.
 
 import React, {Component} from 'react';
 
-import Translate from '@/hocs/Translate'
+import translate from '@/hocs/Translate'
 import '../../assets/styles/OrderList.scss'
 import OrderItem from './OrderItem'
+import {connect} from 'react-redux'
 
-@Translate('OrderList')
+
+@connect(
+    store => ({
+        orders: store.ordersReducer.orders
+    }), {}
+)
+@translate('OrderList')
 export default class OrderList extends Component {
 
     renderHeader = () => {
@@ -33,11 +40,10 @@ export default class OrderList extends Component {
     };
 
     renderDevices = () => {
-        return this.props.orders.map((order, index) => {
-            console.log(order)
+        return this.props.orders.map(order => {
             return (
                 <OrderItem
-                    key={index}
+                    key={order.id}
                     {...order}
                 />
             )
@@ -45,8 +51,6 @@ export default class OrderList extends Component {
     };
 
     render() {
-        const {devicesInfo} = this.props;
-
         return (
             <div className="Table">
                 {this.renderHeader()}

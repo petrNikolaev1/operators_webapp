@@ -14,7 +14,7 @@ export default [
 
     {
         id: 10018,
-        from: "Poland, Warszawa",
+        from: "Poland, Warszawas",
         fullFrom: "Poland, Warszawa, Senatorska 2/28",
         to: "Russia, Omsk",
         fullTo: "Russia, Omsk, Komarova 41/45",
@@ -50,14 +50,14 @@ export default [
     },
     {
         id: 10021,
-        From: "India, Jabalpur",
-        FullFrom: "India, Jabalpur, Madhya Pradesh, 718/1817 ",
-        To: "Italy, Aprilia",
-        FullTo: "Italy, Aprilia, Via Vallelata 36/38",
-        Status: 0,
-        Weight: 50,
-        Worth: 3000000,
-        Description: "7 valises with 50 new Iphones from India",
+        from: "India, Jabalpur",
+        fullFrom: "India, Jabalpur, Madhya Pradesh, 718/1817 ",
+        to: "Italy, Aprilia",
+        fullTo: "Italy, Aprilia, Via Vallelata 36/38",
+        status: 0,
+        weight: 50,
+        worth: 3000000,
+        description: "7 valises with 50 new Iphones from India",
         birthDate: '12.04.2018'
     },
 ]
