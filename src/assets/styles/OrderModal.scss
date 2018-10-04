@@ -99,19 +99,20 @@
 }
 
 .order-props-item {
+  border-bottom: solid 1px silver;
   display: flex;
   flex-flow: row nowrap;
   padding: 1vw 0;
 
   &-label {
     font-weight: 600;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     color: rgb(153, 153, 153);
     margin-right: 2vw;
   }
 
   &-value {
-    font-size: 1.7vw;
+    font-size: 1.4vw;
   }
 }
 
