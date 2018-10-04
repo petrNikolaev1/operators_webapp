@@ -4,7 +4,8 @@ import {AppContainer} from 'react-hot-loader'
 import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 
-import MainMenu from '@/containers/MainMenu'
+//import MainMenu from '@/containers/MainMenu'
+import MainMenu from '@/common/Loading'
 import '@/assets/styles/index.scss'
 import obj from '@/store/index'
 
@@ -27,7 +28,7 @@ renderApp(MainMenu);
 
 // Hot module replacement
 if (module.hot) {
-    module.hot.accept('@/containers/MainMenu', () => {
+    module.hot.accept('@/common/Loading', () => {
         renderApp(MainMenu)
     })
 }
