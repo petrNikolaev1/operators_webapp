@@ -1,4 +1,4 @@
-import React, {IntrinsicElements as PropTypes} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import ru from '@/constants/strings/ru';
