@@ -23,6 +23,12 @@ export default {
         BIRTH_DATE: 'Дата заявки'
     },
 
+    Login: {
+        LOGIN: 'Логин',
+        PASSWORD: 'Пароль',
+        ENTER: 'Войти'
+    },
+  
     InfoPanel: {
         SELECT_NO_LANG: 'Такого языка нет',
         SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'

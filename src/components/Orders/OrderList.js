@@ -5,7 +5,7 @@ Component representing the table of the devices list.
 import React, {Component, Fragment} from 'react';
 
 import translate from '@/hocs/Translate'
-import '../../assets/styles/OrderList.scss'
+import '@/assets/styles/OrderList.scss'
 import OrderItem from './OrderItem'
 import OrderModal from './OrderModal'
 import {connect} from 'react-redux'

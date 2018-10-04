@@ -1,0 +1,33 @@
+@import "index.scss";
+
+.Login {
+  width: 100%;
+  height: 100%;
+  $back-color: #00a6e2;
+  $button-color: #01babf;
+
+  background: $back-color;
+
+  &-icon {
+    flex-basis: auto;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    margin-top: 10%;
+  }
+
+  &-form {
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+  }
+
+  &-button{
+    background: $button-color;
+    color: white;
+    margin-top: 10%;
+  }
+}
