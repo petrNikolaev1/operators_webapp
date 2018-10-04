@@ -5,7 +5,7 @@ export default {
         FROM: 'Departure address',
         TO: 'Delivery address',
         STATUS: 'Status',
-        BIRTH_DATE: 'Birth date'
+        BIRTH_DATE: 'Creation date'
     },
 
     OrderItem: {
@@ -24,8 +24,8 @@ export default {
     },
 
     InfoPanel:{
-        SELECT_NO_LANG: 'Такого языка нет',
-        SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
+        SELECT_NO_LANG: 'No such language',
+        SELECT_LANG_PLACEHOLDER: 'Choose interface language'
     }
 
 };

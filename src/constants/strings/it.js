@@ -24,8 +24,8 @@ export default {
     },
 
     InfoPanel:{
-        SELECT_NO_LANG: 'Такого языка нет',
-        SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
+        SELECT_NO_LANG: 'Non esiste un tale linguaggio',
+        SELECT_LANG_PLACEHOLDER: 'Seleziona la lingua dell\'interfaccia'
     }
 
 };
