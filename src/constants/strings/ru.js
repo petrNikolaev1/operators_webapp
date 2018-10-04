@@ -23,9 +23,23 @@ export default {
         BIRTH_DATE: 'Дата заявки'
     },
 
-    InfoPanel:{
+    InfoPanel: {
         SELECT_NO_LANG: 'Такого языка нет',
         SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
+    },
+
+    OrderModal: {
+        id: 'id',
+        fullFrom: 'Адрес отправления',
+        fullTo: 'Адрес получателя',
+        status: 'Статус',
+        weight: 'Вес посылки',
+        worth: 'Стоимость посылки',
+        description: 'Описание',
+        birthDate: 'Дата создания заявки',
+        title: 'Информация о заказе',
+        approve: 'Принять',
+        reject: 'Отклонить'
     }
 
 };

@@ -2,17 +2,19 @@
 Component representing the table of the devices list.
  */
 
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 
 import translate from '@/hocs/Translate'
 import '../../assets/styles/OrderList.scss'
 import OrderItem from './OrderItem'
+import OrderModal from './OrderModal'
 import {connect} from 'react-redux'
 
 
 @connect(
     store => ({
-        orders: store.ordersReducer.orders
+        orders: store.ordersReducer.orders,
+        show: store.orderModalViewReducer.orderModalShown
     }), {}
 )
 @translate('OrderList')
@@ -42,10 +44,14 @@ export default class OrderList extends Component {
     renderDevices = () => {
         return this.props.orders.map(order => {
             return (
-                <OrderItem
-                    key={order.id}
-                    {...order}
-                />
+                <Fragment key={order.id}>
+                    <OrderItem
+                        {...order}
+                    />
+                    {order.id === this.props.show && <OrderModal
+                        {...order}
+                    />}
+                </Fragment>
             )
         })
     };
