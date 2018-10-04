@@ -26,6 +26,20 @@ export default {
     InfoPanel:{
         SELECT_NO_LANG: 'No such language',
         SELECT_LANG_PLACEHOLDER: 'Choose interface language'
+    },
+
+    OrderModal: {
+        id: 'id',
+        fullFrom: 'Departure address',
+        fullTo: 'Destination address',
+        status: 'Status',
+        weight: 'Weight of the parcel',
+        worth: 'Cost of the parcel',
+        description: 'Description',
+        birthDate: 'Creation date',
+        title: 'Title',
+        approve: 'Approve',
+        reject: 'Reject'
     }
 
 };
