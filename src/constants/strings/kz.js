@@ -40,6 +40,13 @@ export default {
         title: 'Ақпаратқа тапсырыс беру',
         approve: 'Қабылдау үшін',
         reject: 'Қабылдамау'
+    },
+
+    Pagination: {
+        first: 'Басы',
+        previous: 'Жоғарғы',
+        next: 'Келесі',
+        last: 'Cоңғы'
     }
 
 };

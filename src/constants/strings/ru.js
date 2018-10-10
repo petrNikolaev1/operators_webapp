@@ -46,6 +46,12 @@ export default {
         title: 'Информация о заказе',
         approve: 'Принять',
         reject: 'Отклонить'
-    }
+    },
 
+    Pagination: {
+        first: 'Начало',
+        previous: 'Назад',
+        next: 'Вперед',
+        last: 'Конец'
+    }
 };

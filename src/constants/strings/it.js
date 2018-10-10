@@ -40,6 +40,13 @@ export default {
         title: 'Informazioni per l\'ordine',
         approve: 'Per accettare',
         reject: 'Rifiutare'
+    },
+
+    Pagination: {
+        first: 'Primo',
+        previous: 'Precedente',
+        next: 'Seguente',
+        last: 'Ultimo'
     }
 
 };
