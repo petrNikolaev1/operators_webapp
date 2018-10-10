@@ -17,7 +17,6 @@
   flex-flow: column nowrap;
   justify-content: space-between;
 
-
   box-sizing: border-box;
 
   border-left: 0.4vw solid $dooglysColor;
@@ -51,7 +50,7 @@
     color: rgb(153, 153, 153);
   }
 
-  &-no-devices:hover{
+  &-no-devices:hover {
     background: white !important;
     cursor: initial !important;
   }
@@ -141,4 +140,92 @@
   .strong-text {
     font-size: $fontSizeStrong;
   }
+}
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 2vh 0;
+  border-radius: 0.1vw
+}
+
+.pagination > li {
+  display: inline
+}
+
+.pagination > li > a, .pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 0.3vw 0.6vw;
+  margin-left: -0.05vw;
+  line-height: 2.3vw;
+  color: rgb(1, 186, 191);
+  text-decoration: none;
+  background-color: #fff;
+  border: 0.05vw solid #ddd
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 0.2vw;
+  border-bottom-left-radius: 0.2vw
+}
+
+.pagination > li:last-child > a, .pagination > li:last-child > span {
+  border-top-right-radius: 0.2vw;
+  border-bottom-right-radius: 0.2vw
+}
+
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+  color: rgb(1, 186, 191);
+  background-color: #eee;
+  border-color: #ddd;
+  transition: 0.5s ease-out;
+  cursor: pointer;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  color: #fff;
+  cursor: default;
+  background-color: rgb(1, 186, 191);
+  border-color: rgb(1, 186, 191)
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd
+}
+
+.pagination-lg > li > a, .pagination-lg > li > span {
+  padding: 0.5vw 0.8vw;
+  font-size: 0.9vw;
+  line-height: 2.2vw
+}
+
+.pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span {
+  border-top-left-radius: 0.3vw;
+  border-bottom-left-radius: 0.3vw
+}
+
+.pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span {
+  border-top-right-radius: 0.3vw;
+  border-bottom-right-radius: 0.3vw
+}
+
+.pagination-sm > li > a, .pagination-sm > li > span {
+  padding: 0.25vw 0.5vw;
+  font-size: 0.6vw;
+  line-height: 2.4vw
+}
+
+.pagination-sm > li:first-child > a, .pagination-sm > li:first-child > span {
+  border-top-left-radius: 0.15vw;
+  border-bottom-left-radius: 0.15vw
+}
+
+.pagination-sm > li:last-child > a, .pagination-sm > li:last-child > span {
+  border-top-right-radius: 0.15vw;
+  border-bottom-right-radius: 0.15vw
 }
