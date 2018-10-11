@@ -4,6 +4,7 @@ const initialState = {
     orderModalShown: 0,
     loadingShow: false,
     loginShow: true,
+    fail: 0,
 };
 
 export function viewReducer(state = initialState, action) {
@@ -37,6 +38,11 @@ export function viewReducer(state = initialState, action) {
             return {
                 ...state,
                 loginShow: false
+            };
+        case constants.FAIL:
+            return {
+                ...state,
+                fail: action.fail
             };
         default:
             return state;

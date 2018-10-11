@@ -7,7 +7,9 @@ import connect from "react-redux/es/connect/connect";
 import {hideLogin} from '@/actions/viewActions'
 
 @connect(
-    store => ({}), {hideLogin}
+    store => ({
+        fail: store.viewReducer.fail
+    }), {hideLogin}
 )
 @translate('Login')
 export default class Login extends Component {
@@ -16,7 +18,7 @@ export default class Login extends Component {
 
         this.state = {
             email: "",
-            password: ""
+            password: "",
         };
     }
 
@@ -28,15 +30,28 @@ export default class Login extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.hideLogin()
+        this.props.hideLogin(this.state.email, this.state.password);
     };
 
     render() {
+        let test;
+        switch (this.props.fail) {
+            case 0:
+                test = <div></div>;
+                break;
+            case 1:
+                test = <div className='login-container-form-fail-1'>Please, fill all fields</div>;
+                break;
+            case 2:
+                test = <div className='login-container-form-fail-2'>Invalid login/password</div>;
+                break;
+        }
         const {strings} = this.props;
         return (
             <div className='login-container'>
                 <div className='login-container-icon'><img src={logo} alt="logo"/></div>
                 <form className='login-container-form'>
+                    <div className='login-container-form-fail'>{test}</div>
                     <div className='login-container-form-item'>
                         <div className='login-container-form-item-label'>
                             {strings.LOGIN}
