@@ -47,6 +47,14 @@ export default {
         previous: 'Previous',
         next: 'Next',
         last: 'Last'
+    },
+
+    Map: {
+        distance: 'Distance',
+        time: 'Time',
+        approve: 'Approve',
+        cancl: 'Cancel',
+        confirm: 'Path successfully selected'
     }
 
 };
