@@ -33,8 +33,8 @@ export default class Test extends Component {
         const {directions} = this.state;
         return (
             <GoogleMap
-                defaultZoom={7}
-                defaultCenter={new window.google.maps.LatLng(41.8507300, -87.6512600)}
+                defaultZoom={2}
+                defaultCenter={new window.google.maps.LatLng(49.622673, 6.166863)}
             >
                 {!!directions && <Routes directions={directions}/>}
 
