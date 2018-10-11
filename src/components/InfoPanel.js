@@ -11,6 +11,7 @@ import Select from "@/common/Select";
 import {langsOptions, langToSelectedOption} from "@/util/lang.js";
 import connect from "react-redux/es/connect/connect";
 import {changeLang} from "@/actions/stringActions";
+import {Link} from 'react-router-dom'
 
 @connect(
     store => ({
@@ -45,8 +46,9 @@ export default class InfoPanel extends PureComponent {
                         formClassName='add-device-select'
                     />
                 </div>
-                <div className="top-panel-container-item top-panel-container-settings"><Cog/>
-                </div>
+                <Link className="top-panel-container-item top-panel-container-settings" to='/settings/'>
+                    <Cog/>
+                </Link>
             </div>
         )
     }
