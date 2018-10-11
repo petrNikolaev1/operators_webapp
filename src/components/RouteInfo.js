@@ -4,21 +4,23 @@ import connect from "react-redux/es/connect/connect";
 import "@/assets/styles/SelectRoute.scss";
 import translate from '@/hocs/Translate';
 import {showConfirm} from "@/actions/routesActions";
-import Confirm from './Confirm'
-import OrderModal from "./Orders/OrderModal";
+import Confirm from './Confirm';
+import Loading from "@/common/Loading";
+
 
 
 @connect(
     store => ({
         selectedRoute: store.routesReducer.selectedRoute,
-        show: store.routesReducer.confirmShown
+        show: store.routesReducer.confirmShown,
+        loadingShow: store.viewReducer.loadingShow
     }), {showConfirm}
 )
 @translate('Map')
 export default class RouteInfo extends Component {
 
     render() {
-        const {selectedRoute, strings, showConfirm, show} = this.props;
+        const {selectedRoute, strings, showConfirm, show, loadingShow} = this.props;
 
         return (
             <Fragment>
@@ -37,6 +39,7 @@ export default class RouteInfo extends Component {
                             {strings.cancl}
                         </div>
                     </div>
+                    {loadingShow && <Loading/>}
                     {show === 1 && <Confirm/>}
                 </div>}
             </Fragment>
