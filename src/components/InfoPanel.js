@@ -1,7 +1,7 @@
 /*
 Component representing the top panel showing the system info.
  */
-import Cog from '@material-ui/icons/Settings';
+import {Settings, Home} from '@material-ui/icons';
 import React, {PureComponent} from 'react';
 
 import '@/assets/styles/Panel.scss';
@@ -46,8 +46,11 @@ export default class InfoPanel extends PureComponent {
                         formClassName='add-device-select'
                     />
                 </div>
+                <Link className="top-panel-container-item top-panel-container-home" to='/home/'>
+                    <Home/>
+                </Link>
                 <Link className="top-panel-container-item top-panel-container-settings" to='/settings/'>
-                    <Cog/>
+                    <Settings/>
                 </Link>
             </div>
         )

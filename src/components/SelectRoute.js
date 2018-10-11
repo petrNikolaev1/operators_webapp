@@ -25,7 +25,7 @@ export default class SelectRoute extends Component {
                     loadingElement={(<div style={{height: `100%`}}/>)}
                     containerElement={(<div className='select-route-container-map'/>)}
                     mapElement={(<div style={{height: `100%`}}/>)}
-                    origin={origin} destination={destination} language={language}/>
+                    origin={origin} destination={destination}/>
             </div>
         )
     }

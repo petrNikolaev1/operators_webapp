@@ -7,6 +7,8 @@ export default class CustomMarker extends Component {
 
     render() {
         const {position, label, info, infoWindowOpen, openInfoWindow, closeInfoWindow, index} = this.props;
+
+        console.log(position)
         return (
             <Marker onClick={() => openInfoWindow(index)} position={position} label={label}>
                 {infoWindowOpen && <InfoWindow onCloseClick={closeInfoWindow}>
