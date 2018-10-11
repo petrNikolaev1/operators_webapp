@@ -4,6 +4,8 @@ import {Marker, InfoWindow} from 'react-google-maps';
 
 import {homes, mapNewPositions, drivers} from '@/util/fakeMarkers'
 import {assignNewPositions} from "../util/fakeMarkers";
+import homeIcon from '@/assets/img/home.svg'
+import driverIcon from '@/assets/img/driver.svg'
 
 @withScriptjs
 @withGoogleMap
@@ -32,14 +34,19 @@ export default class HomeMap extends Component {
             >
                 {homes.map((home, index) => {
                     return (
-                        <Marker position={home} key={index}/>
+                        <Marker
+                            position={home} key={index}
+                        />
                     )
                 })}
                 {drivers.map((driver, index) => {
                     return (
-                        <Marker position={driver} key={index}/>
+                        <Marker
+                            position={driver} key={index} icon={driverIcon}
+                        />
                     )
                 })}
+
             </GoogleMap>
         )
     }

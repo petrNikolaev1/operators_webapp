@@ -61,21 +61,21 @@ export const getDirection = (position, index,) => {
     const {lat: latOld, lng: lngOld} = position;
     switch (index % 8) {
         case 0:
-            return {lat: latOld + randomNum, lng: lngOld};
+            return {...position, lat: latOld + randomNum, lng: lngOld};
         case 1:
-            return {lat: latOld + randomNum, lng: lngOld + randomNum};
+            return {...position, lat: latOld + randomNum, lng: lngOld + randomNum};
         case 2:
-            return {lat: latOld, lng: lngOld + randomNum};
+            return {...position, lat: latOld, lng: lngOld + randomNum};
         case 3:
-            return {lat: latOld - randomNum, lng: lngOld + randomNum};
+            return {...position, lat: latOld - randomNum, lng: lngOld + randomNum};
         case 4:
-            return {lat: latOld - randomNum, lng: lngOld};
+            return {...position, lat: latOld - randomNum, lng: lngOld};
         case 5:
-            return {lat: latOld - randomNum, lng: lngOld - randomNum};
+            return {...position, lat: latOld - randomNum, lng: lngOld - randomNum};
         case 6:
-            return {lat: latOld, lng: lngOld - randomNum};
+            return {...position, lat: latOld, lng: lngOld - randomNum};
         case 7:
-            return {lat: latOld + randomNum, lng: lngOld - randomNum};
+            return {...position, lat: latOld + randomNum, lng: lngOld - randomNum};
     }
 };
 
