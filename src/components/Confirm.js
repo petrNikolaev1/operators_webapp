@@ -15,7 +15,7 @@ import translate from '@/hocs/Translate'
     }), {hideConfirm}
 )
 @translate('Map')
-@showBeforeHOC('add-device-menu')
+@showBeforeHOC('confirm')
 export default class OrderModal extends PureComponent {
 
     render() {
@@ -23,13 +23,13 @@ export default class OrderModal extends PureComponent {
 
         const {hideConfirm} = this.props;
         return (
-            <div className={classNames(this.props.className, "add-container")}>
-                <div className="add-container-header">
-                    <div className='add-container-header-icon'><Done/></div>
-                    <div className="add-container-header-label">
+            <div className={classNames(this.props.className, "confirm")}>
+                <div className="confirm-header">
+                    <div className='confirm-header-icon'><Done/></div>
+                    <div className="confirm-header-label">
                         {strings.confirm}
                     </div>
-                    <div onClick={hideConfirm} className="add-container-header-img">
+                    <div onClick={hideConfirm} className="confirm-header-img">
                         <Close className='close-icon'/>
                     </div>
                 </div>

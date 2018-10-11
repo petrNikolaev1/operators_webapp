@@ -4,8 +4,6 @@
   display: flex;
   flex-flow: column nowrap;
 
-  align-items: center;
-
   width: 80vw;
   height: 90vh;
 
@@ -13,7 +11,7 @@
 
   &-map {
     flex-shrink: 0;
-    height: 70vh;
+    height: 67vh;
     width: 80vw;
   }
 
@@ -25,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15vw;
+    width: 18vw;
     height: 4vw;
     background: $dooglysColor;
 
@@ -34,5 +32,15 @@
     &:hover {
       background: darken($dooglysColor, 10%);
     }
+
+    svg{
+      margin-right: 2vw;
+    }
   }
+}
+
+.title{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
