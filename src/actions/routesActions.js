@@ -26,6 +26,12 @@ export const showConfirm = () => {
             dispatch({
                 type: constants.HIDE_LOADING
             });
+            // dispatch({
+            //     type: constants.HIDE_SELECT_ROUTE,
+            // });
+            dispatch({
+                type: constants.HIDE_ORDER_MODAL,
+            });
             dispatch({
                 type: constants.SHOW_CONFIRM
             });
@@ -37,6 +43,9 @@ export const hideConfirm = () => {
     return dispatch => {
         dispatch({
             type: constants.HIDE_CONFIRM,
+        });
+        dispatch({
+            type: constants.HIDE_SELECT_ROUTE,
         });
     }
 };
