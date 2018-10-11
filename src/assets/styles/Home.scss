@@ -1,0 +1,17 @@
+.home-container {
+  display: flex;
+  flex-flow: column nowrap;
+
+  align-items: center;
+
+  width: 80vw;
+  height: 90vh;
+
+  margin: 5vh auto;
+
+  &-map {
+    flex-shrink: 0;
+    height: 70vh;
+    width: 80vw;
+  }
+}
