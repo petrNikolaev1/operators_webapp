@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
-import Close from '@material-ui/icons/Close';
 import classNames from 'classnames'
+import {Close, Done} from "@material-ui/icons";
 
 import '@/assets/styles/Confirm.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
@@ -25,6 +25,7 @@ export default class OrderModal extends PureComponent {
         return (
             <div className={classNames(this.props.className, "add-container")}>
                 <div className="add-container-header">
+                    <div className='add-container-header-icon'><Done/></div>
                     <div className="add-container-header-label">
                         {strings.confirm}
                     </div>

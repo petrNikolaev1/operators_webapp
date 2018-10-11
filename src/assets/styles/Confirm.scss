@@ -27,9 +27,14 @@
   font-weight: 500;
 
   &-header {
+    box-sizing: border-box;
+    padding: 0 1vw;
+    padding-left: 0;
+    height: 6vw;
+
     background: white;
 
-    padding: $headerVerPadding $horPadding;
+    //padding: $headerVerPadding $horPadding;
     line-height: $headerHeight;
 
     font-size: 1.3vw;
@@ -60,6 +65,20 @@
         fill: darken($closeColor, 10%);
       }
 
+    }
+
+    &-icon {
+      margin-right: 5vw;
+      width: 6vw;
+      align-self: stretch;
+      background: $dooglysColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        fill: white;
+        font-size: 4vw;
+      }
     }
 
   }
