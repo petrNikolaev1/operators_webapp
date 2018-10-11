@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 import HomeMap from '@/components/HomeMap'
 import '@/assets/styles/Home.scss'
-import RouteOptions from "../components/RouteOptions";
+import GoogleMapHoc from "../hocs/GoogleMapHoc";
 import connect from "react-redux/es/connect/connect";
 import {Reply} from '@material-ui/icons';
 

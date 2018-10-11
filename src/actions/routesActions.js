@@ -1,4 +1,5 @@
 import constants from '@/constants'
+import {getRoute} from "@/util/mapsRequests";
 
 export const selectRoute = (route) => {
     return dispatch => {
@@ -47,5 +48,30 @@ export const hideConfirm = () => {
         dispatch({
             type: constants.HIDE_SELECT_ROUTE,
         });
+    }
+};
+
+export const getProposedRoute = (google, payload) => {
+    const {orderId, origin, destination} = payload;
+    return dispatch => {
+        dispatch({
+            type: constants.GET_PROPOSED_ROUTE_REQUEST,
+            orderId,
+        });
+        getRoute(google, {origin, destination})
+            .then(res => {
+                dispatch({
+                    type: constants.GET_PROPOSED_ROUTE_SUCCESS,
+                    res,
+                    orderId,
+                });
+            })
+            .catch(err => {
+                dispatch({
+                    type: constants.GET_PROPOSED_ROUTE_ERROR,
+                    err,
+                    orderId,
+                });
+            })
     }
 };

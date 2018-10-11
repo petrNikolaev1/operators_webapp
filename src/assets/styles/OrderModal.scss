@@ -2,9 +2,11 @@
 
 .add-device-menu.-show {
   width: 80%;
+  z-index: 1;
 }
 
 .add-container {
+  z-index: 100;
   $dooglysColor: rgb(1, 186, 191);
   $lightBlue: rgb(223, 237, 238);
   $footerImgHeight: 3vw;

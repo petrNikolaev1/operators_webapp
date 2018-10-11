@@ -2,7 +2,7 @@ import constants from '@/constants'
 
 const initialState = {
     selectedRoute: null,
-    confirmShown: 0
+    confirmShown: 0,
 };
 
 export function routesReducer(state = initialState, action) {
@@ -25,3 +25,47 @@ export function routesReducer(state = initialState, action) {
             return state;
     }
 }
+
+const initialProposedRouteState = {
+    proposedRoutes: {}
+};
+
+export function proposedRouteReducer(state = initialProposedRouteState, action) {
+    switch (action.type) {
+        case constants.GET_PROPOSED_ROUTE_REQUEST:
+            return {
+                ...state,
+                proposedRoutes: {
+                    ...state.proposedRoutes,
+                    [action.orderId]: {
+                        loaded: false
+                    }
+                }
+            };
+        case constants.GET_PROPOSED_ROUTE_SUCCESS:
+            return {
+                ...state,
+                proposedRoutes: {
+                    ...state.proposedRoutes,
+                    [action.orderId]: {
+                        res: action.res,
+                        loaded: true
+                    }
+                }
+            };
+        case constants.GET_PROPOSED_ROUTE_ERROR:
+            return {
+                ...state,
+                proposedRoutes: {
+                    ...state.proposedRoutes,
+                    [action.orderId]: {
+                        res: action.res,
+                        loaded: true
+                    }
+                }
+            };
+        default:
+            return state;
+    }
+}
+

@@ -5,8 +5,6 @@
 }
 
 .select-route-container {
-  z-index: 1;
-
   $dooglysColor: rgb(1, 186, 191);
   $lightBlue: rgb(223, 237, 238);
   $footerImgHeight: 3vw;
@@ -30,6 +28,8 @@
   font-weight: 500;
 
   &-info {
+    //z-index: 1000;
+
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
@@ -75,6 +75,7 @@
   }
 
   &-map {
+    z-index: -100;
     flex-shrink: 0;
     flex-basis: 70vw;
     height: 90vh;
