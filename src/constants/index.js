@@ -16,5 +16,7 @@ export default keyMirror({
     RESET_ROUTE: null,
     FAIL: null,
     SHOW_CONFIRM: null,
-    HIDE_CONFIRM: null
+    HIDE_CONFIRM: null,
+    SHOW_SELECT_ROUTE: null,
+    HIDE_SELECT_ROUTE: null,
 })

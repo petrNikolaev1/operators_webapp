@@ -5,6 +5,7 @@ const initialState = {
     loadingShow: false,
     loginShow: true,
     fail: 0,
+    selectRouteShown: -1,
 };
 
 export function viewReducer(state = initialState, action) {
@@ -43,6 +44,16 @@ export function viewReducer(state = initialState, action) {
             return {
                 ...state,
                 fail: action.fail
+            };
+        case constants.SHOW_SELECT_ROUTE:
+            return {
+                ...state,
+                selectRouteShown: action.payload
+            };
+        case constants.HIDE_SELECT_ROUTE:
+            return {
+                ...state,
+                selectRouteShown: -1
             };
         default:
             return state;

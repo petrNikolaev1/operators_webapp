@@ -9,23 +9,23 @@ import classNames from 'classnames'
 import '@/assets/styles/OrderModal.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
-import {hideOrderModal} from "@/actions/viewActions";
+import {hideOrderModal, showSelectRoute} from "@/actions/viewActions";
 import {filterFullOrderProps} from '@/util/api'
 import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
         show: store.viewReducer.orderModalShown
-    }), {hideOrderModal}
+    }), {hideOrderModal, showSelectRoute}
 )
 @translate('OrderModal')
 @showBeforeHOC('add-device-menu')
 export default class OrderModal extends PureComponent {
 
     render() {
-        const {strings} = this.props;
+        const {strings, index} = this.props;
 
-        const {hideOrderModal} = this.props;
+        const {hideOrderModal, showSelectRoute, id} = this.props;
         const orderProps = filterFullOrderProps(this.props);
         return (
             <div className={classNames(this.props.className, "add-container")}>
@@ -47,7 +47,7 @@ export default class OrderModal extends PureComponent {
                         )
                     })}
                     <div className='btns'>
-                        <div className='btns-item btns-approve'>
+                        <div className='btns-item btns-approve' onClick={() => showSelectRoute(id)}>
                             {strings.approve}
                         </div>
                         <div className='btns-item btns-reject'>

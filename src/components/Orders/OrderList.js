@@ -10,12 +10,14 @@ import '@/assets/styles/OrderList.scss'
 import OrderItem from './OrderItem'
 import OrderModal from './OrderModal'
 import Pagination from './Pagination';
+import SelectRoute from "@/components/SelectRoute"
 
 
 @connect(
     store => ({
         orders: store.ordersReducer.orders,
-        show: store.viewReducer.orderModalShown
+        show: store.viewReducer.orderModalShown,
+        selectRouteShown: store.viewReducer.selectRouteShown
     }), {}
 )
 @translate('OrderList')
@@ -36,7 +38,7 @@ export default class OrderList extends Component {
     }
 
     renderHeader = () => {
-        const {strings} = this.props;
+        const {strings,} = this.props;
         return (
             <div className="Table-row Table-header">
                 <div className="Table-row-item">{strings.ID}</div>
@@ -57,20 +59,27 @@ export default class OrderList extends Component {
     };
 
     renderDevices = () => {
-        const {show} = this.props;
+        const {show, selectRouteShown} = this.props;
         const {pageOfItems} = this.state;
 
         return (
             <div>
-                {pageOfItems.map(item =>
-                    <div key={item.id}>
-                        <OrderItem
-                            {...item}
-                        />
-                        {item.id === show && <OrderModal
-                            {...item}
-                        />}
-                    </div>
+                {pageOfItems.map(item => {
+                        return (
+                            <div key={item.id}>
+                                <OrderItem
+                                    {...item}
+                                />
+                                {item.id === show && <OrderModal
+                                    {...item}
+                                />}
+                                {item.id === selectRouteShown &&
+                                <SelectRoute
+                                    origin={{lat: item.latFrom, lng: item.lngFrom}}
+                                    destination={{lat: item.latTo, lng: item.lngTo}}
+                                />}
+                            </div>)
+                    }
                 )}
             </div>
         )

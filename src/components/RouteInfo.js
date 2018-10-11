@@ -6,19 +6,20 @@ import translate from '@/hocs/Translate';
 import {showConfirm} from "@/actions/routesActions";
 import Confirm from './Confirm'
 import OrderModal from "./Orders/OrderModal";
+import {hideSelectRoute} from "@/actions/viewActions";
 
 
 @connect(
     store => ({
         selectedRoute: store.routesReducer.selectedRoute,
         show: store.routesReducer.confirmShown
-    }), {showConfirm}
+    }), {showConfirm, hideSelectRoute}
 )
 @translate('Map')
 export default class RouteInfo extends Component {
 
     render() {
-        const {selectedRoute, strings, showConfirm, show} = this.props;
+        const {selectedRoute, strings, showConfirm, show, hideSelectRoute} = this.props;
 
         return (
             <Fragment>
@@ -33,7 +34,7 @@ export default class RouteInfo extends Component {
                         <div className='btns-item btns-approve' onClick={() => showConfirm()}>
                             {strings.approve}
                         </div>
-                        <div className='btns-item btns-cancl'>
+                        <div className='btns-item btns-cancl' onClick={hideSelectRoute}>
                             {strings.cancl}
                         </div>
                     </div>

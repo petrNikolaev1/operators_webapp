@@ -17,6 +17,23 @@ export const hideOrderModal = () => {
     }
 };
 
+export const showSelectRoute = (id) => {
+    return dispatch => {
+        dispatch({
+            type: constants.SHOW_SELECT_ROUTE,
+            payload: id
+        });
+    }
+};
+
+export const hideSelectRoute = () => {
+    return dispatch => {
+        dispatch({
+            type: constants.HIDE_SELECT_ROUTE,
+        });
+    }
+};
+
 export const showLogin = (id) => {
     return dispatch => {
         dispatch({
@@ -28,14 +45,14 @@ export const showLogin = (id) => {
 export const hideLogin = (login, password) => {
     return dispatch => {
         let fail = 0;
-        if(login === "" || password === "") {
+        if (login === "" || password === "") {
             fail = 1;
             dispatch({
                 type: constants.FAIL,
                 fail
             });
         }
-        else{
+        else {
             dispatch({
                 type: constants.SHOW_LOADING
             });
@@ -43,12 +60,11 @@ export const hideLogin = (login, password) => {
                 dispatch({
                     type: constants.HIDE_LOADING
                 });
-                if(login === "admin" && password === "admin")
+                if (login === "admin" && password === "admin")
                     dispatch({
                         type: constants.HIDE_LOGIN
                     });
-                else
-                {
+                else {
                     fail = 2;
                     dispatch({
                         type: constants.FAIL,
