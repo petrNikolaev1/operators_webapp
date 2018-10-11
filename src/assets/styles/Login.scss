@@ -38,6 +38,20 @@
     flex-flow: column nowrap;
     width: $formFr;
 
+    &-fail{
+      margin-bottom: 1vw;
+      margin-left: 5.5vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &-1{
+        color: #eee;
+      }
+      &-2{
+        color: #eee;
+      }
+    }
+
     &-item {
       width: 100%;
       justify-content: space-between;

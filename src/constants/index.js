@@ -9,5 +9,6 @@ export default keyMirror({
     SHOW_LOADING: null,
     HIDE_LOADING: null,
     SHOW_LOGIN: null,
-    HIDE_LOGIN: null
+    HIDE_LOGIN: null,
+    FAIL: null,
 })

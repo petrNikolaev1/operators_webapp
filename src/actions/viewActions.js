@@ -25,19 +25,38 @@ export const showLogin = (id) => {
     }
 };
 
-export const hideLogin = () => {
+export const hideLogin = (login, password) => {
     return dispatch => {
-        dispatch({
-            type: constants.SHOW_LOADING
-        });
-        setTimeout(() => {
+        let fail = 0;
+        if(login === "" || password === "") {
+            fail = 1;
             dispatch({
-                type: constants.HIDE_LOADING
+                type: constants.FAIL,
+                fail
             });
+        }
+        else{
             dispatch({
-                type: constants.HIDE_LOGIN
-            })
-        }, 2000)
+                type: constants.SHOW_LOADING
+            });
+            setTimeout(() => {
+                dispatch({
+                    type: constants.HIDE_LOADING
+                });
+                if(login === "admin" && password === "admin")
+                    dispatch({
+                        type: constants.HIDE_LOGIN
+                    });
+                else
+                {
+                    fail = 2;
+                    dispatch({
+                        type: constants.FAIL,
+                        fail
+                    });
+                }
+            }, 2000)
+        }
     }
 };
 
