@@ -17,12 +17,19 @@ export const resetRoute = () => {
     }
 };
 
-export const showConfirm = (id) => {
+export const showConfirm = () => {
     return dispatch => {
         dispatch({
-            type: constants.SHOW_CONFIRM,
-            id
+            type: constants.SHOW_LOADING
         });
+        setTimeout(() => {
+            dispatch({
+                type: constants.HIDE_LOADING
+            });
+            dispatch({
+                type: constants.SHOW_CONFIRM
+            });
+        }, 2000)
     }
 };
 
