@@ -1,0 +1,25 @@
+@import "index.scss";
+
+.select-route.-show {
+  width: 90%;
+}
+
+.select-route-container {
+  display: flex;
+  flex-flow: row nowrap;
+
+  &-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    margin-right: 5vw;
+  }
+
+  &-map {
+    flex-shrink: 0;
+    flex-basis: 70vw;
+    height: 90vh;
+  }
+}

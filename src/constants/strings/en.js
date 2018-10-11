@@ -40,6 +40,13 @@ export default {
         title: 'Title',
         approve: 'Approve',
         reject: 'Reject'
+    },
+
+    Pagination: {
+        first: 'First',
+        previous: 'Previous',
+        next: 'Next',
+        last: 'Last'
     }
 
 };
