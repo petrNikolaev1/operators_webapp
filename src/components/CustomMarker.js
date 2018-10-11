@@ -22,10 +22,10 @@ export default class CustomMarker extends Component {
 
     render() {
         const {infoWindowOpened} = this.state;
-        const {position, info} = this.props;
+        const {position, info, icon} = this.props;
 
         return (
-            <Marker onClick={this.openInfoWindow} position={position}>
+            <Marker onClick={this.openInfoWindow} position={position} icon={icon}>
                 {infoWindowOpened && <InfoWindow onCloseClick={this.closeInfoWindow}>
                     <div className='info'>{info}</div>
                 </InfoWindow>}

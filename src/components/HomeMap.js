@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap,} from "react-google-maps";
-import {Marker, InfoWindow} from 'react-google-maps';
 
 import {homes, mapNewPositions, drivers} from '@/util/fakeMarkers'
 import {assignNewPositions} from "../util/fakeMarkers";
 import homeIcon from '@/assets/img/home.svg'
 import driverIcon from '@/assets/img/driver.svg'
+import Marker from '@/components/CustomMarker'
 
 @withScriptjs
 @withGoogleMap
@@ -23,9 +23,7 @@ export default class HomeMap extends Component {
     }
 
     render() {
-        assignNewPositions()
-        console.log(this.state.time)
-
+        assignNewPositions();
 
         return (
             <GoogleMap
@@ -35,18 +33,17 @@ export default class HomeMap extends Component {
                 {homes.map((home, index) => {
                     return (
                         <Marker
-                            position={home} key={index}
+                            position={home} info={home.info} key={index}
                         />
                     )
                 })}
                 {drivers.map((driver, index) => {
                     return (
                         <Marker
-                            position={driver} key={index} icon={driverIcon}
+                            position={driver} info={driver.info} key={index} icon={driverIcon}
                         />
                     )
                 })}
-
             </GoogleMap>
         )
     }

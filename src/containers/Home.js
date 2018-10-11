@@ -27,8 +27,8 @@ export default class Home extends Component {
                     containerElement={(<div className='home-container-map'/>)}
                     mapElement={(<div style={{height: `100%`}}/>)}
                 />
-                <Link to="/">
-                    <button>Back to main screen</button>
+                <Link to="/" className='home-container-back'>
+                    Back to main screen
                 </Link>
             </div>
         )
