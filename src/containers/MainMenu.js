@@ -19,14 +19,14 @@ export default class MainMenu extends Component {
         const {loadingShow, loginShow} = this.props;
         return (
             <Fragment>
-                {/*{loginShow && <Login/>}*/}
-                {/*{!loginShow && <div className='main-menu-container'>*/}
-                {/*<InfoPanel/>*/}
-                {/*<OrderList/>*/}
-                {/*</div>}*/}
-                {/*{loadingShow && <Loading/>}*/}
-                <SelectRoute origin={{lat: 52.359573, lng: 4.835453}}
-                             destination={{lat: 50.141228, lng: 8.673017}}/>
+                {loginShow && <Login/>}
+                {!loginShow && <div className='main-menu-container'>
+                <InfoPanel/>
+                <OrderList/>
+                </div>}
+                {loadingShow && <Loading/>}
+                {/*<SelectRoute origin={{lat: 42.0255919, lng: -87.7880368}}*/}
+                             {/*destination={{lat: 41.908703, lng: -87.784665}}/>*/}
             </Fragment>
         )
     }
