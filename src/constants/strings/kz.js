@@ -47,6 +47,14 @@ export default {
         previous: 'Жоғарғы',
         next: 'Келесі',
         last: 'Cоңғы'
+    },
+
+    Map: {
+        distance: 'Қашықтық',
+        time: 'Уақыт',
+        approve: 'Қабылдау',
+        cancl: 'Болдырмау',
+        confirm: 'Жол сәтті таңдалды'
     }
 
 };

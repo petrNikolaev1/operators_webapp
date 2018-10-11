@@ -47,6 +47,14 @@ export default {
         previous: 'Precedente',
         next: 'Seguente',
         last: 'Ultimo'
+    },
+
+    Map: {
+        distance: 'Distanza',
+        time: 'Tempo',
+        approve: 'Approvare',
+        cancl: 'Annulla',
+        confirm: 'Percorso selezionato con successo'
     }
 
 };

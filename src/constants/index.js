@@ -14,5 +14,7 @@ export default keyMirror({
     HIDE_LOGIN: null,
     SELECT_ROUTE: null,
     RESET_ROUTE: null,
-    FAIL: null
+    FAIL: null,
+    SHOW_CONFIRM: null,
+    HIDE_CONFIRM: null
 })

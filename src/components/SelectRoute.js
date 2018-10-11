@@ -11,7 +11,7 @@ import connect from "react-redux/es/connect/connect";
         language: store.stringReducer.language
     }), {}
 )
-@showBeforeHOC('add-device-menu')
+@showBeforeHOC('select-route')
 export default class SelectRoute extends Component {
 
     render() {

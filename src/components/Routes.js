@@ -55,7 +55,7 @@ export default class Routes extends Component {
                             />)
                     }
                 )
-                })}
+                }
                 <Marker infoWindowOpen={infoWindowOpen === 0} index={0} position={data_first.start_location} label='A'
                         info={startAddress} closeInfoWindow={this.closeInfoWindow}
                         openInfoWindow={this.openInfoWindow}/>

@@ -53,5 +53,13 @@ export default {
         previous: 'Назад',
         next: 'Вперед',
         last: 'Конец'
+    },
+
+    Map: {
+        distance: 'Дистанция',
+        time: 'Время',
+        approve: 'Принять',
+        cancl: 'Отмена',
+        confirm: 'Путь успешно выбран'
     }
 };
