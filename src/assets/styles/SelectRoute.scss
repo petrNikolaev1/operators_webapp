@@ -5,16 +5,73 @@
 }
 
 .select-route-container {
+  z-index: 1;
+
+  $dooglysColor: rgb(1, 186, 191);
+  $lightBlue: rgb(223, 237, 238);
+  $footerImgHeight: 3vw;
+  $headerHeight: 1.7vw;
+  $buttonHeight: 4vw;
+  $tableRowHeight: 3vw;
+  $headerVerPadding: 1.1vw;
+  $horPadding: 3vw;
+  $closeColor: #c5c3c4;
+  $borderColor: rgb(233, 233, 233);
+  $dark-color: #f2f2f2;
+  $lineHeight: 1.3vw;
+
+  background: white;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
+  align-self: stretch;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 
   &-info {
+    flex: 1;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 
-    margin-right: 5vw;
+    background: white;
+
+    .btns {
+      margin-top: 15vw;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+
+      &-item {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 11vw;
+        height: 3vw;
+        transition: 0.5s ease-out;
+      }
+      &-item:hover {
+        cursor: pointer;
+      }
+      &-approve {
+        background: $dooglysColor;
+        margin-bottom: 1.5vw;
+        margin-right: 0;
+      }
+      &-cancl {
+        background: $errColor;
+      }
+      &-approve:hover {
+        background: darken($dooglysColor, 10%);
+      }
+      &-cancl:hover {
+        background: darken($errColor, 10%);
+      }
+    }
   }
 
   &-map {

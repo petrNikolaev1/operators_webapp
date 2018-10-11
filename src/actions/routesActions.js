@@ -16,3 +16,20 @@ export const resetRoute = () => {
         });
     }
 };
+
+export const showConfirm = (id) => {
+    return dispatch => {
+        dispatch({
+            type: constants.SHOW_CONFIRM,
+            id
+        });
+    }
+};
+
+export const hideConfirm = () => {
+    return dispatch => {
+        dispatch({
+            type: constants.HIDE_CONFIRM,
+        });
+    }
+};

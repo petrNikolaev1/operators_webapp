@@ -5,7 +5,7 @@ import Routes from './Routes'
 
 @withScriptjs
 @withGoogleMap
-export default class Test extends Component {
+export default class RouteOptions extends Component {
     state = {
         directions: null
     };
@@ -37,7 +37,6 @@ export default class Test extends Component {
                 defaultCenter={new window.google.maps.LatLng(49.622673, 6.166863)}
             >
                 {!!directions && <Routes directions={directions}/>}
-
             </GoogleMap>
         )
     }
