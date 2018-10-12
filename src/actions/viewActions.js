@@ -71,7 +71,7 @@ export const hideLogin = (login, password) => {
                         fail
                     });
                 }
-            }, 2000)
+            }, 500)
         }
     }
 };

@@ -1,38 +1,52 @@
 import React, {Component, Fragment} from 'react';
-import _ from 'lodash';
 import Route from './Route'
 import CustomMarker from './Marker'
-import {Marker, InfoWindow} from 'react-google-maps';
+import {Marker, InfoWindow, GoogleMap} from 'react-google-maps';
 import connect from "react-redux/es/connect/connect";
 
-import {setAnimatedRoute, startRouteAnimation, testPosition} from './b'
+import GoogleMapHoc from "@/hocs/GoogleMapHoc"
+import {getProposedRoute} from "@/actions/routesActions";
 import {selectRoute, resetRoute} from "../actions/routesActions";
 
 @connect(
-    store => ({}), {selectRoute}
+    store => ({
+        proposedRoutes: store.proposedRouteReducer.proposedRoutes
+    }),
+    {
+        selectRoute,
+        getProposedRoute
+    }
 )
+@GoogleMapHoc
 export default class Routes extends Component {
 
     state = {
         infoWindowOpen: -1,
-        time: 0,
     };
 
-    componentDidMount() {
-        const {directions, selectRoute} = this.props;
-        const data = directions.routes[0].legs[0];
-        selectRoute({...data, id: 0})
+    proposedRouteValid = (proposedRoutes) => {
+        const proposedRoute = this.getProposedRoute(proposedRoutes);
+        return !!proposedRoute && proposedRoute.loaded && !!proposedRoute
+    };
 
+    getProposedRoute = (proposedRoutes) => {
+        const {orderId} = this.props;
+        return proposedRoutes[orderId]
+    };
 
-        const start = Date.now();
-        // setAnimatedRoute(directions.routes[0].legs[0]);
-        console.log(Date.now() - start);
-        console.log('LETS START!!!!')
-        // startRouteAnimation(this.testMarker, () => this.setState({time: Date.now()}))
+    componentDidUpdate(prevProps, prevState) {
+        const {proposedRoutes: proposedRoutesOld} = prevProps;
+        const {proposedRoutes: proposedRoutesNew, selectRoute} = this.props;
+
+        if (!this.proposedRouteValid(proposedRoutesOld) && this.proposedRouteValid(proposedRoutesNew)) {
+            selectRoute({...this.getProposedRoute(proposedRoutesNew).res.routes[0].legs[0], id: 0})
+        }
     }
 
-    componentWillUnmount() {
-        // clearInterval(this.interval);
+    componentDidMount() {
+        const {origin, destination, getProposedRoute, orderId} = this.props;
+
+        getProposedRoute(window.google, {origin, destination, orderId});
     }
 
     closeInfoWindow = () => {
@@ -49,47 +63,49 @@ export default class Routes extends Component {
 
     render() {
         const {infoWindowOpen} = this.state;
-        const {directions} = this.props;
-        const data_first = directions.routes[0].legs[0];
-        const startAddress = directions.routes[0].legs[0].start_address;
-        const endAddress = directions.routes[0].legs[0].end_address;
+        const {proposedRoutes} = this.props;
 
-        const testPosition2 = data_first.steps[8].start_point;
-        console.log(data_first)
+        const proposedRouteValid = this.proposedRouteValid(proposedRoutes);
 
-        console.log('test', directions)
+        if (proposedRouteValid) {
+            var proposedRoute = this.getProposedRoute(proposedRoutes).res;
+            var data_first = proposedRoute.routes[0].legs[0];
+            var startAddress = proposedRoute.routes[0].legs[0].start_address;
+            var endAddress = proposedRoute.routes[0].legs[0].end_address;
+        }
 
         return (
-            <Fragment>
-                {directions && directions.routes.map((route, index) => {
-                        // console.log('---------------------------')
-                        // console.log(route)
-                        // console.log('---------------------------')
-
-                        const data = route.legs[0];
-                        const path = data.steps.reduce((res, current) => res.concat(current.path), []);
-                        return (
-                            <Route
-                                data={data}
-                                key={index}
-                                path={path}
-                                index={index}
-                                onClick={this.selectRoute}
-                            />)
+            <GoogleMap
+                defaultZoom={2}
+                defaultCenter={new window.google.maps.LatLng(49.622673, 6.166863)}
+            >
+                {proposedRouteValid &&
+                <Fragment>
+                    {proposedRoute.routes.map((route, index) => {
+                            const data = route.legs[0];
+                            const path = data.steps.reduce((res, current) => res.concat(current.path), []);
+                            return (
+                                <Route
+                                    data={data}
+                                    key={index}
+                                    path={path}
+                                    index={index}
+                                    onClick={this.selectRoute}
+                                />)
+                        }
+                    )
                     }
-                )
-                }
-                <CustomMarker infoWindowOpen={infoWindowOpen === 0} index={0} position={data_first.start_location}
-                              label='A'
-                              info={startAddress} closeInfoWindow={this.closeInfoWindow}
-                              openInfoWindow={this.openInfoWindow}/>
+                    <CustomMarker infoWindowOpen={infoWindowOpen === 0} index={0} position={data_first.start_location}
+                                  label='A'
+                                  info={startAddress} closeInfoWindow={this.closeInfoWindow}
+                                  openInfoWindow={this.openInfoWindow}/>
 
-                <CustomMarker infoWindowOpen={infoWindowOpen === 1} index={1} position={data_first.end_location}
-                              label='B'
-                              info={endAddress} closeInfoWindow={this.closeInfoWindow}
-                              openInfoWindow={this.openInfoWindow}/>
-                <Marker ref={marker => this.testMarker = marker} position={testPosition}/>
-            </Fragment>
+                    <CustomMarker infoWindowOpen={infoWindowOpen === 1} index={1} position={data_first.end_location}
+                                  label='B'
+                                  info={endAddress} closeInfoWindow={this.closeInfoWindow}
+                                  openInfoWindow={this.openInfoWindow}/>
+                </Fragment>}
+            </GoogleMap>
         )
     }
 }

@@ -15,7 +15,7 @@ import {hideSelectRoute} from "@/actions/viewActions";
     store => ({
         selectedRoute: store.routesReducer.selectedRoute,
         show: store.routesReducer.confirmShown,
-        loadingShow: store.viewReducer.loadingShow
+        loadingShow: store.viewReducer.loadingShow,
     }), {showConfirm,  hideSelectRoute}
 )
 @translate('Map')
