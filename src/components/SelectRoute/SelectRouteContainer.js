@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import classNames from "classnames";
 
-import Routes from '@/components/Routes'
-import {getRoute} from "@/util/mapsRequests";
-import RouteInfo from '@/components/RouteInfo'
+import AlternativeRoutes from '@/components/SelectRoute/AlternativeRoutes'
+import AlternativeRouteInfo from '@/components/SelectRoute/AlternativeRouteInfo'
 import "@/assets/styles/SelectRoute.scss"
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 
@@ -12,8 +11,8 @@ export default class SelectRoute extends Component {
     render() {
         return (
             <div className={classNames(this.props.className, 'select-route-container')}>
-                <RouteInfo/>
-                <Routes {...this.props}/>
+                <AlternativeRouteInfo/>
+                <AlternativeRoutes {...this.props}/>
             </div>
         )
     }

@@ -36,15 +36,14 @@ export const getPointBetween = (a, b) => {
 
 export let testPosition = 0;
 
-export const startRouteAnimation = (marker, rerender) => {
+export const startRouteAnimation = (autoDriveSteps = autoDriveSteps, rerender) => {
     var autoDriveTimer = setInterval(function () {
-            if (autoDriveSteps.length === 0) {
-                clearInterval(autoDriveTimer);
-            } else {
-                testPosition = autoDriveSteps[0];
-                autoDriveSteps.shift();
-            }
-            rerender()
-        },
-        30);
+        if (autoDriveSteps.length === 0) {
+            clearInterval(autoDriveTimer);
+        } else {
+            testPosition = autoDriveSteps[0];
+            autoDriveSteps.shift();
+        }
+        rerender()
+    }, 30)
 };

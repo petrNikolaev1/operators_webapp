@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import Route from './Route'
-import CustomMarker from './Marker'
-import {Marker, InfoWindow, GoogleMap} from 'react-google-maps';
+import {GoogleMap} from 'react-google-maps';
 import connect from "react-redux/es/connect/connect";
 
+import Route from '@/components/SelectRoute/Route'
+import CustomMarker from '@/components/SelectRoute/Marker'
 import GoogleMapHoc from "@/hocs/GoogleMapHoc"
 import {getProposedRoute} from "@/actions/routesActions";
-import {selectRoute, resetRoute} from "../actions/routesActions";
+import {selectRoute, resetRoute} from "../../actions/routesActions";
 
 @connect(
     store => ({
@@ -17,8 +17,8 @@ import {selectRoute, resetRoute} from "../actions/routesActions";
         getProposedRoute
     }
 )
-@GoogleMapHoc
-export default class Routes extends Component {
+@GoogleMapHoc('select-route-container-map')
+export default class AlternativeRoutes extends Component {
 
     state = {
         infoWindowOpen: -1,
@@ -46,7 +46,7 @@ export default class Routes extends Component {
     componentDidMount() {
         const {origin, destination, getProposedRoute, orderId} = this.props;
 
-        getProposedRoute(window.google, {origin, destination, orderId});
+        getProposedRoute({origin, destination, orderId});
     }
 
     closeInfoWindow = () => {

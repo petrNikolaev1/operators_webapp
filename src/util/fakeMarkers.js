@@ -12,33 +12,24 @@ export let homes = [
 
 
 export let drivers = [
-    {lat: -2.756786, lng: -3.412433, info: 'Alex'},
-    {lat: -9.963729, lng: -38.493386, info: 'Sudarzhan'},
-    {lat: -76.753671, lng: -47.911241, info: 'Leela'},
-    {lat: -34.133836, lng: -42.79628, info: 'Ilia'},
-    {lat: -35.756869, lng: -38.488833, info: 'Ararat'},
-    {lat: 47.593441, lng: 33.552595, info: 'Dmitri'},
-    {lat: 12.899606, lng: 27.555566, info: 'Margarita'},
-    {lat: 87.686228, lng: 25.285483, info: 'Kamal'},
-    {lat: 65.970804, lng: 24.133028, info: 'Semyon'},
-    {lat: -2.756786, lng: -11.412433, info: 'Rani'},
-    {lat: -9.963729, lng: -77.493386, info: 'Shamil'},
-    {lat: -76.753671, lng: -63.911241, info: 'Saveli'},
-    {lat: -34.133836, lng: -55.79628, info: 'Anatoly'},
-    {lat: -35.756869, lng: 9.488833, info: 'Andrey'},
-    {lat: 47.593441, lng: 25.552595, info: 'Vadim'},
-    {lat: 12.899606, lng: 7.555566, info: 'Stepan'},
-    {lat: 87.686228, lng: 1.285483, info: 'Samir'},
-    {lat: 65.970804, lng: 51.133028, info: 'Surya'},
-    {lat: 44.756786, lng: -11.412433, info: 'Rati'},
-    {lat: 22.963729, lng: -77.493386, info: 'Ruf'},
-    {lat: 7.753671, lng: -63.911241, info: 'Stasya'},
-    {lat: 56.133836, lng: -55.79628, info: 'Uliana'},
-    {lat: 31.756869, lng: 9.488833, info: 'Platon'},
-    {lat: 4.593441, lng: 25.552595, info: 'Arisha'},
-    {lat: 12.899606, lng: 79.555566, info: 'Indira'},
-    {lat: 87.686228, lng: 53.285483, info: 'Rostislav'},
-    {lat: 65.970804, lng: 41.133028, info: 'Ksenia'}
+    {
+        info: 'Alex',
+        origin: {lat: 50.427470, lng: 30.447890},
+        destination: {lat: 44.593441, lng: 33.552595},
+        progressPercent: 0
+    },
+    {
+        info: 'Stich',
+        origin: {lat: 49.855211, lng: 24.045811},
+        destination: {lat: 55.733955, lng: 37.588165},
+        progressPercent: 0
+    },
+    {
+        info: 'Leela',
+        origin: {lat: 55.788243, lng: 49.123909},
+        destination: {lat: 53.244196, lng: 34.364079},
+        progressPercent: 0
+    },
 ];
 
 

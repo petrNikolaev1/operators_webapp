@@ -1,19 +1,20 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-import HomeMap from '@/components/HomeMap'
+import HomeMap from '@/components/Home/HomeMap'
 import '@/assets/styles/Home.scss'
-import GoogleMapHoc from "../hocs/GoogleMapHoc";
+import GoogleMapHoc from "../../hocs/GoogleMapHoc";
 import connect from "react-redux/es/connect/connect";
 import {Reply} from '@material-ui/icons';
 
 
 @connect(
     store => ({
-        language: store.stringReducer.language
+        language: store.stringReducer.language,
+        drivers: store.homeMapReducer.drivers,
     }), {}
 )
-export default class Home extends Component {
+export default class HomeContainer extends Component {
     render() {
         const {language} = this.props;
 
@@ -28,13 +29,7 @@ export default class Home extends Component {
                         Back to main screen
                     </Link>
                 </div>
-                <HomeMap
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAbChC4mhcoyeibPK_o8rNHjjgVffObCdw&v=3.exp&libraries=geometry,drawing,places&language=${language}`}
-                    loadingElement={(<div style={{height: `100%`}}/>)}
-                    containerElement={(<div className='home-container-map'/>)}
-                    mapElement={(<div style={{height: `100%`}}/>)}
-                />
-
+                <HomeMap/>
             </div>
         )
     }

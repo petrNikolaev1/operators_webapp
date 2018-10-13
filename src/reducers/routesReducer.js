@@ -69,3 +69,41 @@ export function proposedRouteReducer(state = initialProposedRouteState, action) 
     }
 }
 
+
+const homeMapInitialState = {
+    drivers: {},
+};
+
+
+export function homeMapReducer(state = homeMapInitialState, action) {
+    switch (action.type) {
+        case constants.GET_DRIVERS_ROUTES_REQUEST:
+            return {
+                ...state,
+                drivers: {
+                    ...state.drivers,
+                    loaded: false
+                },
+            };
+        case constants.GET_DRIVERS_ROUTES_SUCCESS:
+            return {
+                ...state,
+                drivers: {
+                    ...state.drivers,
+                    loaded: true,
+                    res: action.res,
+                }
+            };
+        case constants.GET_DRIVERS_ROUTES_ERROR:
+            return {
+                ...state,
+                drivers: {
+                    ...state.drivers,
+                    loaded: true,
+                    err: action.err,
+                }
+            };
+        default:
+            return state;
+    }
+}

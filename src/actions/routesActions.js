@@ -1,5 +1,6 @@
 import constants from '@/constants'
-import {getRoute} from "@/util/mapsRequests";
+import {drivers} from "@/util/fakeMarkers"
+import {getRoute, getGoogleMaps} from "@/util/googleMapsRequests";
 
 export const selectRoute = (route) => {
     return dispatch => {
@@ -51,9 +52,10 @@ export const hideConfirm = () => {
     }
 };
 
-export const getProposedRoute = (google, payload) => {
+export const getProposedRoute = (payload) => {
     const {orderId, origin, destination} = payload;
-    return dispatch => {
+    return async dispatch => {
+        const google = await getGoogleMaps();
         dispatch({
             type: constants.GET_PROPOSED_ROUTE_REQUEST,
             orderId,
@@ -71,6 +73,31 @@ export const getProposedRoute = (google, payload) => {
                     type: constants.GET_PROPOSED_ROUTE_ERROR,
                     err,
                     orderId,
+                });
+            })
+    }
+};
+
+export const getDriversRoutes = (payload = {drivers}) => {
+    const {drivers} = payload;
+    return async dispatch => {
+        dispatch({
+            type: constants.GET_DRIVERS_ROUTES_REQUEST,
+        });
+        const google = await getGoogleMaps();
+        Promise.all(
+            drivers.map(driver => getRoute(google, {origin: driver.origin, destination: driver.destination}))
+        )
+            .then(res => {
+                dispatch({
+                    type: constants.GET_DRIVERS_ROUTES_SUCCESS,
+                    res: res.map((driverRoute, index) => ({...drivers[index], route: driverRoute})),
+                });
+            })
+            .catch(err => {
+                dispatch({
+                    type: constants.GET_DRIVERS_ROUTES_ERROR,
+                    err,
                 });
             })
     }

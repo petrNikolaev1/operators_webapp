@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Polyline} from 'react-google-maps';
-import {colors, selectedColor} from '@/util/rainbow'
 import connect from "react-redux/es/connect/connect";
 
-import {selectRoute} from "../actions/routesActions";
+import {selectRoute} from "@/actions/routesActions";
+import {colors, selectedColor} from '@/util/rainbow'
 
 @connect(
     store => ({

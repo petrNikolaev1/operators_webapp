@@ -4,10 +4,10 @@ import connect from "react-redux/es/connect/connect";
 import "@/assets/styles/SelectRoute.scss";
 import translate from '@/hocs/Translate';
 import {showConfirm} from "@/actions/routesActions";
-import Confirm from './Confirm';
+import Confirm from '../Confirm';
 import Loading from "@/common/Loading";
 
-import OrderModal from "./Orders/OrderModal";
+import OrderModal from "../Orders/OrderModal";
 import {hideSelectRoute} from "@/actions/viewActions";
 
 
@@ -19,7 +19,7 @@ import {hideSelectRoute} from "@/actions/viewActions";
     }), {showConfirm,  hideSelectRoute}
 )
 @translate('Map')
-export default class RouteInfo extends Component {
+export default class AlternativeRouteInfo extends Component {
 
     render() {
         const {selectedRoute, strings, showConfirm, show, loadingShow, hideSelectRoute} = this.props;

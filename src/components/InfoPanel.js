@@ -1,6 +1,3 @@
-/*
-Component representing the top panel showing the system info.
- */
 import {Settings, Home} from '@material-ui/icons';
 import React, {PureComponent} from 'react';
 
