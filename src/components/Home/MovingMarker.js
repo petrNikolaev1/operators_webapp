@@ -3,6 +3,7 @@ import {Marker} from 'react-google-maps';
 
 import "@/assets/styles/Marker.scss"
 import driverIcon from '@/assets/img/driver.svg'
+import {IconRotator, rotationAngle} from "@/util/icons";
 
 export default class MovingMarker extends Component {
 
@@ -37,7 +38,24 @@ export default class MovingMarker extends Component {
             <Marker
                 position={this.path[0]}
                 onClick={() => handleSelectedDriver(index)}
-                options={{icon: driverIcon}}
+                options={{
+                    icon: {
+                        url: IconRotator
+                            .makeIcon(driverIcon)
+                            .setRotation({deg: rotationAngle(this.path[0], this.path[1])})
+                            .getUrl()
+                    },
+                }}
+                // options={{
+                //     icon: {
+                //         path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                //         scale: 6,
+                //         fillColor: 'red',
+                //         fillOpacity: 0.8,
+                //         strokeWeight: 2,
+                //         rotation: rotationAngle(this.path[0], this.path[1])
+                //     },
+                // }}
             />
         )
     }
