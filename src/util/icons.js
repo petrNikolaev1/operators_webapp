@@ -37,30 +37,42 @@ IconRotator.prototype.getUrl = function () {
 };
 
 export const rotationAngle = (a, b) => {
-    const direction = b.lat() - a.lat();
+    const directionX = b.lat() - a.lat();
+    const directionY = b.lng() - a.lng();
     const k = (b.lng() - a.lng()) / (b.lat() - a.lat());
+    const alpha = Math.abs(toDegrees(Math.atan(k)));
+    let res = 0;
 
-    switch (direction >= 0) {
-        case true:
-            switch (k >= 0) {
-                case true:
-                    console.log('case 1')
-                    return 90 - Math.atan(k);
-                case false:
-                    console.log('case 2')
-                    return 90 + Math.atan(-k);
+    console.log('-----------------------------------')
+    console.log(directionX >= 0);
+    console.log(toDegrees(Math.atan(k)));
+
+    if (!isNaN(k)) {
+        if (directionX >= 0) {
+            if (directionY >= 0) {
+                res = 90 - alpha
             }
-            break;
-        case false:
-            switch (k >= 0) {
-                case true:
-                    console.log('case 3')
-                    return -(90 + Math.atan(k));
-                case false:
-                    console.log('case 4')
-                    return -(90 - Math.atan(-k));
+            else {
+                res = 90 + alpha
             }
+        } else {
+            if (directionY >= 0) {
+                res = -(90 - alpha)
+            }
+            else {
+                res = -(90 + alpha)
+            }
+        }
+    } else {
+        if (directionY >= 0) {
+            res = 0;
+        } else {
+            res = 180;
+        }
     }
+    console.log(res)
+    console.log('-----------------------------------')
+    return res;
 };
 
 export const toDegrees = radians => radians * (180 / Math.PI);

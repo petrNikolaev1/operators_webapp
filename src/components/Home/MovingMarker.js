@@ -45,6 +45,7 @@ export default class MovingMarker extends Component {
                 //             .setRotation({deg: rotationAngle(this.path[0], this.path[1])})
                 //             .getUrl()
                 //     },
+                // style={{backgroundColor:'#ccc',transform: [{rotate: '50deg'}],}}
                 // }}
                 options={{
                     icon: {
