@@ -38,24 +38,24 @@ export default class MovingMarker extends Component {
             <Marker
                 position={this.path[0]}
                 onClick={() => handleSelectedDriver(index)}
-                options={{
-                    icon: {
-                        url: IconRotator
-                            .makeIcon(driverIcon)
-                            .setRotation({deg: rotationAngle(this.path[0], this.path[1])})
-                            .getUrl()
-                    },
-                }}
                 // options={{
                 //     icon: {
-                //         path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-                //         scale: 6,
-                //         fillColor: 'red',
-                //         fillOpacity: 0.8,
-                //         strokeWeight: 2,
-                //         rotation: rotationAngle(this.path[0], this.path[1])
+                //         url: IconRotator
+                //             .makeIcon(driverIcon)
+                //             .setRotation({deg: rotationAngle(this.path[0], this.path[1])})
+                //             .getUrl()
                 //     },
                 // }}
+                options={{
+                    icon: {
+                        path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                        scale: 6,
+                        fillColor: 'red',
+                        fillOpacity: 0.8,
+                        strokeWeight: 2,
+                        rotation: rotationAngle(this.path[0], this.path[1])
+                    },
+                }}
             />
         )
     }

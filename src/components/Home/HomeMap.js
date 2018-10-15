@@ -63,8 +63,9 @@ export default class HomeMap extends Component {
 
         return (
             <GoogleMap
-                defaultZoom={2}
-                defaultCenter={new window.google.maps.LatLng(49.622673, 6.166863)}
+                defaultZoom={12}
+                // center={new window.google.maps.LatLng(49.622673, 6.166863)}
+                defaultCenter={drivers.loaded && new window.google.maps.LatLng(drivers.res[0].origin)}
             >
                 {homes.map((home, index) => {
                     return (

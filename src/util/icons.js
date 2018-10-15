@@ -36,10 +36,15 @@ IconRotator.prototype.getUrl = function () {
     return this.canvas.toDataURL('image/png');
 };
 
-
 export const rotationAngle = (a, b) => {
-    const tan = (b.lng() - a.lng()) / (b.lat() - a.lat());
-    return toDegrees(Math.atan(tan))
+    const negFlag = b.lat() - a.lat() < 0;
+
+    let tan = (b.lng() - a.lng()) / (b.lat() - a.lat());
+    if (negFlag) {
+        return (180 + (90 - toDegrees(Math.atan(tan))))
+    } else {
+        return (90 - toDegrees(Math.atan(tan)))
+    }
 };
 
 export const toDegrees = radians => radians * (180 / Math.PI);
