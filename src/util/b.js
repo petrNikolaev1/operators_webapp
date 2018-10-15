@@ -1,19 +1,12 @@
 import math from 'mathjs'
 
-var autoDriveSteps = [];
-var speedFactor = 1; // 10x faster animated drive
-
 export const setAnimatedRoute = (leg) => {
-    autoDriveSteps = leg.steps.reduce((res, current) => res.concat(current.path.reduce((res, current) => res.concat(getPointBetween(res[res.length - 1], current), current), [])), []);
-    console.log('len', autoDriveSteps.length)
+    return leg.steps.reduce((res, current) => res.concat(current.path.reduce((res, current) => res.concat(getPointBetween(res[res.length - 1], current), current), [])), []);
 };
 
 let min = 100000;
 
 const MIN = 0.000009999999996068709;
-
-// const MIN = 0.00002;
-
 
 export const getPointBetween = (a, b) => {
     if (!a) return b;
@@ -32,18 +25,4 @@ export const getPointBetween = (a, b) => {
     res[ratio] = b;
 
     return res
-};
-
-export let testPosition = 0;
-
-export const startRouteAnimation = (autoDriveSteps = autoDriveSteps, rerender) => {
-    var autoDriveTimer = setInterval(function () {
-        if (autoDriveSteps.length === 0) {
-            clearInterval(autoDriveTimer);
-        } else {
-            testPosition = autoDriveSteps[0];
-            autoDriveSteps.shift();
-        }
-        rerender()
-    }, 30)
 };

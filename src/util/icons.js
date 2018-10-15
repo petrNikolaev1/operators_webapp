@@ -37,13 +37,29 @@ IconRotator.prototype.getUrl = function () {
 };
 
 export const rotationAngle = (a, b) => {
-    const negFlag = b.lat() - a.lat() < 0;
+    const direction = b.lat() - a.lat();
+    const k = (b.lng() - a.lng()) / (b.lat() - a.lat());
 
-    let tan = (b.lng() - a.lng()) / (b.lat() - a.lat());
-    if (negFlag) {
-        return (180 + (90 - toDegrees(Math.atan(tan))))
-    } else {
-        return (90 - toDegrees(Math.atan(tan)))
+    switch (direction >= 0) {
+        case true:
+            switch (k >= 0) {
+                case true:
+                    console.log('case 1')
+                    return 90 - Math.atan(k);
+                case false:
+                    console.log('case 2')
+                    return 90 + Math.atan(-k);
+            }
+            break;
+        case false:
+            switch (k >= 0) {
+                case true:
+                    console.log('case 3')
+                    return -(90 + Math.atan(k));
+                case false:
+                    console.log('case 4')
+                    return -(90 - Math.atan(-k));
+            }
     }
 };
 
