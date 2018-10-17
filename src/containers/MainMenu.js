@@ -6,27 +6,35 @@ import OrderList from "@/components/Orders/OrderList";
 import Login from "@/components/Login";
 import connect from "react-redux/es/connect/connect";
 import Loading from "@/common/Loading";
-import SelectRoute from "@/components/SelectRoute"
+import {getDriversRoutes} from "@/actions/routesActions";
+import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
 
 @connect(
     store => ({
         loadingShow: store.viewReducer.loadingShow,
-        loginShow: store.viewReducer.loginShow
-    }), {}
+        loginShow: store.viewReducer.loginShow,
+        language: store.stringReducer.language,
+    }), {getDriversRoutes}
 )
 export default class MainMenu extends Component {
+
+    componentDidMount() {
+        const {getDriversRoutes, language} = this.props;
+        initGoogleMaps(language);
+        getDriversRoutes()
+    }
+
     render() {
-        const {loadingShow, loginShow} = this.props;
+        const {loadingShow, loginShow,} = this.props;
+
         return (
             <Fragment>
                 {loginShow && <Login/>}
                 {!loginShow && <div className='main-menu-container'>
-                <InfoPanel/>
-                <OrderList/>
+                    <InfoPanel/>
+                    <OrderList/>
                 </div>}
                 {loadingShow && <Loading/>}
-                {/*<SelectRoute origin={{lat: 42.0255919, lng: -87.7880368}}*/}
-                             {/*destination={{lat: 41.908703, lng: -87.784665}}/>*/}
             </Fragment>
         )
     }

@@ -1,7 +1,3 @@
-/*
-Component representing the table of the devices list.
- */
-
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux'
 
@@ -10,7 +6,7 @@ import '@/assets/styles/OrderList.scss'
 import OrderItem from './OrderItem'
 import OrderModal from './OrderModal'
 import Pagination from './Pagination';
-import SelectRoute from "@/components/SelectRoute"
+import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
 
 
 @connect(
@@ -75,6 +71,7 @@ export default class OrderList extends Component {
                                 />}
                                 {item.id === selectRouteShown &&
                                 <SelectRoute
+                                    orderId={item.id}
                                     origin={{lat: item.latFrom, lng: item.lngFrom}}
                                     destination={{lat: item.latTo, lng: item.lngTo}}
                                 />}
