@@ -19,6 +19,7 @@ export const hideOrderModal = () => {
 
 export const showSelectRoute = (id) => {
     console.log('Select Route')
+    console.log(id)
     return dispatch => {
         dispatch({
             type: constants.SHOW_SELECT_ROUTE,
