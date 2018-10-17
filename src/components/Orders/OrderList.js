@@ -63,24 +63,24 @@ export default class OrderList extends Component {
         return (
             <div>
                 {pageOfItems.map(item => {
-                        return (
-                            <div key={item.id}>
-                                <OrderItem
-                                    {...item}
-                                />
-                                {item.id === show && <OrderModal
-                                    {...item}
-                                />}
-                                {item.id === showDrivers && <OrderDrivers
-                                    {...item}
-                                />}
-                                {item.id === selectRouteShown &&
-                                <SelectRoute
-                                    orderId={item.id}
-                                    origin={{lat: item.latFrom, lng: item.lngFrom}}
-                                    destination={{lat: item.latTo, lng: item.lngTo}}
-                                />}
-                            </div>)
+                    return (
+                        <div key={item.id}>
+                            <OrderItem
+                                {...item}
+                            />
+                            {item.id === show && <OrderModal
+                                {...item}
+                            />}
+                            {item.id === showDrivers && <OrderDrivers
+                                {...item}
+                            />}
+                            {item.id === selectRouteShown &&
+                            <SelectRoute
+                                orderId={item.id}
+                                origin={{lat: item.latFrom, lng: item.lngFrom}}
+                                destination={{lat: item.latTo, lng: item.lngTo}}
+                            />}
+                        </div>)
                     }
                 )}
             </div>

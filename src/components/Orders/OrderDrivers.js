@@ -47,7 +47,7 @@ export default class OrderDrivers extends PureComponent {
                         />
                     </div>
                     <div className='btns'>
-                        <div className='btns-item btns-approve' onClick={() => showSelectRoute(id)}>
+                        <div className='btns-item btns-approve' onClick={() => {showSelectRoute(id); hideDrivers()}}>
                             {strings.approve}
                         </div>
                         <div className='btns-item btns-reject'  onClick={hideDrivers}>
