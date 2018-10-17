@@ -42,6 +42,21 @@ export default {
         reject: 'Reject'
     },
 
+    OrderDrivers: {
+        id: 'id',
+        fullFrom: 'Departure address',
+        fullTo: 'Destination address',
+        status: 'Status',
+        weight: 'Weight of the parcel',
+        worth: 'Cost of the parcel',
+        description: 'Description',
+        birthDate: 'Creation date',
+        title: 'Title',
+        approve: 'Approve',
+        reject: 'Reject',
+        choose_placeholder: 'Choose drivers'
+    },
+
     Pagination: {
         first: 'First',
         previous: 'Previous',

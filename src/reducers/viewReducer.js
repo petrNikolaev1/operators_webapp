@@ -2,6 +2,7 @@ import constants from '@/constants'
 
 const initialState = {
     orderModalShown: 0,
+    orderDriversShown: 0,
     loadingShow: false,
     loginShow: false,
     fail: 0,
@@ -44,6 +45,16 @@ export function viewReducer(state = initialState, action) {
             return {
                 ...state,
                 fail: action.fail
+            };
+        case constants.SHOW_DRIVERS:
+            return {
+                ...state,
+                orderDriversShown: action.id
+            };
+        case constants.HIDE_DRIVERS:
+            return {
+                ...state,
+                orderDriversShown: 0
             };
         case constants.SHOW_SELECT_ROUTE:
             return {

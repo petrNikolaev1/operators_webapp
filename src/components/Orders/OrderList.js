@@ -7,12 +7,14 @@ import OrderItem from './OrderItem'
 import OrderModal from './OrderModal'
 import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
+import OrderDrivers from "./OrderDrivers";
 
 
 @connect(
     store => ({
         orders: store.ordersReducer.orders,
         show: store.viewReducer.orderModalShown,
+        showDrivers: store.viewReducer.orderDriversShown,
         selectRouteShown: store.viewReducer.selectRouteShown
     }), {}
 )
@@ -55,7 +57,7 @@ export default class OrderList extends Component {
     };
 
     renderDevices = () => {
-        const {show, selectRouteShown} = this.props;
+        const {show, showDrivers, selectRouteShown} = this.props;
         const {pageOfItems} = this.state;
 
         return (
@@ -67,6 +69,9 @@ export default class OrderList extends Component {
                                     {...item}
                                 />
                                 {item.id === show && <OrderModal
+                                    {...item}
+                                />}
+                                {item.id === showDrivers && <OrderDrivers
                                     {...item}
                                 />}
                                 {item.id === selectRouteShown &&

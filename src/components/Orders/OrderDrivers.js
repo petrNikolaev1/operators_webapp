@@ -1,5 +1,5 @@
 /*
-Component representing the menu of a device adding.
+Component representing the menu of choosign drivers for delivery.
  */
 
 import React, {PureComponent} from 'react';
@@ -9,45 +9,46 @@ import classNames from 'classnames'
 import '@/assets/styles/OrderModal.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
-import {hideOrderModal, showDrivers} from "@/actions/viewActions";
-import {filterFullOrderProps} from '@/util/api'
+import Select from "@/common/Select";
+import {hideDrivers, showSelectRoute} from "@/actions/viewActions";
 import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
         show: store.viewReducer.orderModalShown
-    }), {hideOrderModal, showDrivers}
+    }), {hideDrivers, showSelectRoute}
 )
-@translate('OrderModal')
+@translate('OrderDrivers')
 @showBeforeHOC('add-device-menu')
-export default class OrderModal extends PureComponent {
+export default class OrderDrivers extends PureComponent {
 
     render() {
-        const {strings, index} = this.props;
+        const {strings} = this.props;
 
-        const {hideOrderModal, showDrivers, id} = this.props;
-        const orderProps = filterFullOrderProps(this.props);
+        const {hideDrivers, showSelectRoute, id} = this.props;
         return (
             <div className={classNames(this.props.className, "add-container")}>
                 <div className="add-container-header">
                     <div className="add-container-header-label">
                         {strings.title}
                     </div>
-                    <div onClick={hideOrderModal} className="add-container-header-img">
+                    <div onClick={hideDrivers} className="add-container-header-img">
                         <Close className='close-icon'/>
                     </div>
                 </div>
                 <div className="add-container-table">
-                    {orderProps.map((orderProp, index) => {
-                        return (
-                            <div className='order-props-item' key={index}>
-                                <div className='order-props-item-label'>{strings[orderProp.label]}</div>
-                                <div className='order-props-item-value'>{orderProp.value}</div>
-                            </div>
-                        )
-                    })}
+                    <div className='top-panel-container-item top-panel-container-lang'>
+                        <Select
+                            // onChange={changeLang}
+                            // selectedOption={langToSelectedOption(language)}
+                            isSerchable={true}
+                            // options={langsOptions}
+                            placeholder={strings.choose_placeholder}
+                            formClassName='add-device-select'
+                        />
+                    </div>
                     <div className='btns'>
-                        <div className='btns-item btns-approve' onClick={() => {hideOrderModal(); showDrivers(id)}}>
+                        <div className='btns-item btns-approve' onClick={() => showSelectRoute(id)}>
                             {strings.approve}
                         </div>
                         <div className='btns-item btns-reject'>

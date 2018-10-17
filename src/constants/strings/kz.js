@@ -42,6 +42,21 @@ export default {
         reject: 'Қабылдамау'
     },
 
+    OrderDrivers: {
+        id: 'id',
+        fullFrom: 'Мекен-жайы',
+        fullTo: 'Алушының мекен-жайы',
+        status: 'Күйі',
+        weight: 'Бөліктің салмағы',
+        worth: 'Жүк тасымалдау құны',
+        description: 'Сипаттама',
+        birthDate: 'Өтінім жасау күні',
+        title: 'Ақпаратқа тапсырыс беру',
+        approve: 'Қабылдау үшін',
+        reject: 'Қабылдамау',
+        choose_placeholder: 'драйверлерді таңдаңыз'
+    },
+
     Pagination: {
         first: 'Басы',
         previous: 'Жоғарғы',

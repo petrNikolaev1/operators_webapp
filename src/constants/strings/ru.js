@@ -48,6 +48,21 @@ export default {
         reject: 'Отклонить'
     },
 
+    OrderDrivers: {
+        id: 'id',
+        fullFrom: 'Адрес отправления',
+        fullTo: 'Адрес получателя',
+        status: 'Статус',
+        weight: 'Вес посылки',
+        worth: 'Стоимость посылки',
+        description: 'Описание',
+        birthDate: 'Дата создания заявки',
+        title: 'Информация о водителях',
+        approve: 'Принять',
+        reject: 'Отклонить',
+        choose_placeholder: 'Выберите водителей'
+    },
+
     Pagination: {
         first: 'Начало',
         previous: 'Назад',

@@ -34,6 +34,31 @@ export const hideSelectRoute = () => {
     }
 };
 
+export const showDrivers = (id) => {
+    return dispatch => {
+        dispatch({
+            type: constants.SHOW_LOADING
+        });
+        setTimeout(() => {
+            dispatch({
+                type: constants.HIDE_LOADING
+            });
+            dispatch({
+                type: constants.SHOW_DRIVERS,
+                id
+            });
+        }, 2000);
+    }
+};
+
+export const hideDrivers = () => {
+    return dispatch => {
+        dispatch({
+            type: constants.HIDE_DRIVERS,
+        });
+    }
+};
+
 export const showLogin = (id) => {
     return dispatch => {
         dispatch({

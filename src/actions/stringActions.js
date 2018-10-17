@@ -12,3 +12,13 @@ export const changeLang = (language) => {
         });
     }
 };
+
+export const changeDrivers = (language) => {
+
+    return dispatch => {
+        dispatch({
+            type: constants.CHANGE_LANG,
+            language,
+        });
+    }
+};
