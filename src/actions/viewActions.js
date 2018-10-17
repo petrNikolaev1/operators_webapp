@@ -18,6 +18,8 @@ export const hideOrderModal = () => {
 };
 
 export const showSelectRoute = (id) => {
+    console.log('Select Route')
+    console.log(id)
     return dispatch => {
         dispatch({
             type: constants.SHOW_SELECT_ROUTE,
@@ -30,6 +32,31 @@ export const hideSelectRoute = () => {
     return dispatch => {
         dispatch({
             type: constants.HIDE_SELECT_ROUTE,
+        });
+    }
+};
+
+export const showDrivers = (id) => {
+    return dispatch => {
+        dispatch({
+            type: constants.SHOW_LOADING
+        });
+        setTimeout(() => {
+            dispatch({
+                type: constants.HIDE_LOADING
+            });
+            dispatch({
+                type: constants.SHOW_DRIVERS,
+                id
+            });
+        }, 2000);
+    }
+};
+
+export const hideDrivers = () => {
+    return dispatch => {
+        dispatch({
+            type: constants.HIDE_DRIVERS,
         });
     }
 };

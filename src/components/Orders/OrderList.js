@@ -7,12 +7,14 @@ import OrderItem from './OrderItem'
 import OrderModal from './OrderModal'
 import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
+import OrderDrivers from "./OrderDrivers";
 
 
 @connect(
     store => ({
         orders: store.ordersReducer.orders,
         show: store.viewReducer.orderModalShown,
+        showDrivers: store.viewReducer.orderDriversShown,
         selectRouteShown: store.viewReducer.selectRouteShown
     }), {}
 )
@@ -55,27 +57,30 @@ export default class OrderList extends Component {
     };
 
     renderDevices = () => {
-        const {show, selectRouteShown} = this.props;
+        const {show, showDrivers, selectRouteShown} = this.props;
         const {pageOfItems} = this.state;
 
         return (
             <div>
                 {pageOfItems.map(item => {
-                        return (
-                            <div key={item.id}>
-                                <OrderItem
-                                    {...item}
-                                />
-                                {item.id === show && <OrderModal
-                                    {...item}
-                                />}
-                                {item.id === selectRouteShown &&
-                                <SelectRoute
-                                    orderId={item.id}
-                                    origin={{lat: item.latFrom, lng: item.lngFrom}}
-                                    destination={{lat: item.latTo, lng: item.lngTo}}
-                                />}
-                            </div>)
+                    return (
+                        <div key={item.id}>
+                            <OrderItem
+                                {...item}
+                            />
+                            {item.id === show && <OrderModal
+                                {...item}
+                            />}
+                            {item.id === showDrivers && <OrderDrivers
+                                {...item}
+                            />}
+                            {item.id === selectRouteShown &&
+                            <SelectRoute
+                                orderId={item.id}
+                                origin={{lat: item.latFrom, lng: item.lngFrom}}
+                                destination={{lat: item.latTo, lng: item.lngTo}}
+                            />}
+                        </div>)
                     }
                 )}
             </div>

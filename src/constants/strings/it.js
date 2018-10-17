@@ -42,6 +42,21 @@ export default {
         reject: 'Rifiutare'
     },
 
+    OrderDrivers: {
+        id: 'id',
+        fullFrom: 'Indirizzo di partenza',
+        fullTo: 'Indirizzo del destinatario',
+        status: 'Stato',
+        weight: 'Peso del pacco',
+        worth: 'Spese di spedizione',
+        description: 'Descrizione',
+        birthDate: 'Data di creazione dell\'applicazione',
+        title: 'Informazioni per l\'ordine',
+        approve: 'Per accettare',
+        reject: 'Rifiutare',
+        choose_placeholder: 'selezionare i driver'
+    },
+
     Pagination: {
         first: 'Primo',
         previous: 'Precedente',
