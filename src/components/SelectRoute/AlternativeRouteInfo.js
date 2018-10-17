@@ -24,6 +24,7 @@ export default class AlternativeRouteInfo extends Component {
     render() {
         const {selectedRoute, strings, showConfirm, show, loadingShow, hideSelectRoute} = this.props;
 
+        console.log('AlternativeRoutesInfo')
         return (
             <Fragment>
                 {!!selectedRoute && <div className='select-route-container-info'>

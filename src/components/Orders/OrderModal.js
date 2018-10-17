@@ -50,7 +50,7 @@ export default class OrderModal extends PureComponent {
                         <div className='btns-item btns-approve' onClick={() => {hideOrderModal(); showDrivers(id)}}>
                             {strings.approve}
                         </div>
-                        <div className='btns-item btns-reject'>
+                        <div className='btns-item btns-reject' onClick={hideOrderModal}>
                             {strings.reject}
                         </div>
                     </div>

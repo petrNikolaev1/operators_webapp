@@ -10,12 +10,13 @@ import '@/assets/styles/OrderModal.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
 import Select from "@/common/Select";
+import {driversOptions} from "@/util/drivers";
 import {hideDrivers, showSelectRoute} from "@/actions/viewActions";
 import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
-        show: store.viewReducer.orderModalShown
+        showDrivers: store.viewReducer.orderDriversShown
     }), {hideDrivers, showSelectRoute}
 )
 @translate('OrderDrivers')
@@ -39,10 +40,8 @@ export default class OrderDrivers extends PureComponent {
                 <div className="add-container-table">
                     <div className='top-panel-container-item top-panel-container-lang'>
                         <Select
-                            // onChange={changeLang}
-                            // selectedOption={langToSelectedOption(language)}
                             isSerchable={true}
-                            // options={langsOptions}
+                            options={driversOptions}
                             placeholder={strings.choose_placeholder}
                             formClassName='add-device-select'
                         />
@@ -51,7 +50,7 @@ export default class OrderDrivers extends PureComponent {
                         <div className='btns-item btns-approve' onClick={() => showSelectRoute(id)}>
                             {strings.approve}
                         </div>
-                        <div className='btns-item btns-reject'>
+                        <div className='btns-item btns-reject'  onClick={hideDrivers}>
                             {strings.reject}
                         </div>
                     </div>
