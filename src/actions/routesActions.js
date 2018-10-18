@@ -80,6 +80,17 @@ export const getProposedRoute = (payload) => {
     }
 };
 
+export const assignTimerToDriver = (payload) => {
+    console.log('BEFORE')
+    return dispatch => {
+        console.log('ACTION', payload)
+        dispatch({
+            type: constants.ASSIGN_TIMER_TO_DRIVER,
+            ...payload
+        })
+    }
+};
+
 export const getDriversRoutes = (payload = {drivers: drivers.slice(2, 3)}) => {
     const {drivers} = payload;
     return async (dispatch, getState) => {
@@ -110,10 +121,10 @@ export const getDriversRoutes = (payload = {drivers: drivers.slice(2, 3)}) => {
                     }))
             })
             .then(res => {
-                console.log('LOADED')
+                console.log('LOADED', res)
                 dispatch({
                     type: constants.GET_DRIVERS_ROUTES_SUCCESS,
-                    res: res.map((res, index) => ({...drivers[index], path: res.result}))
+                    res: res.map((path, index) => ({...drivers[index], path}))
                 })
             })
             .catch(err => {

@@ -54,8 +54,8 @@ export default class HomeMap extends Component {
     }
 
     render() {
-        const {drivers, selectedDriver} = this.state;
-
+        const {selectedDriver} = this.state;
+        const {drivers} = this.props;
         console.log('HOME MAP RENDER', drivers);
 
         return (

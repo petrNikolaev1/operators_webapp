@@ -2,7 +2,9 @@ import keyMirror from 'key-mirror'
 
 export const MAX_TIMEOUT = 2 * 60 * 1000;
 
-export const GOOGLE_API_KEY = 'AIzaSyAbChC4mhcoyeibPK_o8rNHjjgVffObCdw'
+export const DRIVER_REFRESH_RATE = 30; // Refresh rate in ms
+
+export const GOOGLE_API_KEY = 'AIzaSyAbChC4mhcoyeibPK_o8rNHjjgVffObCdw';
 
 export default keyMirror({
     CHANGE_LANG: null,
@@ -29,4 +31,7 @@ export default keyMirror({
     GET_DRIVERS_ROUTES_REQUEST: null,
     GET_DRIVERS_ROUTES_SUCCESS: null,
     GET_DRIVERS_ROUTES_ERROR: null,
+
+    ASSIGN_TIMER_TO_DRIVER: null,
+
 })

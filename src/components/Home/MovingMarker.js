@@ -3,7 +3,15 @@ import {Marker} from 'react-google-maps';
 
 import "@/assets/styles/Marker.scss"
 import {rotationAngle} from "@/util/icons";
+import connect from "react-redux/es/connect/connect";
+import {assignTimerToDriver} from "@/actions/routesActions";
+import {DRIVER_REFRESH_RATE} from "@/constants";
 
+
+@connect(
+    store => ({}),
+    {assignTimerToDriver}
+)
 export default class MovingMarker extends Component {
 
     state = {
@@ -11,32 +19,38 @@ export default class MovingMarker extends Component {
     };
 
     componentDidMount() {
-        const {path} = this.props;
-        console.log('props', this.props)
-        this.path = path;
+        const {path, lastSeen} = this.props;
+        if (!!lastSeen) {
+            const stepsToCut = Math.floor((Date.now() - lastSeen) / DRIVER_REFRESH_RATE);
+            console.log('to cut', stepsToCut)
+            path.splice(0, stepsToCut - 1)
+        }
         this.moveMarker = setInterval(() => {
-                if (this.path.length === 0) {
+                if (path.length === 0) {
                     clearInterval(this.moveMarker);
                 } else {
-                    this.path.shift();
+                    path.shift();
                 }
                 this.setState({time: Date.now()})
-            }, 30
+            }, DRIVER_REFRESH_RATE
         )
     }
 
     componentWillUnmount() {
         clearInterval(this.moveMarker);
+
+        const {index, assignTimerToDriver} = this.props;
+        assignTimerToDriver({driverId: index, lastSeen: Date.now()})
     }
 
     render() {
+        const {handleSelectedDriver, index, path} = this.props;
         console.log('MOVING MARKER RENDER')
-        if (!this.path) return null;
-        const {handleSelectedDriver, index} = this.props;
-        // console.log(this.path[0])
+        if (!path) return null;
+        // console.log(path[0])
         return (
             <Marker
-                position={{lat: this.path[0][0], lng: this.path[0][1]}}
+                position={{lat: path[0][0], lng: path[0][1]}}
                 onClick={() => handleSelectedDriver(index)}
                 options={{
                     icon: {
@@ -45,7 +59,7 @@ export default class MovingMarker extends Component {
                         fillColor: '#0b8592',
                         fillOpacity: 0.8,
                         strokeWeight: 2,
-                        rotation: !!this.path[1] ? rotationAngle(this.path[0], this.path[1]) : 0
+                        rotation: !!path[1] ? rotationAngle(path[0], path[1]) : 0
                     },
                 }}
             />

@@ -103,6 +103,20 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                     err: action.err,
                 }
             };
+        case constants.ASSIGN_TIMER_TO_DRIVER:
+            console.log('REDUCER', action.driverId, action.lastSeen)
+            return {
+                ...state,
+                drivers: {
+                    ...state.drivers,
+                    res: state.drivers.res
+                        .map((driver, index) => (action.driverId !== index ? driver : {
+                            ...driver,
+                            lastSeen: action.lastSeen
+                        }))
+                }
+            };
+
         default:
             return state;
     }
