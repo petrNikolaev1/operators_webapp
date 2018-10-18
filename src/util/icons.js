@@ -1,80 +1,35 @@
-export const IconRotator = function (options) {
-    this.options = options || {};
-    this.rImg = options.img || new Image();
-    this.rImg.src = this.rImg.src || this.options.url || '';
-    this.options.width = this.options.width || this.rImg.width || 52;
-    this.options.height = this.options.height || this.rImg.height || 60;
-    const canvas = document.createElement("canvas");
-    canvas.width = this.options.width;
-    canvas.height = this.options.height;
-    this.context = canvas.getContext("2d");
-    this.canvas = canvas;
-};
-
-IconRotator.makeIcon = function (url) {
-    return new IconRotator({url: url});
-};
-
-IconRotator.prototype.setRotation = function (options) {
-    const canvas = this.context,
-        angle = options.deg ? options.deg * Math.PI / 180 :
-            options.rad,
-        centerX = this.options.width / 2,
-        centerY = this.options.height / 2;
-
-    canvas.clearRect(0, 0, this.options.width, this.options.height);
-    canvas.save();
-    canvas.translate(centerX, centerY);
-    canvas.rotate(angle);
-    canvas.translate(-centerX, -centerY);
-    canvas.drawImage(this.rImg, 0, 0);
-    canvas.restore();
-    return this;
-};
-
-IconRotator.prototype.getUrl = function () {
-    return this.canvas.toDataURL('image/png');
-};
-
 export const rotationAngle = (a, b) => {
-    const directionX = b.lat() - a.lat();
-    const directionY = b.lng() - a.lng();
-    const k = (b.lng() - a.lng()) / (b.lat() - a.lat());
-    const alpha = Math.abs(toDegrees(Math.atan(k)));
-    let res = 0;
+    // const lat_1 = a.lat();
+    // const lat_2 = b.lat();
 
-    console.log('-----------------------------------')
-    console.log(directionX >= 0);
-    console.log(toDegrees(Math.atan(k)));
+    // const lon_1 = a.lng();
+    // const lon_2 = b.lng();
 
-    if (!isNaN(k)) {
-        if (directionX >= 0) {
-            if (directionY >= 0) {
-                res = 90 - alpha
-            }
-            else {
-                res = 90 + alpha
-            }
-        } else {
-            if (directionY >= 0) {
-                res = -(90 - alpha)
-            }
-            else {
-                res = -(90 + alpha)
-            }
-        }
-    } else {
-        if (directionY >= 0) {
-            res = 0;
-        } else {
-            res = 180;
-        }
-    }
-    console.log(res)
-    console.log('-----------------------------------')
-    return res;
+    const lat_1 = a[0];
+    const lat_2 = b[0];
+
+    const lon_1 = a[1];
+    const lon_2 = b[1];
+
+    return Math.degrees(
+        Math.atan2(
+            Math.cos(Math.radians(lat_2)) *
+            Math.sin(Math.radians(lon_2 - lon_1)),
+
+            Math.cos(Math.radians(lat_1)) *
+            Math.sin(Math.radians(lat_2)) -
+            Math.sin(Math.radians(lat_1)) *
+            Math.cos(Math.radians(lat_2)) *
+            Math.cos(Math.radians(lon_2 - lon_1))
+        )) +
+        (lon_2 < lon_1 ? 360 : 0)
 };
 
-export const toDegrees = radians => radians * (180 / Math.PI);
 
+Math.radians = function (degrees) {
+    return degrees * Math.PI / 180;
+};
 
+Math.degrees = function (radians) {
+    return radians * 180 / Math.PI;
+};

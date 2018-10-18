@@ -1,12 +1,12 @@
 export const getRoute = (google, payload) => {
-    const {origin, destination} = payload;
+    const {origin, destination, provideRouteAlternatives} = payload;
     const DirectionsService = new window.google.maps.DirectionsService();
     return new Promise((resolve, reject) => {
         DirectionsService.route({
             origin: new window.google.maps.LatLng(origin),
             destination: new window.google.maps.LatLng(destination),
             travelMode: window.google.maps.TravelMode.DRIVING,
-            provideRouteAlternatives: true
+            provideRouteAlternatives
         }, (result, status) => {
             if (status === window.google.maps.DirectionsStatus.OK) {
                 resolve(result)

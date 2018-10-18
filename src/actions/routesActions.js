@@ -1,6 +1,8 @@
 import constants from '@/constants'
 import {drivers} from "@/util/fakeMarkers"
 import {getRoute, getGoogleMaps} from "@/util/googleMapsRequests";
+import {splitPath} from "../util/serverRequests";
+import React from "react";
 
 export const selectRoute = (route) => {
     return dispatch => {
@@ -60,7 +62,7 @@ export const getProposedRoute = (payload) => {
             type: constants.GET_PROPOSED_ROUTE_REQUEST,
             orderId,
         });
-        getRoute(google, {origin, destination})
+        getRoute(google, {origin, destination, provideRouteAlternatives: true})
             .then(res => {
                 dispatch({
                     type: constants.GET_PROPOSED_ROUTE_SUCCESS,
@@ -78,21 +80,41 @@ export const getProposedRoute = (payload) => {
     }
 };
 
-export const getDriversRoutes = (payload = {drivers}) => {
+export const getDriversRoutes = (payload = {drivers: drivers.slice(2, 3)}) => {
     const {drivers} = payload;
-    return async dispatch => {
+    return async (dispatch, getState) => {
+
+        const state = getState();
+        const {loaded} = state.homeMapReducer.drivers;
+        if (loaded || loaded === false) return;
+
         dispatch({
             type: constants.GET_DRIVERS_ROUTES_REQUEST,
         });
+
         const google = await getGoogleMaps();
         Promise.all(
-            drivers.map(driver => getRoute(google, {origin: driver.origin, destination: driver.destination}))
+            drivers
+                .map(driver => getRoute(google, {
+                    origin: driver.origin,
+                    destination: driver.destination
+                }))
         )
             .then(res => {
+                return Promise.all(
+                    res.map((driverRoute, index) => {
+                        console.log(driverRoute.routes[0].legs[0].steps)
+                        const pathOriginal = driverRoute.routes[0].legs[0].steps.reduce((res, cur) => res.concat(cur.path), []);
+                        drivers[index].pathOriginal = pathOriginal.map(item => ({lat: item.lat(), lng: item.lng()}));
+                        return splitPath(pathOriginal.map(item => [item.lat(), item.lng()]))
+                    }))
+            })
+            .then(res => {
+                console.log('LOADED')
                 dispatch({
                     type: constants.GET_DRIVERS_ROUTES_SUCCESS,
-                    res: res.map((driverRoute, index) => ({...drivers[index], route: driverRoute})),
-                });
+                    res: res.map((res, index) => ({...drivers[index], path: res.result}))
+                })
             })
             .catch(err => {
                 dispatch({

@@ -27,7 +27,7 @@ export default class AlternativeRoutes extends Component {
     proposedRouteValid = (proposedRoutes) => {
         const {orderId} = this.props;
         const proposedRoute = this.getProposedRoute(proposedRoutes);
-        return !!proposedRoute && proposedRoute.loaded && !!proposedRoute
+        return !!proposedRoute && proposedRoute.loaded && !!proposedRoute.res
     };
 
     getProposedRoute = (proposedRoutes) => {

@@ -8,6 +8,7 @@ import connect from "react-redux/es/connect/connect";
 import Loading from "@/common/Loading";
 import {getDriversRoutes} from "@/actions/routesActions";
 import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
+import {splitPath} from "../util/serverRequests";
 
 @connect(
     store => ({
@@ -21,7 +22,7 @@ export default class MainMenu extends Component {
     componentDidMount() {
         const {getDriversRoutes, language} = this.props;
         initGoogleMaps(language);
-        getDriversRoutes()
+        getDriversRoutes();
     }
 
     render() {
@@ -29,12 +30,14 @@ export default class MainMenu extends Component {
 
         return (
             <Fragment>
-                {loginShow && <Login/>}
-                {!loginShow && <div className='main-menu-container'>
-                    <InfoPanel/>
-                    <OrderList/>
-                </div>}
-                {loadingShow && <Loading/>}
+                <Fragment>
+                    {loginShow && <Login/>}
+                    {!loginShow && <div className='main-menu-container'>
+                        <InfoPanel/>
+                        <OrderList/>
+                    </div>}
+                    {loadingShow && <Loading/>}
+                </Fragment>
             </Fragment>
         )
     }

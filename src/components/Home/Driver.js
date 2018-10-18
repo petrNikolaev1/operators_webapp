@@ -16,11 +16,8 @@ export default class Driver extends Component {
     render() {
         const {index, driver, isSelected, handleSelectedDriver} = this.props;
 
-        const {origin, destination, route} = driver;
-
-        const steps = route.routes[0].legs[0].steps;
-        const path = steps.reduce((res, cur) => res.concat(cur.path), []);
-
+        const {origin, destination, path, pathOriginal} = driver;
+        console.log('DRIVER RENDER', pathOriginal)
         return (
             <Fragment>
                 {isSelected &&
@@ -28,7 +25,7 @@ export default class Driver extends Component {
                     <Marker position={origin}/>
                     <Marker position={destination}/>
                     <Polyline
-                        path={path}
+                        path={pathOriginal}
                         options={{
                             strokeColor: colors[index],
                             strokeOpacity: 1.0,

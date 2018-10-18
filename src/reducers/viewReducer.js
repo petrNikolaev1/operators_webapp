@@ -4,7 +4,7 @@ const initialState = {
     orderModalShown: 0,
     orderDriversShown: 0,
     loadingShow: false,
-    loginShow: true,
+    loginShow: false,
     fail: 0,
     selectRouteShown: -1,
 };

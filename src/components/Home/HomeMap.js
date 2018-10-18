@@ -4,7 +4,6 @@ import {withScriptjs, withGoogleMap, GoogleMap,} from "react-google-maps";
 import {homes, mapNewPositions, drivers} from '@/util/fakeMarkers'
 import {assignNewPositions} from "../../util/fakeMarkers";
 import homeIcon from '@/assets/img/home.svg'
-import driverIcon from '@/assets/img/driver.svg'
 import Marker from '@/components/CustomMarker'
 import GoogleMapHoc from "@/hocs/GoogleMapHoc";
 import connect from "react-redux/es/connect/connect";
@@ -57,14 +56,11 @@ export default class HomeMap extends Component {
     render() {
         const {drivers, selectedDriver} = this.state;
 
-        console.log(drivers);
-
-        // assignNewPositions();
+        console.log('HOME MAP RENDER', drivers);
 
         return (
             <GoogleMap
                 defaultZoom={12}
-                // center={new window.google.maps.LatLng(49.622673, 6.166863)}
                 defaultCenter={drivers.loaded && new window.google.maps.LatLng(drivers.res[0].origin)}
             >
                 {homes.map((home, index) => {
