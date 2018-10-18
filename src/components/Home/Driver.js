@@ -8,19 +8,20 @@ import MovingMarker from '@/components/Home/MovingMarker'
 
 @connect(
     store => ({
-        selectedRoute: store.routesReducer.selectedRoute
+        selectedDriver: store.homeMapReducer.drivers.selectedDriver,
     }),
     {selectRoute}
 )
 export default class Driver extends Component {
     render() {
-        const {index, driver, isSelected, handleSelectedDriver} = this.props;
+        const {index, driver, isSelected, handleSelectedDriver, selectedDriver} = this.props;
 
-        const {origin, destination, path, pathOriginal, lastSeen} = driver;
-        console.log('DRIVER RENDER', pathOriginal)
+        const {origin, destination, path, pathOriginal, lastSeen,} = driver;
+        const selected = !!selectedDriver && selectedDriver.value === index;
+        console.log('DRIVER RENDER', selectedDriver)
         return (
             <Fragment>
-                {isSelected &&
+                {selected &&
                 <Fragment>
                     <Marker position={origin}/>
                     <Marker position={destination}/>
@@ -33,7 +34,7 @@ export default class Driver extends Component {
                         }}
                     />
                 </Fragment>}
-                <MovingMarker handleSelectedDriver={handleSelectedDriver} path={path} lastSeen={lastSeen}
+                <MovingMarker path={path} lastSeen={lastSeen}
                               index={index}/>
             </Fragment>
         )

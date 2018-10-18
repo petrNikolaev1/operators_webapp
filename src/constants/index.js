@@ -33,5 +33,6 @@ export default keyMirror({
     GET_DRIVERS_ROUTES_ERROR: null,
 
     ASSIGN_TIMER_TO_DRIVER: null,
+    HOME_SELECT_DRIVER: null,
 
 })

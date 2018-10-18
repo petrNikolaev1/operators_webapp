@@ -40,7 +40,7 @@ export default class InfoPanel extends PureComponent {
                         noOptionsMessage={strings.SELECT_NO_LANG}
                         placeholder={strings.SELECT_LANG_PLACEHOLDER}
                         options={langsOptions}
-                        formClassName='add-device-select'
+                        formClassName='default-select'
                     />
                 </div>
                 <Link className="top-panel-container-item top-panel-container-home" to='/home/'>

@@ -1,18 +1,29 @@
 @import "index.scss";
 
-.home-container {
+.home {
+  $horPadding: 2vw;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: space-between;
 
   width: 80vw;
-  height: 90vh;
 
   margin: 5vh auto;
+
+  background: white;
 
   &-map {
     flex-shrink: 0;
     height: 67vh;
     width: 80vw;
+  }
+
+  &-title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    padding: 0 $horPadding;
   }
 
   &-back {
@@ -33,14 +44,63 @@
       background: darken($dooglysColor, 10%);
     }
 
-    svg{
+    svg {
       margin-right: 2vw;
     }
   }
-}
 
-.title{
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  &-block {
+    display: flex;
+    flex-flow: column nowrap;
+
+    border-top: 0.1vw solid $closeColor;
+
+    &-title {
+      padding: 0 $horPadding;
+      flex-basis: 5vw;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+
+      &-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &-select{
+        flex-basis: 40%;
+      }
+
+      &-expand {
+        &-container{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: flex-end;
+          align-items: center;
+          flex-basis: 10%;
+        }
+
+        fill: $closeColor !important;
+        font-size: 4vw !important;
+        cursor: pointer;
+        transition: 0.3s ease-out;
+
+        &-rotated {
+          transform: rotate(180deg);
+        }
+
+        &:hover {
+          fill: darken($closeColor, 10%) !important;
+        }
+      }
+    }
+
+    &-info {
+      padding: 1vw $horPadding;
+      display: flex;
+      border-top: 0.05vw solid $closeColor;
+    }
+  }
 }

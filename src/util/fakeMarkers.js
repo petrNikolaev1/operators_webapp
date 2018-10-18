@@ -14,18 +14,21 @@ export let homes = [
 export let drivers = [
     {
         info: 'Alex',
+        detailedInfo: 'Alex Semenovich Shin',
         origin: {lat: 50.427470, lng: 30.447890},
         destination: {lat: 44.593441, lng: 33.552595},
         progressPercent: 0
     },
     {
         info: 'Stich',
+        detailedInfo: 'Stich Semenovich Shin',
         origin: {lat: 49.855211, lng: 24.045811},
         destination: {lat: 55.733955, lng: 37.588165},
         progressPercent: 0
     },
     {
         info: 'Leela',
+        detailedInfo: 'Leela Semenovich Shin',
         origin: {lat: 55.788243, lng: 49.123909},
         destination: {lat: 53.244196, lng: 34.364079},
         progressPercent: 0

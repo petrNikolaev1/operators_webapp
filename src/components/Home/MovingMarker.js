@@ -4,13 +4,13 @@ import {Marker} from 'react-google-maps';
 import "@/assets/styles/Marker.scss"
 import {rotationAngle} from "@/util/icons";
 import connect from "react-redux/es/connect/connect";
-import {assignTimerToDriver} from "@/actions/routesActions";
+import {assignTimerToDriver, homeSelectDriver} from "@/actions/routesActions";
 import {DRIVER_REFRESH_RATE} from "@/constants";
 
 
 @connect(
     store => ({}),
-    {assignTimerToDriver}
+    {assignTimerToDriver, homeSelectDriver}
 )
 export default class MovingMarker extends Component {
 
@@ -44,14 +44,14 @@ export default class MovingMarker extends Component {
     }
 
     render() {
-        const {handleSelectedDriver, index, path} = this.props;
+        const {homeSelectDriver, index, path} = this.props;
         console.log('MOVING MARKER RENDER')
         if (!path) return null;
         // console.log(path[0])
         return (
             <Marker
                 position={{lat: path[0][0], lng: path[0][1]}}
-                onClick={() => handleSelectedDriver(index)}
+                onClick={() => homeSelectDriver({driverId: index})}
                 options={{
                     icon: {
                         path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW,

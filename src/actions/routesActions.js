@@ -81,9 +81,7 @@ export const getProposedRoute = (payload) => {
 };
 
 export const assignTimerToDriver = (payload) => {
-    console.log('BEFORE')
     return dispatch => {
-        console.log('ACTION', payload)
         dispatch({
             type: constants.ASSIGN_TIMER_TO_DRIVER,
             ...payload
@@ -91,7 +89,16 @@ export const assignTimerToDriver = (payload) => {
     }
 };
 
-export const getDriversRoutes = (payload = {drivers: drivers.slice(2, 3)}) => {
+export const homeSelectDriver = (payload) => {
+    return dispatch => {
+        dispatch({
+            type: constants.HOME_SELECT_DRIVER,
+            ...payload
+        })
+    }
+};
+
+export const getDriversRoutes = (payload = {drivers: drivers}) => {
     const {drivers} = payload;
     return async (dispatch, getState) => {
 

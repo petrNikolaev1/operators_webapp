@@ -1,4 +1,5 @@
 import constants from '@/constants'
+import {driversToOptions} from "@/util/drivers";
 
 const initialState = {
     selectedRoute: null,
@@ -92,6 +93,7 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                     ...state.drivers,
                     loaded: true,
                     res: action.res,
+                    driversOptions: driversToOptions(action.res)
                 }
             };
         case constants.GET_DRIVERS_ROUTES_ERROR:
@@ -116,6 +118,18 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                         }))
                 }
             };
+        case constants.HOME_SELECT_DRIVER:
+            console.log('HEY', action)
+            return {
+                ...state,
+                drivers: {
+                    ...state.drivers,
+                    selectedDriver:
+                        state.drivers.selectedDriver && state.drivers.selectedDriver.value === action.driverId ? '' :
+                            state.drivers.driversOptions[action.driverId]
+                }
+            };
+
 
         default:
             return state;

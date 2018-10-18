@@ -43,7 +43,7 @@ export default class OrderDrivers extends PureComponent {
                             isSerchable={true}
                             options={driversOptions}
                             placeholder={strings.choose_placeholder}
-                            formClassName='add-device-select'
+                            formClassName='default-select'
                         />
                     </div>
                     <div className='btns'>
