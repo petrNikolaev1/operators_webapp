@@ -87,6 +87,7 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                 },
             };
         case constants.GET_DRIVERS_ROUTES_SUCCESS:
+            console.log('LOADED', action.res)
             return {
                 ...state,
                 drivers: {
@@ -106,7 +107,6 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                 }
             };
         case constants.ASSIGN_TIMER_TO_DRIVER:
-            console.log('REDUCER', action.driverId, action.lastSeen)
             return {
                 ...state,
                 drivers: {
@@ -119,7 +119,6 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                 }
             };
         case constants.HOME_SELECT_DRIVER:
-            console.log('HEY', action)
             return {
                 ...state,
                 drivers: {

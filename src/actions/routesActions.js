@@ -99,7 +99,7 @@ export const homeSelectDriver = (payload) => {
 };
 
 export const getDriversRoutes = (payload = {drivers: drivers}) => {
-    const {drivers} = payload;
+    let {drivers} = payload;
     return async (dispatch, getState) => {
 
         const state = getState();
@@ -121,17 +121,27 @@ export const getDriversRoutes = (payload = {drivers: drivers}) => {
             .then(res => {
                 return Promise.all(
                     res.map((driverRoute, index) => {
-                        console.log(driverRoute.routes[0].legs[0].steps)
+                        console.log(driverRoute.routes[0].legs[0].distance.text)
                         const pathOriginal = driverRoute.routes[0].legs[0].steps.reduce((res, cur) => res.concat(cur.path), []);
-                        drivers[index].pathOriginal = pathOriginal.map(item => ({lat: item.lat(), lng: item.lng()}));
+                        drivers = drivers.map((driver, i) => i !== index ? driver :
+                            {
+                                ...driver,
+                                pathOriginal: pathOriginal.map(item => ({lat: item.lat(), lng: item.lng()})),
+                                distance: driverRoute.routes[0].legs[0].distance.value,
+                                duration: driverRoute.routes[0].legs[0].duration.value
+                            }
+                        );
                         return splitPath(pathOriginal.map(item => [item.lat(), item.lng()]))
                     }))
             })
             .then(res => {
-                console.log('LOADED', res)
                 dispatch({
                     type: constants.GET_DRIVERS_ROUTES_SUCCESS,
-                    res: res.map((path, index) => ({...drivers[index], path}))
+                    res: res.map((path, index) => ({
+                        ...drivers[index],
+                        path,
+                        progress: {percent: 0, pathLength: path.length, stepWeight: (1.0 / path.length) * 100.0}
+                    }))
                 })
             })
             .catch(err => {

@@ -1,0 +1,74 @@
+@import "index.scss";
+
+.driver-progress {
+  margin-top: 1vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  &-table {
+    flex-basis: 60%;
+    flex-shrink: 0;
+    display: flex;
+    flex-flow: column nowrap;
+
+    &-row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      margin-bottom: 0.5vw;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &-item {
+        display: flex;
+        flex-flow: row nowrap;
+
+        &-label {
+          color: rgb(153, 153, 153);
+          font-weight: 600;
+          margin-right: 1vw;
+        }
+
+        &-value {
+
+        }
+
+        &:nth-of-type(1) {
+          flex-basis: 55%;
+        }
+        &:nth-of-type(2) {
+          flex-basis: 42%;
+        }
+      }
+    }
+  }
+
+  &-bar {
+    margin-left: 5vw;
+    margin-right: 1vw;
+    flex: 1;
+    .react-sweet-progress-line-inner {
+      height: 1.25vw;
+    }
+    .react-sweet-progress-symbol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1.3vw;
+
+      margin-left: 1vw;
+      svg {
+        width: 5vw !important;
+        height: auto !important;
+      }
+    }
+  }
+
+}

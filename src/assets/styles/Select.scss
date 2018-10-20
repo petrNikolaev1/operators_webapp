@@ -1,5 +1,4 @@
-$selectBackground: rgb(223, 237, 238);
-$dooglysColor: rgb(1, 186, 191);
+@import 'index.scss';
 
 .css-rsyb7x {
   width: 100% !important;
@@ -125,7 +124,7 @@ $dooglysColor: rgb(1, 186, 191);
 }
 
 .open {
-  .add-device-select__dropdown-indicator {
+  .default-select__dropdown-indicator {
     transform: rotate(180deg);
   }
 }

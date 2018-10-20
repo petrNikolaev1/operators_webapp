@@ -19,16 +19,17 @@ export default class MovingMarker extends Component {
     };
 
     componentDidMount() {
-        const {path, lastSeen} = this.props;
+        const {path, lastSeen, progress} = this.props;
         if (!!lastSeen) {
             const stepsToCut = Math.floor((Date.now() - lastSeen) / DRIVER_REFRESH_RATE);
-            console.log('to cut', stepsToCut)
-            path.splice(0, stepsToCut - 1)
+            path.splice(0, stepsToCut - 1);
+            progress.percent = progress.percent + progress.stepWeight * stepsToCut;
         }
         this.moveMarker = setInterval(() => {
                 if (path.length === 0) {
                     clearInterval(this.moveMarker);
                 } else {
+                    progress.percent = progress.percent + progress.stepWeight;
                     path.shift();
                 }
                 this.setState({time: Date.now()})
@@ -45,9 +46,10 @@ export default class MovingMarker extends Component {
 
     render() {
         const {homeSelectDriver, index, path} = this.props;
-        console.log('MOVING MARKER RENDER')
-        if (!path) return null;
-        // console.log(path[0])
+        // console.log('MOVING MARKER RENDER')
+        if (path.len < 2) {
+            return null;
+        }
         return (
             <Marker
                 position={{lat: path[0][0], lng: path[0][1]}}
@@ -59,7 +61,7 @@ export default class MovingMarker extends Component {
                         fillColor: '#0b8592',
                         fillOpacity: 0.8,
                         strokeWeight: 2,
-                        rotation: !!path[1] ? rotationAngle(path[0], path[1]) : 0
+                        rotation: rotationAngle(path[0], path[1])
                     },
                 }}
             />

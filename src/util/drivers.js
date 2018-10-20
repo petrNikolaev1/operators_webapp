@@ -5,4 +5,11 @@ export const driversOptions = drivers.map((drivers, index) => {
 });
 
 export const driversToOptions = drivers => drivers
-    .map((driver, index) => ({label: driver.info, value: index, detailedInfo: driver.detailedInfo}));
+    .map((driver, index) => ({
+        label: driver.info,
+        value: index,
+        detailedInfo: driver.detailedInfo,
+        progress: driver.progress,
+        duration: driver.duration,
+        distance: driver.distance,
+    }));

@@ -16,7 +16,7 @@ export default class Driver extends Component {
     render() {
         const {index, driver, isSelected, handleSelectedDriver, selectedDriver} = this.props;
 
-        const {origin, destination, path, pathOriginal, lastSeen,} = driver;
+        const {origin, destination, path, pathOriginal, lastSeen, progress} = driver;
         const selected = !!selectedDriver && selectedDriver.value === index;
         console.log('DRIVER RENDER', selectedDriver)
         return (
@@ -34,8 +34,11 @@ export default class Driver extends Component {
                         }}
                     />
                 </Fragment>}
-                <MovingMarker path={path} lastSeen={lastSeen}
-                              index={index}/>
+                <MovingMarker path={path}
+                              lastSeen={lastSeen}
+                              index={index}
+                              progress={progress}
+                />
             </Fragment>
         )
     }
