@@ -1,3 +1,6 @@
+import {SERVER_URL} from "@/constants";
+import {getCookie} from "./document";
+
 export const splitPath = (path) => {
     // console.log('REQ SENT')
     return new Promise((resolve, reject) => {
@@ -7,6 +10,23 @@ export const splitPath = (path) => {
             body: JSON.stringify(path),
         })
             .then(res => resolve(res.json().result))
+            .catch(e => reject(e))
+    })
+};
+
+export const queryServerRequest = payload => {
+    const {command, params, method} = payload;
+    const url = new URL(`${SERVER_URL}${command}`);
+    url.search = new URLSearchParams(params);
+    return new Promise((resolve, reject) => {
+        fetch(url, {
+            method,
+            headers: {
+                "Authorization": getCookie(),
+            }
+        })
+            .then(res => res.json())
+            .then(res => resolve(res))
             .catch(e => reject(e))
     })
 };

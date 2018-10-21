@@ -10,6 +10,7 @@ import {getDriversRoutes} from "@/actions/routesActions";
 import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
 import {splitPath} from "../util/serverRequests";
 
+
 @connect(
     store => ({
         loadingShow: store.viewReducer.loadingShow,
@@ -36,7 +37,6 @@ export default class MainMenu extends Component {
                         <InfoPanel/>
                         <OrderList/>
                     </div>}
-                    {loadingShow && <Loading/>}
                 </Fragment>
             </Fragment>
         )

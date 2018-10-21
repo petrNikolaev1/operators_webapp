@@ -1,3 +1,5 @@
+import constants from '@/constants'
+
 export const fullOrderProps = [
     'id',
     'fullFrom',
@@ -17,4 +19,14 @@ export const filterFullOrderProps = (orderProps) => {
         .map(orderProp => {
             return {label: orderProp, value: orderProps[orderProp]}
         })
+};
+
+export default (command, params) => ({...commandsData[command], params})
+
+export const commandsData = {
+    ['login']: {
+        command: 'login',
+        method: 'POST',
+        events: {onRequest: constants.LOGIN_REQUEST, onError: constants.LOGIN_ERROR, onSuccess: constants.LOGIN_SUCCESS}
+    }
 };

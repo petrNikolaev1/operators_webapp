@@ -1,15 +1,18 @@
 import React, {Component} from "react";
+import {Redirect} from 'react-router-dom'
 
 import '@/assets/styles/Login.scss'
 import translate from '@/hocs/Translate'
 import logo from '@/assets/img/logo2white.svg'
 import connect from "react-redux/es/connect/connect";
 import {hideLogin} from '@/actions/viewActions'
+import {apiReq} from '@/actions/serverActions'
 
 @connect(
     store => ({
-        fail: store.viewReducer.fail
-    }), {hideLogin}
+        fail: store.viewReducer.fail,
+        login: store.loginReducer,
+    }), {apiReq}
 )
 @translate('Login')
 export default class Login extends Component {
@@ -19,8 +22,33 @@ export default class Login extends Component {
         this.state = {
             email: "",
             password: "",
+            notify: '',
+            login: '',
         };
     }
+
+    static getDerivedStateFromProps(props, state) {
+        const {notify, login: loginOld} = state;
+        const {login: loginNew} = props;
+        if (!loginOld.loaded && loginNew.loaded && !!loginNew.error) {
+            return {
+                login: loginNew,
+                notify: 'Invalid login/password'
+            }
+        }
+        return {
+            login: loginNew
+        }
+    }
+
+    preValidate = () => {
+        const {email, password} = this.state;
+        return !!email && !!password
+    };
+
+    postValidate = () => {
+
+    };
 
     onChange = event => {
         this.setState({
@@ -30,38 +58,36 @@ export default class Login extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.hideLogin(this.state.email, this.state.password);
+        if (!this.preValidate()) return this.setState({notify: 'Please, fill all fields'});
+        const {email, password} = this.state;
+        this.props.apiReq('login', {email, password});
     };
 
     render() {
-        let test;
-        switch (this.props.fail) {
-            case 0:
-                test = <div></div>;
-                break;
-            case 1:
-                test = <div className='login-container-form-fail-1'>Please, fill all fields</div>;
-                break;
-            case 2:
-                test = <div className='login-container-form-fail-2'>Invalid login/password</div>;
-                break;
+        const {strings, apiReq, login} = this.props;
+        const {from} = this.props.location.state || {from: {pathname: "/"}};
+        const {email, password, notify} = this.state;
+
+
+        if (!!login.res) {
+            return <Redirect to={from}/>
         }
-        const {strings} = this.props;
+
         return (
             <div className='login-container'>
                 <div className='login-container-icon'><img src={logo} alt="logo"/></div>
-                <form className='login-container-form'>
-                    <div className='login-container-form-fail'>{test}</div>
+                <form className='login-container-form' onSubmit={this.onSubmit}>
+                    <div className='login-container-form-notify'>{notify}</div>
                     <div className='login-container-form-item'>
                         <div className='login-container-form-item-label'>
                             {strings.LOGIN}
                         </div>
                         <input className='login-container-form-item-input'
-                            name='email'
-                            autoFocus
-                            placeholder={strings.LOGIN}
-                            value={this.state.email}
-                            onChange={this.onChange}
+                               name='email'
+                               autoFocus
+                               placeholder={strings.LOGIN}
+                               value={this.state.email}
+                               onChange={this.onChange}
                         />
                     </div>
                     <div className='login-container-form-item'>
@@ -69,14 +95,14 @@ export default class Login extends Component {
                             {strings.PASSWORD}
                         </div>
                         <input className='login-container-form-item-input'
-                            name='password'
-                            value={this.state.password}
-                            onChange={this.onChange}
-                            placeholder={strings.PASSWORD}
-                            type="password"
+                               name='password'
+                               value={this.state.password}
+                               onChange={this.onChange}
+                               placeholder={strings.PASSWORD}
+                               type="password"
                         />
                     </div>
-                    <button className='login-container-form-enter' onClick={this.onSubmit}>
+                    <button type="submit" className='login-container-form-enter'>
                         {strings.ENTER}
                     </button>
                 </form>
