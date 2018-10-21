@@ -39,11 +39,15 @@ export const apiReq = (command, params) => {
                     })
                 }
             })
-            .catch(res => {
-                console.error(`При выполнении команды ${payload.command} возникла ошибка на клиенте:\n` + res.error);
+            .catch(err => {
+                dispatch({
+                    type: constants.HIDE_LOADING
+                });
+
+                console.error(`При выполнении команды ${payload.command} возникла ошибка на клиенте:\n` + err);
                 dispatch({
                     type: onError,
-                    error: serializeError(res.error),
+                    error: serializeError(err),
                 })
             })
     }
