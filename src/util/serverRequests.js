@@ -19,10 +19,12 @@ export const queryServerRequest = payload => {
     const url = new URL(`${SERVER_URL}${command}`);
     url.search = new URLSearchParams(params);
     return new Promise((resolve, reject) => {
-        fetch(url, {
+        fetch(`${SERVER_URL}${command}`, {
             method,
+            body: JSON.stringify(params),
             headers: {
                 "Authorization": getCookie(),
+                "Content-Type": "application/json",
             }
         })
             .then(res => res.json())

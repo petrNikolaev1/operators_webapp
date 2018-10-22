@@ -6,7 +6,7 @@ export const DRIVER_REFRESH_RATE = 30; // Refresh rate in ms
 
 export const GOOGLE_API_KEY = 'AIzaSyAbChC4mhcoyeibPK_o8rNHjjgVffObCdw';
 
-export const SERVER_URL = 'http://18.191.14.124:8080/v1/operators/';
+export const SERVER_URL = 'http://18.191.14.124:8080/v1/operator/';
 
 export default keyMirror({
     CHANGE_LANG: null,
