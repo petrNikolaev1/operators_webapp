@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import equal from "deep-equal";
 
 import translate from '@/hocs/Translate'
 
@@ -16,14 +17,14 @@ const defaultProps = {
 }
 
 @translate('Pagination')
-class Pagination extends React.Component {
+class Pagination extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = { pager: {} };
+        this.state = {pager: {}};
     }
 
-    componentWillMount() {
-        // set page if items array isn't empty
+    componentDidMount() {
+        //set page if items array isn't empty
         if (this.props.items && this.props.items.length) {
             this.setPage(this.props.initialPage);
         }
@@ -31,16 +32,17 @@ class Pagination extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         // reset page if items array has changed
-        if (this.props.items !== prevProps.items) {
+        if (!equal(this.props.items, prevProps.items)) {
             this.setPage(this.props.initialPage);
         }
     }
 
     setPage(page) {
-        var { items, pageSize } = this.props;
+        var {items, pageSize} = this.props;
         var pager = this.state.pager;
 
-        if (page < 1 || page > pager.totalPages) {
+
+        if (page < 1 || page - 1 > pager.totalPages) {
             return;
         }
 
@@ -51,7 +53,7 @@ class Pagination extends React.Component {
         var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
         // update state
-        this.setState({ pager: pager });
+        this.setState({pager: pager});
 
         // call change page function in parent component
         this.props.onChangePage(pageOfItems);
