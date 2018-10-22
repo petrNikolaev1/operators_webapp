@@ -7,6 +7,7 @@ const initialState = {
     loginShow: false,
     fail: 0,
     selectRouteShown: -1,
+    filters: {status: -1}
 };
 
 export function viewReducer(state = initialState, action) {
@@ -65,6 +66,11 @@ export function viewReducer(state = initialState, action) {
             return {
                 ...state,
                 selectRouteShown: -1
+            };
+        case constants.FILTER:
+            return {
+                ...state,
+                filters: action.payload
             };
         default:
             return state;

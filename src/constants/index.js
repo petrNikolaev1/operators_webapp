@@ -25,6 +25,7 @@ export default keyMirror({
     HIDE_SELECT_ROUTE: null,
     SHOW_DRIVERS: null,
     HIDE_DRIVERS: null,
+    FILTER: null,
 
     GET_PROPOSED_ROUTE_REQUEST: null,
     GET_PROPOSED_ROUTE_ERROR: null,
