@@ -1,4 +1,4 @@
-import {SERVER_URL} from "@/constants";
+import constants, {SERVER_URL} from "@/constants";
 import {getCookie} from "./document";
 
 export const splitPath = (path) => {
@@ -15,18 +15,22 @@ export const splitPath = (path) => {
 };
 
 export const queryServerRequest = payload => {
-    const {command, params, method} = payload;
+    const {command, params, method, paramsType} = payload;
     const url = new URL(`${SERVER_URL}${command}`);
-    url.search = new URLSearchParams(params);
+    const reqObj = {
+        method,
+        body: JSON.stringify(params),
+        headers: {
+            "Authorization": getCookie(),
+            "Content-Type": "application/json",
+        }
+    };
+    if (paramsType === constants.QUERY){
+        url.search = new URLSearchParams(params);
+        delete reqObj.body
+    }
     return new Promise((resolve, reject) => {
-        fetch(`${SERVER_URL}${command}`, {
-            method,
-            body: JSON.stringify(params),
-            headers: {
-                "Authorization": getCookie(),
-                "Content-Type": "application/json",
-            }
-        })
+        fetch(url, reqObj)
             .then(res => res.json())
             .then(res => resolve(res))
             .catch(e => reject(e))

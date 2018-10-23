@@ -1,14 +1,11 @@
-import React, {Component, Fragment} from "react"
+import React, {Component} from "react"
 
 import '@/assets/styles/MainMenu.scss'
 import InfoPanel from "@/components/InfoPanel";
 import OrderList from "@/components/Orders/OrderList";
-import Login from "@/components/Login";
 import connect from "react-redux/es/connect/connect";
-import Loading from "@/common/Loading";
 import {getDriversRoutes} from "@/actions/routesActions";
 import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
-import {splitPath} from "../util/serverRequests";
 
 
 @connect(
@@ -30,15 +27,10 @@ export default class MainMenu extends Component {
         const {loadingShow, loginShow,} = this.props;
 
         return (
-            <Fragment>
-                <Fragment>
-                    {loginShow && <Login/>}
-                    {!loginShow && <div className='main-menu-container'>
-                        <InfoPanel/>
-                        <OrderList/>
-                    </div>}
-                </Fragment>
-            </Fragment>
+            <div className='main-menu-container'>
+                <InfoPanel/>
+                <OrderList/>
+            </div>
         )
     }
 }

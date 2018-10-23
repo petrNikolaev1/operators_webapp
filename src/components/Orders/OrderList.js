@@ -1,8 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import filter from "lodash/filter";
-import equal from "deep-equal";
-import find from "lodash/find";
+import constants from '@/constants'
 
 import translate from '@/hocs/Translate'
 import '@/assets/styles/OrderList.scss'
@@ -12,16 +10,17 @@ import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
 import OrderDrivers from "./OrderDrivers";
 import {filterOrders} from "@/actions/ordersActions";
-
+import {apiReq} from "@/actions/serverActions";
 
 @connect(
     store => ({
-        orders: store.ordersReducer.orders,
+        ordersNew: store.ordersReducer,
+        orders: store.ordersReducerOld.orders,
         show: store.viewReducer.orderModalShown,
         showDrivers: store.viewReducer.orderDriversShown,
         selectRouteShown: store.viewReducer.selectRouteShown,
-        filters: store.ordersReducer.filters
-    }), {filterOrders}
+        filters: store.ordersReducerOld.filters
+    }), {filterOrders, apiReq}
 )
 @translate('OrderList')
 export default class OrderList extends Component {
@@ -36,12 +35,14 @@ export default class OrderList extends Component {
         this.onChangePage = this.onChangePage.bind(this);
     }
 
+    componentDidMount() {
+        const {apiReq} = this.props;
+        apiReq(constants.orders, {limit: 1000, offset: 0})
+    }
+
     filtrate = () => {
         const {filters, orders} = this.props;
-        const res = orders.filter(order => {
-            const res = filters.status.find(status => status === order.status) !== undefined;
-            return res
-        });
+        const res = orders.filter(order => filters.status.find(status => status === order.status) !== undefined);
         this.setState({ordersFiltered: res});
     };
 
@@ -57,7 +58,7 @@ export default class OrderList extends Component {
         foundInd === -1 ? res.push(new_status) : res.splice(foundInd, 1);
         filterOrders({status: res});
         this.filtrate();
-    }
+    };
 
     renderFilter = () => {
         const {onStatusFilter} = this;
@@ -72,7 +73,7 @@ export default class OrderList extends Component {
                        value="2"/>Done
             </form>
         )
-    }
+    };
 
     renderHeader = () => {
         const {strings} = this.props;
@@ -128,8 +129,10 @@ export default class OrderList extends Component {
 
 
     render() {
-        const {orders} = this.props;
+        const {orders, ordersNew} = this.props;
         const {ordersFiltered} = this.state;
+
+        console.log('RENDER', ordersNew);
 
         return (
             <Fragment>

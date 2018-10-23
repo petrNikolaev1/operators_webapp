@@ -13,7 +13,7 @@ import rootReducer from '@/reducers/index'
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['']
+    whitelist: ['loginReducer', 'ordersReducer']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
