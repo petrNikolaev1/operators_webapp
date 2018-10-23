@@ -5,7 +5,8 @@ export default {
         FROM: 'Место отправления',
         TO: 'Место доставки',
         STATUS: 'Статус',
-        BIRTH_DATE: 'Дата заявки'
+        BIRTH_DATE: 'Дата заявки',
+        REFRESH: 'Обновить'
     },
 
     OrderItem: {
@@ -28,7 +29,7 @@ export default {
         PASSWORD: 'Пароль',
         ENTER: 'Войти'
     },
-  
+
     InfoPanel: {
         SELECT_NO_LANG: 'Такого языка нет',
         SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'

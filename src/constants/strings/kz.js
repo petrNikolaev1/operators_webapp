@@ -5,7 +5,8 @@ export default {
         FROM: 'Котак бас',
         TO: 'Жеткізу орны',
         STATUS: 'Күйі',
-        BIRTH_DATE: 'Өтініш күні'
+        BIRTH_DATE: 'Өтініш күні',
+        REFRESH: 'Жаңарту',
     },
 
     OrderItem: {

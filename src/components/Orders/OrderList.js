@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import constants from '@/constants'
+import {Autorenew} from '@material-ui/icons';
 
 import translate from '@/hocs/Translate'
 import '@/assets/styles/OrderList.scss'
@@ -29,7 +30,6 @@ export default class OrderList extends Component {
 
         this.state = {
             pageOfItems: [],
-            ordersFiltered: props.orders,
         };
 
         this.onChangePage = this.onChangePage.bind(this);
@@ -37,13 +37,17 @@ export default class OrderList extends Component {
 
     componentDidMount() {
         const {apiReq} = this.props;
-        apiReq(constants.orders, {limit: 1000, offset: 0})
+        this.refreshList()
     }
+
+    refreshList = () => {
+        const {ordersNew, apiReq} = this.props;
+        ordersNew.loaded !== false && apiReq(constants.orders, {limit: 1000, offset: 0})
+    };
 
     filtrate = () => {
         const {filters, orders} = this.props;
-        const res = orders.filter(order => filters.status.find(status => status === order.status) !== undefined);
-        this.setState({ordersFiltered: res});
+        return orders.filter(order => filters.status.find(status => status === order.status) !== undefined);
     };
 
     onChangePage(pageOfItems) {
@@ -52,17 +56,15 @@ export default class OrderList extends Component {
     }
 
     onStatusFilter = (new_status) => {
-        const {filters} = this.props;
+        const {filters, filterOrders} = this.props;
         let res = filters.status;
         let foundInd = res.findIndex(status => status === new_status);
         foundInd === -1 ? res.push(new_status) : res.splice(foundInd, 1);
         filterOrders({status: res});
-        this.filtrate();
     };
 
     renderFilter = () => {
         const {onStatusFilter} = this;
-        //<div onClick={()=>filterOrders({status: 1})}> test </div>
         return (
             <form>
                 <input onChange={() => onStatusFilter(0)} defaultChecked="true" type="checkbox" name="status"
@@ -129,8 +131,9 @@ export default class OrderList extends Component {
 
 
     render() {
-        const {orders, ordersNew} = this.props;
-        const {ordersFiltered} = this.state;
+        const {orders, ordersNew, strings} = this.props;
+
+        const ordersFiltered = this.filtrate();
 
         console.log('RENDER', ordersNew);
 
@@ -141,8 +144,14 @@ export default class OrderList extends Component {
                     {this.renderHeader()}
                     {this.renderDevices()}
                 </div>
-                <Pagination items={ordersFiltered}
-                            onChangePage={this.onChangePage} pageSize={5}/>
+                <div className="Table-footer">
+                    <Pagination items={ordersFiltered}
+                                onChangePage={this.onChangePage} pageSize={5}/>
+                    <div className="Table-refresh" onClick={this.refreshList}>
+                        <Autorenew className='Table-refresh-icon'/>
+                        {strings.REFRESH}
+                    </div>
+                </div>
             </Fragment>
 
         )

@@ -1,9 +1,9 @@
+@import 'index.scss';
 
 .Table {
   $light-color: #ffffff;
   $dark-color: #f2f2f2;
   $TableMargin: 4vh;
-  $dooglysColor: rgb(1, 186, 191);
   $headerHeight: 3.4vw;
   $fontSize: 1.15vw;
   $fontSizeStrong: 1.25vw;
@@ -12,6 +12,8 @@
   $lineHeight: 2.3vw;
 
   align-self: stretch;
+  flex-shrink: 0;
+
   margin-top: $TableMargin;
   display: flex;
   flex-flow: column nowrap;
@@ -129,7 +131,7 @@
       transition: 0.5s ease-out;
     }
     .reconnect:hover {
-      fill: darken($dooglysColor, 10%)
+      fill: darken($dooglysColor, 5%)
     }
   }
   &-row:hover {
@@ -140,12 +142,49 @@
   .strong-text {
     font-size: $fontSizeStrong;
   }
+
+  &-footer {
+    width: 100%;
+    margin-top: 1.2vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &-refresh {
+    align-content: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    padding: 0 1vw 0 0;
+    align-self: flex-end;
+
+    flex-basis: 16vw;
+    height: 3.7vw;
+
+    background: $dooglysColor;
+    color: white;
+    font-size: 1.4vw;
+
+    cursor: pointer;
+    transition: 0.5s ease-out;
+    &:hover {
+      background: darken($dooglysColor, 10%);
+    }
+    &-icon {
+      font-size: 2.2vw !important;
+      transform: rotate(45deg);
+      margin-right: 0.5vw;
+    }
+  }
 }
 
 .pagination {
+  margin: 0;
   display: inline-block;
   padding-left: 0;
-  margin: 2vh 0;
   border-radius: 0.1vw
 }
 
