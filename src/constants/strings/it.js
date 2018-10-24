@@ -5,7 +5,8 @@ export default {
         FROM: 'Indirizzo di partenza',
         TO: 'Indirizzo di consegna',
         STATUS: 'Stato',
-        BIRTH_DATE: 'Data di nascita'
+        BIRTH_DATE: 'Data di nascita',
+        REFRESH: 'Aggiornare'
     },
 
     OrderItem: {

@@ -31,9 +31,15 @@ export default keyMirror({
     GET_PROPOSED_ROUTE_ERROR: null,
     GET_PROPOSED_ROUTE_SUCCESS: null,
 
+    login: null,
     GET_DRIVERS_ROUTES_REQUEST: null,
     GET_DRIVERS_ROUTES_SUCCESS: null,
     GET_DRIVERS_ROUTES_ERROR: null,
+
+    orders: null,
+    GET_ORDERS_REQUEST: null,
+    GET_ORDERS_SUCCESS: null,
+    GET_ORDERS_ERROR: null,
 
     ASSIGN_TIMER_TO_DRIVER: null,
     HOME_SELECT_DRIVER: null,
@@ -44,5 +50,12 @@ export default keyMirror({
     LOGIN_SUCCESS: null,
     LOGOUT: null,
 
+    BODY: null,
+    QUERY: null,
+
+    PENDING_CONFIRMATION: null,
+    IN_PROGRESS: null,
+    DELIVERED: null,
+    REJECTED: null,
 
 })

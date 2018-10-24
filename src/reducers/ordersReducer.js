@@ -6,7 +6,7 @@ const initialState = {
     filters: {status: [0, 1, 2]}
 };
 
-export function ordersReducer(state = initialState, action) {
+export function ordersReducerOld(state = initialState, action) {
     switch (action.type) {
         case constants.FILTER:
             return {

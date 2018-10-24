@@ -116,7 +116,7 @@ class Pagination extends PureComponent {
 
         if (!pager.pages || pager.pages.length <= 1) {
             // don't display pager if there is only 1 page
-            return null;
+            return <div className='pagination'/>;
         }
 
         return (

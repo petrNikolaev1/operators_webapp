@@ -3,9 +3,10 @@ Component representing the table of the devices list.
  */
 
 import React, {Component} from 'react';
+import moment from 'moment'
 
 import '@/assets/styles/OrderList.scss'
-import mapStatusToImg from '@/util/mapStatusToImg.js'
+import mapStatusToImg from '@/util/mapStatusToImg'
 import connect from "react-redux/es/connect/connect";
 import {showOrderModal} from "@/actions/viewActions";
 
@@ -18,15 +19,17 @@ showOrderModal
 export default class OrderItem extends Component {
 
     render() {
-        const {id, from, to, status, birthDate, showOrderModal} = this.props;
+        const {id, status, creation_date, showOrderModal, destination, origin} = this.props;
+        const {destination_short_address} = destination;
+        const {origin_short_address} = origin;
         return (
-            <div key={id} className="Table-row" onClick={() => showOrderModal(id)}>
-                <div className="Table-row-item">{id}</div>
-                <div className="Table-row-item">{from}</div>
-                <div className="Table-row-item">{to}</div>
-                <div className="Table-row-item">{birthDate}</div>
-                <div className="Table-row-item">
-                    <div className="Table-row-item-icon">{mapStatusToImg(status)}</div>
+            <div key={id} className="orders-list-row" onClick={() => showOrderModal(id)}>
+                <div className="orders-list-row-item">{id}</div>
+                <div className="orders-list-row-item">{origin_short_address}</div>
+                <div className="orders-list-row-item">{destination_short_address}</div>
+                <div className="orders-list-row-item">{moment(creation_date).format('DD.MM.YYYY')}</div>
+                <div className="orders-list-row-item">
+                    <div className="orders-list-row-item-icon">{mapStatusToImg(status)}</div>
                 </div>
             </div>
         )

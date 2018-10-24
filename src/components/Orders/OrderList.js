@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import filter from "lodash/filter";
-import equal from "deep-equal";
-import find from "lodash/find";
+import constants from '@/constants'
+import {Autorenew} from '@material-ui/icons';
 
 import translate from '@/hocs/Translate'
 import '@/assets/styles/OrderList.scss'
@@ -12,16 +11,18 @@ import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
 import OrderDrivers from "./OrderDrivers";
 import {filterOrders} from "@/actions/ordersActions";
-
+import {apiReq} from "@/actions/serverActions";
+import {mapStatusToNum} from "@/util/api";
 
 @connect(
     store => ({
-        orders: store.ordersReducer.orders,
+        orders: store.ordersReducer,
+        ordersOld: store.ordersReducerOld.orders,
         show: store.viewReducer.orderModalShown,
         showDrivers: store.viewReducer.orderDriversShown,
         selectRouteShown: store.viewReducer.selectRouteShown,
-        filters: store.ordersReducer.filters
-    }), {filterOrders}
+        filters: store.ordersReducerOld.filters
+    }), {filterOrders, apiReq}
 )
 @translate('OrderList')
 export default class OrderList extends Component {
@@ -39,13 +40,28 @@ export default class OrderList extends Component {
         this.onChangePage = this.onChangePage.bind(this);
     }
 
+    componentDidMount() {
+        const {apiReq} = this.props;
+        this.refreshList()
+    }
+
+    refreshList = () => {
+        const {orders, apiReq} = this.props;
+        // orders.loaded !== false && apiReq(constants.orders, {limit: 1000, offset: 0})
+        apiReq(constants.orders, {limit: 1000, offset: 0})
+    };
+
     filtrate = () => {
         const {filters, orders} = this.props;
-        const res = orders.filter(order => {
-            const res = filters.status.find(status => status === order.status) !== undefined;
-            return res
-        });
-        this.setState({ordersFiltered: res});
+        return this.getOrders().filter(order => filters.status.find(status => status === mapStatusToNum(order.status)) !== undefined);
+    };
+
+    getOrders = () => {
+        const {orders} = this.props;
+        if (!orders.error && !!orders.res) {
+            return orders.res
+        }
+        return []
     };
 
     onChangePage(pageOfItems) {
@@ -54,8 +70,8 @@ export default class OrderList extends Component {
     };
 
     onStatusFilter = (new_status) => {
+        const {filters, filterOrders} = this.props;
         this.changeChecked(new_status);
-        const {filters} = this.props;
         let res = filters.status;
         let foundInd = res.findIndex(status => status === new_status);
         foundInd === -1 ? res.push(new_status) : res.splice(foundInd, 1);
@@ -111,25 +127,25 @@ export default class OrderList extends Component {
     renderHeader = () => {
         const {strings} = this.props;
         return (
-            <div className="Table-row Table-header">
-                <div className="Table-row-item">{strings.ID}</div>
-                <div className="Table-row-item">{strings.FROM}</div>
-                <div className="Table-row-item">{strings.TO}</div>
-                <div className="Table-row-item">{strings.BIRTH_DATE}</div>
-                <div className="Table-row-item">{strings.STATUS}</div>
+            <div className="orders-list-row orders-list-header">
+                <div className="orders-list-row-item">{strings.ID}</div>
+                <div className="orders-list-row-item">{strings.FROM}</div>
+                <div className="orders-list-row-item">{strings.TO}</div>
+                <div className="orders-list-row-item">{strings.BIRTH_DATE}</div>
+                <div className="orders-list-row-item">{strings.STATUS}</div>
             </div>
         )
     };
 
     renderNotification = (msg) => {
         return (
-            <div className="Table-row Table-no-devices">
+            <div className="orders-list-row orders-list-no-devices">
                 {msg}
             </div>
         )
     };
 
-    renderDevices = () => {
+    rendeOrders = () => {
         const {show, showDrivers, selectRouteShown} = this.props;
         const {pageOfItems} = this.state;
 
@@ -150,8 +166,11 @@ export default class OrderList extends Component {
                                 {item.id === selectRouteShown &&
                                 <SelectRoute
                                     orderId={item.id}
-                                    origin={{lat: item.latFrom, lng: item.lngFrom}}
-                                    destination={{lat: item.latTo, lng: item.lngTo}}
+                                    origin={{lat: item.origin.origin_latitude, lng: item.origin.origin_longitude}}
+                                    destination={{
+                                        lat: item.destination.destination_latitude,
+                                        lng: item.destination.destination_longitude
+                                    }}
                                 />}
                             </div>)
                     }
@@ -160,22 +179,54 @@ export default class OrderList extends Component {
         )
     };
 
+    renderEmpty = () => {
+        const {strings} = this.props;
+        return (
+            <div className='orders-list-row orders-list-empty'>
+                {strings.EMPTY}
+            </div>
+        )
+    };
+
+    renderError = () => {
+        const {strings} = this.props;
+        return (
+            <div className='orders-list-row orders-list-empty'>
+                {strings.ERROR}
+            </div>
+        )
+    };
 
     render() {
-        const {orders} = this.props;
-        const {ordersFiltered} = this.state;
+        const {orders, strings} = this.props;
+
+        const ordersFiltered = this.filtrate();
+        const error = orders.error;
+        const empty = !error && ordersFiltered.length === 0;
+
+        console.log('RENDER', orders);
 
         return (
             <Fragment>
-                <div className="Filter">
+            <div className="Filter">
                     {this.renderFilter()}
                 </div>
-                <div className="Table">
-                    {this.renderHeader()}
-                    {this.renderDevices()}
+                <div className="orders-list">
+                    {this.renderFilter()}
+                    {error ? this.renderError() : empty ? this.renderEmpty() :
+                        <Fragment>
+                            {this.renderHeader()}
+                            {this.rendeOrders()}
+                        </Fragment>}
                 </div>
-                <Pagination items={ordersFiltered}
-                            onChangePage={this.onChangePage} pageSize={5}/>
+                <div className="orders-list-footer">
+                    <Pagination items={ordersFiltered}
+                                onChangePage={this.onChangePage} pageSize={5}/>
+                    <div className="orders-list-refresh" onClick={this.refreshList}>
+                        <Autorenew className='orders-list-refresh-icon'/>
+                        {strings.REFRESH}
+                    </div>
+                </div>
             </Fragment>
 
         )
