@@ -58,7 +58,8 @@ export default {
         title: 'Информация о водителях',
         approve: 'Выбрать',
         reject: 'Назад',
-        choose_placeholder: 'Выберите водителей'
+        choose_placeholder: 'Выберите водителей',
+        SELECT_NO_DRIVERS: 'Таких водителей нет'
     },
 
     Pagination: {

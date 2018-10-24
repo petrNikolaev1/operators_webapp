@@ -66,41 +66,47 @@
     flex-flow: column nowrap;
     justify-content: space-between;
 
-    &-select {
+    &-info {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
 
+      &-select {
+        flex-basis: 40%;
+      }
     }
+
+    &-btns {
+      margin-top: 4vw;
+      align-self: center;
+      display: flex;
+
+      &-item {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15vw;
+        height: 4vw;
+        transition: 0.5s ease-out;
+      }
+      &-item:hover {
+        cursor: pointer;
+      }
+      &-approve {
+        margin-right: 10vw;
+        background: $dooglysColor;
+        &:hover {
+          background: darken($dooglysColor, 10%);
+        }
+      }
+      &-reject {
+        background: $errColor;
+        &:hover {
+          background: darken($errColor, 10%);
+        }
+      }
+    }
+
   }
 }
-
-.btns {
-  margin-top: 2vw;
-  align-self: center;
-  display: flex;
-
-  &-item {
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15vw;
-    height: 4vw;
-    transition: 0.5s ease-out;
-  }
-  &-item:hover {
-    cursor: pointer;
-  }
-  &-approve {
-    margin-right: 10vw;
-    background: $dooglysColor;
-    &:hover {
-      background: darken($dooglysColor, 10%);
-    }
-  }
-  &-reject {
-    background: $errColor;
-    &:hover {
-      background: darken($errColor, 10%);
-    }
-  }
-}
-

@@ -11,46 +11,57 @@ import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
 import Select from "@/common/Select";
 import {driversOptions} from "@/util/drivers";
-import {hideDrivers, showSelectRoute} from "@/actions/viewActions";
+import {hideSelectDrivers, showSelectRoute} from "@/actions/viewActions";
 import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
-        showDrivers: store.viewReducer.orderDriversShown
-    }), {hideDrivers, showSelectRoute}
+        selectedRoute: store.routesReducer.selectedRoute
+    }), {hideSelectDrivers, showSelectRoute}
 )
 @translate('SelectDriver')
 @showBeforeHOC('select-drivers')
 export default class SelectDriver extends PureComponent {
 
-    render() {
-        const {strings} = this.props;
+    onApprove = () => {
+        const {selectedRoute} = this.props;
+        console.log(selectedRoute)
+    };
 
-        const {hideDrivers, showSelectRoute, id} = this.props;
+    render() {
+        const {strings, hideSelectDrivers, showSelectRoute, id} = this.props;
+
         return (
             <div className={classNames(this.props.className, "select-drivers-container")}>
                 <div className="select-drivers-container-header">
                     <div className="select-drivers-container-header-label">
                         {strings.title}
                     </div>
-                    <div onClick={hideDrivers} className="select-drivers-container-header-img">
+                    <div onClick={hideSelectDrivers} className="select-drivers-container-header-img">
                         <Close className='close-icon'/>
                     </div>
                 </div>
                 <div className="select-drivers-container-body">
-                    <div className='select-drivers-container-body-select'>
-                        <Select
-                            isSerchable={true}
-                            options={driversOptions}
-                            placeholder={strings.choose_placeholder}
-                            formClassName='default-select'
-                        />
+                    <div className="select-drivers-container-body-info">
+                        <div className='select-drivers-container-body-info-select'>
+                            <Select
+                                isSerchable={true}
+                                options={driversOptions}
+                                placeholder={strings.choose_placeholder}
+                                formClassName='default-select'
+                                noOptionsMessage={strings.SELECT_NO_DRIVERS}
+                            />
+                        </div>
                     </div>
-                    <div className='btns'>
-                        <div className='btns-item btns-approve' onClick={() => {showSelectRoute(id); hideDrivers()}}>
+                    <div className='select-drivers-container-body-btns'>
+                        <div
+                            className='select-drivers-container-body-btns-item select-drivers-container-body-btns-approve'
+                            onClick={this.onApprove}>
                             {strings.approve}
                         </div>
-                        <div className='btns-item btns-reject'  onClick={hideDrivers}>
+                        <div
+                            className='select-drivers-container-body-btns-item select-drivers-container-body-btns-reject'
+                            onClick={hideSelectDrivers}>
                             {strings.reject}
                         </div>
                     </div>

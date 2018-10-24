@@ -148,11 +148,6 @@ export default class OrderList extends Component {
         const {orderModalShown, orderDriversShown, selectRouteShown} = this.props;
         const {pageOfItems} = this.state;
 
-        console.log('----------------------')
-        console.log(orderModalShown)
-        console.log(orderDriversShown)
-        console.log(selectRouteShown)
-
         return (
             <div>
                 {pageOfItems.map(item => {

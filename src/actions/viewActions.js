@@ -43,7 +43,7 @@ export const showSelectDrivers = orderId => {
     }
 };
 
-export const hideDrivers = () => {
+export const hideSelectDrivers = () => {
     return dispatch => {
         dispatch({
             type: constants.HIDE_DRIVERS,

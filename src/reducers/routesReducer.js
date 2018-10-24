@@ -87,7 +87,6 @@ export function homeMapReducer(state = homeMapInitialState, action) {
                 },
             };
         case constants.GET_DRIVERS_ROUTES_SUCCESS:
-            console.log('LOADED', action.res)
             return {
                 ...state,
                 drivers: {

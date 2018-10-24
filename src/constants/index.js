@@ -41,6 +41,12 @@ export default keyMirror({
     GET_ORDERS_SUCCESS: null,
     GET_ORDERS_ERROR: null,
 
+
+    GET_OPTIMAL_DRIVERS_REQUEST: null,
+    GET_OPTIMAL_DRIVERS_SUCCESS: null,
+    GET_OPTIMAL_DRIVERS_ERROR: null,
+    SELECT_OPTIMAL_DRIVER: null,
+
     ASSIGN_TIMER_TO_DRIVER: null,
     HOME_SELECT_DRIVER: null,
 
