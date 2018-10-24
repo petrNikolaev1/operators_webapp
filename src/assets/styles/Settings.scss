@@ -73,6 +73,7 @@
     }
 
     &-title {
+      cursor: pointer;
       border-top: 0.1vw solid $closeColor;
       width: 100%;
       display: flex;
@@ -80,6 +81,7 @@
       flex-flow: row nowrap;
       align-items: center;
       justify-content: space-between;
+      transition: 0.5s ease-out;
 
       &-text {
         color: rgb(153, 153, 153);
@@ -90,6 +92,10 @@
 
       &-expand {
         margin-right: 1.5vw;
+      }
+
+      &:hover {
+        background: darken(rgb(250, 250, 250), 7%);
       }
     }
 

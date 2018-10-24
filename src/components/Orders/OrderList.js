@@ -31,6 +31,9 @@ export default class OrderList extends Component {
         this.state = {
             pageOfItems: [],
             ordersFiltered: props.orders,
+            checkBox1Checked: 'checked',
+            checkBox2Checked: 'checked',
+            checkBox3Checked: 'checked',
         };
 
         this.onChangePage = this.onChangePage.bind(this);
@@ -48,31 +51,62 @@ export default class OrderList extends Component {
     onChangePage(pageOfItems) {
         // update state with new page of items
         this.setState({pageOfItems: pageOfItems});
-    }
+    };
 
     onStatusFilter = (new_status) => {
+        this.changeChecked(new_status);
         const {filters} = this.props;
         let res = filters.status;
         let foundInd = res.findIndex(status => status === new_status);
         foundInd === -1 ? res.push(new_status) : res.splice(foundInd, 1);
         filterOrders({status: res});
         this.filtrate();
-    }
+    };
+
+    changeChecked = (new_status) => {
+        if (new_status === 0) {
+            this.setState(prevState => (
+                {checkBox1Checked: prevState.checkBox1Checked === 'checked' ? '' : 'checked'})
+            );
+        } else if (new_status === 1) {
+            this.setState(prevState => (
+                {checkBox2Checked: prevState.checkBox2Checked === 'checked' ? '' : 'checked'})
+            );
+        } else {
+            this.setState(prevState => (
+                {checkBox3Checked: prevState.checkBox3Checked === 'checked' ? '' : 'checked'})
+            );
+        }
+    };
 
     renderFilter = () => {
         const {onStatusFilter} = this;
-        //<div onClick={()=>filterOrders({status: 1})}> test </div>
+
+        const {checkBox1Checked, checkBox2Checked, checkBox3Checked} = this.state;
+
         return (
-            <form>
-                <input onChange={() => onStatusFilter(0)} defaultChecked="true" type="checkbox" name="status"
-                       value="0"/>Pending
-                <input onChange={() => onStatusFilter(1)} defaultChecked="true" type="checkbox" name="status"
-                       value="1"/>In progress
-                <input onChange={() => onStatusFilter(2)} defaultChecked="true" type="checkbox" name="status"
-                       value="2"/>Done
-            </form>
+            <div className="checkbox-container">
+                <label className='checkboxes'>
+                    Pending
+                    <input onChange={() => onStatusFilter(0)} defaultChecked="true" type="checkbox" name="status"
+                           checked={checkBox1Checked} value="0"/>
+                    <span className="checkmark"></span>
+                </label>
+                <label className='checkboxes'>
+                    In progress
+                    <input onChange={() => onStatusFilter(1)} defaultChecked="true" type="checkbox" name="status"
+                           checked={checkBox2Checked} value="1"/>
+                    <span className="checkmark"></span>
+                </label>
+                <label className='checkboxes'>
+                    Done
+                    <input onChange={() => onStatusFilter(2)} defaultChecked="true" type="checkbox" name="status"
+                           checked={checkBox3Checked} value="2"/>
+                    <span className="checkmark"></span>
+                </label>
+            </div>
         )
-    }
+    };
 
     renderHeader = () => {
         const {strings} = this.props;
@@ -133,8 +167,10 @@ export default class OrderList extends Component {
 
         return (
             <Fragment>
-                <div className="Table">
+                <div className="Filter">
                     {this.renderFilter()}
+                </div>
+                <div className="Table">
                     {this.renderHeader()}
                     {this.renderDevices()}
                 </div>

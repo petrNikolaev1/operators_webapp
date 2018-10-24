@@ -48,14 +48,13 @@ export default class Settings extends Component {
                     </Link>
                 </div>
                 <div className='settings-info'>
-                    <div className="settings-info-title">
+                    <div className="settings-info-title" onClick={this.showAdministrationPanel}>
                         <div className="settings-info-title-text">
                             Administration panel
                         </div>
                         <div className="settings-info-title-expand">
                             <ExpandMore
                                 className={classNames('home-block-title-expand', {'reversed': administrationPanelOpened})}
-                                onClick={this.showAdministrationPanel}
                             />
                         </div>
                     </div>
@@ -74,14 +73,13 @@ export default class Settings extends Component {
                             />
                         </div>
                     </div>}
-                    <div className="settings-info-title">
+                    <div className="settings-info-title" onClick={this.showPersonalInfo}>
                         <div className="settings-info-title-text">
                             Personal information
                         </div>
                         <div className="settings-info-title-expand">
                             <ExpandMore
                                 className={classNames('home-block-title-expand', {'reversed': personalInfoOpened})}
-                                onClick={this.showPersonalInfo}
                             />
                         </div>
                     </div>
@@ -92,8 +90,10 @@ export default class Settings extends Component {
                         </div>
                         <div className="settings-info-operator-personal-info">
                             <div className="settings-info-operator-personal-info-entry">
+
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Full Name:
+                                    {/*TODO: Add to constants, change language*/}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     Matyashov Nikolay Alekseevich
@@ -102,6 +102,7 @@ export default class Settings extends Component {
                             <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Licence Number:
+                                    {/*TODO: Add to constants, change language*/}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     A982FBV0
@@ -110,6 +111,7 @@ export default class Settings extends Component {
                             <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Position:
+                                    {/*TODO: Add to constants, change language*/}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     Junior operator
@@ -118,6 +120,7 @@ export default class Settings extends Component {
                             <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Access Level:
+                                    {/*TODO: Add to constants, change language*/}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     Yellow
