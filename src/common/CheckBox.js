@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import className from 'classnames'
 import {Done} from '@material-ui/icons';
 
-import '../assets/styles/CheckBox.scss'
+// import '../assets/styles/CheckBox.scss'
 
 export default class CheckBox extends Component {
 

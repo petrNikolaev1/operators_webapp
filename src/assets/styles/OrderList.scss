@@ -53,7 +53,7 @@
     color: $grayDarken;
     background-color: $gray !important;
 
-    &:hover{
+    &:hover {
       background-color: $gray !important;
       cursor: initial !important;
     }
@@ -70,7 +70,7 @@
     color: $grayDarken;
     background-color: white !important;
 
-    &:hover{
+    &:hover {
       background-color: white !important;
       cursor: initial !important;
     }
@@ -88,7 +88,7 @@
 
     padding: 1vw 0;
 
-    &:hover{
+    &:hover {
       background-color: darken($gray, 4%);
       cursor: pointer;
     }
@@ -315,11 +315,19 @@
 }
 
 .checkboxes:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: darken($dooglysColor, 5%);
 }
 
 .checkboxes input:checked ~ .checkmark {
-  background-color: rgb(1, 186, 191);
+  background-color: lighten($dooglysColor, 5%);
+}
+
+.checkboxes:hover input:checked ~ .checkmark {
+  background-color: $dooglysColor;
+}
+
+.checkboxes input:disabled ~ .checkmark {
+  background-color: lighten($closeColor, 5%) !important;
 }
 
 .checkmark:after {
