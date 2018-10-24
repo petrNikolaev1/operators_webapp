@@ -147,6 +147,7 @@
   justify-content: center;
   display: flex;
   width: 100%;
+  cursor: pointer;
 
   &-logout {
     text-decoration: none;
@@ -157,14 +158,14 @@
     justify-content: center;
     width: 10vw;
     height: 4vw;
-    background: rgb(230, 48, 48);
+    background: $errColor;
     margin-top: 1vw;
     margin-bottom: 1vw;
 
     transition: 0.5s ease-out;
 
     &:hover {
-      background: darken(rgb(230, 48, 48), 10%);
+      background: darken($errColor, 10%);
     }
 
     svg {

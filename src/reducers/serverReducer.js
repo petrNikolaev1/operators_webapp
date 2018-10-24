@@ -1,4 +1,6 @@
 import omit from 'object.omit'
+import cookies from 'js-cookie'
+
 import constants from '@/constants'
 import {optimalDriversToOptions} from "@/util/api";
 
@@ -9,13 +11,14 @@ export function loginReducer(state = initLoginState, action) {
         case constants.LOGIN_REQUEST:
             return {...state, loaded: false};
         case constants.LOGIN_SUCCESS:
-            document.cookie = `token=${action.result.auth_token}`;
+            // document.cookie = `token=${action.result.auth_token}`;
+            cookies.set('token', action.result.auth_token);
             return {...omit(state, 'error'), loaded: true, res: action.result};
-        case constants.LOGOUT:
-            document.cookie = ``;
-            return {};
         case constants.LOGIN_ERROR:
             return {...omit(state, 'res'), loaded: true, error: action.error};
+        case constants.LOGOUT:
+            cookies.remove('token');
+            return {};
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import constants, {SERVER_URL} from "@/constants";
-import {getCookie} from "./document";
+import cookies from 'js-cookie'
 
 export const splitPath = (path) => {
     // console.log('REQ SENT')
@@ -21,7 +21,7 @@ export const queryServerRequest = payload => {
         method,
         body: JSON.stringify(params),
         headers: {
-            "Authorization": getCookie(),
+            "Authorization": cookies.get('token'),
             "Content-Type": "application/json",
         }
     };

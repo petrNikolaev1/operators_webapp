@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Redirect} from 'react-router-dom'
+import cookies from 'js-cookie'
 
 import '@/assets/styles/Login.scss'
 import translate from '@/hocs/Translate'
@@ -7,7 +8,6 @@ import logo from '@/assets/img/logo2white.svg'
 import connect from "react-redux/es/connect/connect";
 import {hideLogin} from '@/actions/viewActions'
 import {apiReq} from '@/actions/serverActions'
-import {getCookie} from "@/util/document";
 
 @connect(
     store => ({
@@ -70,7 +70,7 @@ export default class Login extends Component {
         const {email, password, notify} = this.state;
 
 
-        if (!!login.res && getCookie()) {
+        if (!!cookies.get('token')) {
             return <Redirect to={from}/>
         }
 

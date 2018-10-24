@@ -34,7 +34,7 @@ export default class Settings extends Component {
 
         const administrationPanelOpened = administrationPanelShown;
         const personalInfoOpened = personalInfoShown;
-        const logout = this.props;
+        const {logout} = this.props;
 
         return (
             <div className="settings">
@@ -130,10 +130,10 @@ export default class Settings extends Component {
                     </div>}
                 </div>
                 <div className="btn">
-                    <Link to="/login/" onClick={logout} className='btn-logout'>
+                    <div onClick={logout} className='btn-logout'>
                         Logout
                         <ExitToApp/>
-                    </Link>
+                    </div>
                 </div>
             </div>
         )
