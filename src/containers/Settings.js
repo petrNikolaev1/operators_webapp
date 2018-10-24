@@ -130,10 +130,10 @@ export default class Settings extends Component {
                     </div>}
                 </div>
                 <div className="btn">
-                    <div onClick={logout} className='btn-logout'>
+                    <Link to={'/'} onClick={logout} className='btn-logout'>
                         Logout
                         <ExitToApp/>
-                    </div>
+                    </Link>
                 </div>
             </div>
         )
