@@ -208,11 +208,10 @@ export default class OrderList extends Component {
 
         return (
             <Fragment>
-            <div className="Filter">
+                <div className="Filter">
                     {this.renderFilter()}
                 </div>
                 <div className="orders-list">
-                    {this.renderFilter()}
                     {error ? this.renderError() : empty ? this.renderEmpty() :
                         <Fragment>
                             {this.renderHeader()}

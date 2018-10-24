@@ -1,6 +1,5 @@
 @import 'index.scss';
 
-.orders-list {
 .Filter {
   $fontSize: 1.15vw;
   $iconFontSize: 2.1vw;
@@ -20,6 +19,7 @@
   line-height: $lineHeight;
 }
 
+.orders-list {
   $headerHeight: 3.4vw;
   $fontSize: 1.15vw;
   $fontSizeSmall: 1vw;
@@ -51,10 +51,10 @@
     font-size: $fontSizeSmall;
 
     color: $grayDarken;
-    background: $gray !important;
+    background-color: $gray !important;
 
     &:hover{
-      background: $gray !important;
+      background-color: $gray !important;
       cursor: initial !important;
     }
   }
@@ -68,25 +68,30 @@
     font-size: $fontSize;
 
     color: $grayDarken;
-    background: white !important;
+    background-color: white !important;
 
     &:hover{
-      background: white !important;
+      background-color: white !important;
       cursor: initial !important;
     }
   }
 
   &-row {
-    background: white;
+    background-color: white;
     border-bottom: 1px solid $borderColor;
 
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
 
-    transition: 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
 
     padding: 1vw 0;
+
+    &:hover{
+      background-color: darken($gray, 4%);
+      cursor: pointer;
+    }
 
     &-item {
       padding-right: 2vw;
@@ -148,10 +153,6 @@
     .reconnect:hover {
       fill: darken($dooglysColor, 5%)
     }
-  }
-  &-row:hover {
-    background: darken($gray, 4%);
-    cursor: pointer;
   }
 
   &-footer {
