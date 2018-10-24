@@ -6,7 +6,7 @@ import React, {PureComponent} from 'react';
 import Close from '@material-ui/icons/Close';
 import classNames from 'classnames'
 
-import '@/assets/styles/OrderModal.scss'
+import '@/assets/styles/SelectDriver.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
 import Select from "@/common/Select";
@@ -19,26 +19,26 @@ import translate from '@/hocs/Translate'
         showDrivers: store.viewReducer.orderDriversShown
     }), {hideDrivers, showSelectRoute}
 )
-@translate('OrderDrivers')
-@showBeforeHOC('add-device-menu')
-export default class OrderDrivers extends PureComponent {
+@translate('SelectDriver')
+@showBeforeHOC('select-drivers')
+export default class SelectDriver extends PureComponent {
 
     render() {
         const {strings} = this.props;
 
         const {hideDrivers, showSelectRoute, id} = this.props;
         return (
-            <div className={classNames(this.props.className, "add-container")}>
-                <div className="add-container-header">
-                    <div className="add-container-header-label">
+            <div className={classNames(this.props.className, "select-drivers-container")}>
+                <div className="select-drivers-container-header">
+                    <div className="select-drivers-container-header-label">
                         {strings.title}
                     </div>
-                    <div onClick={hideDrivers} className="add-container-header-img">
+                    <div onClick={hideDrivers} className="select-drivers-container-header-img">
                         <Close className='close-icon'/>
                     </div>
                 </div>
-                <div className="add-container-table">
-                    <div className='top-panel-container-item top-panel-container-lang'>
+                <div className="select-drivers-container-body">
+                    <div className='select-drivers-container-body-select'>
                         <Select
                             isSerchable={true}
                             options={driversOptions}

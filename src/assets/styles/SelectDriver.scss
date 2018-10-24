@@ -1,22 +1,14 @@
 @import "index.scss";
 
-.add-device-menu.-show {
-  width: 80%;
+.select-drivers.-show {
+  width: 90%;
 }
 
-.add-container {
-  $dooglysColor: rgb(1, 186, 191);
-  $lightBlue: rgb(223, 237, 238);
-  $footerImgHeight: 3vw;
+.select-drivers-container {
   $headerHeight: 1.7vw;
-  $buttonHeight: 4vw;
-  $tableRowHeight: 3vw;
   $headerVerPadding: 1.1vw;
   $horPadding: 3vw;
-  $closeColor: #c5c3c4;
-  $borderColor: rgb(233, 233, 233);
-  $dark-color: #f2f2f2;
-  $lineHeight: 1.3vw;
+  $fontSize: 1.3vw;
 
   display: flex;
   flex-flow: column nowrap;
@@ -32,7 +24,7 @@
     padding: $headerVerPadding $horPadding;
     line-height: $headerHeight;
 
-    font-size: 1.3vw;
+    font-size: $fontSize;
 
     display: flex;
     flex-flow: row nowrap;
@@ -64,34 +56,19 @@
 
   }
 
-  &-table {
+  &-body {
     background: white;
 
-    line-height: $lineHeight;
     padding: 2vw $horPadding;
     font-size: 1vw;
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-  }
-}
 
-.order-props-item {
-  border-bottom: solid 1px silver;
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 1vw 0;
+    &-select {
 
-  &-label {
-    font-weight: 600;
-    font-size: 1.3vw;
-    color: rgb(153, 153, 153);
-    margin-right: 2vw;
-  }
-
-  &-value {
-    font-size: 1.4vw;
+    }
   }
 }
 
@@ -115,15 +92,15 @@
   &-approve {
     margin-right: 10vw;
     background: $dooglysColor;
+    &:hover {
+      background: darken($dooglysColor, 10%);
+    }
   }
   &-reject {
     background: $errColor;
-  }
-  &-approve:hover {
-    background: darken($dooglysColor, 10%);
-  }
-  &-reject:hover {
-    background: darken($errColor, 10%);
+    &:hover {
+      background: darken($errColor, 10%);
+    }
   }
 }
 

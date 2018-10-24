@@ -1,10 +1,10 @@
 import constants from '@/constants'
 
-export const showOrderModal = (id) => {
+export const showOrderModal = orderId => {
     return dispatch => {
         dispatch({
             type: constants.SHOW_ORDER_MODAL,
-            id
+            orderId
         });
     }
 };
@@ -17,13 +17,11 @@ export const hideOrderModal = () => {
     }
 };
 
-export const showSelectRoute = (id) => {
-    console.log('Select Route')
-    console.log(id)
+export const showSelectRoute = orderId => {
     return dispatch => {
         dispatch({
             type: constants.SHOW_SELECT_ROUTE,
-            payload: id
+            orderId
         });
     }
 };
@@ -36,20 +34,12 @@ export const hideSelectRoute = () => {
     }
 };
 
-export const showDrivers = (id) => {
+export const showSelectDrivers = orderId => {
     return dispatch => {
         dispatch({
-            type: constants.SHOW_LOADING
+            type: constants.SHOW_DRIVERS,
+            orderId
         });
-        setTimeout(() => {
-            dispatch({
-                type: constants.HIDE_LOADING
-            });
-            dispatch({
-                type: constants.SHOW_DRIVERS,
-                id
-            });
-        }, 2000);
     }
 };
 
@@ -58,48 +48,6 @@ export const hideDrivers = () => {
         dispatch({
             type: constants.HIDE_DRIVERS,
         });
-    }
-};
-
-export const showLogin = (id) => {
-    return dispatch => {
-        dispatch({
-            type: constants.SHOW_LOGIN,
-        });
-    }
-};
-
-export const hideLogin = (login, password) => {
-    return dispatch => {
-        let fail = 0;
-        if (login === "" || password === "") {
-            fail = 1;
-            dispatch({
-                type: constants.FAIL,
-                fail
-            });
-        }
-        else {
-            dispatch({
-                type: constants.SHOW_LOADING
-            });
-            setTimeout(() => {
-                dispatch({
-                    type: constants.HIDE_LOADING
-                });
-                if (login === "admin" && password === "admin")
-                    dispatch({
-                        type: constants.HIDE_LOGIN
-                    });
-                else {
-                    fail = 2;
-                    dispatch({
-                        type: constants.FAIL,
-                        fail
-                    });
-                }
-            }, 500)
-        }
     }
 };
 

@@ -11,7 +11,7 @@ export default class SelectRoute extends Component {
     render() {
         return (
             <div className={classNames(this.props.className, 'select-route-container')}>
-                <AlternativeRouteInfo/>
+                <AlternativeRouteInfo {...this.props}/>
                 <AlternativeRoutes {...this.props}/>
             </div>
         )

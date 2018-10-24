@@ -9,7 +9,7 @@ import OrderItem from './OrderItem'
 import OrderModal from './OrderModal'
 import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
-import OrderDrivers from "./OrderDrivers";
+import SelectDriver from "./SelectDriver";
 import {filterOrders} from "@/actions/ordersActions";
 import {apiReq} from "@/actions/serverActions";
 import {mapStatusToNum} from "@/util/api";
@@ -17,11 +17,10 @@ import {mapStatusToNum} from "@/util/api";
 @connect(
     store => ({
         orders: store.ordersReducer,
-        ordersOld: store.ordersReducerOld.orders,
-        show: store.viewReducer.orderModalShown,
-        showDrivers: store.viewReducer.orderDriversShown,
+        orderModalShown: store.viewReducer.orderModalShown,
+        orderDriversShown: store.viewReducer.orderDriversShown,
         selectRouteShown: store.viewReducer.selectRouteShown,
-        filters: store.ordersReducerOld.filters
+        filters: store.ordersReducer.filters
     }), {filterOrders, apiReq}
 )
 @translate('OrderList')
@@ -146,8 +145,13 @@ export default class OrderList extends Component {
     };
 
     rendeOrders = () => {
-        const {show, showDrivers, selectRouteShown} = this.props;
+        const {orderModalShown, orderDriversShown, selectRouteShown} = this.props;
         const {pageOfItems} = this.state;
+
+        console.log('----------------------')
+        console.log(orderModalShown)
+        console.log(orderDriversShown)
+        console.log(selectRouteShown)
 
         return (
             <div>
@@ -157,21 +161,22 @@ export default class OrderList extends Component {
                                 <OrderItem
                                     {...item}
                                 />
-                                {item.id === show && <OrderModal
-                                    {...item}
-                                />}
-                                {item.id === showDrivers && <OrderDrivers
-                                    {...item}
-                                />}
+                                {item.id === orderModalShown &&
+                                <OrderModal{...item}/>}
                                 {item.id === selectRouteShown &&
                                 <SelectRoute
                                     orderId={item.id}
-                                    origin={{lat: item.origin.origin_latitude, lng: item.origin.origin_longitude}}
+                                    origin={{
+                                        lat: item.origin.origin_latitude,
+                                        lng: item.origin.origin_longitude
+                                    }}
                                     destination={{
                                         lat: item.destination.destination_latitude,
                                         lng: item.destination.destination_longitude
                                     }}
                                 />}
+                                {item.id === orderDriversShown &&
+                                <SelectDriver{...item}/>}
                             </div>)
                     }
                 )}
@@ -204,7 +209,7 @@ export default class OrderList extends Component {
         const error = orders.error;
         const empty = !error && ordersFiltered.length === 0;
 
-        console.log('RENDER', orders);
+        // console.log('RENDER', orders);
 
         return (
             <Fragment>

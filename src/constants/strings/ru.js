@@ -46,7 +46,7 @@ export default {
         SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
     },
 
-    OrderDrivers: {
+    SelectDriver: {
         id: 'id',
         fullFrom: 'Адрес отправления',
         fullTo: 'Адрес получателя',
@@ -56,8 +56,8 @@ export default {
         description: 'Описание',
         birthDate: 'Дата создания заявки',
         title: 'Информация о водителях',
-        approve: 'Принять',
-        reject: 'Отклонить',
+        approve: 'Выбрать',
+        reject: 'Назад',
         choose_placeholder: 'Выберите водителей'
     },
 
@@ -68,11 +68,10 @@ export default {
         last: 'Конец'
     },
 
-    Map: {
+    SelectRoute: {
         distance: 'Дистанция',
         time: 'Время',
-        approve: 'Принять',
-        cancl: 'Отмена',
-        confirm: 'Путь успешно выбран'
+        approve: 'Выбрать',
+        cancl: 'Назад',
     }
 };

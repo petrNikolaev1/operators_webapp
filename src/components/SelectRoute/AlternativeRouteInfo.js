@@ -3,12 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import "@/assets/styles/SelectRoute.scss";
 import translate from '@/hocs/Translate';
-import {showConfirm} from "@/actions/routesActions";
-import Confirm from '../Confirm';
-import Loading from "@/common/Loading";
-
-import OrderModal from "../Orders/OrderModal";
-import {hideSelectRoute} from "@/actions/viewActions";
+import {hideSelectRoute, showSelectDrivers} from "@/actions/viewActions";
 
 
 @connect(
@@ -16,15 +11,19 @@ import {hideSelectRoute} from "@/actions/viewActions";
         selectedRoute: store.routesReducer.selectedRoute,
         show: store.routesReducer.confirmShown,
         loadingShow: store.viewReducer.loadingShow,
-    }), {showConfirm,  hideSelectRoute}
+    }), {hideSelectRoute, showSelectDrivers}
 )
-@translate('Map')
+@translate('SelectRoute')
 export default class AlternativeRouteInfo extends Component {
 
-    render() {
-        const {selectedRoute, strings, showConfirm, show, loadingShow, hideSelectRoute} = this.props;
+    onApprove = () => {
+        const {hideSelectRoute, showSelectDrivers, orderId} = this.props;
+        showSelectDrivers(orderId)
+    };
 
-        console.log('AlternativeRoutesInfo')
+    render() {
+        const {selectedRoute, strings, hideSelectRoute} = this.props;
+
         return (
             <Fragment>
                 {!!selectedRoute && <div className='select-route-container-info'>
@@ -35,15 +34,13 @@ export default class AlternativeRouteInfo extends Component {
                         {strings.time}: {selectedRoute.duration.text}
                     </div>
                     <div className='btns'>
-                        <div className='btns-item btns-approve' onClick={() => showConfirm()}>
+                        <div className='btns-item btns-approve' onClick={this.onApprove}>
                             {strings.approve}
                         </div>
                         <div className='btns-item btns-cancl' onClick={hideSelectRoute}>
                             {strings.cancl}
                         </div>
                     </div>
-                    {loadingShow && <Loading/>}
-                    {show === 1 && <Confirm/>}
                 </div>}
             </Fragment>
         )
