@@ -57,7 +57,7 @@
       flex-basis: 5vw;
       display: flex;
       flex-flow: row nowrap;
-      justify-content: space-between;
+      justify-content: left;
       align-items: center;
 
       &-label {
@@ -67,6 +67,7 @@
       }
 
       &-select {
+        margin-left: 2vw;
         flex-basis: 15%;
       }
     }
@@ -78,7 +79,7 @@
       flex-basis: 5vw;
       flex-flow: row nowrap;
       align-items: center;
-      justify-content: left;
+      justify-content: space-between;
 
       &-text {
         color: rgb(153, 153, 153);
@@ -88,7 +89,7 @@
       }
 
       &-expand {
-        margin-left: 1vw;
+        margin-right: 1.5vw;
       }
     }
 

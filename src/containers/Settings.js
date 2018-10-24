@@ -3,9 +3,17 @@ import {Link} from 'react-router-dom'
 import {Reply, ExitToApp, ExpandMore} from '@material-ui/icons';
 import Select from '@/common/Select'
 import OperatorPhoto from '@/assets/img/personal_photo.jpg'
+import {logout} from "@/actions/serverActions";
 
 import '@/assets/styles/Settings.scss'
 import classNames from "classnames";
+import connect from "react-redux/es/connect/connect";
+
+@connect(
+    store => ({
+        login: store.loginReducer,
+    }), {logout}
+)
 
 export default class Settings extends Component {
     state = {
@@ -26,6 +34,7 @@ export default class Settings extends Component {
 
         const administrationPanelOpened = administrationPanelShown;
         const personalInfoOpened = personalInfoShown;
+        const logout = this.props;
 
         return (
             <div className="settings">
@@ -118,7 +127,7 @@ export default class Settings extends Component {
                     </div>}
                 </div>
                 <div className="btn">
-                    <Link to="/login/" className='btn-logout'>
+                    <Link to="/login/" onClick={logout} className='btn-logout'>
                         Logout
                         <ExitToApp/>
                     </Link>
