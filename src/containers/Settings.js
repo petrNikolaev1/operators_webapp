@@ -28,99 +28,97 @@ export default class Settings extends Component {
         const personalInfoOpened = personalInfoShown;
 
         return (
-            <div>
-                <div className="settings">
-                    <div className='settings-title'>
-                        <div className='settings-title-label'>
-                            Settings
-                        </div>
-                        <Link to="/" className='settings-back-to-menu'>
-                            <Reply/>
-                            Back to main menu
-                        </Link>
+            <div className="settings">
+                <div className='settings-title'>
+                    <div className='settings-title-label'>
+                        Settings
                     </div>
-                    <div className='settings-info'>
-                        <div className="settings-info-title">
-                            <div className="settings-info-title-text">
-                                Administration panel
-                            </div>
-                            <div className="settings-info-title-expand">
-                                <ExpandMore
-                                    className={classNames('home-block-title-expand', {'reversed': administrationPanelOpened})}
-                                    onClick={this.showAdministrationPanel}
-                                />
-                            </div>
+                    <Link to="/" className='settings-back-to-menu'>
+                        <Reply/>
+                        Back to main menu
+                    </Link>
+                </div>
+                <div className='settings-info'>
+                    <div className="settings-info-title">
+                        <div className="settings-info-title-text">
+                            Administration panel
                         </div>
-                        {administrationPanelOpened &&
-                        <div className='settings-info-drivers'>
-                            <div className='settings-info-drivers-label'>
-                                Select number of drivers
-                            </div>
-                            <div className='settings-info-drivers-select'>
-                                <Select
-                                    isSerchable={true}
-                                    noOptionsMessage={'No Options'}
-                                    placeholder={'3'}
-                                    //TODO options={}
-                                    formClassName='default-select'
-                                />
-                            </div>
-                        </div>}
-                        <div className="settings-info-title">
-                            <div className="settings-info-title-text">
-                                Personal information
-                            </div>
-                            <div className="settings-info-title-expand">
-                                <ExpandMore
-                                    className={classNames('home-block-title-expand', {'reversed': personalInfoOpened})}
-                                    onClick={this.showPersonalInfo}
-                                />
-                            </div>
+                        <div className="settings-info-title-expand">
+                            <ExpandMore
+                                className={classNames('home-block-title-expand', {'reversed': administrationPanelOpened})}
+                                onClick={this.showAdministrationPanel}
+                            />
                         </div>
-                        {personalInfoOpened &&
-                        <div className='settings-info-operator'>
-                            <div className="settings-info-operator-photo">
-                                <img src={OperatorPhoto} alt="OperatorPhoto"/>
-                            </div>
-                            <div className="settings-info-operator-personal-info">
-                                <div className="settings-info-operator-personal-info-entry">
+                    </div>
+                    {administrationPanelOpened &&
+                    <div className='settings-info-drivers'>
+                        <div className='settings-info-drivers-label'>
+                            Select number of drivers
+                        </div>
+                        <div className='settings-info-drivers-select'>
+                            <Select
+                                isSerchable={true}
+                                noOptionsMessage={'No Options'}
+                                placeholder={'3'}
+                                //TODO options={}
+                                formClassName='default-select'
+                            />
+                        </div>
+                    </div>}
+                    <div className="settings-info-title">
+                        <div className="settings-info-title-text">
+                            Personal information
+                        </div>
+                        <div className="settings-info-title-expand">
+                            <ExpandMore
+                                className={classNames('home-block-title-expand', {'reversed': personalInfoOpened})}
+                                onClick={this.showPersonalInfo}
+                            />
+                        </div>
+                    </div>
+                    {personalInfoOpened &&
+                    <div className='settings-info-operator'>
+                        <div className="settings-info-operator-photo">
+                            <img src={OperatorPhoto} alt="OperatorPhoto"/>
+                        </div>
+                        <div className="settings-info-operator-personal-info">
+                            <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Full Name:
                                 </span>
-                                    <span className="settings-info-operator-personal-info-entry-value">
+                                <span className="settings-info-operator-personal-info-entry-value">
                                     Matyashov Nikolay Alekseevich
                                 </span>
-                                </div>
-                                <div className="settings-info-operator-personal-info-entry">
+                            </div>
+                            <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Licence Number:
                                 </span>
-                                    <span className="settings-info-operator-personal-info-entry-value">
+                                <span className="settings-info-operator-personal-info-entry-value">
                                     A982FBV0
                                 </span>
-                                </div>
-                                <div className="settings-info-operator-personal-info-entry">
+                            </div>
+                            <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Position:
                                 </span>
-                                    <span className="settings-info-operator-personal-info-entry-value">
+                                <span className="settings-info-operator-personal-info-entry-value">
                                     Junior operator
                                 </span>
-                                </div>
-                                <div className="settings-info-operator-personal-info-entry">
+                            </div>
+                            <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
                                     Access Level:
                                 </span>
-                                    <span className="settings-info-operator-personal-info-entry-value">
+                                <span className="settings-info-operator-personal-info-entry-value">
                                     Yellow
                                 </span>
-                                </div>
                             </div>
-                        </div>}
-                    </div>
+                        </div>
+                    </div>}
                 </div>
                 <div className="btn">
-                    <Link to="/login" className='btn-logout'>
+                    <Link to="/login/" className='btn-logout'>
                         Logout
                         <ExitToApp/>
                     </Link>
