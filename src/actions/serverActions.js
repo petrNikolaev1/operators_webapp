@@ -52,3 +52,12 @@ export const apiReq = (command, params) => {
             })
     }
 };
+
+
+export const logout = () => {
+    return dispatch => {
+        dispatch({
+            type: constants.LOGOUT,
+        });
+    }
+};

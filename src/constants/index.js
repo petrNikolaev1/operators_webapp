@@ -48,6 +48,7 @@ export default keyMirror({
     LOGIN_REQUEST: null,
     LOGIN_ERROR: null,
     LOGIN_SUCCESS: null,
+    LOGOUT: null,
 
     BODY: null,
     QUERY: null,
