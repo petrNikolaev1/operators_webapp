@@ -1,0 +1,112 @@
+@import "index.scss";
+
+.select-drivers.-show {
+  width: 90%;
+}
+
+.select-drivers-container {
+  $headerHeight: 1.7vw;
+  $headerVerPadding: 1.1vw;
+  $horPadding: 3vw;
+  $fontSize: 1.3vw;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-self: stretch;
+
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+
+  &-header {
+    background: white;
+
+    padding: $headerVerPadding $horPadding;
+    line-height: $headerHeight;
+
+    font-size: $fontSize;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid $borderColor;
+
+    &-label {
+      flex: 1;
+    }
+
+    &-img {
+      flex-basis: auto;
+
+      .close-icon {
+        vertical-align: middle;
+        font-size: 3vw;
+        fill: $closeColor;
+        transition: 0.3s ease-out;
+      }
+
+      .close-icon:hover {
+        cursor: pointer;
+        fill: darken($closeColor, 10%);
+      }
+
+    }
+
+  }
+
+  &-body {
+    background: white;
+
+    padding: 2vw $horPadding;
+    font-size: 1vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    &-info {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+
+      &-select {
+        flex-basis: 40%;
+      }
+    }
+
+    &-btns {
+      margin-top: 4vw;
+      align-self: center;
+      display: flex;
+
+      &-item {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15vw;
+        height: 4vw;
+        transition: 0.5s ease-out;
+      }
+      &-item:hover {
+        cursor: pointer;
+      }
+      &-approve {
+        margin-right: 10vw;
+        background: $dooglysColor;
+        &:hover {
+          background: darken($dooglysColor, 10%);
+        }
+      }
+      &-reject {
+        background: $errColor;
+        &:hover {
+          background: darken($errColor, 10%);
+        }
+      }
+    }
+
+  }
+}

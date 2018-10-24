@@ -121,7 +121,6 @@ export const getDriversRoutes = (payload = {drivers: drivers}) => {
             .then(res => {
                 return Promise.all(
                     res.map((driverRoute, index) => {
-                        console.log(driverRoute.routes[0].legs[0].distance.text)
                         const pathOriginal = driverRoute.routes[0].legs[0].steps.reduce((res, cur) => res.concat(cur.path), []);
                         drivers = drivers.map((driver, i) => i !== index ? driver :
                             {

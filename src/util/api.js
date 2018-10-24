@@ -10,6 +10,10 @@ export const statuses = [
 
 export const mapStatusToNum = status => statuses.indexOf(status);
 
+export const optimalDriversToOptions = (drivers) => {
+    return drivers
+};
+
 export default (command, params) => ({...commandsData[command], params})
 
 export const commandsData = {

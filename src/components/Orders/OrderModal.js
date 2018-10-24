@@ -10,23 +10,27 @@ import moment from "moment";
 import '@/assets/styles/OrderModal.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
-import {hideOrderModal, showDrivers} from "@/actions/viewActions";
+import {hideOrderModal, showSelectRoute} from "@/actions/viewActions";
 import {filterFullOrderProps} from '@/util/api'
 import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
         show: store.viewReducer.orderModalShown
-    }), {hideOrderModal, showDrivers}
+    }), {hideOrderModal, showSelectRoute}
 )
 @translate('OrderItem')
 @showBeforeHOC('add-device-menu')
 export default class OrderModal extends PureComponent {
 
-    render() {
-        const {strings, index} = this.props;
+    onApprove = () => {
+        const {hideOrderModal, showSelectRoute, id} = this.props;
 
-        const {hideOrderModal, showDrivers, id, origin, destination, worth, weight, creation_date, due_date, status, description} = this.props;
+        showSelectRoute(id)
+    };
+
+    render() {
+        const {strings, id, hideOrderModal, origin, destination, worth, weight, creation_date, due_date, status, description} = this.props;
         const {destination_full_address} = destination;
         const {origin_full_address} = origin;
 
@@ -79,10 +83,7 @@ export default class OrderModal extends PureComponent {
                     </div>
 
                     <div className='btns'>
-                        <div className='btns-item btns-approve' onClick={() => {
-                            hideOrderModal();
-                            showDrivers(id)
-                        }}>
+                        <div className='btns-item btns-approve' onClick={this.onApprove}>
                             {strings.APPROVE}
                         </div>
                         <div className='btns-item btns-reject' onClick={hideOrderModal}>

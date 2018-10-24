@@ -66,13 +66,11 @@ export default class AlternativeRoutes extends Component {
         const {infoWindowOpen} = this.state;
         const {proposedRoutes} = this.props;
 
-        console.log(proposedRoutes)
 
         const proposedRouteValid = this.proposedRouteValid(proposedRoutes);
 
         if (proposedRouteValid) {
             var proposedRoute = this.getProposedRoute(proposedRoutes).res;
-            console.log('proposed', proposedRoute)
             var data_first = proposedRoute.routes[0].legs[0];
             var startAddress = proposedRoute.routes[0].legs[0].start_address;
             var endAddress = proposedRoute.routes[0].legs[0].end_address;
