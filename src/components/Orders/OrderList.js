@@ -227,7 +227,6 @@ export default class OrderList extends Component {
                     </div>
                 </div>
             </Fragment>
-
         )
     }
 }
