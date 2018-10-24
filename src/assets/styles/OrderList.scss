@@ -283,11 +283,13 @@
 
 .checkboxes {
   display: block;
+  align-items: center;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  margin-bottom: 0.5vw;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1.2vw;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -306,9 +308,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
+  height: 1.8vw;
+  width: 1.8vw;
+  background-color: #F5F5F5;
   transition: 0.5s ease-out;
 }
 
@@ -331,12 +333,12 @@
 }
 
 .checkboxes .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
+  left: 0.648vw;
+  top: 0.36vw;
+  width: 0.36vw;
+  height: 0.72vw;
   border: solid white;
-  border-width: 0 3px 3px 0;
+  border-width: 0 0.216vw 0.216vw 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -345,7 +347,7 @@
 .checkbox-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
   margin-left: 2vw;
   margin-right: 2vw;
 }
