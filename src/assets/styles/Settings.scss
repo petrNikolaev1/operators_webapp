@@ -37,29 +37,6 @@
     padding: 1vw $horPadding;
   }
 
-  &-logout {
-    text-decoration: none;
-
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10vw;
-    height: 4vw;
-    background: $dooglysColor;
-
-    transition: 0.5s ease-out;
-
-    &:hover {
-      background: darken($dooglysColor, 10%);
-    }
-
-    svg {
-      margin-left: 1vw;
-      font-size: 2.5vw;
-    }
-  }
-
   &-back-to-menu {
     text-decoration: none;
 
@@ -78,7 +55,7 @@
     }
 
     svg {
-      margin-left: 1vw;
+      margin-right: 1vw;
       font-size: 2.5vw;
     }
   }
@@ -87,10 +64,7 @@
     display: flex;
     flex-flow: column nowrap;
 
-    border-top: 0.1vw solid $closeColor;
-
     &-drivers {
-      border-bottom: 0.1vw solid $closeColor;
       padding: 0 $horPadding;
       flex-basis: 5vw;
       display: flex;
@@ -110,11 +84,24 @@
     }
 
     &-title {
-      margin-top: 1.5vw;
-      text-align: center;
-      color: rgb(153, 153, 153);
-      font-size: 1.8vw;
-      font-weight: 600;
+      border-top: 0.1vw solid $closeColor;
+      width: 100%;
+      display: flex;
+      flex-basis: 5vw;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+
+      &-text {
+        color: rgb(153, 153, 153);
+        font-size: 1.8vw;
+        font-weight: 600;
+        margin-left: 2vw;
+      }
+
+      &-expand {
+        margin-right: 1.5vw;
+      }
     }
 
     &-operator {
@@ -156,6 +143,36 @@
           }
         }
       }
+    }
+  }
+}
+.btn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+
+  &-logout {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 4vw;
+    background: rgb(230, 48, 48);
+    margin-bottom: 2vw;
+
+    transition: 0.5s ease-out;
+
+    &:hover {
+      background: darken(rgb(230, 48, 48), 10%);
+    }
+
+    svg {
+      margin-left: 1vw;
+      font-size: 2.5vw;
     }
   }
 }
