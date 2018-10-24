@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import connect from "react-redux/es/connect/connect";
+import {getCookie} from "@/util/document";
 
 
 @connect(store => ({
@@ -14,7 +15,7 @@ export default class PrivateRoute extends Component {
         return (
             <Route
                 render={props =>
-                    !!login.res ? (
+                    (!!login.res && getCookie()) ? (
                         <Component {...props} />
                     ) : (
                         <Redirect

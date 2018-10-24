@@ -1,25 +1,14 @@
 import constants from '@/constants'
 
-export const fullOrderProps = [
-    'id',
-    'fullFrom',
-    'fullTo',
-    'status',
-    'weight',
-    'worth',
-    'description',
-    'birthDate',
+
+export const statuses = [
+    constants.PENDING_CONFIRMATION,
+    constants.IN_PROGRESS,
+    constants.DELIVERED,
+    constants.REJECTED,
 ];
 
-export const filterFullOrderProps = (orderProps) => {
-    return Object.keys(orderProps)
-        .filter(orderProp => {
-            return fullOrderProps.includes(orderProp)
-        })
-        .map(orderProp => {
-            return {label: orderProp, value: orderProps[orderProp]}
-        })
-};
+export const mapStatusToNum = status => statuses.indexOf(status);
 
 export default (command, params) => ({...commandsData[command], params})
 

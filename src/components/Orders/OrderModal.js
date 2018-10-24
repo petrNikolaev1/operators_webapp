@@ -5,6 +5,7 @@ Component representing the menu of a device adding.
 import React, {PureComponent} from 'react';
 import Close from '@material-ui/icons/Close';
 import classNames from 'classnames'
+import moment from "moment";
 
 import '@/assets/styles/OrderModal.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
@@ -18,40 +19,74 @@ import translate from '@/hocs/Translate'
         show: store.viewReducer.orderModalShown
     }), {hideOrderModal, showDrivers}
 )
-@translate('OrderModal')
+@translate('OrderItem')
 @showBeforeHOC('add-device-menu')
 export default class OrderModal extends PureComponent {
 
     render() {
         const {strings, index} = this.props;
 
-        const {hideOrderModal, showDrivers, id} = this.props;
-        const orderProps = filterFullOrderProps(this.props);
+        const {hideOrderModal, showDrivers, id, origin, destination, worth, weight, creation_date, due_date, status, description} = this.props;
+        const {destination_full_address} = destination;
+        const {origin_full_address} = origin;
+
         return (
             <div className={classNames(this.props.className, "add-container")}>
                 <div className="add-container-header">
                     <div className="add-container-header-label">
-                        {strings.title}
+                        {strings.ORDER_MODAL_TITLE}
                     </div>
                     <div onClick={hideOrderModal} className="add-container-header-img">
                         <Close className='close-icon'/>
                     </div>
                 </div>
                 <div className="add-container-table">
-                    {orderProps.map((orderProp, index) => {
-                        return (
-                            <div className='order-props-item' key={index}>
-                                <div className='order-props-item-label'>{strings[orderProp.label]}</div>
-                                <div className='order-props-item-value'>{orderProp.value}</div>
-                            </div>
-                        )
-                    })}
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.ID}</div>
+                        <div className='order-props-item-value'>{id}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.FROM}</div>
+                        <div className='order-props-item-value'>{origin_full_address}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.TO}</div>
+                        <div className='order-props-item-value'>{destination_full_address}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.WEIGHT}</div>
+                        <div className='order-props-item-value'>{weight}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.WORTH}</div>
+                        <div className='order-props-item-value'>{worth}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.BIRTH_DATE}</div>
+                        <div className='order-props-item-value'>{moment(creation_date).format('DD.MM.YYYY')}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.DUE_DATE}</div>
+                        <div className='order-props-item-value'>{moment(due_date * 1012).format('DD.MM.YYYY')}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.STATUS}</div>
+                        <div className='order-props-item-value'>{strings[status]}</div>
+                    </div>
+                    <div className='order-props-item'>
+                        <div className='order-props-item-label'>{strings.DESCRIPTION}</div>
+                        <div className='order-props-item-value'>{description}</div>
+                    </div>
+
                     <div className='btns'>
-                        <div className='btns-item btns-approve' onClick={() => {hideOrderModal(); showDrivers(id)}}>
-                            {strings.approve}
+                        <div className='btns-item btns-approve' onClick={() => {
+                            hideOrderModal();
+                            showDrivers(id)
+                        }}>
+                            {strings.APPROVE}
                         </div>
                         <div className='btns-item btns-reject' onClick={hideOrderModal}>
-                            {strings.reject}
+                            {strings.REJECT}
                         </div>
                     </div>
                 </div>

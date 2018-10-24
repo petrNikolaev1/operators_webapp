@@ -1,12 +1,8 @@
 @import 'index.scss';
 
-.Table {
-  $light-color: #ffffff;
-  $dark-color: #f2f2f2;
-  $TableMargin: 4vh;
+.orders-list {
   $headerHeight: 3.4vw;
   $fontSize: 1.15vw;
-  $fontSizeStrong: 1.25vw;
   $fontSizeSmall: 1vw;
   $iconFontSize: 2.1vw;
   $lineHeight: 2.3vw;
@@ -14,7 +10,7 @@
   align-self: stretch;
   flex-shrink: 0;
 
-  margin-top: $TableMargin;
+  margin-top: 4vh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -29,37 +25,41 @@
   line-height: $lineHeight;
 
   &-header {
-    font-weight: 600;
-    font-size: $fontSizeSmall;
-    color: rgb(153, 153, 153);
-    background: $dark-color !important;
     height: $headerHeight !important;
     padding: 0 !important;
-  }
 
-  &-header:hover {
-    background: $dark-color !important;
-    cursor: initial !important;
-  }
-
-  &-no-devices {
-    background: $dark-color !important;
-    padding: 0 !important;
-    height: $headerHeight;
-    font-size: $fontSize;
-    padding-left: 2% !important;
     font-weight: 600;
-    color: rgb(153, 153, 153);
+    font-size: $fontSizeSmall;
+
+    color: $grayDarken;
+    background: $gray !important;
+
+    &:hover{
+      background: $gray !important;
+      cursor: initial !important;
+    }
   }
 
-  &-no-devices:hover {
+  &-empty {
+    height: $headerHeight;
+    padding: 0 !important;
+    padding-left: 2% !important;
+
+    font-weight: 600;
+    font-size: $fontSize;
+
+    color: $grayDarken;
     background: white !important;
-    cursor: initial !important;
+
+    &:hover{
+      background: white !important;
+      cursor: initial !important;
+    }
   }
 
   &-row {
     background: white;
-    border-bottom: 1px solid rgb(233, 233, 233);
+    border-bottom: 1px solid $borderColor;
 
     display: flex;
     align-items: center;
@@ -98,10 +98,6 @@
         flex: 1;
       }
 
-      .light-text {
-        color: rgb(197, 195, 196);
-      }
-
       &-icon {
         flex-basis: auto;
         display: flex;
@@ -135,12 +131,8 @@
     }
   }
   &-row:hover {
-    background: darken($dark-color, 4%);
+    background: darken($gray, 4%);
     cursor: pointer;
-  }
-
-  .strong-text {
-    font-size: $fontSizeStrong;
   }
 
   &-footer {

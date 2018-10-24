@@ -52,4 +52,9 @@ export default keyMirror({
     BODY: null,
     QUERY: null,
 
+    PENDING_CONFIRMATION: null,
+    IN_PROGRESS: null,
+    DELIVERED: null,
+    REJECTED: null,
+
 })

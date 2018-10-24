@@ -1,16 +1,20 @@
+import constants from "@/constants";
+
 export default {
 
     OrderList: {
-        ID: 'id',
+        ID: '№',
         FROM: 'Место отправления',
         TO: 'Место доставки',
         STATUS: 'Статус',
         BIRTH_DATE: 'Дата заявки',
-        REFRESH: 'Обновить'
+        REFRESH: 'Обновить',
+        EMPTY: 'Нет таких заказов',
+        ERROR: 'Возникла ошибка при получении списка заказов',
     },
 
     OrderItem: {
-        ID: 'id',
+        ID: 'Номер',
         FROM: 'Место отправления',
         TO: 'Место доставки',
         STATUS: 'Статус',
@@ -20,8 +24,15 @@ export default {
         WORTH: 'Стоимость',
         DESCRIPTION: 'Описание',
         PHONE_NUM: 'Номер телефона',
-        DUE_DATE: 'Доставка до',
-        BIRTH_DATE: 'Дата заявки'
+        DUE_DATE: 'Срок выполнения заявки',
+        BIRTH_DATE: 'Дата заявки',
+        APPROVE: 'Принять',
+        REJECT: 'Отклонить',
+        ORDER_MODAL_TITLE: 'Информация о заказе',
+        [constants.PENDING_CONFIRMATION]: 'Ожидает подтверждения',
+        [constants.IN_PROGRESS]: 'Доставляется',
+        [constants.DELIVERED]: 'Доставлен',
+        [constants.REJECTED]: 'Отклонен',
     },
 
     Login: {
@@ -33,20 +44,6 @@ export default {
     InfoPanel: {
         SELECT_NO_LANG: 'Такого языка нет',
         SELECT_LANG_PLACEHOLDER: 'Выберите язык интерфейса'
-    },
-
-    OrderModal: {
-        id: 'id',
-        fullFrom: 'Адрес отправления',
-        fullTo: 'Адрес получателя',
-        status: 'Статус',
-        weight: 'Вес посылки',
-        worth: 'Стоимость посылки',
-        description: 'Описание',
-        birthDate: 'Дата создания заявки',
-        title: 'Информация о заказе',
-        approve: 'Принять',
-        reject: 'Отклонить'
     },
 
     OrderDrivers: {
