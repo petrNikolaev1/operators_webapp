@@ -6,7 +6,7 @@ import api from '@/util/api'
 
 export const apiReq = (command, params) => {
     const payload = api(command, params);
-
+    const {success} = payload;
     const {onRequest, onSuccess, onError} = payload.events;
     return (dispatch) => {
         dispatch({
@@ -26,6 +26,11 @@ export const apiReq = (command, params) => {
                 });
 
                 if (!res.error) {
+                    !!success && dispatch({
+                        type: constants.SHOW_SUCCESS,
+                        payload: success
+                    });
+
                     dispatch({
                         type: onSuccess,
                         result: res.result,

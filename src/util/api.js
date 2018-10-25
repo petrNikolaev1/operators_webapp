@@ -24,7 +24,10 @@ export const commandsData = {
         events: {
             onRequest: constants.LOGIN_REQUEST,
             onError: constants.LOGIN_ERROR,
-            onSuccess: constants.LOGIN_SUCCESS
+            onSuccess: constants.LOGIN_SUCCESS,
+        },
+        success: {
+            text: 'Авторизация прошла успешно'
         }
     },
     [constants.orders]: {

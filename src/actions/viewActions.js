@@ -66,3 +66,21 @@ export const hideLoading = () => {
         });
     }
 };
+
+
+export const showSuccess = (payload) => {
+    return dispatch => {
+        dispatch({
+            type: constants.SHOW_SUCCESS,
+            payload
+        });
+    }
+};
+
+export const hideSuccess = () => {
+    return dispatch => {
+        dispatch({
+            type: constants.HIDE_SUCCESS
+        });
+    }
+};

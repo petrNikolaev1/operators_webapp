@@ -8,14 +8,18 @@ import Home from '@/components/Home/HomeContainer'
 import Login from "@/components/Login";
 import Loading from "@/common/Loading";
 import PrivateRoute from '@/common/PrivateRoute'
+import Success from "@/common/Success";
 
 @withRouter
 @connect(
-    store => ({loadingShow: store.viewReducer.loadingShow,}), {}
+    store => ({
+        loadingShow: store.viewReducer.loadingShow,
+        success: store.viewReducer.success
+    }), {}
 )
 export default class App extends Component {
     render() {
-        const {loadingShow} = this.props;
+        const {loadingShow, success} = this.props;
 
         return (
             <Fragment>
@@ -25,6 +29,7 @@ export default class App extends Component {
                     <PrivateRoute path='/home/' component={Home}/>
                     <Route path='/login/' component={Login}/>
                 </Switch>
+                {!!success && <Success/>}
                 {loadingShow && <Loading/>}
             </Fragment>
         )

@@ -50,6 +50,9 @@ export default keyMirror({
     ASSIGN_TIMER_TO_DRIVER: null,
     HOME_SELECT_DRIVER: null,
 
+    SHOW_SUCCESS: null,
+    HIDE_SUCCESS: null,
+
 
     LOGIN_REQUEST: null,
     LOGIN_ERROR: null,

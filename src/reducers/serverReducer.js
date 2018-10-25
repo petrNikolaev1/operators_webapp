@@ -11,7 +11,6 @@ export function loginReducer(state = initLoginState, action) {
         case constants.LOGIN_REQUEST:
             return {...state, loaded: false};
         case constants.LOGIN_SUCCESS:
-            // document.cookie = `token=${action.result.auth_token}`;
             cookies.set('token', action.result.auth_token);
             return {...omit(state, 'error'), loaded: true, res: action.result};
         case constants.LOGIN_ERROR:
