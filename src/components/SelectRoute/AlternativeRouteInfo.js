@@ -37,8 +37,8 @@ export default class AlternativeRouteInfo extends Component {
                         <div className='btns-item btns-approve' onClick={this.onApprove}>
                             {strings.approve}
                         </div>
-                        <div className='btns-item btns-cancl' onClick={hideSelectRoute}>
-                            {strings.cancl}
+                        <div className='btns-item btns-cancel' onClick={hideSelectRoute}>
+                            {strings.cancel}
                         </div>
                     </div>
                 </div>}

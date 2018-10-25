@@ -27,7 +27,7 @@ export const commandsData = {
             onSuccess: constants.LOGIN_SUCCESS,
         },
         success: {
-            text: 'Авторизация прошла успешно'
+            text: 'APPROVE_SUCCESS'
         }
     },
     [constants.orders]: {

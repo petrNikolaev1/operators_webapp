@@ -62,13 +62,13 @@
         margin-bottom: 1.5vw;
         margin-right: 0;
       }
-      &-cancl {
+      &-cancel {
         background: $errColor;
       }
       &-approve:hover {
         background: darken($dooglysColor, 10%);
       }
-      &-cancl:hover {
+      &-cancel:hover {
         background: darken($errColor, 10%);
       }
     }

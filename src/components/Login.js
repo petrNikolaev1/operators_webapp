@@ -30,11 +30,11 @@ export default class Login extends Component {
 
     static getDerivedStateFromProps(props, state) {
         const {notify, login: loginOld} = state;
-        const {login: loginNew} = props;
+        const {strings, login: loginNew} = props;
         if (!loginOld.loaded && loginNew.loaded && !!loginNew.error) {
             return {
                 login: loginNew,
-                notify: 'Invalid login/password'
+                notify: strings.INVALID
             }
         }
         return {
@@ -58,8 +58,9 @@ export default class Login extends Component {
     };
 
     onSubmit = (event) => {
+        const {strings} = this.props;
         event.preventDefault();
-        if (!this.preValidate()) return this.setState({notify: 'Please, fill all fields'});
+        if (!this.preValidate()) return this.setState({notify: strings.NOT_ALL_FIELDS});
         const {email, password} = this.state;
         this.props.apiReq('login', {email, password});
     };

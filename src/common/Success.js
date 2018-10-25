@@ -6,23 +6,25 @@ import connect from "react-redux/es/connect/connect";
 import '@/assets/styles/Success.scss'
 import showBeforeHoc from '@/hocs/showBeforeHOC'
 import {hideSuccess} from "@/actions/viewActions";
+import translate from "@/hocs/Translate";
 
 @connect(
     store => ({
         success: store.viewReducer.success
     }), {hideSuccess}
 )
+@translate('Success')
 @showBeforeHoc('success-screen')
 @onClickOutside
 export default class Success extends Component {
 
     handleClickOutside = () => {
-        const {unmount} = this.props;
-        !!unmount && unmount();
+        const {hideSuccess} = this.props;
+        hideSuccess()
     };
 
     render() {
-        const {hideSuccess, success} = this.props;
+        const {hideSuccess, success, strings} = this.props;
         const {text} = success;
 
         return (
@@ -30,7 +32,7 @@ export default class Success extends Component {
                 <div className="success-container-primary">
                     <div className="success-container-primary-icon"><Done className='success'/></div>
                     <div className="success-container-primary-text">
-                        {!!text && text.split('\n').map((item, key) => (<span key={key}>{item}<br/></span>))}
+                        {!!text && strings[text]}
                     </div>
                     <div className='success-container-primary-close'>
                         <Close onClick={hideSuccess} className='success-container-primary-close-icon'/>

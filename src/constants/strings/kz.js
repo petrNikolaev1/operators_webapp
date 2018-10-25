@@ -1,3 +1,5 @@
+import constants from "@/constants";
+
 export default {
 
     OrderList: {
@@ -7,6 +9,8 @@ export default {
         STATUS: 'Күйі',
         BIRTH_DATE: 'Өтініш күні',
         REFRESH: 'Жаңарту',
+        EMPTY: 'Мұндай тапсырыстар жоқ',
+        ERROR: 'Тапсырыстар тізімін алу кезінде қате пайда болды'
     },
 
     OrderItem: {
@@ -21,7 +25,22 @@ export default {
         DESCRIPTION: 'Сипаттама',
         PHONE_NUM: 'Телефон нөмірі',
         DUE_DATE: 'Жеткізу',
-        BIRTH_DATE: 'Қолданба сыгын'
+        BIRTH_DATE: 'Қолданба сыгын',
+        APPROVE: 'Қабылдау',
+        REJECT: 'Қабылдамау',
+        ORDER_MODAL_TITLE: 'Ақпаратқа тапсырыс беру',
+        [constants.PENDING_CONFIRMATION]: 'Растауды күту',
+        [constants.IN_PROGRESS]: 'Жеткізіледі',
+        [constants.DELIVERED]: 'Жеткізілді',
+        [constants.REJECTED]: 'Қабылданбады'
+    },
+
+    Login: {
+        LOGIN: 'Логин',
+        PASSWORD: 'Пароль',
+        ENTER: 'Войти',
+        INVALID: 'Жарамсыз логин / пароль',
+        NOT_ALL_FIELDS: 'Барлық өрістерді толтырыңыз'
     },
 
     InfoPanel:{
@@ -29,21 +48,7 @@ export default {
         SELECT_LANG_PLACEHOLDER: 'Интерфейс тілі таңдаңыз'
     },
 
-    OrderModal: {
-        id: 'id',
-        fullFrom: 'Мекен-жайы',
-        fullTo: 'Алушының мекен-жайы',
-        status: 'Күйі',
-        weight: 'Бөліктің салмағы',
-        worth: 'Жүк тасымалдау құны',
-        description: 'Сипаттама',
-        birthDate: 'Өтінім жасау күні',
-        title: 'Ақпаратқа тапсырыс беру',
-        approve: 'Қабылдау үшін',
-        reject: 'Қабылдамау'
-    },
-
-    OrderDrivers: {
+    SelectDriver: {
         id: 'id',
         fullFrom: 'Мекен-жайы',
         fullTo: 'Алушының мекен-жайы',
@@ -55,7 +60,8 @@ export default {
         title: 'Ақпаратқа тапсырыс беру',
         approve: 'Қабылдау үшін',
         reject: 'Қабылдамау',
-        choose_placeholder: 'драйверлерді таңдаңыз'
+        choose_placeholder: 'Драйверлерді таңдаңыз',
+        SELECT_NO_DRIVERS: 'Жүргізуші жоқ'
     },
 
     Pagination: {
@@ -65,12 +71,15 @@ export default {
         last: 'Cоңғы'
     },
 
-    Map: {
+    SelectRoute: {
         distance: 'Қашықтық',
         time: 'Уақыт',
         approve: 'Қабылдау',
-        cancl: 'Болдырмау',
-        confirm: 'Жол сәтті таңдалды'
+        cancel: 'Болдырмау',
+    },
+
+    Success: {
+        APPROVE_SUCCESS: 'Тапсырыс сәтті расталған!'
     }
 
 };

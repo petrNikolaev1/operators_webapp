@@ -38,7 +38,9 @@ export default {
     Login: {
         LOGIN: 'Логин',
         PASSWORD: 'Пароль',
-        ENTER: 'Войти'
+        ENTER: 'Войти',
+        INVALID: 'Неправильный логин/пароль',
+        NOT_ALL_FIELDS: 'Пожалуйста, заполните все поля'
     },
 
     InfoPanel: {
@@ -73,6 +75,10 @@ export default {
         distance: 'Дистанция',
         time: 'Время',
         approve: 'Выбрать',
-        cancl: 'Назад',
+        cancel: 'Назад'
+    },
+
+    Success: {
+        APPROVE_SUCCESS: 'Заказ успешно подтвержден!'
     }
 };

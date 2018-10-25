@@ -71,7 +71,7 @@ export default class OrderModal extends PureComponent {
                     </div>
                     <div className='order-props-item'>
                         <div className='order-props-item-label'>{strings.DUE_DATE}</div>
-                        <div className='order-props-item-value'>{moment(due_date * 1012).format('DD.MM.YYYY')}</div>
+                        <div className='order-props-item-value'>{moment(due_date).format('DD.MM.YYYY')}</div>
                     </div>
                     <div className='order-props-item'>
                         <div className='order-props-item-label'>{strings.STATUS}</div>
