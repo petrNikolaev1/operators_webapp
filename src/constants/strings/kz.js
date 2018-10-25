@@ -80,6 +80,19 @@ export default {
 
     Success: {
         APPROVE_SUCCESS: 'Тапсырыс сәтті расталған!'
+    },
+
+    Settings: {
+        SETTINGS: 'Параметрлер',
+        BACK: 'Негізгі мәзірге оралу',
+        ADMIN_PANEL: 'Басқару тақтасы',
+        SELECT_NUMBER: 'Драйверлер санын таңдаңыз',
+        PERSONAL_INFO: 'Жеке ақпарат',
+        FULL_NAME: 'Толық аты',
+        LICENSE_NUMBER: 'Лицензия нөмірі',
+        POSITION: 'Жағдайы',
+        ACCESS_LEVEL: 'Кіру деңгейі',
+        LOGOUT: 'Шығу'
     }
 
 };

@@ -80,5 +80,18 @@ export default {
 
     Success: {
         APPROVE_SUCCESS: 'Order successfully confirmed!'
+    },
+
+    Settings: {
+        SETTINGS: 'Settings',
+        BACK: 'Back to main menu',
+        ADMIN_PANEL: 'Administration panel',
+        SELECT_NUMBER: 'Select number of drivers',
+        PERSONAL_INFO: 'Personal information',
+        FULL_NAME: 'Full name',
+        LICENSE_NUMBER: 'License number',
+        POSITION: 'Position',
+        ACCESS_LEVEL: 'Access level',
+        LOGOUT: 'Logout'
     }
 };

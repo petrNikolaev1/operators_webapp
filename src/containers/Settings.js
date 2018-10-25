@@ -8,13 +8,14 @@ import {logout} from "@/actions/serverActions";
 import '@/assets/styles/Settings.scss'
 import classNames from "classnames";
 import connect from "react-redux/es/connect/connect";
+import translate from "@/hocs/Translate";
 
 @connect(
     store => ({
         login: store.loginReducer,
     }), {logout}
 )
-
+@translate('Settings')
 export default class Settings extends Component {
     state = {
         administrationPanelShown: false,
@@ -34,23 +35,23 @@ export default class Settings extends Component {
 
         const administrationPanelOpened = administrationPanelShown;
         const personalInfoOpened = personalInfoShown;
-        const {logout} = this.props;
+        const {logout, strings} = this.props;
 
         return (
             <div className="settings">
                 <div className='settings-title'>
                     <div className='settings-title-label'>
-                        Settings
+                        {strings.SETTINGS}
                     </div>
                     <Link to="/" className='settings-back-to-menu'>
                         <Reply/>
-                        Back to main menu
+                        {strings.BACK}
                     </Link>
                 </div>
                 <div className='settings-info'>
                     <div className="settings-info-title" onClick={this.showAdministrationPanel}>
                         <div className="settings-info-title-text">
-                            Administration panel
+                            {strings.ADMIN_PANEL}
                         </div>
                         <div className="settings-info-title-expand">
                             <ExpandMore
@@ -61,7 +62,7 @@ export default class Settings extends Component {
                     {administrationPanelOpened &&
                     <div className='settings-info-drivers'>
                         <div className='settings-info-drivers-label'>
-                            Select number of drivers
+                            {strings.SELECT_NUMBER}
                         </div>
                         <div className='settings-info-drivers-select'>
                             <Select
@@ -75,7 +76,7 @@ export default class Settings extends Component {
                     </div>}
                     <div className="settings-info-title" onClick={this.showPersonalInfo}>
                         <div className="settings-info-title-text">
-                            Personal information
+                            {strings.PERSONAL_INFO}
                         </div>
                         <div className="settings-info-title-expand">
                             <ExpandMore
@@ -92,8 +93,7 @@ export default class Settings extends Component {
                             <div className="settings-info-operator-personal-info-entry">
 
                                 <span className="settings-info-operator-personal-info-entry-name">
-                                    Full Name:
-                                    {/*TODO: Add to constants, change language*/}
+                                        {strings.FULL_NAME}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     Matyashov Nikolay Alekseevich
@@ -101,8 +101,7 @@ export default class Settings extends Component {
                             </div>
                             <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
-                                    Licence Number:
-                                    {/*TODO: Add to constants, change language*/}
+                                    {strings.LICENSE_NUMBER}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     A982FBV0
@@ -110,8 +109,7 @@ export default class Settings extends Component {
                             </div>
                             <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
-                                    Position:
-                                    {/*TODO: Add to constants, change language*/}
+                                    {strings.POSITION}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     Junior operator
@@ -119,8 +117,7 @@ export default class Settings extends Component {
                             </div>
                             <div className="settings-info-operator-personal-info-entry">
                                 <span className="settings-info-operator-personal-info-entry-name">
-                                    Access Level:
-                                    {/*TODO: Add to constants, change language*/}
+                                    {strings.ACCESS_LEVEL}
                                 </span>
                                 <span className="settings-info-operator-personal-info-entry-value">
                                     Yellow
@@ -131,7 +128,7 @@ export default class Settings extends Component {
                 </div>
                 <div className="btn">
                     <Link to={'/'} onClick={logout} className='btn-logout'>
-                        Logout
+                        {strings.LOGOUT}
                         <ExitToApp/>
                     </Link>
                 </div>

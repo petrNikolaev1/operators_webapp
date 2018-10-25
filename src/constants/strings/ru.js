@@ -1,4 +1,6 @@
 import constants from "@/constants";
+import {Link} from "react-router-dom";
+import React from "react";
 
 export default {
 
@@ -80,5 +82,18 @@ export default {
 
     Success: {
         APPROVE_SUCCESS: 'Заказ успешно подтвержден!'
+    },
+
+    Settings: {
+        SETTINGS: 'Настройки',
+        BACK: 'Вернуться в главное меню',
+        ADMIN_PANEL: 'Панель администрирации',
+        SELECT_NUMBER: 'Выберите число водителей',
+        PERSONAL_INFO: 'Персональная информация',
+        FULL_NAME: 'ФИО',
+        LICENSE_NUMBER: 'Номер лицензии',
+        POSITION: 'Должность',
+        ACCESS_LEVEL: 'Уровень доступа',
+        LOGOUT: 'Выйти'
     }
 };
