@@ -41,11 +41,17 @@ export default keyMirror({
     GET_ORDERS_SUCCESS: null,
     GET_ORDERS_ERROR: null,
 
-
+    getOptimalDrivers: null,
     GET_OPTIMAL_DRIVERS_REQUEST: null,
     GET_OPTIMAL_DRIVERS_SUCCESS: null,
     GET_OPTIMAL_DRIVERS_ERROR: null,
     SELECT_OPTIMAL_DRIVER: null,
+    RESET_OPTIMAL_DRIVER: null,
+
+    approveOrder: null,
+    APPROVE_ORDER_REQUEST: null,
+    APPROVE_ORDER_SUCCESS: null,
+    APPROVE_ORDER_ERROR: null,
 
     ASSIGN_TIMER_TO_DRIVER: null,
     HOME_SELECT_DRIVER: null,

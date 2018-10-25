@@ -52,23 +52,46 @@ export function optimalDriversReducer(state = initOptimalDriversState, action) {
                 loaded: false
             };
         case constants.GET_OPTIMAL_DRIVERS_SUCCESS:
+            const options = optimalDriversToOptions(action.result);
             return {
                 ...omit(state, 'error'),
                 loaded: true,
                 res: action.result,
-                driversOptions: optimalDriversToOptions(action.res)
+                options,
+                selected: (!!state.selected && !!options.find(option => option.vehicleId === state.selected.vehicleId)) ? state.selected : ''
             };
         case constants.GET_OPTIMAL_DRIVERS_ERROR:
             return {
-                ...omit(state, 'res'),
+                ...omit(state, ['res', 'options']),
                 loaded: true,
-                error: action.error
+                error: action.error,
+                selected: '',
             };
         case constants.SELECT_OPTIMAL_DRIVER:
             return {
                 ...state,
-                selectedDriver: state.driversOptions[action.driverId]
+                selected: action.selectedOptimalDriver,
             };
+        case constants.RESET_OPTIMAL_DRIVER:
+            return {
+                ...state,
+                selected: '',
+            };
+        default:
+            return state;
+    }
+}
+
+const initOrderApproveState = {};
+
+export function orderApproveReducer(state = initOrderApproveState, action) {
+    switch (action.type) {
+        case constants.APPROVE_ORDER_REQUEST:
+            return {...state, loaded: false};
+        case constants.APPROVE_ORDER_SUCCESS:
+            return {...omit(state, 'error'), loaded: true, res: action.result};
+        case constants.APPROVE_ORDER_ERROR:
+            return {...omit(state, 'res'), loaded: true, error: action.error};
         default:
             return state;
     }

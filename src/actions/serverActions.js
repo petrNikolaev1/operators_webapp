@@ -1,6 +1,6 @@
 import serializeError from 'serialize-error';
 
-import {queryServerRequest} from "@/util/serverRequests";
+import {serverRequest} from "@/util/serverRequests";
 import constants from '@/constants'
 import api from '@/util/api'
 
@@ -17,7 +17,7 @@ export const apiReq = (command, params) => {
             type: constants.SHOW_LOADING
         });
 
-        queryServerRequest(payload)
+        serverRequest(payload)
             .then(res => {
                 console.log('Response', res);
 
@@ -49,7 +49,7 @@ export const apiReq = (command, params) => {
                     type: constants.HIDE_LOADING
                 });
 
-                console.error(`При выполнении команды ${payload.command} возникла ошибка на клиенте:\n` + err);
+                console.error(`При выполнении команды ${payload.command} возникла ошибка на клиенте:\n` + err.stack);
                 dispatch({
                     type: onError,
                     error: serializeError(err),
@@ -59,10 +59,20 @@ export const apiReq = (command, params) => {
 };
 
 
-export const logout = () => {
-    return dispatch => {
-        dispatch({
-            type: constants.LOGOUT,
-        });
-    }
+export const logout = () => dispatch => {
+    dispatch({
+        type: constants.LOGOUT,
+    });
+};
+
+export const selectOptimalDriver = (selectedOptimalDriver) => dispatch => {
+    dispatch({
+        type: constants.SELECT_OPTIMAL_DRIVER,
+        selectedOptimalDriver,
+    })
+};
+
+export const resetOrderApproveInfo = () => dispatch => {
+    dispatch({type: constants.RESET_ROUTE});
+    dispatch({type: constants.RESET_OPTIMAL_DRIVER})
 };

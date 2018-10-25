@@ -9,6 +9,7 @@
   $headerVerPadding: 1.1vw;
   $horPadding: 3vw;
   $fontSize: 1.3vw;
+  $fontSizeBig: 1.4vw;
 
   display: flex;
   flex-flow: column nowrap;
@@ -24,7 +25,7 @@
     padding: $headerVerPadding $horPadding;
     line-height: $headerHeight;
 
-    font-size: $fontSize;
+    font-size: $fontSizeBig;
 
     display: flex;
     flex-flow: row nowrap;
@@ -60,7 +61,7 @@
     background: white;
 
     padding: 2vw $horPadding;
-    font-size: 1vw;
+    font-size: $fontSize;
 
     display: flex;
     flex-flow: column nowrap;
@@ -70,9 +71,33 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
+      align-items: center;
 
       &-select {
+        align-self: flex-start;
+        flex-basis: 50%;
+      }
+
+      &-selected {
         flex-basis: 40%;
+        display: flex;
+        flex-flow: column nowrap;
+
+        &-prop {
+          display: flex;
+          flex-flow: row nowrap;
+
+          padding: 0.5vw 0;
+          border-bottom: 1px solid $borderColor;
+
+          &-label {
+            color: $grayDarken;
+            font-weight: 600;
+          }
+          &-value {
+            margin-left: 2vw;
+          }
+        }
       }
     }
 

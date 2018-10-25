@@ -14,9 +14,14 @@ export const splitPath = (path) => {
     })
 };
 
-export const queryServerRequest = payload => {
-    const {command, params, method, paramsType} = payload;
-    const url = new URL(`${SERVER_URL}${command}`);
+export const serverRequest = payload => {
+    const {command, params, method, paramsType, fillCommandWith, getCommand} = payload;
+    if (!getCommand) {
+        var url = new URL(`${SERVER_URL}${command}`)
+    } else {
+        var url = new URL(`${SERVER_URL}${getCommand(params[fillCommandWith])}`);
+        delete params[fillCommandWith]
+    }
     const reqObj = {
         method,
         body: JSON.stringify(params),
@@ -25,7 +30,7 @@ export const queryServerRequest = payload => {
             "Content-Type": "application/json",
         }
     };
-    if (paramsType === constants.QUERY){
+    if (paramsType === constants.QUERY) {
         url.search = new URLSearchParams(params);
         delete reqObj.body
     }

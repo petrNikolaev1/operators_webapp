@@ -26,7 +26,7 @@ export default class SelectComponent extends Component {
 
     render() {
         const {
-            noOptionsMessage, options, placeholder,
+            noOptionsMessage, options, placeholder, isDisabled,
             isSearchable, onChange, selectedOption, formClassName
         } = this.props;
 
@@ -50,6 +50,7 @@ export default class SelectComponent extends Component {
                 className={selectImgClass}
 
                 options={options}
+                isDisabled={isDisabled}
             />
         )
     }

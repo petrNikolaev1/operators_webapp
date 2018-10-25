@@ -11,25 +11,58 @@ import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
 import Select from "@/common/Select";
 import {driversOptions} from "@/util/drivers";
-import {hideSelectDrivers, showSelectRoute} from "@/actions/viewActions";
+import {hideSelectDrivers, hideOrderModal, hideSelectRoute} from "@/actions/viewActions";
 import translate from '@/hocs/Translate'
+import {apiReq, selectOptimalDriver, resetOrderApproveInfo} from "@/actions/serverActions";
+import constants from "@/constants";
+import {secondsToHours} from "@/util/units";
 
 @connect(
     store => ({
-        selectedRoute: store.routesReducer.selectedRoute
-    }), {hideSelectDrivers, showSelectRoute}
+        selectedRoute: store.routesReducer.selectedRoute,
+        optimalDrivers: store.optimalDriversReducer,
+    }), {hideSelectDrivers, apiReq, selectOptimalDriver, resetOrderApproveInfo, hideOrderModal, hideSelectRoute}
 )
 @translate('SelectDriver')
 @showBeforeHOC('select-drivers')
 export default class SelectDriver extends PureComponent {
 
     onApprove = () => {
-        const {selectedRoute} = this.props;
-        console.log(selectedRoute)
+        const {selectedRoute, id, optimalDrivers, apiReq, resetOrderApproveInfo, hideOrderModal, hideSelectRoute, hideSelectDrivers} = this.props;
+        if (!!selectedRoute && !!optimalDrivers.selected) {
+            hideOrderModal();
+            hideSelectRoute();
+            hideSelectDrivers();
+            resetOrderApproveInfo();
+            apiReq(constants.approveOrder, {
+                orderId: id,
+                route_id: selectedRoute.id,
+                vehicle_id: optimalDrivers.selected.vehicleId,
+            })
+        }
+    };
+
+    componentDidMount() {
+        const {apiReq, id, selectedRoute} = this.props;
+        apiReq(constants.getOptimalDrivers, {orderId: id, timeToDeliver: selectedRoute.duration.value})
+    }
+
+    selectOptimalDriver = (selectedDriver) => {
+        if (!selectedDriver || (!!selectedDriver && selectedDriver.length === 0)) return;
+        const {selectOptimalDriver, optimalDrivers} = this.props;
+        if (!!optimalDrivers.selected && optimalDrivers.selected.value === selectedDriver.value) return;
+        selectOptimalDriver(selectedDriver)
     };
 
     render() {
-        const {strings, hideSelectDrivers, showSelectRoute, id} = this.props;
+        const {strings, hideSelectDrivers, optimalDrivers,} = this.props;
+
+        const optimalDriversLoaded = optimalDrivers.loaded && !!optimalDrivers.options;
+        const optimalDriverSelected = optimalDriversLoaded && !!optimalDrivers.selected;
+        if (optimalDriverSelected) {
+            var {vehicleId, driversIds, timeToOrder, type} = optimalDrivers.selected;
+            var timeToOrderConverted = secondsToHours(timeToOrder)
+        }
 
         return (
             <div className={classNames(this.props.className, "select-drivers-container")}>
@@ -45,13 +78,51 @@ export default class SelectDriver extends PureComponent {
                     <div className="select-drivers-container-body-info">
                         <div className='select-drivers-container-body-info-select'>
                             <Select
+                                selectedOption={optimalDrivers.selected}
+                                onChange={this.selectOptimalDriver}
+                                isDisabled={!optimalDriversLoaded}
                                 isSerchable={true}
-                                options={driversOptions}
+                                options={optimalDriversLoaded ? optimalDrivers.options : []}
                                 placeholder={strings.choose_placeholder}
                                 formClassName='default-select'
                                 noOptionsMessage={strings.SELECT_NO_DRIVERS}
                             />
                         </div>
+                        {optimalDriverSelected &&
+                        <div className='select-drivers-container-body-info-selected'>
+                            <div className='select-drivers-container-body-info-selected-prop'>
+                                <div className='select-drivers-container-body-info-selected-prop-label'>
+                                    Время на путь до заказа
+                                </div>
+                                <div className='select-drivers-container-body-info-selected-prop-value'>
+                                    {`${timeToOrderConverted[0]} h ${timeToOrderConverted[1]} min`}
+                                </div>
+                            </div>
+                            <div className='select-drivers-container-body-info-selected-prop'>
+                                <div className='select-drivers-container-body-info-selected-prop-label'>
+                                    Идеинтификатор средства передвижения
+                                </div>
+                                <div className='select-drivers-container-body-info-selected-prop-value'>
+                                    {vehicleId}
+                                </div>
+                            </div>
+                            <div className='select-drivers-container-body-info-selected-prop'>
+                                <div className='select-drivers-container-body-info-selected-prop-label'>
+                                    Идеинтификаторы водителей
+                                </div>
+                                <div className='select-drivers-container-body-info-selected-prop-value'>
+                                    {driversIds.reduce((res, cur) => res.length > 0 ? res + ', ' + cur : res + cur, '')}
+                                </div>
+                            </div>
+                            <div className='select-drivers-container-body-info-selected-prop'>
+                                <div className='select-drivers-container-body-info-selected-prop-label'>
+                                    Тип средства передвижения
+                                </div>
+                                <div className='select-drivers-container-body-info-selected-prop-value'>
+                                    {type}
+                                </div>
+                            </div>
+                        </div>}
                     </div>
                     <div className='select-drivers-container-body-btns'>
                         <div

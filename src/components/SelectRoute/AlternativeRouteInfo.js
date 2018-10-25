@@ -17,7 +17,7 @@ import {hideSelectRoute, showSelectDrivers} from "@/actions/viewActions";
 export default class AlternativeRouteInfo extends Component {
 
     onApprove = () => {
-        const {hideSelectRoute, showSelectDrivers, orderId} = this.props;
+        const {showSelectDrivers, orderId} = this.props;
         showSelectDrivers(orderId)
     };
 

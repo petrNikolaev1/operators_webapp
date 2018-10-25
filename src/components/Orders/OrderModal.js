@@ -11,13 +11,14 @@ import '@/assets/styles/OrderModal.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
 import {hideOrderModal, showSelectRoute} from "@/actions/viewActions";
+import {resetOrderApproveInfo} from "@/actions/serverActions";
 import {filterFullOrderProps} from '@/util/api'
 import translate from '@/hocs/Translate'
 
 @connect(
     store => ({
         show: store.viewReducer.orderModalShown
-    }), {hideOrderModal, showSelectRoute}
+    }), {hideOrderModal, showSelectRoute, resetOrderApproveInfo}
 )
 @translate('OrderItem')
 @showBeforeHOC('add-device-menu')
@@ -29,8 +30,14 @@ export default class OrderModal extends PureComponent {
         showSelectRoute(id)
     };
 
+    onClose = () => {
+        const {resetOrderApproveInfo, hideOrderModal} = this.props;
+        hideOrderModal();
+        resetOrderApproveInfo()
+    };
+
     render() {
-        const {strings, id, hideOrderModal, origin, destination, worth, weight, creation_date, due_date, status, description} = this.props;
+        const {strings, id, origin, destination, worth, weight, creation_date, due_date, status, description} = this.props;
         const {destination_full_address} = destination;
         const {origin_full_address} = origin;
 
@@ -40,7 +47,7 @@ export default class OrderModal extends PureComponent {
                     <div className="add-container-header-label">
                         {strings.ORDER_MODAL_TITLE}
                     </div>
-                    <div onClick={hideOrderModal} className="add-container-header-img">
+                    <div onClick={this.onClose} className="add-container-header-img">
                         <Close className='close-icon'/>
                     </div>
                 </div>
@@ -86,7 +93,7 @@ export default class OrderModal extends PureComponent {
                         <div className='btns-item btns-approve' onClick={this.onApprove}>
                             {strings.APPROVE}
                         </div>
-                        <div className='btns-item btns-reject' onClick={hideOrderModal}>
+                        <div className='btns-item btns-reject' onClick={this.onClose}>
                             {strings.REJECT}
                         </div>
                     </div>
