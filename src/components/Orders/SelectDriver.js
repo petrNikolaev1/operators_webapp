@@ -55,7 +55,7 @@ export default class SelectDriver extends PureComponent {
     };
 
     render() {
-        const {strings, hideSelectDrivers, optimalDrivers,} = this.props;
+        const {strings, hideSelectDrivers, optimalDrivers, showBeforeClass} = this.props;
 
         const optimalDriversLoaded = optimalDrivers.loaded && !!optimalDrivers.options;
         const optimalDriverSelected = optimalDriversLoaded && !!optimalDrivers.selected;
@@ -65,7 +65,7 @@ export default class SelectDriver extends PureComponent {
         }
 
         return (
-            <div className={classNames(this.props.className, "select-drivers-container")}>
+            <div className={classNames("select-drivers-container", showBeforeClass)}>
                 <div className="select-drivers-container-header">
                     <div className="select-drivers-container-header-label">
                         {strings.title}

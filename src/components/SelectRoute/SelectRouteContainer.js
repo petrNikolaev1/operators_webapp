@@ -9,8 +9,9 @@ import showBeforeHOC from "@/hocs/showBeforeHOC";
 @showBeforeHOC('select-route')
 export default class SelectRoute extends Component {
     render() {
+        const {showBeforeClass} = this.props;
         return (
-            <div className={classNames(this.props.className, 'select-route-container')}>
+            <div className={classNames('select-route-container', showBeforeClass)}>
                 <AlternativeRouteInfo {...this.props}/>
                 <AlternativeRoutes {...this.props}/>
             </div>

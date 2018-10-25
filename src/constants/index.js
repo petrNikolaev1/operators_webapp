@@ -58,7 +58,8 @@ export default keyMirror({
 
     SHOW_SUCCESS: null,
     HIDE_SUCCESS: null,
-
+    SHOW_ERROR: null,
+    HIDE_ERROR: null,
 
     LOGIN_REQUEST: null,
     LOGIN_ERROR: null,

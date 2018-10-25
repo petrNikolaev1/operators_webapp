@@ -84,6 +84,10 @@ export default {
         APPROVE_SUCCESS: 'Заказ успешно подтвержден!'
     },
 
+    Error: {
+        APPROVE_ERROR: 'Заказ успешно подтвержден!'
+    },
+
     Settings: {
         SETTINGS: 'Настройки',
         BACK: 'Вернуться в главное меню',

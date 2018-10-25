@@ -10,27 +10,8 @@ $iconContainerSize: 6vw;
 $textVerPadding: 1vw;
 $closeColor: #c5c3c4;
 
-.success-screen {
-  display: none;
-}
-
 .success-screen.-show {
-  display: flex;
-  align-self: stretch;
-  flex-direction: column;
   width: 45%;
-  z-index: 101;
-}
-
-.success-screen::before {
-  content: '';
-  position: fixed;
-  top: -5555px;
-  left: -5555px;
-  bottom: -5555px;
-  right: -5555px;
-  z-index: 100;
-  background-color: rgba(94, 143, 147, 0.8);
 }
 
 .success-container {
@@ -38,7 +19,6 @@ $closeColor: #c5c3c4;
 
   display: flex;
   flex-flow: column nowrap;
-  z-index: 101;
   padding: 0;
   margin: 0;
 

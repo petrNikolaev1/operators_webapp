@@ -1,25 +1,10 @@
 @import "index.scss";
 
 .select-route.-show {
-  width: 90%;
+  width: 80%;
 }
 
 .select-route-container {
-  z-index: 1;
-
-  $dooglysColor: rgb(1, 186, 191);
-  $lightBlue: rgb(223, 237, 238);
-  $footerImgHeight: 3vw;
-  $headerHeight: 1.7vw;
-  $buttonHeight: 4vw;
-  $tableRowHeight: 3vw;
-  $headerVerPadding: 1.1vw;
-  $horPadding: 3vw;
-  $closeColor: #c5c3c4;
-  $borderColor: rgb(233, 233, 233);
-  $dark-color: #f2f2f2;
-  $lineHeight: 1.3vw;
-
   background: white;
   display: flex;
   flex-flow: row nowrap;
@@ -76,7 +61,7 @@
 
   &-map {
     flex-shrink: 0;
-    flex-basis: 70vw;
+    flex-basis: 80%;
     height: 90vh;
   }
 }

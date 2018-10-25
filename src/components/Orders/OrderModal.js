@@ -37,12 +37,12 @@ export default class OrderModal extends PureComponent {
     };
 
     render() {
-        const {strings, id, origin, destination, worth, weight, creation_date, due_date, status, description} = this.props;
+        const {strings, id, origin, destination, worth, weight, creation_date, due_date, status, description, showBeforeClass} = this.props;
         const {destination_full_address} = destination;
         const {origin_full_address} = origin;
 
         return (
-            <div className={classNames(this.props.className, "add-container")}>
+            <div className={classNames("add-container", showBeforeClass)}>
                 <div className="add-container-header">
                     <div className="add-container-header-label">
                         {strings.ORDER_MODAL_TITLE}

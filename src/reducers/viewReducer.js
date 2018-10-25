@@ -5,7 +5,8 @@ const initialState = {
     orderDriversShown: -1,
     selectRouteShown: -1,
     loadingShow: false,
-    success: null
+    success: null,
+    error: null,
 };
 
 export function viewReducer(state = initialState, action) {
@@ -59,6 +60,16 @@ export function viewReducer(state = initialState, action) {
             return {
                 ...state,
                 success: null
+            };
+        case constants.SHOW_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            };
+        case constants.HIDE_ERROR:
+            return {
+                ...state,
+                error: null
             };
         default:
             return state;
