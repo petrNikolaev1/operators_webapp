@@ -28,14 +28,14 @@ export const hideSelectRoute = () => dispatch => {
 
 export const showSelectDrivers = orderId => dispatch => {
     dispatch({
-        type: constants.SHOW_DRIVERS,
+        type: constants.SHOW_SELECT_DRIVER,
         orderId
     });
 };
 
 export const hideSelectDrivers = () => dispatch => {
     dispatch({
-        type: constants.HIDE_DRIVERS,
+        type: constants.HIDE_SELECT_DRIVER,
     });
 };
 

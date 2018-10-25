@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Switch, Route, Redirect, withRouter} from 'react-router-dom'
+import {Switch, Route, withRouter} from 'react-router-dom'
 import connect from "react-redux/es/connect/connect";
 
 import MainMenu from '@/containers/MainMenu'
@@ -9,8 +9,6 @@ import Login from "@/components/Login";
 import Loading from "@/common/Loading";
 import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
-import {apiReq} from "@/actions/serverActions";
-import constants from "@/constants";
 import Error from "@/common/Error";
 
 @withRouter
@@ -20,20 +18,9 @@ import Error from "@/common/Error";
         success: store.viewReducer.success,
         error: store.viewReducer.error,
         orderApprove: store.orderApproveReducer,
-    }), {apiReq}
+    }), {}
 )
 export default class App extends Component {
-
-    componentDidUpdate(prevProps, prevState) {
-        const {orderApprove: orderApproveOld} = prevProps;
-        const {orderApprove: orderApproveNew, apiReq} = this.props;
-
-        if (!orderApproveOld.loaded && orderApproveNew.loaded) {
-            apiReq(constants.orders, {limit: 1000, offset: 0})
-        }
-    }
-
-
     render() {
         const {loadingShow, success, error} = this.props;
 
@@ -51,5 +38,4 @@ export default class App extends Component {
             </Fragment>
         )
     }
-
 }

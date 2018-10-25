@@ -11,7 +11,7 @@ import showBeforeHOC from "@/hocs/showBeforeHOC";
 import connect from "react-redux/es/connect/connect";
 import Select from "@/common/Select";
 import {driversOptions} from "@/util/drivers";
-import {hideSelectDrivers, hideOrderModal, hideSelectRoute} from "@/actions/viewActions";
+import {hideSelectDrivers, hideOrderModal, hideSelectRoute, showError} from "@/actions/viewActions";
 import translate from '@/hocs/Translate'
 import {apiReq, selectOptimalDriver, resetOrderApproveInfo} from "@/actions/serverActions";
 import constants from "@/constants";
@@ -21,7 +21,15 @@ import {secondsToHours} from "@/util/units";
     store => ({
         selectedRoute: store.routesReducer.selectedRoute,
         optimalDrivers: store.optimalDriversReducer,
-    }), {hideSelectDrivers, apiReq, selectOptimalDriver, resetOrderApproveInfo, hideOrderModal, hideSelectRoute}
+    }), {
+        hideSelectDrivers,
+        apiReq,
+        selectOptimalDriver,
+        resetOrderApproveInfo,
+        hideOrderModal,
+        hideSelectRoute,
+        showError
+    }
 )
 @translate('SelectDriver')
 @showBeforeHOC('select-drivers')
@@ -38,13 +46,14 @@ export default class SelectDriver extends PureComponent {
                 orderId: id,
                 route_id: selectedRoute.id,
                 vehicle_id: optimalDrivers.selected.vehicleId,
-            })
+            }, this.props)
         }
     };
 
     componentDidMount() {
         const {apiReq, id, selectedRoute} = this.props;
         apiReq(constants.getOptimalDrivers, {orderId: id, timeToDeliver: selectedRoute.duration.value})
+        // apiReq(constants.getOptimalDrivers, {orderId: id, timeToDeliver: 10000000000000}, this.props)
     }
 
     selectOptimalDriver = (selectedDriver) => {

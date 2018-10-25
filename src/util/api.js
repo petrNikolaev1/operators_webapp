@@ -54,11 +54,21 @@ export const commandsData = {
             onRequest: constants.GET_OPTIMAL_DRIVERS_REQUEST,
             onError: constants.GET_OPTIMAL_DRIVERS_ERROR,
             onSuccess: constants.GET_OPTIMAL_DRIVERS_SUCCESS
+        },
+        customSuccessHandler: (res, actions) => {
+            if (res.length === 0) {
+                const {resetOrderApproveInfo, hideSelectRoute, hideSelectDrivers, showError} = actions;
+                hideSelectDrivers();
+                hideSelectRoute();
+                resetOrderApproveInfo();
+                showError({text: 'NO_OPTIMAL_DRIVERS'})
+            }
         }
+
     },
     [constants.approveOrder]: {
         command: constants.approveOrder,
-        getCommand: orderId => `orders/${orderId}/confirm`,
+        getCommand: orderId => `orders/${orderId}/confir`,
         fillCommandWith: 'orderId',
         method: 'POST',
         paramsType: constants.BODY,
@@ -67,8 +77,15 @@ export const commandsData = {
             onError: constants.APPROVE_ORDER_ERROR,
             onSuccess: constants.APPROVE_ORDER_SUCCESS
         },
-        success: {
+        defaultSuccessHandler: {
             text: 'APPROVE_SUCCESS'
-        }
-    },
+        },
+        customSuccessHandler: (res, actions) => {
+            const {apiReq} = actions;
+            apiReq(constants.orders, {limit: 1000, offset: 0})
+        },
+        defaultErrorHandler: {
+            text: 'APPROVE_ERROR'
+        },
+    }
 };

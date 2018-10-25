@@ -21,12 +21,12 @@ export function viewReducer(state = initialState, action) {
                 ...state,
                 orderModalShown: -1
             };
-        case constants.SHOW_DRIVERS:
+        case constants.SHOW_SELECT_DRIVER:
             return {
                 ...state,
                 orderDriversShown: action.orderId
             };
-        case constants.HIDE_DRIVERS:
+        case constants.HIDE_SELECT_DRIVER:
             return {
                 ...state,
                 orderDriversShown: -1

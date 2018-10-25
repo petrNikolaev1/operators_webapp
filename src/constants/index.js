@@ -23,8 +23,8 @@ export default keyMirror({
     HIDE_CONFIRM: null,
     SHOW_SELECT_ROUTE: null,
     HIDE_SELECT_ROUTE: null,
-    SHOW_DRIVERS: null,
-    HIDE_DRIVERS: null,
+    SHOW_SELECT_DRIVER: null,
+    HIDE_SELECT_DRIVER: null,
     FILTER: null,
 
     GET_PROPOSED_ROUTE_REQUEST: null,

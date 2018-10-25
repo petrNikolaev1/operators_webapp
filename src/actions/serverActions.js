@@ -4,32 +4,43 @@ import {serverRequest} from "@/util/serverRequests";
 import constants from '@/constants'
 import api from '@/util/api'
 
-export const apiReq = (command, params) => {
+export const apiReq = (command, params, actions) => {
     const payload = api(command, params);
-    const {success} = payload;
+    const {defaultSuccessHandler, customSuccessHandler, defaultErrorHandler, customErrorHandler, withoutLoading} = payload;
     const {onRequest, onSuccess, onError} = payload.events;
     return (dispatch) => {
         dispatch({
             type: onRequest,
             isLoaded: false,
         });
-        dispatch({
+
+        !withoutLoading && dispatch({
             type: constants.SHOW_LOADING
         });
+
+        const handleError = (err, where) => {
+            !!defaultErrorHandler && dispatch({type: constants.SHOW_ERROR, payload: defaultErrorHandler});
+            !!customErrorHandler && customErrorHandler(err, actions);
+
+            console.error(`При выполнении команды ${payload.command} возникла ошибка на ${where}е:\n` + (err.stack || err));
+
+            dispatch({
+                type: onError,
+                error: serializeError(err),
+            })
+        };
 
         serverRequest(payload)
             .then(res => {
                 console.log('Response', res);
 
-                dispatch({
+                !withoutLoading && dispatch({
                     type: constants.HIDE_LOADING
                 });
 
                 if (!res.error) {
-                    !!success && dispatch({
-                        type: constants.SHOW_SUCCESS,
-                        payload: success
-                    });
+                    !!defaultSuccessHandler && dispatch({type: constants.SHOW_SUCCESS, payload: defaultSuccessHandler});
+                    !!customSuccessHandler && customSuccessHandler(res.result, actions);
 
                     dispatch({
                         type: onSuccess,
@@ -37,23 +48,14 @@ export const apiReq = (command, params) => {
                     })
                 }
                 else {
-                    console.error(`При выполнении команды ${payload.command} возникла ошибка на сервере:\n` + res.error);
-                    dispatch({
-                        type: onError,
-                        error: serializeError(res.error),
-                    })
+                    handleError(!!res.error.errors ? res.error.errors.reduce((res, cur) => res.length > 0 ? res + ', ' + cur : res + cur, '') : res.error, 'сервер')
                 }
             })
             .catch(err => {
-                dispatch({
+                !withoutLoading && dispatch({
                     type: constants.HIDE_LOADING
                 });
-
-                console.error(`При выполнении команды ${payload.command} возникла ошибка на клиенте:\n` + err.stack);
-                dispatch({
-                    type: onError,
-                    error: serializeError(err),
-                })
+                handleError(err, 'клиент')
             })
     }
 };
