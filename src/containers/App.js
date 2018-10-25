@@ -9,15 +9,30 @@ import Login from "@/components/Login";
 import Loading from "@/common/Loading";
 import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
+import {apiReq} from "@/actions/serverActions";
+import constants from "@/constants";
 
 @withRouter
 @connect(
     store => ({
         loadingShow: store.viewReducer.loadingShow,
-        success: store.viewReducer.success
-    }), {}
+        success: store.viewReducer.success,
+        orderApprove: store.orderApproveReducer,
+    }), {apiReq}
 )
 export default class App extends Component {
+
+    componentDidUpdate(prevProps, prevState) {
+        const {orderApprove: orderApproveOld} = prevProps;
+        const {orderApprove: orderApproveNew, apiReq} = this.props;
+
+        if (!orderApproveOld.loaded && orderApproveNew.loaded) {
+            apiReq(constants.orders, {limit: 1000, offset: 0})
+        }
+
+    }
+
+
     render() {
         const {loadingShow, success} = this.props;
 
