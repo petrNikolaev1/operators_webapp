@@ -12,7 +12,7 @@ export default (status) => {
         case 2:
             return <AssignmentTurnedIn className='fulfilled'/>;
         case 3:
-            return <Delete className='rejected'/>;
+            return <DeleteForever className='rejected'/>;
         default:
             return <Error className='pending'/>;
     }
