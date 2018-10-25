@@ -24,7 +24,7 @@ export function loginReducer(state = initLoginState, action) {
 }
 
 const initOrdersState = {
-    filters: {status: [0, 1, 2]}
+    filters: {status: [0, 1, 2, 3]}
 };
 
 export function ordersReducer(state = initOrdersState, action) {
@@ -91,6 +91,21 @@ export function orderApproveReducer(state = initOrderApproveState, action) {
         case constants.APPROVE_ORDER_SUCCESS:
             return {...omit(state, 'error'), loaded: true, res: action.result};
         case constants.APPROVE_ORDER_ERROR:
+            return {...omit(state, 'res'), loaded: true, error: action.error};
+        default:
+            return state;
+    }
+}
+
+const initOrderRejectState = {};
+
+export function orderRejectReducer(state = initOrderRejectState, action) {
+    switch (action.type) {
+        case constants.REJECT_ORDER_REQUEST:
+            return {...state, loaded: false};
+        case constants.REJECT_ORDER_SUCCESS:
+            return {...omit(state, 'error'), loaded: true, res: action.result};
+        case constants.REJECT_ORDER_ERROR:
             return {...omit(state, 'res'), loaded: true, error: action.error};
         default:
             return state;

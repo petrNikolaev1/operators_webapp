@@ -134,7 +134,6 @@
       font-size: $iconFontSize;
     }
     .pending {
-      padding: 0;
       fill: #FF851B;
       font-size: $iconFontSize;
     }
@@ -144,14 +143,9 @@
       //animation: spinner infinite 5s linear;
       transition: 0.5s ease-out;
     }
-    .reconnect {
-      fill: $dooglysColor;
+    .rejected{
+      fill: $errColor;
       font-size: $iconFontSize;
-      transform: rotate(45deg);
-      transition: 0.5s ease-out;
-    }
-    .reconnect:hover {
-      fill: darken($dooglysColor, 5%)
     }
   }
 

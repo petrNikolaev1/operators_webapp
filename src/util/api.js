@@ -68,7 +68,7 @@ export const commandsData = {
     },
     [constants.approveOrder]: {
         command: constants.approveOrder,
-        getCommand: orderId => `orders/${orderId}/confir`,
+        getCommand: orderId => `orders/${orderId}/confirm`,
         fillCommandWith: 'orderId',
         method: 'POST',
         paramsType: constants.BODY,
@@ -86,6 +86,28 @@ export const commandsData = {
         },
         defaultErrorHandler: {
             text: 'APPROVE_ERROR'
+        },
+    },
+    [constants.rejectOrder]: {
+        command: constants.rejectOrder,
+        getCommand: orderId => `orders/${orderId}/reject`,
+        fillCommandWith: 'orderId',
+        method: 'POST',
+        paramsType: constants.BODY,
+        events: {
+            onRequest: constants.REJECT_ORDER_REQUEST,
+            onError: constants.REJECT_ORDER_ERROR,
+            onSuccess: constants.REJECT_ORDER_SUCCESS
+        },
+        defaultSuccessHandler: {
+            text: 'REJECT_SUCCESS'
+        },
+        customSuccessHandler: (res, actions) => {
+            const {apiReq} = actions;
+            apiReq(constants.orders, {limit: 1000, offset: 0})
+        },
+        defaultErrorHandler: {
+            text: 'REJECT_ERROR'
         },
     }
 };

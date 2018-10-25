@@ -74,4 +74,9 @@ export default keyMirror({
     DELIVERED: null,
     REJECTED: null,
 
+    rejectOrder: null,
+    REJECT_ORDER_REQUEST: null,
+    REJECT_ORDER_SUCCESS: null,
+    REJECT_ORDER_ERROR: null,
+
 })
