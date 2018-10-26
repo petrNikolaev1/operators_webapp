@@ -1,0 +1,12 @@
+@import "index.scss";
+
+.test {
+  display: flex;
+  flex-flow: column nowrap;
+
+  &-item {
+    align-self: flex-end;
+    background: white;
+    width: fit-content;
+  }
+}

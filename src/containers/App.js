@@ -10,6 +10,7 @@ import Loading from "@/common/Loading";
 import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
 import Error from "@/common/Error";
+import ChatWrap from "@/Chat/containers/ChatWrap";
 
 @withRouter
 @connect(
@@ -31,6 +32,7 @@ export default class App extends Component {
                     <PrivateRoute path='/settings/' component={Settings}/>
                     <PrivateRoute path='/home/' component={Home}/>
                     <Route path='/login/' component={Login}/>
+                    <Route path={'/chat'} component={ChatWrap}/>
                 </Switch>
                 {loadingShow && <Loading/>}
                 {!!success && <Success/>}

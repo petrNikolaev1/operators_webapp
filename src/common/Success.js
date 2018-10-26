@@ -25,11 +25,11 @@ export default class Success extends Component {
     };
 
     render() {
-        const {hideSuccess, success, strings,showBeforeClass} = this.props;
+        const {hideSuccess, success, strings, showBeforeClass} = this.props;
         const {text} = success;
 
         return (
-            <div className={classNames("success-container",showBeforeClass)}>
+            <div className={classNames("success-container", showBeforeClass)}>
                 <div className="success-container-primary">
                     <div className="success-container-primary-icon"><Done className='success'/></div>
                     <div className="success-container-primary-text">
