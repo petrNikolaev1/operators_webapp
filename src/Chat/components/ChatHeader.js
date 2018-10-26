@@ -10,10 +10,10 @@ export default class UserItem extends Component {
             <div className="chat-header">
                 <div className='chat-header-info'>
                     <div id="test" className="chat-header-name">
-                        {this.props.name}
+                        {'Петр Николаев'}
                     </div>
                     <div className='chat-header-typing'>
-                        {/*Отображение того, что кто-то печатает*/}
+                        {'Петр печатает...'}
                     </div>
                 </div>
             </div>
