@@ -5,7 +5,7 @@
   flex-basis: 11vh;
   flex-shrink: 0;
 
-  border-bottom: 0.2vh solid white;
+  border-bottom: 0.2vh solid $darkenWhite20;
 
   display: flex;
   flex-flow: row nowrap;
@@ -26,7 +26,9 @@
     overflow: hidden;
     word-break: break-all;
   }
+
   &-typing {
+    color: $dooglysColor;
     font-size: 2.5vh;
   }
 

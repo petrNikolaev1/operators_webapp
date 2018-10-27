@@ -1,22 +1,50 @@
 @import "index.scss";
 
 .logged-in {
+  background: $inputBackground;
   padding: 2vh;
   flex-basis: 11vh;
   flex-shrink: 0;
 
-  border-bottom: 0.2vh solid $darkenWhite30;
+  border-bottom: 0.2vh solid $darkenWhite20;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+
+  &-photo {
+    width: 10vh;
+    height: 10vh;
+    overflow: hidden;
+    background: #fff;
+    padding: 0.925vh;
+    border-radius: 50%;
+
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: $dooglysColor 1px solid;
+    box-shadow: 0 0.185vh 0.185vh 0.185vh $dooglysColor;
+    -moz-box-shadow: 0 0.185vh 0.185vh 0.185vh $dooglysColor;
+    -webkit-box-shadow: 0 0.185vh 0.185vh 0.185vh $dooglysColor;
+  }
+
+  &-photo img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+  }
 
   &-username {
-    $lineHeight: 3.1vh;
-    line-height: $lineHeight;
-    max-height: $lineHeight *3;
+    color: black;
+    padding: 0.6vw;
+    width: 25vh;
+    align-items: center;
+    height: 10vh;
     overflow: hidden;
-    font-size: 2.6vh;
-    word-break: break-all;
+    font-size: 2.8vh;
+    word-break: normal;
+    margin-top: 1vw;
   }
 }

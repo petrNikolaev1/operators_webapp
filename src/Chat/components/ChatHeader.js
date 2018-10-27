@@ -13,7 +13,7 @@ export default class UserItem extends Component {
                         {'Петр Николаев'}
                     </div>
                     <div className='chat-header-typing'>
-                        {'Петр печатает...'}
+                        {'печатает...'}
                     </div>
                 </div>
             </div>

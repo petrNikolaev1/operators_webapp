@@ -12,7 +12,7 @@ export default class ChatControl extends Component {
     render() {
         return (
             <div className="chat-control">
-                <textarea  placeholder="Type your message" rows="4"/>
+                <textarea placeholder="Write a message..." rows="4"/>
                 <button>Send</button>
             </div>
         )

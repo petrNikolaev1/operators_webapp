@@ -26,7 +26,7 @@ export default class MessagesList extends Component {
                             time={1540581363963}
                             author={'Петр'}
                             text={'Привет, братан! Запили интерфейс чатика плиз!'}
-                            color={'#0074D9'}
+                            color={'#01BABF'} // $dooglysColor
                             edited={false}
                         />
                         <MessageItem
@@ -34,7 +34,7 @@ export default class MessagesList extends Component {
                             time={1540581363963}
                             author={'Николай'}
                             text={'Никаких проблем, коллега! Все будет готово!'}
-                            color={'purple'}
+                            color={'#68cf4c'} // $messageMyColor
                             edited={false}
                         />
                         <MessageItem
@@ -42,7 +42,7 @@ export default class MessagesList extends Component {
                             time={1540581363963}
                             author={'Петр'}
                             text={'Красавчик! Умница!'}
-                            color={'#0074D9'}
+                            color={'#01BABF'} // $dooglysColor
                             edited={true}
                         />
                         <MessageItem
@@ -50,7 +50,7 @@ export default class MessagesList extends Component {
                             time={1540581363963}
                             author={'Николай'}
                             text={'Да как тут откажешь! Работа, конечно, тяжелая, зато платят мало..'}
-                            color={'purple'}
+                            color={'#68cf4c'} // $messageMyColor
                             edited={false}
                         />
                     </ul>

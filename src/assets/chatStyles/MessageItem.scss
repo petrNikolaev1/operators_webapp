@@ -25,11 +25,11 @@
     }
 
     &-time {
-      color: lighten($gray, 8%);
+      color: $darkenWhite30;
     }
 
     &-name {
-      color: $darkenWhite40;
+      color: $darkenWhite60;
       font-weight: 600;
     }
 

@@ -7,38 +7,53 @@
 
   $borderRadius: 2vh;
 
-  border-top: 0.3vh solid white;
-  padding: 0 $horPadding;
-  padding-top: 2vh;
+  border-top: 0.2vh solid $darkenWhite20;
+  padding: 2vh $horPadding 0;
 
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
 
   textarea {
-    color: $darkenWhite50;
+    color: black;
     font-size: 2.5vh;
     flex-basis: 6vh;
     padding: 1vh 2vh;
     border-radius: $borderRadius;
     resize: none;
     &:focus {
-      box-shadow: 0 0 1vh $blue;
+      box-shadow: 0 0 1vh $dooglysColor;
     }
+  }
+
+  textarea::-webkit-input-placeholder {
+    color: $darkenWhite30;
+  }
+
+  textarea:-moz-placeholder { /* Firefox 18- */
+    color: $darkenWhite30;
+  }
+
+  textarea::-moz-placeholder {  /* Firefox 19+ */
+    color: $darkenWhite30;
+  }
+
+  textarea:-ms-input-placeholder {
+    color: $darkenWhite30;
   }
 
   button {
     margin: 2vh 0;
     margin-right: 2%;
     align-self: flex-end;
-    color: $blue;
+    color: $dooglysColor;
     font-size: 3vh;
     text-transform: uppercase;
     font-weight: 600;
 
     &:hover {
       cursor: pointer;
-      color: darken($blue, 15%);
+      color: darken($dooglysColor, 15%);
     }
   }
 
@@ -53,7 +68,7 @@
 
     padding: 2vh 3vh;
 
-    background: $blue;
+    background: $dooglysColor;
     background-size: 30px;
     color: #ffffff;
 
@@ -78,7 +93,7 @@
       align-items: center;
       justify-content: center;
 
-      background: darken($blue, 7%);
+      background: darken($dooglysColor, 7%);
       border-radius: 1vh;
       transition: 0.3s ease-out;
 
@@ -88,7 +103,7 @@
 
       &:hover {
         cursor: pointer;
-        background: darken($blue, 12%);
+        background: darken($dooglysColor, 12%);
       }
     }
 
@@ -119,7 +134,7 @@
       transition: 0.3s ease-out;
 
       &:hover {
-        background: darken($blue, 7%);
+        background: darken($dooglysColor, 7%);
         cursor: pointer;
       }
     }

@@ -36,17 +36,18 @@
   }
 
   li {
+    color: black;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
 
     flex-basis: 5vh;
-    padding: 2vh 0;
+    padding: 3vh 0;
 
     border-bottom: 0.1vh solid $darkenWhite10;
 
-    transition: 0.5s ease-out;
+    transition: 0.7s ease-out;
 
     &:last-of-type {
       border: 0;
@@ -55,7 +56,7 @@
 
   li:hover {
     cursor: pointer;
-    background-color: $darkenWhite10;
+    background-color: #c0effc;
     .user-about-name:after {
       content: '';
       background: transparent;

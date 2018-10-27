@@ -3,6 +3,7 @@
 $horPadding: 2vh;
 
 .chat-history {
+  background: white;
   padding: 2vh 3vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -26,8 +27,8 @@ $horPadding: 2vh;
 .chat-history::-webkit-scrollbar-thumb {
   border-radius: 1vh;
   -webkit-box-shadow: inset 0 0 0.8vh $blue;
-  background-color: darken($blue, 3%);
+  background-color: darken($dooglysColor, 3%);
   &:hover {
-    background-color: darken($blue, 8%);
+    background-color: darken($dooglysColor, 8%);
   }
 }

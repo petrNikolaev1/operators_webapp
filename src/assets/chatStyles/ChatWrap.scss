@@ -14,6 +14,7 @@
   word-break: break-word;
 
   background-color: white;
+  border: 0.1vh solid $darkenWhite20;
 
   overflow: hidden;
 
@@ -25,6 +26,7 @@
     flex-flow: column nowrap;
   }
   &-right {
+    border-left: 0.2vh solid $darkenWhite20;
     flex: 1;
     display: flex;
     flex-flow: column nowrap;
