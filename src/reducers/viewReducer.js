@@ -71,6 +71,7 @@ export function viewReducer(state = initialState, action) {
                 ...state,
                 error: null
             };
+
         default:
             return state;
     }

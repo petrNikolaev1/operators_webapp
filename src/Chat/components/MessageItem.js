@@ -24,7 +24,10 @@ export default class MessageItem extends Component {
         } = this.props;
 
         const messageClass = classNames('message', {'message-my': username === author}, {'message-other': username !== author});
-        const messageDataClass = classNames('message-data', {'message-data-my': username === author}, {'message-data-other': username !== author});
+        const messageDataClass = classNames('message-data',
+                {'message-data-my': username === author},
+                {'message-data-other': username !== author}
+            );
 
         return (
             <li id={time} className="message-container">

@@ -79,4 +79,10 @@ export default keyMirror({
     REJECT_ORDER_SUCCESS: null,
     REJECT_ORDER_ERROR: null,
 
+    ID_CHAT_CHOSEN: null,
+    CHAT: null,
+    SELECT_CHAT: null,
+    CHAT_CONTROL_TYPING: null,
+    UPDATE_CHATS: null,
+    CHAT_CONTROL_UPDATE: null,
 })
