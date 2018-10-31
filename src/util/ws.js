@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import cookies from 'js-cookie'
 
 import {store} from '@/store'
 
@@ -9,7 +10,8 @@ export default ((wsUrl) => {
     ws = io(wsUrl);
 
     ws.on('connect', () => {
-        console.log('WS Open!')
+        console.log('WS Opened!');
+        ws.emit('auth', {token: cookies.get('token')})
     });
 
     ws.on('disconnect', () => {
@@ -29,4 +31,4 @@ export default ((wsUrl) => {
 
     return {emit}
 
-})('10.240.17.254:14881')
+})('http://10.240.17.254:14881')

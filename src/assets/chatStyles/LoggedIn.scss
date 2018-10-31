@@ -13,38 +13,32 @@
   justify-content: left;
 
   &-photo {
-    width: 10vh;
+    flex-basis: 10vh;
     height: 10vh;
-    overflow: hidden;
+    flex-shrink: 0;
+
     background: #fff;
-    padding: 0.925vh;
     border-radius: 50%;
 
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
+    box-sizing: border-box;
+    background-position: center;
+    background-size: cover;
+
     border: $dooglysColor 1px solid;
     box-shadow: 0 0.185vh 0.185vh 0.185vh $dooglysColor;
-    -moz-box-shadow: 0 0.185vh 0.185vh 0.185vh $dooglysColor;
-    -webkit-box-shadow: 0 0.185vh 0.185vh 0.185vh $dooglysColor;
-  }
-
-  &-photo img {
-    display: block;
-    width: 100%;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
   }
 
   &-username {
+    display: flex;
+
+    margin-left: 5%;
+    flex: 1;
+    max-height: 10vh;
+
     color: black;
-    padding: 0.6vw;
-    width: 25vh;
-    align-items: center;
-    height: 10vh;
-    overflow: hidden;
     font-size: 2.8vh;
-    word-break: normal;
-    margin-top: 1vw;
+
+    overflow: hidden;
+    word-break: break-word;
   }
 }

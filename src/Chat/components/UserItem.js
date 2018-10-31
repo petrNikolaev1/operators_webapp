@@ -26,9 +26,7 @@ export default class UserItem extends Component {
             <li onClick={() => selectChat(id)}
                 className={classNames({'user-selected': !!selectedChat && selectedChat.chat_id === id})}
             >
-                <div className='user-avatar'>
-                    <img src={this.getAvatar(id)} alt="avatar"/>
-                </div>
+                <div className='user-avatar' style={{backgroundImage: `url(${this.getAvatar(id)})`}}/>
                 <div className="user-about">
                     <div className="user-about-name"> {username} </div>
                     <div className="user-about-status">
@@ -42,6 +40,6 @@ export default class UserItem extends Component {
     }
 
     getAvatar = (id) => {
-        return require(`../../assets/img/avatar (${id % 7}).jpg`);
+        return require(`../../assets/img/avatar${id % 7}.jpg`);
     }
 }

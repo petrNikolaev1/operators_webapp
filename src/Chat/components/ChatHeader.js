@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import classNames from 'classnames'
 
 import '@/assets/chatStyles/ChatHeader.scss'
 import connect from "react-redux/es/connect/connect";
@@ -23,7 +24,8 @@ export default class UserItem extends Component {
                     <div id="test" className="chat-header-name">
                         {selectedChat.username}
                     </div>
-                    <div className='chat-header-typing'>
+                    <div
+                        className={classNames('chat-header-status', {'chat-header-status-online': online}, {'chat-header-status-offline': !online})}>
                         {online ? 'online' : 'offline'}
                     </div>
                 </div>

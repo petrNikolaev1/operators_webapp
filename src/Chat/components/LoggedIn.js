@@ -7,9 +7,7 @@ export default class LoggedIn extends Component {
     render() {
         return (
             <div className='logged-in'>
-                <div className='logged-in-photo'>
-                    <img src={OperatorPhoto} alt="OperatorPhoto"/>
-                </div>
+                <div className='logged-in-photo' style={{backgroundImage: `url(${OperatorPhoto})`}}/>
                 <div className='logged-in-username'>
                     {`Николай Матяшов`}
                 </div>
