@@ -11,6 +11,7 @@ import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
 import Error from "@/common/Error";
 import ChatWrap from "@/Chat/containers/ChatWrap";
+import ws from '@/util/ws'
 
 @withRouter
 @connect(
@@ -22,6 +23,10 @@ import ChatWrap from "@/Chat/containers/ChatWrap";
     }), {}
 )
 export default class App extends Component {
+    componentDidMount() {
+        ws.emit(JSON.stringify({type: 'connected_new_observer'}));
+    }
+
     render() {
         const {loadingShow, success, error} = this.props;
 

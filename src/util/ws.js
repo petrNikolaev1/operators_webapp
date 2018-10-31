@@ -1,9 +1,5 @@
 import io from 'socket.io-client';
 
-import {
-    connectedNewUser, disconnectedUser, receiveNewMessage, rejectAuth,
-    receiveEdited, disableEdit, publicTyping, privateTyping
-} from '@/actions'
 import {store} from '@/store'
 
 export default ((wsUrl) => {
@@ -24,33 +20,7 @@ export default ((wsUrl) => {
     ws.on("message", (message) => {
         console.log('RESPONSE', message)
         const messageObj = JSON.parse(message)
-        // console.log('ws message: ', messageObj)
-        switch (messageObj.type) {
-            case 'connected_new_user':
-                dispatch(connectedNewUser(messageObj))
-                break;
-            case 'disconnected_user':
-                dispatch(disconnectedUser(messageObj.userID));
-                break;
-            case 'message':
-                dispatch(receiveNewMessage(messageObj.data));
-                break;
-            case 'auth':
-                dispatch(rejectAuth(messageObj.flag));
-                break;
-            case 'editing':
-                dispatch(receiveEdited(messageObj.data));
-                break;
-            case 'disable_edit':
-                dispatch(disableEdit(messageObj.time));
-                break;
-            case 'public_typing':
-                dispatch(publicTyping(messageObj));
-                break;
-            case 'private_typing':
-                dispatch(privateTyping(messageObj));
-                break;
-        }
+        console.log('ws message: ', messageObj)
     });
 
     const emit = (message) => {
@@ -59,4 +29,4 @@ export default ((wsUrl) => {
 
     return {emit}
 
-})('http://localhost:8080')
+})('10.240.17.254:14881')
