@@ -11,7 +11,14 @@ export default ((wsUrl) => {
 
     ws.on('connect', () => {
         console.log('WS Opened!');
-        ws.emit('auth', {token: cookies.get('token')})
+        ws.emit('auth', {token: cookies.get('token')}, data => console.log('ACK1', data));
+        ws.emit('chat', {
+                driver_id: 1,
+                operator_id: 1,
+                text: 'awesome text',
+                is_driver_initiator: false
+            },
+            data => console.log('ACK2', data))
     });
 
     ws.on('disconnect', () => {
