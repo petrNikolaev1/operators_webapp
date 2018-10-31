@@ -1,7 +1,7 @@
 @import "index.scss";
 
 .select-drivers.-show {
-  width: 90%;
+  width: 80%;
 }
 
 .select-drivers-container {
@@ -75,11 +75,11 @@
 
       &-select {
         align-self: flex-start;
-        flex-basis: 50%;
+        flex-basis: 40%;
       }
 
       &-selected {
-        flex-basis: 40%;
+        flex-basis: 50%;
         display: flex;
         flex-flow: column nowrap;
 

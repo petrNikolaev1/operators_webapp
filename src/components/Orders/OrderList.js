@@ -30,7 +30,6 @@ export default class OrderList extends Component {
 
         this.state = {
             pageOfItems: [],
-            ordersFiltered: props.orders,
             checkBox1Checked: 'checked',
             checkBox2Checked: 'checked',
             checkBox3Checked: 'checked',
@@ -51,7 +50,8 @@ export default class OrderList extends Component {
     };
 
     filtrate = () => {
-        const {filters, orders} = this.props;
+        const {filters} = this.props;
+        console.log(filters);
         return this.getOrders().filter(order => filters.status.find(status => status === mapStatusToNum(order.status)) !== undefined);
     };
 

@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Switch, Route, Redirect, withRouter} from 'react-router-dom'
+import {Switch, Route, withRouter} from 'react-router-dom'
 import connect from "react-redux/es/connect/connect";
 
 import MainMenu from '@/containers/MainMenu'
@@ -9,32 +9,21 @@ import Login from "@/components/Login";
 import Loading from "@/common/Loading";
 import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
-import {apiReq} from "@/actions/serverActions";
-import constants from "@/constants";
+import Error from "@/common/Error";
+import ChatWrap from "@/Chat/containers/ChatWrap";
 
 @withRouter
 @connect(
     store => ({
         loadingShow: store.viewReducer.loadingShow,
         success: store.viewReducer.success,
+        error: store.viewReducer.error,
         orderApprove: store.orderApproveReducer,
-    }), {apiReq}
+    }), {}
 )
 export default class App extends Component {
-
-    componentDidUpdate(prevProps, prevState) {
-        const {orderApprove: orderApproveOld} = prevProps;
-        const {orderApprove: orderApproveNew, apiReq} = this.props;
-
-        if (!orderApproveOld.loaded && orderApproveNew.loaded) {
-            apiReq(constants.orders, {limit: 1000, offset: 0})
-        }
-
-    }
-
-
     render() {
-        const {loadingShow, success} = this.props;
+        const {loadingShow, success, error} = this.props;
 
         return (
             <Fragment>
@@ -43,11 +32,12 @@ export default class App extends Component {
                     <PrivateRoute path='/settings/' component={Settings}/>
                     <PrivateRoute path='/home/' component={Home}/>
                     <Route path='/login/' component={Login}/>
+                    <Route path={'/chat'} component={ChatWrap}/>
                 </Switch>
-                {!!success && <Success/>}
                 {loadingShow && <Loading/>}
+                {!!success && <Success/>}
+                {!!error && <Error/>}
             </Fragment>
         )
     }
-
 }

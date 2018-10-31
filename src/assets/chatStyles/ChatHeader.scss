@@ -1,0 +1,60 @@
+@import "index.scss";
+
+.chat-header {
+  padding: 2vh 3vh;
+  flex-basis: 11vh;
+  flex-shrink: 0;
+
+  border-bottom: 0.2vh solid $darkenWhite20;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  &-info {
+    padding-right: 4vh;
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+  }
+  &-name {
+    $lineHeight: 4.8vh;
+    font-size: 4vh;
+    line-height: $lineHeight;
+    max-height: $lineHeight *1;
+    overflow: hidden;
+    word-break: break-all;
+  }
+
+  &-typing {
+    color: $dooglysColor;
+    font-size: 2.5vh;
+  }
+
+  &-settings {
+    align-self: stretch;
+    flex-shrink: 0;
+    flex-basis: 11.5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.5s ease-out;
+
+    svg {
+      fill: $blue;
+      font-size: 8vh;
+      transition: 0.5s ease-out;
+
+      &:hover {
+        fill: darken($blue, 15%);
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

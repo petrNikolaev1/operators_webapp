@@ -19,7 +19,6 @@ const hocClassName = css({
         right: '-5555px',
         backgroundColor: 'rgba(94, 143, 147, 0.8)',
     }
-
 });
 
 const childClassName = css({
@@ -101,7 +100,7 @@ export default (WrapperClass, transitionEnabled = true) => (ChildComponent) => {
             return (
                 <div className={classNames(hocClassName, wrapperClass)} style={style}
                      ref={(divElement) => this.divElement = divElement}>
-                    <ChildComponent {...this.props} className={childClassName}/>
+                    <ChildComponent {...this.props} showBeforeClass={childClassName}/>
                     <ReactResizeDetector handleWidth handleHeight onResize={this.transform}/>
                 </div>
             )

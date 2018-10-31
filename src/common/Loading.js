@@ -9,8 +9,9 @@ import cog from '@/assets/img/cog.svg'
 @showBeforeHoc('loading-screen')
 export default class Loading extends Component {
     render() {
+        const {showBeforeClass} = this.props;
         return (
-            <div className={classNames(this.props.className, "loading-container")}>
+            <div className={classNames("loading-container", showBeforeClass)}>
                 <div className='loading-container-cog loading-container-item'>
                     <img src={cog} alt='cog'/>
                 </div>

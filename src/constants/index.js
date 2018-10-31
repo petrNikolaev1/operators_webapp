@@ -23,8 +23,8 @@ export default keyMirror({
     HIDE_CONFIRM: null,
     SHOW_SELECT_ROUTE: null,
     HIDE_SELECT_ROUTE: null,
-    SHOW_DRIVERS: null,
-    HIDE_DRIVERS: null,
+    SHOW_SELECT_DRIVER: null,
+    HIDE_SELECT_DRIVER: null,
     FILTER: null,
 
     GET_PROPOSED_ROUTE_REQUEST: null,
@@ -58,7 +58,8 @@ export default keyMirror({
 
     SHOW_SUCCESS: null,
     HIDE_SUCCESS: null,
-
+    SHOW_ERROR: null,
+    HIDE_ERROR: null,
 
     LOGIN_REQUEST: null,
     LOGIN_ERROR: null,
@@ -72,5 +73,10 @@ export default keyMirror({
     IN_PROGRESS: null,
     DELIVERED: null,
     REJECTED: null,
+
+    rejectOrder: null,
+    REJECT_ORDER_REQUEST: null,
+    REJECT_ORDER_SUCCESS: null,
+    REJECT_ORDER_ERROR: null,
 
 })

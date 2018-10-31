@@ -5,7 +5,8 @@ const initialState = {
     orderDriversShown: -1,
     selectRouteShown: -1,
     loadingShow: false,
-    success: null
+    success: null,
+    error: null,
 };
 
 export function viewReducer(state = initialState, action) {
@@ -20,12 +21,12 @@ export function viewReducer(state = initialState, action) {
                 ...state,
                 orderModalShown: -1
             };
-        case constants.SHOW_DRIVERS:
+        case constants.SHOW_SELECT_DRIVER:
             return {
                 ...state,
                 orderDriversShown: action.orderId
             };
-        case constants.HIDE_DRIVERS:
+        case constants.HIDE_SELECT_DRIVER:
             return {
                 ...state,
                 orderDriversShown: -1
@@ -59,6 +60,16 @@ export function viewReducer(state = initialState, action) {
             return {
                 ...state,
                 success: null
+            };
+        case constants.SHOW_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            };
+        case constants.HIDE_ERROR:
+            return {
+                ...state,
+                error: null
             };
         default:
             return state;

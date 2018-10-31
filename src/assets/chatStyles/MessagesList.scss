@@ -1,0 +1,34 @@
+@import "index.scss";
+
+$horPadding: 2vh;
+
+.chat-history {
+  background: white;
+  padding: 2vh 3vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.chat-history::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0.8vh $blue;
+  border-radius: 1vh;
+  background-color: $mainBackColor;
+}
+
+.chat-history::-webkit-scrollbar {
+  width: 1.5vh;
+  background-color: $mainBackColor;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+  border-radius: 1vh;
+  -webkit-box-shadow: inset 0 0 0.8vh $blue;
+  background-color: darken($dooglysColor, 3%);
+  &:hover {
+    background-color: darken($dooglysColor, 8%);
+  }
+}

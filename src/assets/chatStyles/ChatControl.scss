@@ -1,0 +1,142 @@
+@import "index.scss";
+@import "MessagesList.scss";
+
+.chat-control {
+  flex-basis: auto;
+  flex-shrink: 0;
+
+  $borderRadius: 2vh;
+
+  border-top: 0.2vh solid $darkenWhite20;
+  padding: 2vh $horPadding 0;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  textarea {
+    color: black;
+    font-size: 2.5vh;
+    flex-basis: 6vh;
+    padding: 1vh 2vh;
+    border-radius: $borderRadius;
+    resize: none;
+    &:focus {
+      box-shadow: 0 0 1vh $dooglysColor;
+    }
+  }
+
+  textarea::-webkit-input-placeholder {
+    color: $darkenWhite30;
+  }
+
+  textarea:-moz-placeholder { /* Firefox 18- */
+    color: $darkenWhite30;
+  }
+
+  textarea::-moz-placeholder {  /* Firefox 19+ */
+    color: $darkenWhite30;
+  }
+
+  textarea:-ms-input-placeholder {
+    color: $darkenWhite30;
+  }
+
+  button {
+    margin: 2vh 0;
+    margin-right: 2%;
+    align-self: flex-end;
+    color: $dooglysColor;
+    font-size: 3vh;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      color: darken($dooglysColor, 15%);
+    }
+  }
+
+  .edit {
+    flex-shrink: 0;
+    flex-basis: 3vh;
+    margin-bottom: 1vh;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 2vh 3vh;
+
+    background: $dooglysColor;
+    background-size: 30px;
+    color: #ffffff;
+
+    border-radius: $borderRadius;
+    transition: 0.3s;
+
+    &-icon {
+      flex-basis: auto;
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 4vh;
+      }
+    }
+
+    &-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: darken($dooglysColor, 7%);
+      border-radius: 1vh;
+      transition: 0.3s ease-out;
+
+      svg {
+        font-size: 4vh;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background: darken($dooglysColor, 12%);
+      }
+    }
+
+    &-info {
+      padding: 1vh;
+      font-size: 2vh;
+      border-radius: 2vh;
+
+      &-container {
+        flex: 1;
+        margin: 0 2vh;
+        display: flex;
+      }
+      display: flex;
+      flex-flow: row nowrap;
+      &-label {
+        margin-right: 1vh;
+        font-style: italic;
+      }
+
+      &-value {
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 72vh;
+        text-overflow: ellipsis;
+      }
+
+      transition: 0.3s ease-out;
+
+      &:hover {
+        background: darken($dooglysColor, 7%);
+        cursor: pointer;
+      }
+    }
+  }
+}

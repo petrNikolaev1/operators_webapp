@@ -1,0 +1,141 @@
+$green: #2ECC40;
+$blue: #94C2ED;
+$orange: #E38968;
+$gray: #92959E;
+$cross: darkgrey;
+$edited-text: #444753;
+$edited-back: silver;
+$darkenWhite10: #e5e5e5;
+$darkenWhite20: #cccccc;
+$darkenWhite30: #b2b2b2;
+$darkenWhite40: #999999;
+$darkenWhite50: #7f7f7f;
+$darkenWhite60: #666666;
+$silver: #DDDDDD;
+$formBack: #6A6C75;
+$theme: #e7f6f9;
+$mainBackColor: #C5DDEB;
+$dooglysColor: #01BABF;
+$errColor: rgb(210, 87, 89);
+$initialBackground: darken(rgb(223, 237, 238), 5%);
+$finalBackround: $dooglysColor;
+$selectBackground: #DFEDEE;
+$inputBackground: #b3e1ee;
+$inputBackgroundContrast: #0b8592;
+$closeColor: #c5c3c4;
+$gray: #f2f2f2;
+$grayDarken: rgb(153, 153, 153);
+$borderColor: rgb(233, 233, 233);
+$messageMyColor: #68cf4c;
+$messageOtherColor: $dooglysColor;
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #434651;
+  background: $mainBackColor;
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  input {
+    border: 0;
+    padding: 0;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    word-break: break-word;
+    transition: 0.3s ease-out;
+  }
+
+  textarea {
+    border: 0;
+    padding: 0;
+    outline: 0;
+    font: inherit;
+    transition: 0.3s ease-out;
+    &::placeholder {
+      color: inherit;
+      font: inherit;
+    }
+  }
+
+  button {
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background: transparent;
+    font: inherit;
+    word-break: break-word;
+    transition: 0.3s ease-out;
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-out;
+}
+
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  text-align: justify;
+  //margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
+
+@keyframes color-change {
+  0% {
+    background: rgba(111, 140, 138, 0.25);
+  }
+  100% {
+    background: #F2F5F8;
+  }
+}

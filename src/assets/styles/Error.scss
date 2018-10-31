@@ -1,0 +1,82 @@
+@import "index.scss";
+
+$minHeight: 2vw;
+$lineHeight: 1.9vw;
+$fontSize: 1.5vw;
+$textMarginLeft: 1.5vw;
+$iconMargin: 1vw;
+$iconContainerSize: 6vw;
+$textVerPadding: 1vw;
+$closeColor: #c5c3c4;
+
+.error-screen.-show {
+  width: 45%;
+}
+
+.error-container {
+
+  min-height: $minHeight;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-self: stretch;
+  align-items: center;
+
+  font-size: $fontSize;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  word-break: break-word;
+
+  background: white;
+
+  padding: 0;
+  margin: 0;
+
+  &-icon {
+    flex-shrink: 0;
+    flex-basis: $iconContainerSize;
+    height: $iconContainerSize;
+    margin: $iconMargin;
+
+    background-color: #d25759;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .error {
+      font-size: $iconContainerSize*0.8;
+      fill: white;
+    }
+  }
+
+  &-text {
+    margin-left: $textMarginLeft;
+    padding: $textVerPadding 0;
+
+    line-height: $lineHeight;
+
+    flex: 1;
+    flex-shrink: 0;
+
+    font-size: $fontSize;
+  }
+
+  &-close {
+    margin: 0 2vw;
+    flex-basis: 10%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-icon {
+      font-size: 4vw !important;
+      fill: $closeColor !important;
+    }
+    &-icon:hover {
+      fill: darken($closeColor, 10%) !important;
+      cursor: pointer;
+    }
+  }
+}
