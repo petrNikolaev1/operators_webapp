@@ -18,11 +18,14 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default () => {
-    let store = createStore(persistedReducer,
+export let store = {};
+export let persistor = {};
+
+export const initStore = () => {
+    store = createStore(persistedReducer,
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
         applyMiddleware(reduxThunk));
-    let persistor = persistStore(store);
+    persistor = persistStore(store);
 
     if (module.hot) {
         module.hot.accept(() => {
@@ -33,6 +36,4 @@ export default () => {
             )
         })
     }
-
-    return {store, persistor}
-}
+};

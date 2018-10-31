@@ -7,9 +7,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 
 import App from '@/containers/App'
 import '@/assets/styles/index.scss'
-import obj from '@/store/index'
-
-const {store, persistor} = obj();
+import {store, persistor, initStore} from '@/store/index'
 
 const renderApp = Component => {
     render(
@@ -26,6 +24,7 @@ const renderApp = Component => {
     )
 };
 
+initStore();
 renderApp(App);
 
 // Hot module replacement
