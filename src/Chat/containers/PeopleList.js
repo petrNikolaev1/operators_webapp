@@ -10,8 +10,8 @@ list of chat users and its correct representation.
 
 export default class PeopleList extends Component {
 
-
     render() {
+
         return (
             <div className="people-list" id="people-list">
                 <ul className="list">

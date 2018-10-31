@@ -1,17 +1,9 @@
 @import "index.scss";
 
 .user {
-  //&-avatar {
-  //  flex-basis: 20%;
-  //  margin: 0 5%;
-  //  flex-shrink: 0;
-  //  display: flex;
-  //  align-items: center;
-  //  justify-content: center;
-  //  img {
-  //    width: 100%;
-  //  }
-  //}
+  &-selected {
+    background: $inputBackground;
+  }
 
   &-avatar {
     flex-basis: 20%;
