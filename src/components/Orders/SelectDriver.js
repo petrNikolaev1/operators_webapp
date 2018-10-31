@@ -52,7 +52,7 @@ export default class SelectDriver extends PureComponent {
 
     componentDidMount() {
         const {apiReq, id, selectedRoute} = this.props;
-        apiReq(constants.getOptimalDrivers, {orderId: id, timeToDeliver: selectedRoute.duration.value})
+        apiReq(constants.getOptimalDrivers, {orderId: id, timeToDeliver: selectedRoute.duration.value}, this.props)
         // apiReq(constants.getOptimalDrivers, {orderId: id, timeToDeliver: 10000000000000}, this.props)
     }
 

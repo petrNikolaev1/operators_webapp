@@ -51,7 +51,6 @@ export default class OrderList extends Component {
 
     filtrate = () => {
         const {filters} = this.props;
-        console.log(filters);
         return this.getOrders().filter(order => filters.status.find(status => status === mapStatusToNum(order.status)) !== undefined);
     };
 
