@@ -1,4 +1,4 @@
-import {Settings, Home} from '@material-ui/icons';
+import {Settings, Home, Chat} from '@material-ui/icons';
 import React, {PureComponent} from 'react';
 
 import '@/assets/styles/Panel.scss';
@@ -43,6 +43,9 @@ export default class InfoPanel extends PureComponent {
                         formClassName='default-select'
                     />
                 </div>
+                <Link className="top-panel-container-item top-panel-container-home" to='/chat/'>
+                    <Chat/>
+                </Link>
                 <Link className="top-panel-container-item top-panel-container-home" to='/home/'>
                     <Home/>
                 </Link>

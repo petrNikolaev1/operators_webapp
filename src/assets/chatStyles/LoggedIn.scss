@@ -3,7 +3,7 @@
 .logged-in {
   background: $inputBackground;
   padding: 2vh;
-  flex-basis: 11vh;
+  flex-basis: 10vh;
   flex-shrink: 0;
 
   border-bottom: 0.2vh solid $darkenWhite20;
@@ -41,4 +41,13 @@
     overflow: hidden;
     word-break: break-word;
   }
+}
+
+.search {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 6.8vh;
+  background: $theme;
+  border-bottom: 0.2vh solid $darkenWhite20;
 }
