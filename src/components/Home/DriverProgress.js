@@ -1,11 +1,18 @@
 import React, {Component} from 'react'
+import {Chat} from '@material-ui/icons';
 import {Progress} from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
+import {Link} from "react-router-dom";
 
 import {DRIVER_REFRESH_RATE} from "@/constants";
 import '@/assets/styles/DriverProgress.scss'
 import {secondsToHours, metersToKm} from "@/util/units";
+import {selectChat} from '@/actions/chatActions'
+import connect from "react-redux/es/connect/connect";
 
+@connect(
+    store => ({}), {selectChat}
+)
 export default class DriverProgress extends Component {
     state = {
         time: 0
@@ -20,7 +27,7 @@ export default class DriverProgress extends Component {
     }
 
     render() {
-        const {progress, duration, distance} = this.props;
+        const {progress, duration, distance, selectChat} = this.props;
         const fractionPassed = progress.percent / 100;
         const fractionLeft = 1 - fractionPassed;
 
@@ -73,19 +80,25 @@ export default class DriverProgress extends Component {
                         </div>
                     </div>
                 </div>
-                <Progress
-                    className='driver-progress-bar'
-                    percent={percent}
-                    theme={
-                        {
-                            active: {
-                                symbol: percent + '%',
-                                trailColor: '#DFEDEE',
-                                color: '#01BABF',
-                            },
+                <div className='driver-progress-right'>
+                    <Link to='/chat' className='driver-progress-right-btn' onClick={() => selectChat(1)}>
+                        <Chat className='driver-progress-right-btn-icon'/>
+                        Go to chat
+                    </Link>
+                    <Progress
+                        className='driver-progress-bar'
+                        percent={percent}
+                        theme={
+                            {
+                                active: {
+                                    symbol: percent + '%',
+                                    trailColor: '#DFEDEE',
+                                    color: '#01BABF',
+                                },
+                            }
                         }
-                    }
-                />
+                    />
+                </div>
             </div>
         )
     }

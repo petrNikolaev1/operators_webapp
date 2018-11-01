@@ -40,3 +40,10 @@ export const chatControlTyping = event => dispatch => {
         textTyped: event.target.value
     });
 };
+
+export const chatControlUpdating = textTyped => dispatch => {
+    dispatch({
+        type: constants.CHAT_CONTROL_UPDATE,
+        textTyped,
+    });
+};

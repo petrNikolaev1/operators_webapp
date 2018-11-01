@@ -11,29 +11,19 @@ export default ((wsUrl) => {
 
     ws.on('connect', () => {
         console.log('WS Opened!');
-        ws.emit('auth', {token: cookies.get('token')}, data => console.log('ACK1', data));
-        ws.emit('chat', {
-                driver_id: 1,
-                operator_id: 1,
-                text: 'awesome text',
-                is_driver_initiator: false
-            },
-            data => console.log('ACK2', data))
+        ws.emit('auth', {token: cookies.get('token')}, data => console.log(data));
     });
 
     ws.on('disconnect', () => {
         console.log('WS Closed!')
     });
 
-
-    ws.on("message", (message) => {
+    ws.on("get_message", (message) => {
         console.log('RESPONSE', message)
-        const messageObj = JSON.parse(message)
-        console.log('ws message: ', messageObj)
     });
 
-    const emit = (message) => {
-        ws.emit('message', (message))
+    const emit = (event, data) => {
+        ws.emit(event, data, res => console.log(res))
     };
 
     return {emit}

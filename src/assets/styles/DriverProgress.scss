@@ -47,9 +47,47 @@
     }
   }
 
-  &-bar {
+  &-right {
     margin-left: 5vw;
     margin-right: 1vw;
+
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+
+    &-btn {
+      margin-top: -3vw;
+      margin-bottom: 1vw;
+      padding: 0 3vw 0 2vw;
+      height: 3vw;
+
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      text-decoration: none;
+
+      background: $dooglysColor;
+      color: white;
+
+      cursor: pointer;
+      transition: 0.5s ease-out;
+      &:hover {
+        background: darken($dooglysColor, 10%);
+      }
+
+      &-icon {
+        margin-right: 0.8vw;
+        flex-basis: auto;
+        flex-shrink: 0;
+        font-size: 3vw;
+        fill: white !important;
+      }
+    }
+  }
+
+  &-bar {
     flex: 1;
     .react-sweet-progress-line-inner {
       height: 1.25vw;

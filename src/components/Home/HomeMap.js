@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {withScriptjs, withGoogleMap, GoogleMap,} from "react-google-maps";
+import {GoogleMap,} from "react-google-maps";
 
 import {homes, mapNewPositions, drivers} from '@/util/fakeMarkers'
-import homeIcon from '@/assets/img/home.svg'
 import Marker from '@/components/CustomMarker'
 import GoogleMapHoc from "@/hocs/GoogleMapHoc";
 import connect from "react-redux/es/connect/connect";
@@ -16,14 +15,8 @@ import Driver from '@/components/Home/Driver'
 )
 @GoogleMapHoc('home-map')
 export default class HomeMap extends Component {
-    state = {
-        time: 0,
-    };
-
     render() {
-        const {selectedDriver} = this.state;
         const {drivers} = this.props;
-        console.log('HOME MAP RENDER', drivers);
 
         return (
             <GoogleMap

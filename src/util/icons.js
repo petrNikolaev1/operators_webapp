@@ -5,6 +5,8 @@ export const rotationAngle = (a, b) => {
     // const lon_1 = a.lng();
     // const lon_2 = b.lng();
 
+    if (!a[0] || !b[0]) return 0;
+
     const lat_1 = a[0];
     const lat_2 = b[0];
 
