@@ -4,6 +4,7 @@ import '@/assets/chatStyles/ChatWrap.scss'
 import LoggedIn from "../components/LoggedIn";
 import PeopleList from "./PeopleList";
 import MessagesList from "./MessagesList";
+import Back from "./Back";
 
 /*
 Chat-wrapper Container that contains both PeopleList and MessagesList.
@@ -19,6 +20,7 @@ export default class ChatWrap extends Component {
                 <div className='chat-wrap-left'>
                     <LoggedIn/>
                     <PeopleList/>
+                    <Back/>
                 </div>
                 <div className='chat-wrap-right'>
                     <MessagesList/>

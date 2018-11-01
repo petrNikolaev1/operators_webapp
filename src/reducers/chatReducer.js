@@ -35,7 +35,7 @@ const initialState = {
                     username: 'Николай',
                     time: 1540581363963,
                     author: 'И',
-                    text: 'Ку ку епта!',
+                    text: 'Ку ку!',
                     color: '#01BABF',
                     edited: false,
                 },
