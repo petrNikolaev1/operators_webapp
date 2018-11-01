@@ -30,6 +30,8 @@ export default class MessageItem extends Component {
             {'message-data-other': !isMine}
         );
 
+        if (!text) return null;
+
         return (
             <li id={time} className="message-container">
                 <div className={messageDataClass}>

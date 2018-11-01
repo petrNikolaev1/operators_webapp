@@ -6,6 +6,8 @@ import OrderList from "@/components/Orders/OrderList";
 import connect from "react-redux/es/connect/connect";
 import {getDriversRoutes} from "@/actions/routesActions";
 import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
+import {apiReq} from "@/actions/serverActions";
+import constants from "@/constants";
 
 
 @connect(
@@ -13,7 +15,7 @@ import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
         loadingShow: store.viewReducer.loadingShow,
         loginShow: store.viewReducer.loginShow,
         language: store.stringReducer.language,
-    }), {getDriversRoutes}
+    }), {getDriversRoutes, apiReq}
 )
 export default class MainMenu extends Component {
 
@@ -21,6 +23,9 @@ export default class MainMenu extends Component {
         const {getDriversRoutes, language} = this.props;
         initGoogleMaps(language);
         getDriversRoutes();
+        this.props.apiReq(constants.messages, {limit: 100, page: 0, driverId: 1}, undefined, 1)
+        this.props.apiReq(constants.messages, {limit: 100, page: 0, driverId: 2}, undefined, 2)
+        this.props.apiReq(constants.messages, {limit: 100, page: 0, driverId: 3}, undefined, 3)
     }
 
     render() {

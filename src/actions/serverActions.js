@@ -4,7 +4,7 @@ import {serverRequest} from "@/util/serverRequests";
 import constants from '@/constants'
 import api from '@/util/api'
 
-export const apiReq = (command, params, actions) => {
+export const apiReq = (command, params, actions, extra) => {
     const payload = api(command, params);
     const {defaultSuccessHandler, customSuccessHandler, defaultErrorHandler, customErrorHandler, withoutLoading} = payload;
     const {onRequest, onSuccess, onError} = payload.events;
@@ -45,6 +45,7 @@ export const apiReq = (command, params, actions) => {
                     dispatch({
                         type: onSuccess,
                         result: res.result,
+                        extra
                     })
                 }
                 else {

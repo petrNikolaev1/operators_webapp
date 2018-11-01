@@ -109,5 +109,16 @@ export const commandsData = {
         defaultErrorHandler: {
             text: 'REJECT_ERROR'
         },
+    },
+    [constants.messages]: {
+        command: constants.messages,
+        method: 'GET',
+        paramsType: constants.QUERY,
+        events: {
+            onRequest: constants.GET_MESSAGES_REQUEST,
+            onError: constants.GET_MESSAGES_ERROR,
+            onSuccess: constants.GET_MESSAGES_SUCCESS,
+        },
+        withoutLoading: false
     }
 };

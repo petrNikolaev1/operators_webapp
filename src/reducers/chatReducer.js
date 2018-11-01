@@ -58,7 +58,29 @@ export function chatReducer(state = initialState, action) {
             return {
                 ...state,
                 chats: newChats,
-                selectedChat: newChats.find(chat => state.selectedChat.chat_id === chat.chat_id)
+                selectedChat: state.selectedChat ? newChats.find(chat => state.selectedChat.chat_id === chat.chat_id) : null
+            };
+        case constants.GET_MESSAGES_SUCCESS:
+            if (action.result.length === 0) return;
+            let newMessages = action.result.map(message => ({
+                id: message.id,
+                time: message.posted_date,
+                chat_id: message.driver.id,
+                from_id: !message.is_driver_initiator && !!message.operator ? message.operator.id : message.driver.id,
+                from_name: !message.is_driver_initiator && !!message.operator ? message.operator.name : message.driver.name,
+                is_driver_initiator: message.is_driver_initiator,
+                text: message.text
+            }));
+            newMessages = newMessages.slice().reverse();
+            const newChats2 = state.chats
+                .map(chat => (chat.chat_id === action.extra) ?
+                    {...chat, messages: newMessages.concat(state.chats), scrollDown: true} : chat
+                );
+            return {
+                ...state,
+                chats: newChats2,
+                selectedChat: state.selectedChat ? newChats2.find(chat => state.selectedChat.chat_id === chat.chat_id) : null
+
             };
         default:
             return state;

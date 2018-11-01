@@ -11,7 +11,8 @@ import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
 import Error from "@/common/Error";
 import ChatWrap from "@/Chat/containers/ChatWrap";
-import ws from '@/util/ws'
+import {apiReq} from "@/actions/serverActions";
+import constants from "@/constants";
 
 @withRouter
 @connect(
@@ -20,11 +21,10 @@ import ws from '@/util/ws'
         success: store.viewReducer.success,
         error: store.viewReducer.error,
         orderApprove: store.orderApproveReducer,
-    }), {}
+    }), {apiReq}
 )
 export default class App extends Component {
     componentDidMount() {
-        ws.emit(JSON.stringify({type: 'connected_new_observer'}));
     }
 
     render() {
@@ -37,7 +37,7 @@ export default class App extends Component {
                     <PrivateRoute path='/settings/' component={Settings}/>
                     <PrivateRoute path='/home/' component={Home}/>
                     <Route path='/login/' component={Login}/>
-                    <Route path={'/chat'} component={ChatWrap}/>
+                    <PrivateRoute path={'/chat'} component={ChatWrap}/>
                 </Switch>
                 {loadingShow && <Loading/>}
                 {!!success && <Success/>}

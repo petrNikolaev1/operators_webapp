@@ -86,4 +86,10 @@ export default keyMirror({
     UPDATE_CHAT_TEXT: null,
     CHAT_CONTROL_UPDATE: null,
     NEW_CHAT_MESSAGE: null,
+    messages: null,
+
+    GET_MESSAGES_REQUEST: null,
+    GET_MESSAGES_SUCCESS: null,
+    GET_MESSAGES_ERROR: null,
+
 })

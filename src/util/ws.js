@@ -25,6 +25,7 @@ export default ((wsUrl) => {
     });
 
     const emit = (event, data) => {
+        console.log('EMITTED', event, data)
         ws.emit(event, data, res => console.log(res))
     };
 
