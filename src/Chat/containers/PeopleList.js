@@ -2,23 +2,34 @@ import React, {Component} from 'react'
 
 import '@/assets/chatStyles/PeopleList.scss'
 import UserItem from "../components/UserItem";
+import connect from "react-redux/es/connect/connect";
 
 /*
 Container that is responsible for interactions with the
 list of chat users and its correct representation.
  */
 
+@connect(
+    store => ({
+        selectedChat: store.chatReducer.selectedChat,
+        chats: store.chatReducer.chats,
+    }),
+)
 export default class PeopleList extends Component {
 
     render() {
+        const {chats} = this.props;
 
         return (
             <div className="people-list" id="people-list">
                 <ul className="list">
-                    <UserItem id={1} key={1} username={'Аза'}/>
-                    <UserItem id={2} key={2} username={'И'}/>
-                    <UserItem id={3} key={3} username={'Минтимер'}/>
-                    <UserItem id={4} key={4} username={'Тимур'}/>
+                    {chats.map(chat =>
+                        (<UserItem
+                            id={chat.chat_id}
+                            key={chat.chat_id}
+                            username={chat.username}
+                        />)
+                    )}
                 </ul>
             </div>
         )

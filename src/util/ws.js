@@ -2,10 +2,11 @@ import io from 'socket.io-client';
 import cookies from 'js-cookie'
 
 import {store} from '@/store'
+import {newChatMessage} from "@/actions/chatActions";
+import constants from "../constants";
 
 export default ((wsUrl) => {
     let ws;
-    const {dispatch} = store;
 
     ws = io(wsUrl);
 
@@ -20,6 +21,7 @@ export default ((wsUrl) => {
 
     ws.on("get_message", (message) => {
         console.log('RESPONSE', message)
+        store.dispatch(newChatMessage(message))
     });
 
     const emit = (event, data) => {
@@ -28,4 +30,4 @@ export default ((wsUrl) => {
 
     return {emit}
 
-})('http://10.240.17.254:14881')
+})('http://18.191.14.124:14881')

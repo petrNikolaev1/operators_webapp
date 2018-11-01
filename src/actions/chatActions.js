@@ -1,6 +1,6 @@
 import constants from '@/constants'
 
-export const showSelectedChat = (chat_id, messages, text) => dispatch => {
+export const showSelecxtedChat = (chat_id, messages, text) => dispatch => {
     const newChat = {chat_id, messages, text};
     dispatch({
         type: constants.CHAT,
@@ -16,7 +16,7 @@ export const selectChat = (chat_id) => (dispatch, getState) => {
 
     !!selectedChat &&
     dispatch({
-        type: constants.UPDATE_CHATS,
+        type: constants.UPDATE_CHAT_TEXT,
         chat_id: selectedChat.chat_id,
         textTyped
     });
@@ -47,3 +47,16 @@ export const chatControlUpdating = textTyped => dispatch => {
         textTyped,
     });
 };
+
+export const newChatMessage = (message) => ({
+    type: constants.NEW_CHAT_MESSAGE,
+    payload: {
+        id: message.id,
+        time: message.posted_date,
+        chat_id: message.driver.id,
+        from_id: !message.is_driver_initiator && !!message.operator ? message.operator.id : message.driver.id,
+        from_name: !message.is_driver_initiator && !!message.operator ? message.operator.name : message.driver.name,
+        is_driver_initiator: message.is_driver_initiator,
+        text: message.text
+    }
+});

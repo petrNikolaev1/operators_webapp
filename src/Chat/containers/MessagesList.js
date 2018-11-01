@@ -22,8 +22,23 @@ in accordance with the chosen user and previously sent messages, typed data, etc
 
 export default class MessagesList extends Component {
 
+    componentDidUpdate(nextProps, nextState) {
+        const {selectedChat: selectedChatNew} = nextProps;
+        if (!!selectedChatNew && selectedChatNew.scrollDown) {
+            this.scrollToBottom();
+        }
+    }
+
+    scrollToBottom() {
+        const scrollHeight = this.messagesList.scrollHeight;
+        const height = this.messagesList.clientHeight;
+        const maxScrollTop = scrollHeight - height;
+        this.messagesList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+
     render() {
         const {selectedChat, chats} = this.props;
+        // console.log('RENDER', selectedChat)
 
         return (
             <Fragment>
@@ -32,7 +47,7 @@ export default class MessagesList extends Component {
 
                     <Fragment>
                         <ChatHeader/>
-                        <div className="chat-history">
+                        <div className="chat-history" ref={(messagesList) => this.messagesList = messagesList}>
                             <ul>
                                 {selectedChat.messages.map(message =>
                                     <MessageItem

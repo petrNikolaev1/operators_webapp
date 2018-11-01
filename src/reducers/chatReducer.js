@@ -4,66 +4,32 @@ const initialState = {
     chats: [
         {
             chat_id: 1,
-            username: 'Аза',
+            username: 'Тимур',
             online: true,
-            messages: [
-                {
-                    username: 'Николай',
-                    time: 1540581363963,
-                    author: 'Аза',
-                    text: 'Красавчик! Умница!',
-                    color: '#01BABF',
-                    edited: true
-                },
-                {
-                    username: 'Николай',
-                    time: 1540581363963,
-                    author: 'Николай',
-                    text: 'Да как тут откажешь! Работа, конечно, тяжелая, зато платят мало..',
-                    color: '#68cf4c',
-                    edited: false,
-                }
-            ],
+            messages: [],
             textTyped: ""
         },
         {
             chat_id: 2,
-            username: 'Ильгизар',
-            online: true,
-            messages: [
-                {
-                    username: 'Николай',
-                    time: 1540581363963,
-                    author: 'И',
-                    text: 'Ку ку епта!',
-                    color: '#01BABF',
-                    edited: false,
-                },
-                {
-                    username: 'Николай',
-                    time: 1540581363963,
-                    author: 'Николай',
-                    text: 'И вам добрейший вечерочек',
-                    color: '#68cf4c',
-                    edited: false,
-                }
-            ],
+            username: 'Азат',
+            online: false,
+            messages: [],
             textTyped: ""
         },
         {
             chat_id: 3,
-            username: 'Минтимер',
+            username: 'Ильгизар',
             online: false,
             messages: [],
             textTyped: ""
         },
         {
             chat_id: 4,
-            username: 'Тимур',
+            username: 'Ансат',
             online: false,
             messages: [],
             textTyped: ""
-        }
+        },
     ],
     selectedChat: null,
 };
@@ -79,22 +45,29 @@ export function chatReducer(state = initialState, action) {
                     state.chats.concat(action.newChat),
             };
         case constants.SELECT_CHAT:
-            console.log('SELECT CHAT', state.chats)
             return {
                 ...state,
                 selectedChat: state.chats.find(chat => action.chat_id === chat.chat_id)
             };
-        case constants.UPDATE_CHATS:
-            console.log('UPDATE CHATS', state.chats.map(chat => chat.chat_id === action.chat_id ? {
-                ...chat,
-                textTyped: action.textTyped
-            } : chat));
+        case constants.UPDATE_CHAT_TEXT:
             return {
                 ...state,
                 chats: state.chats.map(chat => chat.chat_id === action.chat_id ? {
                     ...chat,
                     textTyped: action.textTyped
                 } : chat)
+            };
+        case constants.NEW_CHAT_MESSAGE:
+            console.log('REDUCER')
+            const {chat_id} = action.payload;
+            const newChats = state.chats
+                .map(chat => (chat.chat_id === chat_id) ?
+                    {...chat, messages: chat.messages.concat(action.payload), scrollDown: true} : chat
+                );
+            return {
+                ...state,
+                chats: newChats,
+                selectedChat: newChats.find(chat => state.selectedChat.chat_id === chat.chat_id)
             };
         default:
             return state;

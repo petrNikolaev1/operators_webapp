@@ -83,6 +83,7 @@ export default keyMirror({
     CHAT: null,
     SELECT_CHAT: null,
     CHAT_CONTROL_TYPING: null,
-    UPDATE_CHATS: null,
+    UPDATE_CHAT_TEXT: null,
     CHAT_CONTROL_UPDATE: null,
+    NEW_CHAT_MESSAGE: null,
 })
