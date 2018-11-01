@@ -45,6 +45,7 @@ export default class HomeContainer extends Component {
     render() {
         const {driversInfoShown} = this.state;
         const {drivers, homeSelectDriver} = this.props;
+        console.log(drivers && drivers.selectedDriver)
 
         const driversBlockOpened = driversInfoShown && !!drivers.selectedDriver;
 

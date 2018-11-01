@@ -27,7 +27,7 @@ export default class DriverProgress extends Component {
     }
 
     render() {
-        const {progress, duration, distance, selectChat} = this.props;
+        const {progress, duration, distance, selectChat, value} = this.props;
         const fractionPassed = progress.percent / 100;
         const fractionLeft = 1 - fractionPassed;
 
@@ -81,7 +81,7 @@ export default class DriverProgress extends Component {
                     </div>
                 </div>
                 <div className='driver-progress-right'>
-                    <Link to='/chat' className='driver-progress-right-btn' onClick={() => selectChat(1)}>
+                    <Link to='/chat' className='driver-progress-right-btn' onClick={() => selectChat(value + 1)}>
                         <Chat className='driver-progress-right-btn-icon'/>
                         Go to chat
                     </Link>

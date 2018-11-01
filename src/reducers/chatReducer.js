@@ -23,27 +23,19 @@ const initialState = {
             messages: [],
             textTyped: ""
         },
-        {
-            chat_id: 4,
-            username: 'Ансат',
-            online: false,
-            messages: [],
-            textTyped: ""
-        },
+        // {
+        //     chat_id: 4,
+        //     username: 'Ансат',
+        //     online: false,
+        //     messages: [],
+        //     textTyped: ""
+        // },
     ],
     selectedChat: null,
 };
 
 export function chatReducer(state = initialState, action) {
     switch (action.type) {
-
-        case constants.UPDATE_CHAT:
-            return {
-                ...state,
-                chats: !!state.chats.find(chat => chat.chat_id === action.newChat.chat_id) ?
-                    state.chats.map(chat => chat.chat_id === action.newChat.chat_id ? action.newChat : chat) :
-                    state.chats.concat(action.newChat),
-            };
         case constants.SELECT_CHAT:
             return {
                 ...state,
@@ -58,7 +50,6 @@ export function chatReducer(state = initialState, action) {
                 } : chat)
             };
         case constants.NEW_CHAT_MESSAGE:
-            console.log('REDUCER')
             const {chat_id} = action.payload;
             const newChats = state.chats
                 .map(chat => (chat.chat_id === chat_id) ?
