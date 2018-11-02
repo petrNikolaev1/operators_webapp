@@ -32,6 +32,34 @@ const initialState = {
             messages: [],
             textTyped: ""
         },
+        {
+            chat_id: 5,
+            username: 'Тимур 2',
+            online: false,
+            messages: [],
+            textTyped: ""
+        },
+        {
+            chat_id: 6,
+            username: 'Азат 2',
+            online: false,
+            messages: [],
+            textTyped: ""
+        },
+        {
+            chat_id: 7,
+            username: 'Ильгизар 2',
+            online: false,
+            messages: [],
+            textTyped: ""
+        },
+        {
+            chat_id: 8,
+            username: 'Ансат 2',
+            online: false,
+            messages: [],
+            textTyped: ""
+        },
     ],
     selectedChat: null,
     getMessages: {},

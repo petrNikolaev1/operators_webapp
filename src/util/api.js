@@ -44,6 +44,10 @@ export const commandsData = {
             resetChatHistory();
             initChatHistories()
         },
+        customErrorHandler: (err, actions)=>{
+          const {hideLoading} = actions;
+          hideLoading();
+        },
         withoutLoadingEnd: true
     },
 

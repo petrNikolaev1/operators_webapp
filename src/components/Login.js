@@ -8,6 +8,7 @@ import logo from '@/assets/img/logo2white.svg'
 import connect from "react-redux/es/connect/connect";
 import {hideLogin} from '@/actions/viewActions'
 import {apiReq} from '@/actions/serverActions'
+import {hideLoading} from '@/actions/viewActions'
 import {resetChatHistory} from "@/actions/chatActions";
 import constants from "../constants";
 
@@ -16,7 +17,7 @@ import constants from "../constants";
         fail: store.viewReducer.fail,
         login: store.loginReducer,
         chats: store.chatReducer.chats,
-    }), {apiReq, resetChatHistory}
+    }), {apiReq, resetChatHistory,hideLoading}
 )
 @translate('Login')
 export default class Login extends Component {
@@ -80,7 +81,7 @@ export default class Login extends Component {
         const {email, password, notify} = this.state;
 
 
-        if (!!login.profile) {
+        if (!!login.profile && !!cookies.get('token')) {
             return <Redirect to={from}/>
         }
 

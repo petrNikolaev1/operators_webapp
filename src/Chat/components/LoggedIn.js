@@ -45,10 +45,10 @@ export default class LoggedIn extends Component {
                         onChange={this.selectChat}
                         selectedOption={selectedOption}
                         isSerchable={true}
-                        noOptionsMessage={'No options'}
-                        placeholder={'Search'}
+                        noOptionsMessage={'There is no such driver'}
+                        placeholder={'Select a driver to chat with'}
                         options={chatsOptions}
-                        formClassName='default-select'
+                        formClassName='select-vh'
                     />
                 </div>
             </Fragment>

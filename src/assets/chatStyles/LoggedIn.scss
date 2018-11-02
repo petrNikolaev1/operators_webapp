@@ -47,7 +47,9 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  height: 6.8vh;
+  padding-left: 0.1vh;
+  flex-shrink: 0;
+  flex-basis: auto;
   background: $theme;
   border-bottom: 0.2vh solid $darkenWhite20;
 }

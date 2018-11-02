@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Reply, ExitToApp, ExpandMore} from '@material-ui/icons';
 
 import '@/assets/chatStyles/Back.scss'
 import {Link} from 'react-router-dom'
@@ -10,7 +11,7 @@ export default class Back extends Component {
         return (
             <div className="back">
                 <Link className="back-button" to='/'>
-                    Back
+                    <Reply className='back-button-img'/> Back
                 </Link>
             </div>
         )

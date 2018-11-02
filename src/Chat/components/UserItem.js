@@ -40,6 +40,6 @@ export default class UserItem extends Component {
     }
 
     getAvatar = (id) => {
-        return require(`../../assets/img/avatar${id % 7}.jpg`);
+        return require(`../../assets/img/avatar${(id % 4) + 1}.jpg`);
     }
 }
