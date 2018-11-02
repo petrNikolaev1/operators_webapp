@@ -6,7 +6,7 @@ import api from '@/util/api'
 
 export const apiReq = (command, params, actions, extra) => {
     const payload = api(command, params);
-    const {defaultSuccessHandler, customSuccessHandler, defaultErrorHandler, customErrorHandler, withoutLoading} = payload;
+    const {defaultSuccessHandler, customSuccessHandler, defaultErrorHandler, customErrorHandler, withoutLoading, withoutLoadingStart, withoutLoadingEnd} = payload;
     const {onRequest, onSuccess, onError} = payload.events;
     return (dispatch) => {
         dispatch({
@@ -15,7 +15,7 @@ export const apiReq = (command, params, actions, extra) => {
             extra
         });
 
-        !withoutLoading && dispatch({
+        (!withoutLoading && !withoutLoadingStart) && dispatch({
             type: constants.SHOW_LOADING
         });
 
@@ -36,7 +36,7 @@ export const apiReq = (command, params, actions, extra) => {
             .then(res => {
                 console.log('Response', res);
 
-                !withoutLoading && dispatch({
+                (!withoutLoading && !withoutLoadingEnd) && dispatch({
                     type: constants.HIDE_LOADING
                 });
 
@@ -55,7 +55,7 @@ export const apiReq = (command, params, actions, extra) => {
                 }
             })
             .catch(err => {
-                !withoutLoading && dispatch({
+                (!withoutLoading && !withoutLoadingEnd) && dispatch({
                     type: constants.HIDE_LOADING
                 });
                 handleError(err, 'клиент')

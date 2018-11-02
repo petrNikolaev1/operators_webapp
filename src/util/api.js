@@ -26,6 +26,7 @@ export const optimalDriversToOptions = (vehicles) => {
 export default (command, params) => ({...commandsData[command], params})
 
 export const commandsData = {
+
     [constants.login]: {
         command: constants.login,
         method: 'POST',
@@ -43,7 +44,9 @@ export const commandsData = {
             resetChatHistory();
             initChatHistories()
         },
+        withoutLoadingEnd: true
     },
+
     [constants.orders]: {
         command: constants.orders,
         method: 'GET',
@@ -143,5 +146,6 @@ export const commandsData = {
             onError: constants.GET_OPERATOR_PROFILE_ERROR,
             onSuccess: constants.GET_OPERATOR_PROFILE_SUCCESS,
         },
+        withoutLoadingStart: true
     }
 };

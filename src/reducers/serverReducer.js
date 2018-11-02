@@ -10,17 +10,14 @@ const initLoginState = {};
 export function loginReducer(state = initLoginState, action) {
     switch (action.type) {
         case constants.LOGIN_REQUEST:
-        case constants.GET_OPERATOR_PROFILE_REQUEST:
             return {...state, loaded: false};
-
-        case constants.LOGIN_SUCCESS:
-            return {...omit(state, 'error'), loaded: true};
 
         case constants.GET_OPERATOR_PROFILE_SUCCESS:
             return {...omit(state, 'error'), loaded: true, profile: action.result};
 
         case constants.LOGIN_ERROR:
         case constants.GET_OPERATOR_PROFILE_ERROR:
+            cancelWs();
             cookies.remove('token');
             return {...omit(state, 'profile'), loaded: true, error: action.error};
 
