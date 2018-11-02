@@ -12,6 +12,7 @@ export const apiReq = (command, params, actions, extra) => {
         dispatch({
             type: onRequest,
             isLoaded: false,
+            extra
         });
 
         !withoutLoading && dispatch({
@@ -27,6 +28,7 @@ export const apiReq = (command, params, actions, extra) => {
             dispatch({
                 type: onError,
                 error: serializeError(err),
+                extra
             })
         };
 

@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import '@/assets/chatStyles/ChatControl.scss'
 import connect from "react-redux/es/connect/connect";
 import {chatControlTyping, chatControlUpdating} from "@/actions/chatActions";
-import ws from '@/util/ws'
+import {emit} from '@/util/ws'
 
 /*
 Component responsible for interactions with the Text Area
@@ -15,17 +15,18 @@ and Send Button which are logically independent for each chat.
     store => ({
         textTyped: store.chatControlReducer.textTyped,
         selectedChat: store.chatReducer.selectedChat,
+        profile: store.loginReducer.profile,
     }), {chatControlTyping, chatControlUpdating}
 )
 export default class ChatControl extends Component {
 
     sendMessage = () => {
-        const {textTyped, selectedChat, chatControlUpdating} = this.props;
+        const {textTyped, selectedChat, chatControlUpdating, profile} = this.props;
         const textTypedTrimmed = textTyped.trim();
 
-        !!textTypedTrimmed && ws.emit('post_message', {
+        !!textTypedTrimmed && emit('post_message', {
             driver_id: selectedChat.chat_id,
-            operator_id: 1,
+            operator_id: profile.id,
             text: textTyped,
             is_driver_initiator: false
         });
@@ -50,8 +51,8 @@ export default class ChatControl extends Component {
         return (
             <form ref={form => this.form = form} className="chat-control" onSubmit={this.handleClick}>
                 <textarea
+                    onChange={chatControlTyping}
                     onKeyDown={this.handlePress}
-                    onInput={chatControlTyping}
                     value={textTyped}
                     placeholder="Write a message..." rows="4"/>
                 <button type="submit">Send</button>

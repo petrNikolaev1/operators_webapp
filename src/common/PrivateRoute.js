@@ -14,7 +14,7 @@ export default class PrivateRoute extends Component {
         return (
             <Route
                 render={props =>
-                    (!!cookies.get('token')) ? (
+                    (!!login.profile) ? (
                         <Component {...props} />
                     ) : (
                         <Redirect

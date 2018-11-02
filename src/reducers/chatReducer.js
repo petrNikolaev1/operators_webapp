@@ -1,4 +1,6 @@
 import constants from '@/constants'
+import {validateMessage, mapMessage} from "@/util/chat";
+import _ from 'lodash'
 
 const initialState = {
     chats: [
@@ -23,15 +25,16 @@ const initialState = {
             messages: [],
             textTyped: ""
         },
-        // {
-        //     chat_id: 4,
-        //     username: 'Ансат',
-        //     online: false,
-        //     messages: [],
-        //     textTyped: ""
-        // },
+        {
+            chat_id: 4,
+            username: 'Ансат',
+            online: false,
+            messages: [],
+            textTyped: ""
+        },
     ],
     selectedChat: null,
+    getMessages: {},
 };
 
 export function chatReducer(state = initialState, action) {
@@ -41,6 +44,7 @@ export function chatReducer(state = initialState, action) {
                 ...state,
                 selectedChat: state.chats.find(chat => action.chat_id === chat.chat_id)
             };
+
         case constants.UPDATE_CHAT_TEXT:
             return {
                 ...state,
@@ -49,39 +53,92 @@ export function chatReducer(state = initialState, action) {
                     textTyped: action.textTyped
                 } : chat)
             };
+
         case constants.NEW_CHAT_MESSAGE:
             const {chat_id} = action.payload;
-            const newChats = state.chats
+            const chatsWithNewMessage = state.chats
                 .map(chat => (chat.chat_id === chat_id) ?
                     {...chat, messages: chat.messages.concat(action.payload), scrollDown: true} : chat
                 );
             return {
                 ...state,
-                chats: newChats,
-                selectedChat: state.selectedChat ? newChats.find(chat => state.selectedChat.chat_id === chat.chat_id) : null
+                chats: chatsWithNewMessage,
+                selectedChat: state.selectedChat ? chatsWithNewMessage.find(chat => state.selectedChat.chat_id === chat.chat_id) : null
             };
-        case constants.GET_MESSAGES_SUCCESS:
-            if (action.result.length === 0) return;
-            let newMessages = action.result.map(message => ({
-                id: message.id,
-                time: message.posted_date,
-                chat_id: message.driver.id,
-                from_id: !message.is_driver_initiator && !!message.operator ? message.operator.id : message.driver.id,
-                from_name: !message.is_driver_initiator && !!message.operator ? message.operator.name : message.driver.name,
-                is_driver_initiator: message.is_driver_initiator,
-                text: message.text
-            }));
-            newMessages = newMessages.slice().reverse();
-            const newChats2 = state.chats
-                .map(chat => (chat.chat_id === action.extra) ?
-                    {...chat, messages: newMessages.concat(state.chats), scrollDown: true} : chat
-                );
+
+        case constants.GET_MESSAGES_REQUEST:
             return {
                 ...state,
-                chats: newChats2,
-                selectedChat: state.selectedChat ? newChats2.find(chat => state.selectedChat.chat_id === chat.chat_id) : null
+                getMessages: {
+                    ...state.getMessages,
+                    [action.extra.chat_id]: {
+                        loaded: false
+                    }
+                }
+            };
+
+        case constants.GET_MESSAGES_ERROR:
+            return {
+                ...state,
+                getMessages: {
+                    ...state.getMessages,
+                    [action.extra.chat_id]: {
+                        loaded: true
+                    }
+                }
+            };
+
+        case constants.GET_MESSAGES_SUCCESS:
+
+            let newMessages = action.result
+                .slice(action.extra.uselessLimit)
+                .map(message => mapMessage(message))
+                .filter(message => validateMessage(message))
+                .reverse();
+
+            const chatsWithNewMessages = state.chats
+                .map(chat => {
+                    const messages = _.uniqBy(newMessages.concat(chat.messages), 'id');
+                    return (chat.chat_id === action.extra.chat_id) ? {
+                        ...chat,
+                        messages,
+                        messagesObtained: messages.length - chat.messages.length,
+                        scrollDown: false
+                    } : chat
+                });
+
+            return {
+                ...state,
+                chats: chatsWithNewMessages,
+                selectedChat: state.selectedChat ? chatsWithNewMessages.find(chat => state.selectedChat.chat_id === chat.chat_id) : null,
+                getMessages: {
+                    ...state.getMessages,
+                    [action.extra.chat_id]: {
+                        loaded: true
+                    }
+                }
 
             };
+
+        case constants.RESET_CHAT_HISTORY:
+            const chatsResetedHistory = state.chats.map(chat => ({...chat, messages: []}));
+            return {
+                ...state,
+                chats: chatsResetedHistory,
+                selectedChat: state.selectedChat ? chatsResetedHistory.find(chat => state.selectedChat.chat_id === chat.chat_id) : null,
+            };
+
+        case constants.RESET_CHAT_SCROLL:
+            const chatsResetedScroll = state.chats.map(chat => chat.chat_id === action.chat_id ? {
+                ...chat,
+                scrollDown: false
+            } : chat);
+            return {
+                ...state,
+                chats: state.chats,
+                selectedChat: state.selectedChat ? chatsResetedScroll.find(chat => state.selectedChat.chat_id === chat.chat_id) : null,
+            };
+
         default:
             return state;
     }

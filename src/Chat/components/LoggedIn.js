@@ -10,6 +10,8 @@ import {selectChat} from "@/actions/chatActions";
     store => ({
         chats: store.chatReducer.chats,
         selectedChat: store.chatReducer.selectedChat,
+        operator: store.loginReducer,
+        profile: store.loginReducer.profile,
     }), {selectChat}
 )
 export default class LoggedIn extends Component {
@@ -20,7 +22,7 @@ export default class LoggedIn extends Component {
     };
 
     render() {
-        const {chats, selectedChat, selectChat} = this.props;
+        const {chats, selectedChat, profile} = this.props;
         const chatsOptions = chats
             .map(chat =>
                 ({label: chat.username, formalLabel: chat.chat_id, value: chat.chat_id}));
@@ -35,7 +37,7 @@ export default class LoggedIn extends Component {
                 <div className='logged-in'>
                     <div className='logged-in-photo' style={{backgroundImage: `url(${OperatorPhoto})`}}/>
                     <div className='logged-in-username'>
-                        {`Николай Матяшов`}
+                        {profile.name}
                     </div>
                 </div>
                 <div className="search">

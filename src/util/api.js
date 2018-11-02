@@ -1,5 +1,7 @@
 import constants from '@/constants'
+import cookies from "js-cookie";
 
+import {initWs, cancelWs} from '@/util/ws'
 
 export const statuses = [
     constants.PENDING_CONFIRMATION,
@@ -32,7 +34,15 @@ export const commandsData = {
             onRequest: constants.LOGIN_REQUEST,
             onError: constants.LOGIN_ERROR,
             onSuccess: constants.LOGIN_SUCCESS,
-        }
+        },
+        customSuccessHandler: (res, actions) => {
+            const {resetChatHistory, initChatHistories, apiReq} = actions;
+            cookies.set('token', res.auth_token);
+            apiReq(constants.operator);
+            initWs();
+            resetChatHistory();
+            initChatHistories()
+        },
     },
     [constants.orders]: {
         command: constants.orders,
@@ -110,6 +120,7 @@ export const commandsData = {
             text: 'REJECT_ERROR'
         },
     },
+
     [constants.messages]: {
         command: constants.messages,
         method: 'GET',
@@ -119,6 +130,18 @@ export const commandsData = {
             onError: constants.GET_MESSAGES_ERROR,
             onSuccess: constants.GET_MESSAGES_SUCCESS,
         },
-        withoutLoading: false
+        withoutLoading: true
+    },
+
+    [constants.operator]: {
+        command: constants.operator,
+        getCommand: '',
+        method: 'GET',
+        paramsType: constants.QUERY,
+        events: {
+            onRequest: constants.GET_OPERATOR_PROFILE_REQUEST,
+            onError: constants.GET_OPERATOR_PROFILE_ERROR,
+            onSuccess: constants.GET_OPERATOR_PROFILE_SUCCESS,
+        },
     }
 };

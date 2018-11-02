@@ -8,12 +8,15 @@ import logo from '@/assets/img/logo2white.svg'
 import connect from "react-redux/es/connect/connect";
 import {hideLogin} from '@/actions/viewActions'
 import {apiReq} from '@/actions/serverActions'
+import {resetChatHistory} from "@/actions/chatActions";
+import constants from "../constants";
 
 @connect(
     store => ({
         fail: store.viewReducer.fail,
         login: store.loginReducer,
-    }), {apiReq}
+        chats: store.chatReducer.chats,
+    }), {apiReq, resetChatHistory}
 )
 @translate('Login')
 export default class Login extends Component {
@@ -58,11 +61,17 @@ export default class Login extends Component {
     };
 
     onSubmit = (event) => {
-        const {strings} = this.props;
+        const {strings, chats, apiReq} = this.props;
         event.preventDefault();
         if (!this.preValidate()) return this.setState({notify: strings.NOT_ALL_FIELDS});
         const {email, password} = this.state;
-        this.props.apiReq('login', {email, password});
+
+        apiReq('login', {email, password}, {
+                ...this.props, initChatHistories: () => chats.forEach(chat => apiReq(
+                constants.messages, {limit: 10, page: 0, driverId: chat.chat_id}, undefined, {chat_id: chat.chat_id})
+                )
+            }
+        );
     };
 
     render() {
@@ -71,7 +80,7 @@ export default class Login extends Component {
         const {email, password, notify} = this.state;
 
 
-        if (!!cookies.get('token')) {
+        if (!!login.profile) {
             return <Redirect to={from}/>
         }
 

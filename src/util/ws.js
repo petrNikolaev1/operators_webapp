@@ -1,13 +1,11 @@
 import io from 'socket.io-client';
 import cookies from 'js-cookie'
 
-import {store} from '@/store'
 import {newChatMessage} from "@/actions/chatActions";
-import constants from "../constants";
 
-export default ((wsUrl) => {
-    let ws;
+let ws = null;
 
+export const initWs = (wsUrl = 'http://18.191.14.124:14881') => {
     ws = io(wsUrl);
 
     ws.on('connect', () => {
@@ -20,15 +18,17 @@ export default ((wsUrl) => {
     });
 
     ws.on("get_message", (message) => {
-        console.log('RESPONSE', message)
-        store.dispatch(newChatMessage(message))
+        console.log('RESPONSE', message);
+        newChatMessage(message)()
     });
+};
 
-    const emit = (event, data) => {
-        console.log('EMITTED', event, data)
-        ws.emit(event, data, res => console.log(res))
-    };
+export const emit = (event, data) => {
+    console.log('EMITTED', event, data);
+    !ws && initWs();
+    ws.emit(event, data, res => console.log(res))
+};
 
-    return {emit}
-
-})('http://18.191.14.124:14881')
+export const cancelWs = () => {
+    !!ws && ws.close()
+};

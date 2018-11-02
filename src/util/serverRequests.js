@@ -16,11 +16,14 @@ export const splitPath = (path) => {
 
 export const serverRequest = payload => {
     const {command, params, method, paramsType, fillCommandWith, getCommand} = payload;
-    if (!getCommand) {
+    if (getCommand === undefined || getCommand === null) {
         var url = new URL(`${SERVER_URL}${command}`)
-    } else {
+    } else if (getCommand instanceof Function) {
         var url = new URL(`${SERVER_URL}${getCommand(params[fillCommandWith])}`);
         delete params[fillCommandWith]
+    } else {
+        console.log('getCommand', getCommand, 'end')
+        var url = new URL(`${SERVER_URL}${getCommand}`);
     }
     const reqObj = {
         method,

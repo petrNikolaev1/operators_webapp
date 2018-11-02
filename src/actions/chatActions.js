@@ -1,4 +1,6 @@
 import constants from '@/constants'
+import {mapMessage, validateMessage} from "@/util/chat";
+import {store} from '@/store'
 
 export const showSelecxtedChat = (chat_id, messages, text) => dispatch => {
     const newChat = {chat_id, messages, text};
@@ -14,14 +16,14 @@ export const selectChat = (chat_id) => (dispatch, getState) => {
     const {textTyped} = chatControlReducer;
     const {selectedChat, chats} = chatReducer;
 
+    if (!!selectedChat && selectedChat.chat_id === chat_id) return;
+
     !!selectedChat &&
     dispatch({
         type: constants.UPDATE_CHAT_TEXT,
         chat_id: selectedChat.chat_id,
         textTyped
     });
-
-    console.log(chats.find(chat => chat.chat_id === chat_id));
 
     dispatch({
         type: constants.CHAT_CONTROL_UPDATE,
@@ -48,15 +50,23 @@ export const chatControlUpdating = textTyped => dispatch => {
     });
 };
 
-export const newChatMessage = (message) => ({
-    type: constants.NEW_CHAT_MESSAGE,
-    payload: {
-        id: message.id,
-        time: message.posted_date,
-        chat_id: message.driver.id,
-        from_id: !message.is_driver_initiator && !!message.operator ? message.operator.id : message.driver.id,
-        from_name: !message.is_driver_initiator && !!message.operator ? message.operator.name : message.driver.name,
-        is_driver_initiator: message.is_driver_initiator,
-        text: message.text
-    }
-});
+export const newChatMessage = (message) => (dispatch = store.dispatch) => {
+    // if (!validateMessage(message)) return;
+    dispatch({
+        type: constants.NEW_CHAT_MESSAGE,
+        payload: mapMessage(message)
+    })
+};
+
+export const resetChatHistory = () => dispatch => {
+    dispatch({
+        type: constants.RESET_CHAT_HISTORY
+    })
+};
+
+export const resetChatScroll = chat_id => dispatch => {
+    dispatch({
+        type: constants.RESET_CHAT_SCROLL,
+        chat_id
+    })
+};

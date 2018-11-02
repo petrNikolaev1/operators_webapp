@@ -92,4 +92,11 @@ export default keyMirror({
     GET_MESSAGES_SUCCESS: null,
     GET_MESSAGES_ERROR: null,
 
+    RESET_CHAT_HISTORY: null,
+    RESET_CHAT_SCROLL: null,
+
+    operator: null,
+    GET_OPERATOR_PROFILE_REQUEST: null,
+    GET_OPERATOR_PROFILE_SUCCESS: null,
+    GET_OPERATOR_PROFILE_ERROR: null,
 })

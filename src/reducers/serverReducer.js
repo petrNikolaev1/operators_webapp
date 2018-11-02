@@ -1,6 +1,6 @@
 import omit from 'object.omit'
 import cookies from 'js-cookie'
-import ws from '@/util/ws'
+import {cancelWs} from '@/util/ws'
 
 import constants from '@/constants'
 import {optimalDriversToOptions} from "@/util/api";
@@ -10,16 +10,25 @@ const initLoginState = {};
 export function loginReducer(state = initLoginState, action) {
     switch (action.type) {
         case constants.LOGIN_REQUEST:
+        case constants.GET_OPERATOR_PROFILE_REQUEST:
             return {...state, loaded: false};
+
         case constants.LOGIN_SUCCESS:
-            ws.emit('connect');
-            cookies.set('token', action.result.auth_token);
-            return {...omit(state, 'error'), loaded: true, res: action.result};
+            return {...omit(state, 'error'), loaded: true};
+
+        case constants.GET_OPERATOR_PROFILE_SUCCESS:
+            return {...omit(state, 'error'), loaded: true, profile: action.result};
+
         case constants.LOGIN_ERROR:
-            return {...omit(state, 'res'), loaded: true, error: action.error};
+        case constants.GET_OPERATOR_PROFILE_ERROR:
+            cookies.remove('token');
+            return {...omit(state, 'profile'), loaded: true, error: action.error};
+
         case constants.LOGOUT:
+            cancelWs();
             cookies.remove('token');
             return {};
+
         default:
             return state;
     }
