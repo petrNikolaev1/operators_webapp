@@ -11,7 +11,6 @@ import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
 import SelectDriver from "./SelectDriver";
 import {apiReq} from "@/actions/serverActions";
-import {mapStatusToNum} from "@/util/api";
 import OrdersFilter from './OrdersFilter'
 import {filterOrders} from '@/util/filters'
 

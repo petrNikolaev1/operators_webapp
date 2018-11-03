@@ -6,7 +6,7 @@ export default class Customer extends Component {
 
     render() {
         return (
-            <LocationSearchInput/>
+            <LocationSearchInput googleCallbackName={'locationSearchInputCallback'}/>
         )
     }
 }

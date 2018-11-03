@@ -1,21 +1,23 @@
 import React from 'react';
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-} from 'react-places-autocomplete';
-import { classnames } from './helpers';
+import PlacesAutocomplete, {geocodeByAddress, getLatLng,} from 'react-places-autocomplete';
+import {classnames} from './helpers';
 import '@/assets/styles/LocationInputSearch.scss'
+import {getGoogleMaps} from "@/util/googleMapsRequests";
 
 export default class LocationSearchInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            address: '',
-            errorMessage: '',
-            latitude: null,
-            longitude: null,
-            isGeocoding: false,
-        };
+    state = {
+        address: '',
+        errorMessage: '',
+        latitude: null,
+        longitude: null,
+        isGeocoding: false,
+    };
+
+    componentDidMount() {
+        const {googleCallbackName} = this.props;
+        getGoogleMaps().then(() => {
+            !!window[googleCallbackName] && window[googleCallbackName]()
+        })
     }
 
     handleChange = address => {
@@ -28,10 +30,10 @@ export default class LocationSearchInput extends React.Component {
     };
 
     handleSelect = selected => {
-        this.setState({ isGeocoding: true, address: selected });
+        this.setState({isGeocoding: true, address: selected});
         geocodeByAddress(selected)
             .then(res => getLatLng(res[0]))
-            .then(({ lat, lng }) => {
+            .then(({lat, lng}) => {
                 this.setState({
                     latitude: lat,
                     longitude: lng,
@@ -39,8 +41,8 @@ export default class LocationSearchInput extends React.Component {
                 });
             })
             .catch(error => {
-                this.setState({ isGeocoding: false });
-                console.log('error', error); // eslint-disable-line no-console
+                this.setState({isGeocoding: false});
+                console.log('error', error);
             });
     };
 
@@ -53,20 +55,15 @@ export default class LocationSearchInput extends React.Component {
     };
 
     handleError = (status, clearSuggestions) => {
-        console.log('Error from Google Maps API', status); // eslint-disable-line no-console
-        this.setState({ errorMessage: status }, () => {
+        console.log('Error from Google Maps API', status);
+        this.setState({errorMessage: status}, () => {
             clearSuggestions();
         });
     };
 
     render() {
-        const {
-            address,
-            errorMessage,
-            latitude,
-            longitude,
-            isGeocoding,
-        } = this.state;
+        const {googleCallbackName} = this.props;
+        const {address, latitude, longitude, isGeocoding,} = this.state;
 
         return (
             <div>
@@ -76,9 +73,10 @@ export default class LocationSearchInput extends React.Component {
                     onSelect={this.handleSelect}
                     onError={this.handleError}
                     shouldFetchSuggestions={address.length > 2}
-                    googleCallbackName="myCallbackFunc"
+                    highlightFirstSuggestion={true}
+                    googleCallbackName={googleCallbackName}
                 >
-                    {({ getInputProps, suggestions, getSuggestionItemProps }) => {
+                    {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
                         return (
                             <div className="Demo__search-bar-container">
                                 <div className="Demo__search-input-container">
@@ -105,9 +103,8 @@ export default class LocationSearchInput extends React.Component {
                                             });
 
                                             return (
-                                                /* eslint-disable react/jsx-key */
                                                 <div
-                                                    {...getSuggestionItemProps(suggestion, { className })}
+                                                    {...getSuggestionItemProps(suggestion, {className})}
                                                 >
                                                     <strong>
                                                         {suggestion.formattedSuggestion.mainText}
@@ -117,34 +114,18 @@ export default class LocationSearchInput extends React.Component {
                                                     </small>
                                                 </div>
                                             );
-                                            /* eslint-enable react/jsx-key */
                                         })}
-                                        {/*<div className="Demo__dropdown-footer">*/}
-                                            {/*<div>*/}
-                                                {/*<img*/}
-                                                    {/*src={require('../images/powered_by_google_default.png')}*/}
-                                                    {/*className="Demo__dropdown-footer-image"*/}
-                                                {/*/>*/}
-                                            {/*</div>*/}
-                                        {/*</div>*/}
                                     </div>
                                 )}
                             </div>
                         );
                     }}
                 </PlacesAutocomplete>
-                {errorMessage.length > 0 && (
-                    <div className="Demo__error-message">{this.state.errorMessage}</div>
-                )}
 
                 {((latitude && longitude) || isGeocoding) && (
                     <div>
                         <h3 className="Demo__geocode-result-header">Geocode result</h3>
-                        {isGeocoding ? (
-                            <div>
-                                <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
-                            </div>
-                        ) : (
+                        {isGeocoding ? <div>Loading</div> :
                             <div>
                                 <div className="Demo__geocode-result-item--lat">
                                     <label>Latitude:</label>
@@ -155,7 +136,7 @@ export default class LocationSearchInput extends React.Component {
                                     <span>{longitude}</span>
                                 </div>
                             </div>
-                        )}
+                        }
                     </div>
                 )}
             </div>
