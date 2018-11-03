@@ -10,10 +10,10 @@ import OrderModal from './OrderModal'
 import Pagination from './Pagination';
 import SelectRoute from "@/components/SelectRoute/SelectRouteContainer"
 import SelectDriver from "./SelectDriver";
-import {filterOrders} from "@/actions/ordersActions";
 import {apiReq} from "@/actions/serverActions";
 import {mapStatusToNum} from "@/util/api";
 import OrdersFilter from './OrdersFilter'
+import {filterOrders} from '@/util/filters'
 
 @connect(
     store => ({
@@ -22,7 +22,7 @@ import OrdersFilter from './OrdersFilter'
         orderDriversShown: store.viewReducer.orderDriversShown,
         selectRouteShown: store.viewReducer.selectRouteShown,
         filters: store.ordersReducer.filters
-    }), {filterOrders, apiReq}
+    }), {apiReq}
 )
 @translate('OrderList')
 export default class OrderList extends Component {
@@ -31,9 +31,6 @@ export default class OrderList extends Component {
 
         this.state = {
             pageOfItems: [],
-            checkBox1Checked: 'checked',
-            checkBox2Checked: 'checked',
-            checkBox3Checked: 'checked',
         };
 
         this.onChangePage = this.onChangePage.bind(this);
@@ -45,14 +42,7 @@ export default class OrderList extends Component {
     }
 
     refreshList = () => {
-        const {orders, apiReq} = this.props;
-        // orders.loaded !== false && apiReq(constants.orders, {limit: 1000, offset: 0})
-        apiReq(constants.orders, {limit: 1000, offset: 0})
-    };
-
-    filtrate = () => {
-        const {filters} = this.props;
-        return this.getOrders().filter(order => filters.status.find(status => status === mapStatusToNum(order.status)) !== undefined);
+        this.props.apiReq(constants.orders, {limit: 1000, offset: 0})
     };
 
     getOrders = () => {
@@ -64,63 +54,7 @@ export default class OrderList extends Component {
     };
 
     onChangePage(pageOfItems) {
-        // update state with new page of items
         this.setState({pageOfItems: pageOfItems});
-    };
-
-    onStatusFilter = (new_status) => {
-        const {filters, filterOrders} = this.props;
-        this.changeChecked(new_status);
-        let res = filters.status;
-        let foundInd = res.findIndex(status => status === new_status);
-        foundInd === -1 ? res.push(new_status) : res.splice(foundInd, 1);
-        filterOrders({status: res});
-        this.filtrate();
-    };
-
-    changeChecked = (new_status) => {
-        if (new_status === 0) {
-            this.setState(prevState => (
-                {checkBox1Checked: prevState.checkBox1Checked === 'checked' ? '' : 'checked'})
-            );
-        } else if (new_status === 1) {
-            this.setState(prevState => (
-                {checkBox2Checked: prevState.checkBox2Checked === 'checked' ? '' : 'checked'})
-            );
-        } else {
-            this.setState(prevState => (
-                {checkBox3Checked: prevState.checkBox3Checked === 'checked' ? '' : 'checked'})
-            );
-        }
-    };
-
-    renderFilter = () => {
-        const {onStatusFilter} = this;
-
-        const {checkBox1Checked, checkBox2Checked, checkBox3Checked} = this.state;
-
-        return (
-            <div className="checkbox-container">
-                <label className='checkboxes'>
-                    Pending
-                    <input onChange={() => onStatusFilter(0)} defaultChecked="true" type="checkbox" name="status"
-                           checked={checkBox1Checked} value="0"/>
-                    <span className="checkmark"></span>
-                </label>
-                <label className='checkboxes'>
-                    In progress
-                    <input onChange={() => onStatusFilter(1)} defaultChecked="true" type="checkbox" name="status"
-                           checked={checkBox2Checked} value="1"/>
-                    <span className="checkmark"></span>
-                </label>
-                <label className='checkboxes'>
-                    Done
-                    <input onChange={() => onStatusFilter(2)} defaultChecked="true" type="checkbox" name="status"
-                           checked={checkBox3Checked} value="2"/>
-                    <span className="checkmark"></span>
-                </label>
-            </div>
-        )
     };
 
     renderHeader = () => {
@@ -132,14 +66,6 @@ export default class OrderList extends Component {
                 <div className="orders-list-row-item">{strings.TO}</div>
                 <div className="orders-list-row-item">{strings.BIRTH_DATE}</div>
                 <div className="orders-list-row-item">{strings.STATUS}</div>
-            </div>
-        )
-    };
-
-    renderNotification = (msg) => {
-        return (
-            <div className="orders-list-row orders-list-no-devices">
-                {msg}
             </div>
         )
     };
@@ -198,9 +124,9 @@ export default class OrderList extends Component {
     };
 
     render() {
-        const {orders, strings} = this.props;
+        const {orders, strings, filters} = this.props;
 
-        const ordersFiltered = this.filtrate();
+        const ordersFiltered = filterOrders(this.getOrders(), filters);
         const error = orders.error;
         const empty = !error && ordersFiltered.length === 0;
 
@@ -209,9 +135,6 @@ export default class OrderList extends Component {
         return (
             <Fragment>
                 <OrdersFilter/>
-                <div className="Filter">
-                    {this.renderFilter()}
-                </div>
                 <div className="orders-list">
                     {error ? this.renderError() : empty ? this.renderEmpty() :
                         <Fragment>

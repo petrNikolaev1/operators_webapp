@@ -102,5 +102,12 @@ export default {
         POSITION: 'Должность',
         ACCESS_LEVEL: 'Уровень доступа',
         LOGOUT: 'Выйти'
+    },
+
+    OrdersFilters: {
+        [constants.PENDING_CONFIRMATION]: 'Ожидает подтверждения',
+        [constants.IN_PROGRESS]: 'Доставляется',
+        [constants.DELIVERED]: 'Доставлен',
+        [constants.REJECTED]: 'Отклонен',
     }
 };

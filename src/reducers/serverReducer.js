@@ -32,7 +32,16 @@ export function loginReducer(state = initLoginState, action) {
 }
 
 const initOrdersState = {
-    filters: {status: [0, 1, 2, 3]}
+    filters: {
+        statusFilters: {
+            options: [
+                {value: constants.PENDING_CONFIRMATION, selected: true},
+                {value: constants.IN_PROGRESS, selected: true},
+                {value: constants.DELIVERED, selected: true},
+                {value: constants.REJECTED, selected: true}
+            ]
+        }
+    }
 };
 
 export function ordersReducer(state = initOrdersState, action) {
@@ -43,8 +52,8 @@ export function ordersReducer(state = initOrdersState, action) {
             return {...omit(state, 'error'), loaded: true, res: action.result};
         case constants.GET_ORDERS_ERROR:
             return {...omit(state, 'res'), loaded: true, error: action.error};
-        case constants.FILTER:
-            return {...state, filters: action.payload};
+        case constants.HANDLE_STATUS_FILTERS:
+            return {...state, filters: {...state.filters, statusFilters: action.statusFilters}};
         default:
             return state;
     }

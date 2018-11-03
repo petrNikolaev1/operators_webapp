@@ -1,10 +1,10 @@
 import constants from '@/constants';
 
-export const filterOrders = (input) => {
+export const handleStatusFilters = statusFilters => {
     return dispatch => {
         dispatch({
-            type: constants.FILTER,
-            payload: input
+            type: constants.HANDLE_STATUS_FILTERS,
+            statusFilters
         });
     }
 };

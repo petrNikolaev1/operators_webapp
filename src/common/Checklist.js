@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import className from 'classnames'
+import React, {Component, Fragment} from 'react';
+import classNames from 'classnames'
 import {Done} from '@material-ui/icons';
 
 import '@/assets/styles/Checklist.scss'
@@ -8,12 +8,12 @@ export default class Checklist extends Component {
 
     componentDidMount() {
         const {value, handleChange} = this.props;
-        if (!(value && !!value.value) || !handleChange) return;
+        if (!(value && !!value.options) || !handleChange) return;
 
-        const isSelected = value.value.some(option => option.selected);
+        const isSelected = value.options.some(option => option.selected);
 
         this.props.handleChange({
-            value: value.value,
+            options: value.options,
             valid: isSelected,
             empty: !isSelected,
         })
@@ -33,7 +33,7 @@ export default class Checklist extends Component {
         const isSelected = optionsNew.some(option => option.selected);
 
         this.props.handleChange({
-            value: optionsNew,
+            options: optionsNew,
             valid: isSelected,
             empty: !isSelected,
         })
@@ -42,32 +42,26 @@ export default class Checklist extends Component {
     renderOptions = (options, num = options.length) => {
         return options.map((option, index) => {
             return (
-                <div key={index} className='item' onClick={() => this.handleSelect(index, options, num)}>
-                    <span className="item-box">{option.selected && <Done className={'item-box-icon'}/>}</span>
-                    <span className='item-value'>{option.value}</span>
-                </div>
+                <label key={index} className='item'>
+                    <input
+                        disabled={this.props.disabled}
+                        type="checkbox"
+                        onChange={() => this.handleSelect(index, options, num)}
+                        checked={option.selected}
+                    />
+                    <span className="checkmark">{option.selected && <Done className={'checkmark-icon'}/>}</span>
+                    <span className='item-value'>{this.props.strings[option.value]}</span>
+                </label>
             )
         })
     };
 
     render() {
         const {value, formClass, disabled} = this.props;
-        if (!(value && !!value)) return null;
+        if (!(!!value && !!value.options)) return null;
         return (
-            <div className='checklist-horizontal'>
-                <div  className='checklist-horizontal-item'>
-                    <div className="checklist-horizontal-item-box"/>
-                    {/*<div className='checklist-horizontal-item-value'>{'Apple'}</div>*/}
-                </div>
-                <div  className='checklist-horizontal-item'>
-                    <div className="checklist-horizontal-item-box"/>
-                    {/*<div className='checklist-horizontal-item-value'>{'orange'}</div>*/}
-                </div>
-                <div  className='checklist-horizontal-item'>
-                    <div className="checklist-horizontal-item-box"/>
-                    {/*<div className='checklist-horizontal-item-value'>{'banana'}</div>*/}
-                </div>
-            </div>
-        )
+            <div className={classNames(formClass, {'disabled': disabled})}>
+                {this.renderOptions(value.options)}
+            </div>)
     }
 }
