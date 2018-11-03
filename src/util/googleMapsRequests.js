@@ -23,6 +23,10 @@ export const initGoogleMaps = (language = 'en') => {
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAbChC4mhcoyeibPK_o8rNHjjgVffObCdw&v=3.exp&libraries=geometry,drawing,places&language=${language}`;
     script.async = true;
     document.body.appendChild(script);
+    getGoogleMaps().then(google => {
+        console.log('INI!!!!!!!!')
+        !!window.myCallbackFunc && window.myCallbackFunc()
+    })
 };
 
 let i = 0;
