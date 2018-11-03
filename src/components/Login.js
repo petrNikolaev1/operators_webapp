@@ -11,6 +11,7 @@ import {apiReq} from '@/actions/serverActions'
 import {hideLoading} from '@/actions/viewActions'
 import {resetChatHistory} from "@/actions/chatActions";
 import constants from "../constants";
+import OrdersFilter from "./Orders/OrdersFilter";
 
 @connect(
     store => ({
@@ -87,6 +88,7 @@ export default class Login extends Component {
 
         return (
             <div className='login-container'>
+                <OrdersFilter/>
                 <div className='login-container-icon'><img src={logo} alt="logo"/></div>
                 <form className='login-container-form' onSubmit={this.onSubmit}>
                     <div className='login-container-form-notify'>{notify}</div>

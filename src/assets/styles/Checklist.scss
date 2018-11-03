@@ -1,0 +1,126 @@
+@import "index.scss";
+
+.checklist-vertical {
+  $checkmarkSize: 1.5vw;
+  $itemHeight: 2.5vw;
+  $tickIconSize: 1.25vw;
+  $fontSize: 1.1vw;
+  $marginValue: 1vw;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  font-weight: 500;
+  font-size: $fontSize;
+
+  .item {
+    display: flex;
+    align-items: center;
+
+    height: $itemHeight;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &-value {
+      margin-left: $marginValue;
+    }
+  }
+
+  .item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .item input:disabled {
+    cursor: initial;
+  }
+
+  .checkmark {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: $checkmarkSize;
+    flex-basis: $checkmarkSize;
+
+    background-color: $dooglysColor;
+    transition: 0.3s ease-in;
+
+    .icon {
+      fill: white;
+      font-size: $tickIconSize;
+    }
+  }
+
+  .item:hover input ~ .checkmark {
+    background-color: darken($dooglysColor, 5%);
+  }
+
+  .item input:checked ~ .checkmark {
+    background-color: lighten($dooglysColor, 5%);
+  }
+
+  .item:hover input:checked ~ .checkmark {
+    background-color: $dooglysColor;
+  }
+
+  .item input:disabled ~ .checkmark {
+    background-color: lighten($closeColor, 5%) !important;
+  }
+}
+
+.disabled {
+  .item {
+    cursor: initial !important;
+  }
+}
+
+.checklist-horizontal {
+  $checkmarkSize: 1.5vw;
+  $itemHeight: 2.5vw;
+  $tickIconSize: 1.25vw;
+  $fontSize: 1.1vw;
+  $marginValue: 1vw;
+
+  display: flex;
+  flex-flow: row nowrap;
+  flex-basis: auto;
+
+  font-size: $fontSize;
+
+  &-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    height: $itemHeight;
+
+    flex-basis: auto;
+    flex-shrink: 0;
+
+    &-value {
+      display: flex;
+
+      margin-left: $marginValue;
+      flex-shrink: 0;
+      flex-basis: auto;
+    }
+
+    &-box{
+      flex-shrink: 0;
+
+      height: $checkmarkSize;
+      flex-basis: $checkmarkSize;
+
+      background-color: $dooglysColor;
+    }
+  }
+
+}

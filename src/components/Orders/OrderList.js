@@ -13,6 +13,7 @@ import SelectDriver from "./SelectDriver";
 import {filterOrders} from "@/actions/ordersActions";
 import {apiReq} from "@/actions/serverActions";
 import {mapStatusToNum} from "@/util/api";
+import OrdersFilter from './OrdersFilter'
 
 @connect(
     store => ({
@@ -207,6 +208,7 @@ export default class OrderList extends Component {
 
         return (
             <Fragment>
+                <OrdersFilter/>
                 <div className="Filter">
                     {this.renderFilter()}
                 </div>
