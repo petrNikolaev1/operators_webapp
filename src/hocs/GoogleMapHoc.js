@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {withGoogleMap} from "react-google-maps";
+import {GoogleMap, withGoogleMap} from "react-google-maps";
 
 import Loading from '@/common/Loading'
 import {getGoogleMaps, initGoogleMaps} from "@/util/googleMapsRequests";
 import connect from "react-redux/es/connect/connect";
 
-export default (mapClassName) => (ChildComponent) => {
+export default (mapContainerClassName, mapClassName) => (ChildComponent) => {
 
     class Sample extends Component {
         render() {
@@ -50,8 +50,8 @@ export default (mapClassName) => (ChildComponent) => {
                 <GoogleMapWrappedLower
                     {...this.props}
                     loadingElement={(<Loading/>)}
-                    containerElement={(<div className={mapClassName}/>)}
-                    mapElement={(<div style={{height: `100%`}}/>)}
+                    containerElement={(<div className={mapContainerClassName}/>)}
+                    mapElement={(<div style={{height: `100%`}} className={mapClassName}/>)}
                 />
             )
         };

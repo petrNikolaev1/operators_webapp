@@ -1,18 +1,12 @@
 import React from 'react';
+import {Close} from '@material-ui/icons';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng,} from 'react-places-autocomplete';
 import {classnames} from './helpers';
 import '@/assets/styles/LocationInputSearch.scss'
 import {getGoogleMaps} from "@/util/googleMapsRequests";
+import {getAddress, getCoordinates} from "../util/googleMapsRequests";
 
 export default class LocationSearchInput extends React.Component {
-    state = {
-        address: '',
-        errorMessage: '',
-        latitude: null,
-        longitude: null,
-        isGeocoding: false,
-    };
-
     componentDidMount() {
         const {googleCallbackName} = this.props;
         getGoogleMaps().then(() => {
@@ -20,86 +14,78 @@ export default class LocationSearchInput extends React.Component {
         })
     }
 
-    handleChange = address => {
-        this.setState({
-            address,
-            latitude: null,
-            longitude: null,
+    handleChange = stringValue => {
+        this.props.handleChange({
+            stringValue,
+            // coordinatesValue: null,
             errorMessage: '',
         });
     };
 
     handleSelect = selected => {
-        this.setState({isGeocoding: true, address: selected});
+        this.props.handleChange({stringValue: selected});
+
         geocodeByAddress(selected)
-            .then(res => getLatLng(res[0]))
-            .then(({lat, lng}) => {
-                this.setState({
-                    latitude: lat,
-                    longitude: lng,
-                    isGeocoding: false,
-                });
-            })
+            .then(address => this.props.handleChange({
+                coordinatesValue: address[0].geometry.location,
+                stringValue: address[0].formatted_address
+            }))
             .catch(error => {
-                this.setState({isGeocoding: false});
-                console.log('error', error);
+                console.log('Location Search Input Error occurred while geocoding', error);
             });
     };
 
     handleCloseClick = () => {
-        this.setState({
-            address: '',
-            latitude: null,
-            longitude: null,
+        this.props.handleChange({
+            stringValue: '',
+            coordinatesValue: null,
         });
     };
 
     handleError = (status, clearSuggestions) => {
-        console.log('Error from Google Maps API', status);
+        console.log('Location Search Input Error', status);
         this.setState({errorMessage: status}, () => {
             clearSuggestions();
         });
     };
 
     render() {
-        const {googleCallbackName} = this.props;
-        const {address, latitude, longitude, isGeocoding,} = this.state;
+        const {googleCallbackName, containerClass, value} = this.props;
+        const {stringValue} = value;
 
         return (
-            <div>
-                <PlacesAutocomplete
-                    onChange={this.handleChange}
-                    value={address}
-                    onSelect={this.handleSelect}
-                    onError={this.handleError}
-                    shouldFetchSuggestions={address.length > 2}
-                    highlightFirstSuggestion={true}
-                    googleCallbackName={googleCallbackName}
-                >
-                    {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
-                        return (
-                            <div className="Demo__search-bar-container">
-                                <div className="Demo__search-input-container">
-                                    <input
-                                        {...getInputProps({
-                                            placeholder: 'Search Places...',
-                                            className: 'Demo__search-input',
-                                        })}
+            <PlacesAutocomplete
+                onChange={this.handleChange}
+                value={stringValue}
+                onSelect={this.handleSelect}
+                onError={this.handleError}
+                shouldFetchSuggestions={stringValue.length > 2}
+                highlightFirstSuggestion={true}
+                googleCallbackName={googleCallbackName}
+            >
+                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
+                    return (
+                        <div className={classnames("location-search-input-container", `${containerClass}`)}>
+                            <div className="location-search-input-container-form">
+                                <input
+                                    {...getInputProps({
+                                        placeholder: 'Search Places...',
+                                        className: 'location-search-input-container-form-input',
+                                    })}
+                                />
+                                {stringValue.length > 0 && (
+                                    <Close
+                                        className="location-search-input-container-form-close"
+                                        onClick={this.handleCloseClick}
                                     />
-                                    {this.state.address.length > 0 && (
-                                        <button
-                                            className="Demo__clear-button"
-                                            onClick={this.handleCloseClick}
-                                        >
-                                            x
-                                        </button>
-                                    )}
-                                </div>
-                                {suggestions.length > 0 && (
-                                    <div className="Demo__autocomplete-container">
+                                )}
+                            </div>
+                            {suggestions.length > 0 && (
+                                <div className='location-search-input-container-suggestions-container'>
+                                    <div className="location-search-input-container-suggestions">
                                         {suggestions.map(suggestion => {
-                                            const className = classnames('Demo__suggestion-item', {
-                                                'Demo__suggestion-item--active': suggestion.active,
+                                            const className = classnames('location-search-input-container-suggestions-item', {
+                                                'location-search-input-container-suggestions-item-active': suggestion.active,
                                             });
 
                                             return (
@@ -108,7 +94,8 @@ export default class LocationSearchInput extends React.Component {
                                                 >
                                                     <strong>
                                                         {suggestion.formattedSuggestion.mainText}
-                                                    </strong>{' '}
+                                                    </strong>
+                                                    {' '}
                                                     <small>
                                                         {suggestion.formattedSuggestion.secondaryText}
                                                     </small>
@@ -116,30 +103,12 @@ export default class LocationSearchInput extends React.Component {
                                             );
                                         })}
                                     </div>
-                                )}
-                            </div>
-                        );
-                    }}
-                </PlacesAutocomplete>
-
-                {((latitude && longitude) || isGeocoding) && (
-                    <div>
-                        <h3 className="Demo__geocode-result-header">Geocode result</h3>
-                        {isGeocoding ? <div>Loading</div> :
-                            <div>
-                                <div className="Demo__geocode-result-item--lat">
-                                    <label>Latitude:</label>
-                                    <span>{latitude}</span>
                                 </div>
-                                <div className="Demo__geocode-result-item--lng">
-                                    <label>Longitude:</label>
-                                    <span>{longitude}</span>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                )}
-            </div>
+                            )}
+                        </div>
+                    );
+                }}
+            </PlacesAutocomplete>
         );
     }
 }

@@ -1,67 +1,80 @@
 @import 'index.scss';
 
-.Demo__search-bar-container {
-  width: 90%;
-  max-width: 500px;
-  margin: 40px auto 0;
-}
+.location-search-input-container {
+  z-index: 1;
+  color: $black;
+  $fontSize: 1.2vw;
+  $height: 3vw;
+  $horPadding: 1vw;
 
-.Demo__search-input-container {
-  position: relative;
-}
-
-.Demo__search-input,
-.Demo__search-input:focus,
-.Demo__search-input:active {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-  border: honeydew;
-  display: block;
+  font-size: $fontSize;
   width: 100%;
-  padding: 16px;
-  font-size: 16px;
-  border-radius: 2px;
-  outline: none;
-}
 
-.Demo__clear-button,
-.Demo__clear-button:active,
-.Demo__clear-button:focus {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  outline: none;
-  font-weight: 600;
-  color: #999;
-}
+  &-form {
+    width: 100%;
+    height: $height;
 
-.Demo__autocomplete-container {
-  border-bottom: honeydew;
-  border-left: honeydew;
-  border-right: honeydew;
-  border-top: 1px solid #e6e6e6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 0 0 2px 2px;
-}
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 
-.Demo__suggestion-item {
-  padding: 8px;
-  text-align: left;
-  background-color: #fff;
-  cursor: pointer;
-}
+    background: $selectBackground;
 
-.Demo__suggestion-item--active {
-  background-color: #fafafa;
-}
+    transition: 0.3s ease-out;
 
-.Demo__error-message {
-  color: red;
-}
+    &:focus-within {
+      box-shadow: 0 0 0 0.1vw $dooglysColor;
+    }
 
-.Demo__geocode-result-header {
-  font-size: 20px;
-  color: #222222;
+    &-input {
+      box-sizing: border-box;
+      padding: 0 $horPadding;
+      color: $black;
+      font-size: $fontSize;
+      font-weight: 400;
+      width: 100%;
+      background: transparent;
+    }
+    &-input::placeholder {
+      color: $black;
+      font-weight: 400;
+    }
+
+    &-input:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+
+    &-close {
+      flex-shrink: 0;
+      margin-right: $horPadding/2;
+      fill: darken($closeColor, 5%) !important;
+      font-size: 2.2vw !important;
+      transition: 0.3s ease-out !important;
+      cursor: pointer;
+      &:hover {
+        fill: darken($closeColor, 15%) !important;
+      }
+    }
+  }
+
+  &-suggestions {
+    &-container {
+      position: relative;
+      width: 100%;
+    }
+    width: 100%;
+    position: absolute;
+    margin-top: 0.2vw;
+    box-shadow: 0 0 0 0.1vw #e6e6e6;
+
+    &-item {
+      background: white;
+      padding: 0.5vw $horPadding;
+      cursor: pointer;
+      transition: 0.3s ease-out;
+      &-active {
+        background-color: $selectBackground;
+      }
+    }
+  }
 }
