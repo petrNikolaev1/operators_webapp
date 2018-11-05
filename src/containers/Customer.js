@@ -97,6 +97,7 @@ export default class Customer extends Component {
                             >
                                 <Form
                                     {...forms[key]}
+                                    key={key}
                                     handleChange={this.handleForm(key)}
                                     mounted={true}
                                 />
@@ -115,6 +116,7 @@ export default class Customer extends Component {
                         <div className='order-creation-container-body-table-full'>
                             <Form
                                 {...forms[key]}
+                                key={key}
                                 handleChange={this.handleForm(key)}
                                 mounted={true}
                             />
@@ -123,6 +125,7 @@ export default class Customer extends Component {
                         <div className={`order-creation-container-body-table-${special}`}>
                             <Form
                                 {...forms[key]}
+                                key={key}
                                 handleChange={this.handleForm(key)}
                                 mounted={true}
                             />
@@ -140,7 +143,7 @@ export default class Customer extends Component {
     };
 
     checkEmpty = () => {
-        const emptyForms = Object.keys(this.getCurrentPageForms()).filter(key => this.state.forms[key].empty);
+        const emptyForms = Object.keys(this.getCurrentPageForms()).filter(key => this.state.forms[key].empty || this.state.forms[key].empty === undefined);
 
         this.setState(prevState => {
             const formsWithWarnings = Object.keys(prevState.forms)

@@ -25,7 +25,7 @@ export const getAddress = latLng => {
             if (status === window.google.maps.GeocoderStatus.OK && validateAddress(result[0])) {
                 resolve(result[0])
             } else {
-                reject()
+                reject(result)
             }
         })
     })
@@ -40,7 +40,7 @@ export const getCoordinates = address => {
             if (status === window.google.maps.GeocoderStatus.OK) {
                 resolve(result[0])
             } else {
-                reject()
+                reject(result)
             }
         })
     })

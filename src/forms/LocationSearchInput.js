@@ -7,11 +7,17 @@ import {getGoogleMaps, validateAddress} from "@/util/googleMapsRequests";
 
 export default class LocationSearchInput extends React.Component {
     componentDidMount() {
-        const {googleCallbackName, stringValue, coordinatesValue, valid, empty} = this.props;
+        const {googleCallbackName} = this.props;
 
         getGoogleMaps().then(() => {
             !!window[googleCallbackName] && window[googleCallbackName]()
         });
+
+        this.initForm()
+    }
+
+    initForm = () => {
+        const {googleCallbackName, stringValue, coordinatesValue, valid, empty} = this.props;
 
         this.props.handleChange({
             stringValue: valid ? stringValue : '',
@@ -19,6 +25,14 @@ export default class LocationSearchInput extends React.Component {
             valid: valid,
             empty: empty !== undefined ? empty : true
         });
+    };
+
+    componentDidUpdate(nextProps, nextState) {
+        const {key: keyNew} = nextProps;
+        const {key: keyOld} = this.props;
+        if (keyNew !== keyOld) {
+            this.initForm()
+        }
     }
 
     handleChange = stringValue => {
@@ -41,7 +55,7 @@ export default class LocationSearchInput extends React.Component {
                 })
             })
             .catch(error => {
-                console.log('Location Search Input Error occurred while geocoding', error);
+                console.log('Google Maps Error occurred while picking a place', error);
             });
     };
 
@@ -85,7 +99,7 @@ export default class LocationSearchInput extends React.Component {
                             <div className={classNames("location-search-input-container-form", {'warning': warning})}>
                                 <input
                                     {...getInputProps({
-                                        placeholder: 'Search Places...',
+                                        placeholder: 'Введите адрес или выберите на карте',
                                         className: 'location-search-input-container-form-input',
                                     })}
                                 />
