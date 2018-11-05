@@ -1,0 +1,302 @@
+@import 'index.scss';
+
+$inputHeight: 3vw;
+
+$fontSize: 1.1vw;
+$height: 3vw;
+$horPadding: 1vw;
+
+.react-datetime-label {
+  &-default {
+    flex-shrink: 0;
+    flex-basis: 20%;
+    margin-right: 2%;
+  }
+  &-create-order {
+    flex-basis: 25%;
+  }
+}
+
+.react-datetime-container-container-default {
+  height: $height;
+  flex: 1;
+}
+
+.react-datetime-container-default {
+  position: relative;
+  height: $height;
+  flex: 1;
+
+  background: $selectBackground;
+
+  transition: box-shadow 0.3s ease-out, background 0.5s ease-in-out, opacity 1.0s ease !important;
+
+  &:focus-within {
+    box-shadow: 0 0 0 0.1vw $dooglysColor;
+  }
+}
+
+.react-datetime-input-default {
+  box-sizing: border-box;
+  padding: 0 $horPadding;
+  font-size: $fontSize;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+
+  &::placeholder {
+    font-weight: 400;
+  }
+
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+}
+
+.rdtPicker {
+  display: none;
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2vw;
+  width: 97.5%;
+  padding: 1%;
+  margin-top: 0.1vw;
+  z-index: 99999 !important;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  border: 1px solid #f9f9f9;
+}
+
+.rdtOpen .rdtPicker {
+  display: block;
+}
+
+.rdtStatic .rdtPicker {
+  box-shadow: none;
+  position: static;
+}
+
+.rdtPicker .rdtTimeToggle {
+  text-align: center;
+}
+
+.rdtPicker table {
+  width: 100%;
+  margin: 0;
+}
+
+.rdtPicker td,
+.rdtPicker th {
+  text-align: center;
+  vertical-align: center;
+  line-height: 1.6vw;
+  transition: 0.3s ease-out;
+}
+
+.rdtPicker td {
+  cursor: pointer;
+}
+
+.rdtPicker td.rdtDay:hover,
+.rdtPicker td.rdtHour:hover,
+.rdtPicker td.rdtMinute:hover,
+.rdtPicker td.rdtSecond:hover,
+.rdtPicker .rdtTimeToggle:hover {
+  background: $lightBlue;
+  cursor: pointer;
+}
+
+.rdtPicker td.rdtOld,
+.rdtPicker td.rdtNew {
+  color: #999999;
+}
+
+.rdtPicker td.rdtToday {
+  position: relative;
+}
+
+.rdtPicker td.rdtToday:before {
+  content: '';
+  display: inline-block;
+  border-left: 0.6vw solid transparent;
+  border-bottom: 0.6vw solid $dooglysColor;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 0.3vw;
+  right: 0.25vw;
+}
+
+.rdtPicker td.rdtActive,
+.rdtPicker td.rdtActive:hover {
+  background-color: $dooglysColor;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.rdtPicker td.rdtActive.rdtToday:before {
+  border-bottom-color: #fff;
+}
+
+.rdtPicker td.rdtDisabled,
+.rdtPicker td.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker td span.rdtOld {
+  color: #999999;
+}
+
+.rdtPicker td span.rdtDisabled,
+.rdtPicker td span.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker th {
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.rdtPicker .dow {
+  width: 14.2857%;
+  border-bottom: none;
+  cursor: default;
+}
+
+.rdtPicker th.rdtNext,
+.rdtPicker th.rdtPrev {
+  color: $dooglysColor;
+  font-size: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rdtPrev span,
+.rdtNext span {
+  display: block;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.rdtPicker th.rdtDisabled,
+.rdtPicker th.rdtDisabled:hover {
+  background: none;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.rdtPicker thead tr:first-child th {
+  padding: 0.3vw 0;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+
+.rdtPicker thead tr:first-child th:hover {
+  background: $lightBlue;
+}
+
+.rdtPicker tfoot {
+  border-top: 1px solid #f9f9f9;
+}
+
+.rdtPicker button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.rdtPicker button:hover {
+  background-color: $lightBlue;
+}
+
+.rdtPicker thead button {
+  width: 100%;
+  height: 100%;
+}
+
+td.rdtMonth,
+td.rdtYear {
+  height: 4vw;
+  width: 25%;
+  cursor: pointer;
+}
+
+td.rdtMonth:hover,
+td.rdtYear:hover {
+  background: $lightBlue;
+}
+
+.rdtCounters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5vw;
+}
+
+.rdtCounters > div {
+  float: left;
+}
+
+.rdtCounter {
+  line-height: 0.5vw;
+  width: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+}
+
+.rdtCounterSeparator {
+  padding-bottom: 0.25vw;
+  line-height: 3vw;
+  font-size: 1.4vw;
+}
+
+.rdtCounter .rdtBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+  color: $dooglysColor;
+  height: 2vw;
+  width: 2vw;
+
+  transition: 0.3s ease-out;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.rdtCounter .rdtBtn:hover {
+  background: $lightBlue;
+}
+
+.rdtCounter .rdtCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.1vw;
+  padding-top: 0.1vw;
+  line-height: 2vw;
+  font-size: 1.25vw;
+}
+
+.rdtTime td {
+  cursor: default;
+}

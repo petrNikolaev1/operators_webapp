@@ -1,10 +1,10 @@
 @import 'index.scss';
 
-.KKT-registration.-show {
+.order-creation.-show {
   width: 80%;
 }
 
-.KKT-registration-container {
+.order-creation-container {
   $headerHeight: 1.7vw;
   $buttonHeight: 4vw;
   $tableRowHeight: 3vw;
@@ -84,7 +84,6 @@
   }
 
   &-body {
-    //height: 30vw;
     background: white;
     padding: $headerVerPadding $horPadding;
 
@@ -109,36 +108,27 @@
         }
 
         &-item {
-          &:nth-child(1) {
-            flex-shrink: 0;
-            flex-basis: 22%;
-            margin-right: 2%;
-          }
-          &:nth-child(2) {
-            flex-shrink: 0;
-            flex-basis: 42%;
-          }
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
         }
-        &-item0 {
-          &:nth-child(1) {
-            flex-basis: 28%;
-          }
+
+        &-form {
+          flex: 1;
         }
-        &-item2 {
-          &:nth-child(1) {
-            flex-basis: 16%;
-          }
+
+        &-notification {
+          flex-basis: 40%;
+          flex-shrink: 0;
         }
-        &-item3 {
-          &:nth-child(1) {
-            flex-basis: 45%;
-          }
-        }
-        &-item4 {
-          &:nth-child(1) {
-            flex-basis: 4%;
-          }
-        }
+      }
+
+      &-full {
+
+      }
+
+      &-datetime {
+        width: 40%;
       }
     }
   }

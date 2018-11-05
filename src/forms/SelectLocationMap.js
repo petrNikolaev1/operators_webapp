@@ -49,7 +49,6 @@ export default class SelectLocationMap extends Component {
 
         return (
             <GoogleMap
-                ref={googleMap => this.googleMap = googleMap}
                 zoom={selectedPosition ? 16 : defaultZoom}
                 center={selectedPosition || defaultCenter}
                 onClick={this.setMarker}

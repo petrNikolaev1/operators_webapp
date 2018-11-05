@@ -102,4 +102,11 @@ export default keyMirror({
 
     HANDLE_STATUS_FILTERS: null,
 
+    // Form types
+    TRANSPARENT_FORM: null,
+    SELECT_LOCATION: null,
+    STRING_INPUT: null,
+    AMOUNT_INPUT: null,
+    WEIGHT_INPUT: null,
+    DATETIME: null
 })

@@ -1,24 +1,31 @@
 import React from 'react';
 import {Close} from '@material-ui/icons';
-import PlacesAutocomplete, {geocodeByAddress, getLatLng,} from 'react-places-autocomplete';
-import {classnames} from './helpers';
+import PlacesAutocomplete, {geocodeByAddress,} from 'react-places-autocomplete';
+import classNames from 'classnames'
 import '@/assets/styles/LocationInputSearch.scss'
-import {getGoogleMaps} from "@/util/googleMapsRequests";
-import {getAddress, getCoordinates} from "../util/googleMapsRequests";
+import {getGoogleMaps, validateAddress} from "@/util/googleMapsRequests";
 
 export default class LocationSearchInput extends React.Component {
     componentDidMount() {
-        const {googleCallbackName} = this.props;
+        const {googleCallbackName, stringValue, coordinatesValue, valid, empty} = this.props;
+
         getGoogleMaps().then(() => {
             !!window[googleCallbackName] && window[googleCallbackName]()
-        })
+        });
+
+        this.props.handleChange({
+            stringValue: valid ? stringValue : '',
+            coordinatesValue: valid ? coordinatesValue : null,
+            valid: valid,
+            empty: empty !== undefined ? empty : true
+        });
     }
 
     handleChange = stringValue => {
         this.props.handleChange({
             stringValue,
-            // coordinatesValue: null,
-            errorMessage: '',
+            valid: false,
+            empty: !stringValue
         });
     };
 
@@ -26,10 +33,13 @@ export default class LocationSearchInput extends React.Component {
         this.props.handleChange({stringValue: selected});
 
         geocodeByAddress(selected)
-            .then(address => this.props.handleChange({
-                coordinatesValue: address[0].geometry.location,
-                stringValue: address[0].formatted_address
-            }))
+            .then(address => {
+                this.props.handleChange({
+                    coordinatesValue: address[0].geometry.location,
+                    stringValue: address[0].formatted_address,
+                    valid: validateAddress(address[0])
+                })
+            })
             .catch(error => {
                 console.log('Location Search Input Error occurred while geocoding', error);
             });
@@ -39,6 +49,8 @@ export default class LocationSearchInput extends React.Component {
         this.props.handleChange({
             stringValue: '',
             coordinatesValue: null,
+            valid: false,
+            empty: true
         });
     };
 
@@ -50,8 +62,8 @@ export default class LocationSearchInput extends React.Component {
     };
 
     render() {
-        const {googleCallbackName, containerClass, value} = this.props;
-        const {stringValue} = value;
+        const {googleCallbackName, containerClass, stringValue: stringValueProp, style, transitionEnd, warning} = this.props;
+        const stringValue = stringValueProp || '';
 
         return (
             <PlacesAutocomplete
@@ -65,8 +77,12 @@ export default class LocationSearchInput extends React.Component {
             >
                 {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
                     return (
-                        <div className={classnames("location-search-input-container", `${containerClass}`)}>
-                            <div className="location-search-input-container-form">
+                        <div
+                            style={style}
+                            onTransitionEnd={transitionEnd}
+                            className={classNames("location-search-input-container", `${containerClass}`)}
+                        >
+                            <div className={classNames("location-search-input-container-form", {'warning': warning})}>
                                 <input
                                     {...getInputProps({
                                         placeholder: 'Search Places...',
@@ -84,7 +100,7 @@ export default class LocationSearchInput extends React.Component {
                                 <div className='location-search-input-container-suggestions-container'>
                                     <div className="location-search-input-container-suggestions">
                                         {suggestions.map(suggestion => {
-                                            const className = classnames('location-search-input-container-suggestions-item', {
+                                            const className = classNames('location-search-input-container-suggestions-item', {
                                                 'location-search-input-container-suggestions-item-active': suggestion.active,
                                             });
 
