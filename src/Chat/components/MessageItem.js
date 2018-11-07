@@ -28,8 +28,6 @@ export default class MessageItem extends Component {
             {'message-data-other': !isMine}
         );
 
-        // console.log(id)
-
         return (
             <li id={time} className="message-container">
                 <div className={messageDataClass}>

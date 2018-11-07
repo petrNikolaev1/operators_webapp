@@ -24,8 +24,6 @@ export const getLimitAndPage = current_size => {
 
     let usefulLimit = CHAT_HISTORY_WINDOW_SIZE - uselessLimit;
 
-    // console.log(limit, page, uselessLimit);
-    // console.log('------------')
 
     return {limit, page, uselessLimit}
 };

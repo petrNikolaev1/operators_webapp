@@ -46,7 +46,6 @@ export default class MovingMarker extends Component {
 
     render() {
         const {homeSelectDriver, index, path} = this.props;
-        // console.log('MOVING MARKER RENDER')
         if (path.len < 2) {
             return null;
         }
