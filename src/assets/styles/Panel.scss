@@ -1,7 +1,6 @@
 @import "index.scss";
 
 .top-panel-container {
-  $topPanelMargin: 5vh;
   $lineHeight: 2vw;
   $minHeight: 3vw;
   $fontSize: 1.3vw;
@@ -17,7 +16,6 @@
   background: white;
 
   margin-bottom: 0;
-  margin-top: $topPanelMargin;
 
   align-self: stretch;
   flex-shrink: 0;
@@ -39,6 +37,7 @@
 
   &-logo {
     &-container {
+      z-index: 0;
       display: flex;
       align-items: center;
       position: relative;

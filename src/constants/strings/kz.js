@@ -3,7 +3,7 @@ import constants from "@/constants";
 export default {
 
     OrderList: {
-        ID: 'id',
+        ID: '№',
         FROM: 'Котак бас',
         TO: 'Жеткізу орны',
         STATUS: 'Күйі',
@@ -43,7 +43,7 @@ export default {
         NOT_ALL_FIELDS: 'Барлық өрістерді толтырыңыз'
     },
 
-    InfoPanel:{
+    InfoPanel: {
         SELECT_NO_LANG: 'Мұндай тіл жоқ',
         SELECT_LANG_PLACEHOLDER: 'Интерфейс тілі таңдаңыз'
     },
@@ -93,6 +93,13 @@ export default {
         POSITION: 'Жағдайы',
         ACCESS_LEVEL: 'Кіру деңгейі',
         LOGOUT: 'Шығу'
+    },
+
+    OrdersFilters: {
+        [constants.PENDING_CONFIRMATION]: 'Растауды күту',
+        [constants.IN_PROGRESS]: 'Жеткізіледі',
+        [constants.DELIVERED]: 'Жеткізілді',
+        [constants.REJECTED]: 'Қабылданбады'
     }
 
 };

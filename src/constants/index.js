@@ -99,4 +99,14 @@ export default keyMirror({
     GET_OPERATOR_PROFILE_REQUEST: null,
     GET_OPERATOR_PROFILE_SUCCESS: null,
     GET_OPERATOR_PROFILE_ERROR: null,
+
+    HANDLE_STATUS_FILTERS: null,
+
+    // Form types
+    TRANSPARENT_FORM: null,
+    SELECT_LOCATION: null,
+    STRING_INPUT: null,
+    AMOUNT_INPUT: null,
+    WEIGHT_INPUT: null,
+    DATETIME: null
 })

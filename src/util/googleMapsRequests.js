@@ -17,6 +17,40 @@ export const getRoute = (google, payload) => {
     })
 };
 
+export const getAddress = latLng => {
+    return new Promise((resolve, reject) => {
+        new window.google.maps.Geocoder().geocode({
+            latLng,
+        }, (result, status) => {
+            if (status === window.google.maps.GeocoderStatus.OK && validateAddress(result[0])) {
+                resolve(result[0])
+            } else {
+                reject(result)
+            }
+        })
+    })
+};
+
+
+export const getCoordinates = address => {
+    return new Promise((resolve, reject) => {
+        new window.google.maps.Geocoder().geocode({
+            address,
+        }, (result, status) => {
+            if (status === window.google.maps.GeocoderStatus.OK) {
+                resolve(result[0])
+            } else {
+                reject(result)
+            }
+        })
+    })
+};
+
+export const validateAddress = address => {
+    return !!address.address_components.find(address_component => address_component.types.includes('street_number'))
+};
+
+
 export const initGoogleMaps = (language = 'en') => {
     delete window.google;
     const script = document.createElement("script");
@@ -25,7 +59,6 @@ export const initGoogleMaps = (language = 'en') => {
     document.body.appendChild(script);
 };
 
-let i = 0;
 
 export const getGoogleMaps = () => {
     return new Promise((resolve, reject) => {

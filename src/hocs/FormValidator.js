@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 
-import {setCaretPosition} from "util/caret";
-
 export default (ChildComponent) => (validatorObj, reactInputMask) => {
     return class FormValidator extends Component {
 
@@ -24,7 +22,7 @@ export default (ChildComponent) => (validatorObj, reactInputMask) => {
 
         componentDidMount() {
             const {value, handleChange} = this.props;
-            const inputValue = value.value || '';
+            const inputValue = value || '';
 
             let res = {};
 
@@ -40,12 +38,6 @@ export default (ChildComponent) => (validatorObj, reactInputMask) => {
             handleChange(res)
         };
 
-        focusOnInput = () => {
-            if (!this.input) return;
-            setCaretPosition(this.input, this.input.value.length);
-            this.input.focus()
-        };
-
         setInputRef = (input) => {
             this.input = input;
         };
@@ -54,7 +46,6 @@ export default (ChildComponent) => (validatorObj, reactInputMask) => {
             return (
                 <ChildComponent
                     {...this.props}
-                    focusOnInput={this.focusOnInput}
                     setInputRef={this.setInputRef}
                     maskOnChange={this.onChange}
                     reactInputMask={reactInputMask}

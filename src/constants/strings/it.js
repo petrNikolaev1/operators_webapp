@@ -3,7 +3,7 @@ import constants from "@/constants";
 export default {
 
     OrderList: {
-        ID: 'id',
+        ID: '№',
         FROM: 'Indirizzo di partenza',
         TO: 'Indirizzo di consegna',
         STATUS: 'Stato',
@@ -43,7 +43,7 @@ export default {
         NOT_ALL_FIELDS: 'Per favore compila tutti i campi'
     },
 
-    InfoPanel:{
+    InfoPanel: {
         SELECT_NO_LANG: 'Non esiste un tale linguaggio',
         SELECT_LANG_PLACEHOLDER: 'Seleziona la lingua dell\'interfaccia'
     },
@@ -93,5 +93,12 @@ export default {
         POSITION: 'Ufficio',
         ACCESS_LEVEL: 'Livello di accesso',
         LOGOUT: 'Disconnettersi'
+    },
+
+    OrdersFilters: {
+        [constants.PENDING_CONFIRMATION]: 'In attesa di',
+        [constants.IN_PROGRESS]: 'Consegna',
+        [constants.DELIVERED]: 'Consegnato',
+        [constants.REJECTED]: 'Respinto'
     }
 };
