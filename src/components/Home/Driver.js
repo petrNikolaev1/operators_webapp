@@ -18,7 +18,6 @@ export default class Driver extends Component {
 
         const {origin, destination, path, pathOriginal, lastSeen, progress} = driver;
         const selected = !!selectedDriver && selectedDriver.value === index;
-        console.log('DRIVER RENDER', selectedDriver)
         return (
             <Fragment>
                 {selected &&

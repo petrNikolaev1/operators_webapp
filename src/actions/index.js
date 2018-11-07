@@ -63,7 +63,6 @@ export const apiRequest = (Command, onRequest, onSuccess, onError, extra, Key = 
                 return res.json()
             })
             .then(res => {
-                // console.log('Api response', res);
                 if (res.Status === 0) {
                     dispatch({
                         type: onSuccess,

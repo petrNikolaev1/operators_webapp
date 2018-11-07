@@ -129,7 +129,6 @@ export default class OrderList extends Component {
         const error = orders.error;
         const empty = !error && ordersFiltered.length === 0;
 
-        // console.log('RENDER', orders);
 
         return (
             <Fragment>

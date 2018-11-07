@@ -79,7 +79,6 @@ export default class MessagesList extends Component {
 
     render() {
         const {selectedChat, chats} = this.props;
-        // console.log('RENDER', !!selectedChat && selectedChat.messagesObtained, chats);
 
         return (
             <Fragment>

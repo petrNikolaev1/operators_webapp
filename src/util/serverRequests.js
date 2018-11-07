@@ -2,7 +2,6 @@ import constants, {SERVER_URL} from "@/constants";
 import cookies from 'js-cookie'
 
 export const splitPath = (path) => {
-    // console.log('REQ SENT')
     return new Promise((resolve, reject) => {
         return resolve(path);
         fetch('http://18.191.14.124:8080/v1/operators/simulation/split/path', {
@@ -22,7 +21,6 @@ export const serverRequest = payload => {
         var url = new URL(`${SERVER_URL}${getCommand(params[fillCommandWith])}`);
         delete params[fillCommandWith]
     } else {
-        console.log('getCommand', getCommand, 'end')
         var url = new URL(`${SERVER_URL}${getCommand}`);
     }
     const reqObj = {
