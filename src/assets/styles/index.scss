@@ -9,6 +9,8 @@ $closeColor: #c5c3c4;
 $gray: #f2f2f2;
 $grayDarken: rgb(153, 153, 153);
 $borderColor: rgb(233, 233, 233);
+$black: #323232;
+$lightBlue: rgb(223, 237, 238);
 
 @keyframes spinner {
   from {
@@ -51,5 +53,12 @@ body {
     padding: 0;
     border: 0;
     outline: 0;
+  }
+
+  .warning {
+    background: $errColor !important;
+    input::placeholder{
+      color: transparent;
+    }
   }
 }

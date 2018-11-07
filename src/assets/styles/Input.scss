@@ -1,0 +1,48 @@
+@import 'index.scss';
+
+$fontSize: 1.1vw;
+$height: 3vw;
+$horPadding: 1vw;
+
+.input-label-default {
+  color: $black;
+  flex-shrink: 0;
+  flex-basis: 20%;
+  margin-right: 2%;
+}
+
+.input-container-default {
+  flex: 1;
+  height: $height;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  background: $selectBackground;
+
+  transition: box-shadow 0.3s ease-out, background 0.5s ease-in-out, opacity 1.0s ease !important;
+
+  &:focus-within {
+    box-shadow: 0 0 0 0.1vw $dooglysColor;
+  }
+}
+
+.input-default {
+  box-sizing: border-box;
+  padding: 0 $horPadding;
+  color: $black;
+  font-size: $fontSize;
+  font-weight: 400;
+  width: 100%;
+  background: transparent;
+
+  &::placeholder {
+    color: $black;
+    font-weight: 400;
+  }
+
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+}

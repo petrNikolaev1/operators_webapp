@@ -3,7 +3,7 @@ import constants from "@/constants";
 export default {
 
     OrderList: {
-        ID: 'id',
+        ID: '№',
         FROM: 'Departure address',
         TO: 'Delivery address',
         STATUS: 'Status',
@@ -93,5 +93,12 @@ export default {
         POSITION: 'Position',
         ACCESS_LEVEL: 'Access level',
         LOGOUT: 'Logout'
+    },
+
+    OrdersFilters: {
+        [constants.PENDING_CONFIRMATION]: 'Pending',
+        [constants.IN_PROGRESS]: 'Delivering',
+        [constants.DELIVERED]: 'Delivered',
+        [constants.REJECTED]: 'Rejected'
     }
 };

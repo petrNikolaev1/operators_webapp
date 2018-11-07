@@ -6,7 +6,7 @@ export const DRIVER_REFRESH_RATE = 30; // Refresh rate in ms
 
 export const GOOGLE_API_KEY = 'AIzaSyAbChC4mhcoyeibPK_o8rNHjjgVffObCdw';
 
-export const SERVER_URL = 'http://18.191.14.124:8080/v1/operator/';
+export const SERVER_URL = 'https://innodelivery.online:443/v1/operator/';
 
 export default keyMirror({
     CHANGE_LANG: null,
@@ -99,4 +99,14 @@ export default keyMirror({
     GET_OPERATOR_PROFILE_REQUEST: null,
     GET_OPERATOR_PROFILE_SUCCESS: null,
     GET_OPERATOR_PROFILE_ERROR: null,
+
+    HANDLE_STATUS_FILTERS: null,
+
+    // Form types
+    TRANSPARENT_FORM: null,
+    SELECT_LOCATION: null,
+    STRING_INPUT: null,
+    AMOUNT_INPUT: null,
+    WEIGHT_INPUT: null,
+    DATETIME: null
 })
