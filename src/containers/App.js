@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Switch, Route, withRouter} from 'react-router-dom'
+import {Switch, Route, withRouter, Redirect} from 'react-router-dom'
 import connect from "react-redux/es/connect/connect";
 import cookies from 'js-cookie'
 
@@ -54,6 +54,9 @@ export default class App extends Component {
         return (
             <Fragment>
                 <Switch>
+                    <Route exact path="/" render={() => (
+                        <Redirect to="/operator/"/>
+                    )}/>
                     <PrivateRoute exact path='/operator/' component={MainMenu}/>
                     <PrivateRoute path='/operator/settings/' component={Settings}/>
                     <PrivateRoute path='/operator/home/' component={Home}/>
