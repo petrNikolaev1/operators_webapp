@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 
-import {StringInput, AmountInput, WeightInput} from '@/forms/Input'
+import {StringInput, AmountInput, WeightInput, EmailInput, PasswordInput} from '@/forms/Input'
 import constants from '@/constants'
 import SelectLocation from '@/forms/SelectLocation'
 import DateTime from '@/forms/DateTime'
@@ -130,6 +130,22 @@ export default class Form extends Component {
             case constants.DATETIME:
                 return (
                     <DateTime
+                        {...this.props}
+                        style={this.state.style}
+                        transitionEnd={this.transitionEnd}
+                    />
+                );
+            case constants.EMAIL_INPUT:
+                return (
+                    <EmailInput
+                        {...this.props}
+                        style={this.state.style}
+                        transitionEnd={this.transitionEnd}
+                    />
+                );
+            case constants.PASSWORD_INPUT:
+                return (
+                    <PasswordInput
                         {...this.props}
                         style={this.state.style}
                         transitionEnd={this.transitionEnd}

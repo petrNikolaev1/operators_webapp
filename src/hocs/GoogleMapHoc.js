@@ -1,22 +1,11 @@
 import React, {Component} from 'react';
-import {GoogleMap, withGoogleMap} from "react-google-maps";
+import {withGoogleMap} from "react-google-maps";
 
 import Loading from '@/common/Loading'
 import {getGoogleMaps, initGoogleMaps} from "@/util/googleMapsRequests";
 import connect from "react-redux/es/connect/connect";
 
 export default (mapContainerClassName, mapClassName) => (ChildComponent) => {
-
-    class Sample extends Component {
-        render() {
-            return (
-                <Loading
-                    {...this.props}
-                />
-            )
-        }
-    }
-
 
     @withGoogleMap
     class GoogleMapWrappedLower extends Component {
@@ -28,7 +17,6 @@ export default (mapContainerClassName, mapClassName) => (ChildComponent) => {
             )
         }
     }
-
 
     @connect(
         store => ({
@@ -64,13 +52,9 @@ export default (mapContainerClassName, mapClassName) => (ChildComponent) => {
 
         render() {
             const {googleMapsLoaded} = this.state;
-
             return googleMapsLoaded ? this.renderGoogleMaps() : this.renderLoading();
         }
     }
-
-    // return Sample
-
 
     return GoogleMapWrappedHigher
 }

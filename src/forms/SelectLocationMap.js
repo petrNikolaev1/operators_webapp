@@ -4,7 +4,7 @@ import {GoogleMap, Marker} from "react-google-maps";
 import GoogleMapHoc from "@/hocs/GoogleMapHoc";
 import '@/assets/styles/SelectLocation.scss'
 import {getAddress} from "@/util/googleMapsRequests";
-import {validateAddress} from "../util/googleMapsRequests";
+import {getCountryCity, validateAddress} from "@/util/googleMapsRequests";
 
 const defaultCenter = {lat: 0, lng: 0};
 const defaultZoom = 2;
@@ -19,6 +19,7 @@ export default class SelectLocationMap extends Component {
         getAddress(e.latLng)
             .then(address => this.props.handleChange({
                 coordinatesValue: address.geometry.location,
+                shortAddress: getCountryCity(address),
                 stringValue: address.formatted_address,
                 valid: validateAddress(address)
             }))

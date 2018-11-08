@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ru from '@/constants/strings/ru';
-import en from '@/constants/strings/en'
+import gb from '@/constants/strings/gb'
 import it from '@/constants/strings/it'
 import kz from '@/constants/strings/kz'
 
@@ -10,7 +10,7 @@ import kz from '@/constants/strings/kz'
 // Object for languages strings
 export const languages = {
     ru,
-    en,
+    gb,
     it,
     kz
 };
@@ -32,7 +32,6 @@ export default function translate(key) {
     return (Component) => {
         const stateToProps = store => ({
             currentLanguage: store.stringReducer.language,
-            store: store
         });
 
         const TranslationComponent = (props) => {

@@ -1,11 +1,21 @@
 import React, {Component, Fragment} from 'react';
 import Datetime from 'react-datetime'
 import moment from 'moment'
+import 'moment/locale/ru'
+import 'moment/locale/en-gb'
+import 'moment/locale/it'
+import 'moment/locale/kk'
 
 import '@/assets/styles/DateTime.scss'
-import 'moment/locale/ru'
 import classNames from "classnames";
+import connect from "react-redux/es/connect/connect";
+import {momentLocale} from "@/util/units";
 
+@connect(
+    store => ({
+        language: store.stringReducer.language
+    }), {}
+)
 export default class MainSettings extends Component {
     componentDidMount() {
         const {empty, valid, value} = this.props;
@@ -29,7 +39,7 @@ export default class MainSettings extends Component {
     };
 
     render() {
-        const {value, data, style, transitionEnd, labelClass, inputContainerClass, warning, inputClass} = this.props;
+        const {value, data, style, transitionEnd, labelClass, inputContainerClass, warning, inputClass, language} = this.props;
 
         return (
             <Fragment>
@@ -53,7 +63,7 @@ export default class MainSettings extends Component {
                             readOnly: true,
                             className: classNames('react-datetime-input-default', `${inputClass}`)
                         }}
-                        locale='ru'
+                        locale={momentLocale(language)}
                     />
                 </div>
             </Fragment>

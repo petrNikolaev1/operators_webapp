@@ -17,6 +17,12 @@ export default (ChildComponent) => (validatorObj, reactInputMask) => {
             // To determine whether the value is valid.
             res.valid = !!validatorObj.postValidate(value);
 
+
+            if (res.valid) {
+                clearTimeout(this.notificationsResetTimeout);
+                res.onBlurNotificationShown = !res.valid;
+            }
+
             this.props.handleChange(res)
         };
 
@@ -38,15 +44,26 @@ export default (ChildComponent) => (validatorObj, reactInputMask) => {
             handleChange(res)
         };
 
-        setInputRef = (input) => {
-            this.input = input;
+        componentWillUnmount(){
+            clearTimeout(this.notificationsResetTimeout);
+        }
+
+        onBlur = () => {
+            const {valid, empty, handleChange} = this.props;
+            clearTimeout(this.notificationsResetTimeout);
+            if (!empty && !valid) {
+                this.notificationsResetTimeout = setTimeout(() => {
+                    handleChange({onBlurNotificationShown: false})
+                }, 2000)
+            }
+            !empty && handleChange({onBlurNotificationShown: !valid})
         };
 
         render() {
             return (
                 <ChildComponent
                     {...this.props}
-                    setInputRef={this.setInputRef}
+                    onBlur={this.onBlur}
                     maskOnChange={this.onChange}
                     reactInputMask={reactInputMask}
                 />

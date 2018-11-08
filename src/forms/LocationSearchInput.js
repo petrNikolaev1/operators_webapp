@@ -3,7 +3,7 @@ import {Close} from '@material-ui/icons';
 import PlacesAutocomplete, {geocodeByAddress,} from 'react-places-autocomplete';
 import classNames from 'classnames'
 import '@/assets/styles/LocationInputSearch.scss'
-import {getGoogleMaps, validateAddress} from "@/util/googleMapsRequests";
+import {getGoogleMaps, validateAddress, getCountryCity} from "@/util/googleMapsRequests";
 
 export default class LocationSearchInput extends React.Component {
     componentDidMount() {
@@ -17,11 +17,12 @@ export default class LocationSearchInput extends React.Component {
     }
 
     initForm = () => {
-        const {googleCallbackName, stringValue, coordinatesValue, valid, empty} = this.props;
+        const {googleCallbackName, stringValue, coordinatesValue, valid, empty, shortAddress} = this.props;
 
         this.props.handleChange({
             stringValue: valid ? stringValue : '',
             coordinatesValue: valid ? coordinatesValue : null,
+            shortAddress: valid ? shortAddress : '',
             valid: valid,
             empty: empty !== undefined ? empty : true
         });
@@ -51,6 +52,7 @@ export default class LocationSearchInput extends React.Component {
                 this.props.handleChange({
                     coordinatesValue: address[0].geometry.location,
                     stringValue: address[0].formatted_address,
+                    shortAddress: getCountryCity(address[0]),
                     valid: validateAddress(address[0])
                 })
             })
@@ -63,6 +65,7 @@ export default class LocationSearchInput extends React.Component {
         this.props.handleChange({
             stringValue: '',
             coordinatesValue: null,
+            shortAddress: '',
             valid: false,
             empty: true
         });
