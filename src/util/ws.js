@@ -5,7 +5,7 @@ import {newChatMessage} from "@/actions/chatActions";
 
 let ws = null;
 
-export const initWs = (wsUrl = 'http://18.191.14.124:14881') => {
+export const initWs = (wsUrl = '18.188.231.179:14881') => {
     ws = io(wsUrl);
 
     ws.on('connect', () => {
