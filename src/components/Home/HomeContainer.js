@@ -55,7 +55,7 @@ export default class HomeContainer extends Component {
                     <div className='home-title-label'>
                         Tracking Menu
                     </div>
-                    <Link to="/" className='home-back'>
+                    <Link to="/operator/" className='home-back'>
                         <Reply/>
                         Back to main screen
                     </Link>

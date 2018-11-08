@@ -54,12 +54,12 @@ export default class App extends Component {
         return (
             <Fragment>
                 <Switch>
-                    <PrivateRoute exact path='/' component={MainMenu}/>
-                    <PrivateRoute path='/settings/' component={Settings}/>
-                    <PrivateRoute path='/home/' component={Home}/>
-                    <Route path='/login/' component={Login}/>
-                    <Route path='/customer/' component={Customer}/>
-                    <PrivateRoute path={'/chat'} component={ChatWrap}/>
+                    <PrivateRoute exact path='/operator/' component={MainMenu}/>
+                    <PrivateRoute path='/operator/settings/' component={Settings}/>
+                    <PrivateRoute path='/operator/home/' component={Home}/>
+                    <Route path='/operator/login/' component={Login}/>
+                    <Route path='/operator/customer/' component={Customer}/>
+                    <PrivateRoute path={'/operator/chat'} component={ChatWrap}/>
                 </Switch>
                 {loadingShow && <Loading/>}
                 {!!success && <Success/>}

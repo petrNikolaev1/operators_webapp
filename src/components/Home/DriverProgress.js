@@ -81,7 +81,7 @@ export default class DriverProgress extends Component {
                     </div>
                 </div>
                 <div className='driver-progress-right'>
-                    <Link to='/chat' className='driver-progress-right-btn' onClick={() => selectChat(value + 1)}>
+                    <Link to='/operator/chat' className='driver-progress-right-btn' onClick={() => selectChat(value + 1)}>
                         <Chat className='driver-progress-right-btn-icon'/>
                         Go to chat
                     </Link>

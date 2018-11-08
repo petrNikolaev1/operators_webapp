@@ -48,7 +48,7 @@ export default class Settings extends Component {
                         <div className='settings-title-label'>
                             {strings.SETTINGS}
                         </div>
-                        <Link to="/" className='settings-back-to-menu'>
+                        <Link to="/operator/" className='settings-back-to-menu'>
                             <Reply/>
                             {strings.BACK}
                         </Link>
@@ -142,7 +142,7 @@ export default class Settings extends Component {
                         </div>}
                     </div>
                     <div className="btn">
-                        <Link to={'/'} onClick={logout} className='btn-logout'>
+                        <Link to={'/operator/'} onClick={logout} className='btn-logout'>
                             {strings.LOGOUT}
                             <ExitToApp/>
                         </Link>

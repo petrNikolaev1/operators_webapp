@@ -10,7 +10,7 @@ export default class Back extends Component {
 
         return (
             <div className="back">
-                <Link className="back-button" to='/'>
+                <Link className="back-button" to='/operator/'>
                     <Reply className='back-button-img'/> Back
                 </Link>
             </div>

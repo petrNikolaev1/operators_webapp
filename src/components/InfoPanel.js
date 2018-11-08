@@ -43,13 +43,13 @@ export default class InfoPanel extends PureComponent {
                         formClassName='default-select'
                     />
                 </div>
-                <Link className="top-panel-container-item top-panel-container-home" to='/chat/'>
+                <Link className="top-panel-container-item top-panel-container-home" to='/operator/chat/'>
                     <Chat/>
                 </Link>
-                <Link className="top-panel-container-item top-panel-container-home" to='/home/'>
+                <Link className="top-panel-container-item top-panel-container-home" to='/operator/home/'>
                     <Home/>
                 </Link>
-                <Link className="top-panel-container-item top-panel-container-settings" to='/settings/'>
+                <Link className="top-panel-container-item top-panel-container-settings" to='/operator/settings/'>
                     <Settings/>
                 </Link>
             </div>
