@@ -3,7 +3,7 @@ export const langs = [
         ru: 'Русский',
     },
     {
-        en: 'English'
+        gb: 'English'
     },
     {
         kz: 'Қазақша'

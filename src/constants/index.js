@@ -25,8 +25,13 @@ export default keyMirror({
     HIDE_SELECT_ROUTE: null,
     SHOW_SELECT_DRIVER: null,
     HIDE_SELECT_DRIVER: null,
+    HIDE_CREATE_ORDER: null,
+    SHOW_CREATE_ORDER: null,
     SHOW_CUSTOMER_REGISTRATION: null,
     HIDE_CUSTOMER_REGISTRATION: null,
+    SHOW_TRACKING_ORDER: null,
+    HIDE_TRACKING_ORDER: null,
+
     FILTER: null,
 
     GET_PROPOSED_ROUTE_REQUEST: null,
@@ -113,4 +118,19 @@ export default keyMirror({
     AMOUNT_INPUT: null,
     WEIGHT_INPUT: null,
     DATETIME: null,
+
+    order: null,
+    CREATE_ORDER_REQUEST: null,
+    CREATE_ORDER_ERROR: null,
+    CREATE_ORDER_SUCCESS: null,
+
+    register: null,
+    REGISTER_CUSTOMER_REQUEST: null,
+    REGISTER_CUSTOMER_ERROR: null,
+    REGISTER_CUSTOMER_SUCCESS: null,
+
+    GET_TRACKING_ROUTE_REQUEST: null,
+    GET_TRACKING_ROUTE_ERROR: null,
+    GET_TRACKING_ROUTE_SUCCESS: null,
+    RESET_TRACKING_ROUTE: null,
 })

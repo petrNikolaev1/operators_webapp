@@ -13,6 +13,7 @@ import connect from "react-redux/es/connect/connect";
 import {apiReq} from '@/actions/serverActions'
 import translate from "@/hocs/Translate";
 import Header from "@/common/Header";
+import Select from '@/common/Select'
 
 @connect(
     store => ({}), {hideCustomerRegistration, apiReq}
@@ -133,9 +134,16 @@ export default class CustomerRegistration extends Component {
 
         return (
             <div className={classNames("customer-registration-container", showBeforeClass)}>
-                <Header label={strings.REGISTRATION}
+                <Header label="Register new employee"
                         onClose={hideCustomerRegistration}
                         headerContainerClass='customer-registration-container-header-rounded'
+                />
+                <Select
+                    isSerchable={true}
+                    noOptionsMessage={'No Options'}
+                    placeholder={'driver'}
+                    //TODO options={}
+                    formClassName='default-select'
                 />
                 <div className={bodyClass}>
                     <div className='customer-registration-container-body-table'>
