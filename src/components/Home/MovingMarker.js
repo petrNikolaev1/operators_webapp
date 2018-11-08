@@ -60,7 +60,7 @@ export default class MovingMarker extends Component {
                         fillColor: '#0b8592',
                         fillOpacity: 0.8,
                         strokeWeight: 2,
-                        rotation: rotationAngle(path[0], path[1])
+                        rotation: path.length > 0 ? rotationAngle(path[0], path[1]) : 0
                     },
                 }}
             />
