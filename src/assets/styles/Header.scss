@@ -1,0 +1,41 @@
+@import 'index.scss';
+
+$headerVerPadding: 0.8vw;
+$horPadding: 3vw;
+
+.header-container-default {
+  background: white;
+
+  padding: $headerVerPadding $horPadding;
+
+  font-size: 1.3vw;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 0.1vw solid $borderColor;
+}
+
+.header-label-default {
+  flex: 1;
+}
+
+.header-close-default {
+  flex-shrink: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  svg {
+    font-size: 3vw;
+    fill: $closeColor;
+    transition: 0.3s ease-out;
+
+    &:hover {
+      cursor: pointer;
+      fill: darken($closeColor, 10%);
+    }
+  }
+}

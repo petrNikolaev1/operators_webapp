@@ -1,0 +1,21 @@
+@import "index.scss";
+
+.button {
+  &-container {
+    cursor: pointer;
+    flex-basis: 18%;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3vw;
+    background: $dooglysColor;
+    margin-right: 2vw;
+    transition: 0.5s ease-out;
+
+    &:hover {
+      background: darken($dooglysColor, 10%);
+    }
+  }
+}

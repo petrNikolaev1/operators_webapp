@@ -25,6 +25,8 @@ export default keyMirror({
     HIDE_SELECT_ROUTE: null,
     SHOW_SELECT_DRIVER: null,
     HIDE_SELECT_DRIVER: null,
+    SHOW_CUSTOMER_REGISTRATION: null,
+    HIDE_CUSTOMER_REGISTRATION: null,
     FILTER: null,
 
     GET_PROPOSED_ROUTE_REQUEST: null,
@@ -106,7 +108,9 @@ export default keyMirror({
     TRANSPARENT_FORM: null,
     SELECT_LOCATION: null,
     STRING_INPUT: null,
+    EMAIL_INPUT: null,
+    PASSWORD_INPUT: null,
     AMOUNT_INPUT: null,
     WEIGHT_INPUT: null,
-    DATETIME: null
+    DATETIME: null,
 })
