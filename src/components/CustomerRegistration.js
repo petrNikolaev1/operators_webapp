@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
 import onClickOutside from "react-onclickoutside";
+import Dropzone from "react-dropzone";
 
 import '@/assets/styles/CustomerRegistration.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
@@ -42,7 +43,7 @@ export default class CustomerRegistration extends Component {
                     type: constants.PASSWORD_INPUT,
                     notification: strings.PASSWORD_NOTIFICATION
                 },
-
+                photo: {}
             },
             footerMounted: true,
         };
@@ -121,15 +122,22 @@ export default class CustomerRegistration extends Component {
                 email: forms.email.value,
                 name: forms.name.value,
                 password: forms.password.value,
-                password_confirm: forms.password.value
+                password_confirm: forms.password.value,
+                photo: forms.photo.value
             }
         );
         this.props.hideCustomerRegistration()
     };
 
+    onDrop = (sslCertificateAccepted, sslCertificateRejected) => {
+        this.handleForm('photo')({value: sslCertificateAccepted[0], valid: true})
+    };
+
     render() {
         const {hideCustomerRegistration, strings, showBeforeClass} = this.props;
         const {footerMounted, forms} = this.state;
+
+        console.log('RENDER', forms);
 
         const bodyClass = classNames('customer-registration-container-body', {'customer-registration-container-body-rounded': !footerMounted || !this.footerEnabled()});
 
@@ -139,17 +147,34 @@ export default class CustomerRegistration extends Component {
                         onClose={hideCustomerRegistration}
                         headerContainerClass='customer-registration-container-header-rounded'
                 />
-                <Select
-                    isSerchable={true}
-                    noOptionsMessage={'No Options'}
-                    placeholder={'driver'}
-                    //TODO options={}
-                    formClassName='default-select'
-                />
                 <div className={bodyClass}>
+                    <div className='customer-registration-container-body-table-row'>
+                        <Select
+                            isSerchable={true}
+                            noOptionsMessage={'No Options'}
+                            placeholder={'driver'}
+                            //TODO options={}
+                            formClassName='default-select'
+                        />
+                    </div>
                     <div className='customer-registration-container-body-table'>
                         {this.renderForms(forms)}
                     </div>
+                    <Dropzone ref={dropzone => this.dropzone = dropzone} disableClick={false}
+                              onDrop={this.onDrop}>
+                        {!forms.photo.value &&
+                        <div>Перетащите сюда SSL сертификат или кликните,
+                            чтобы выбрать файл для загрузки</div>}
+                        {!!forms.photo.value &&
+                        <div className='main-settings-container-ssl-body-dropzone-success'>
+                            <div className='main-settings-container-ssl-body-dropzone-success-label'>
+                                Загруженный файл:
+                            </div>
+                            <div className='main-settings-container-ssl-body-dropzone-success-value'>
+                                {forms.photo.value.name}
+                            </div>
+                        </div>}
+                    </Dropzone>
                 </div>
                 {footerMounted &&
                 <Footer

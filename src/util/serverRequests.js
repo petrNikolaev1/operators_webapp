@@ -14,7 +14,7 @@ export const splitPath = (path) => {
 };
 
 export const serverRequest = payload => {
-    const {command, params, method, paramsType, fillCommandWith, getCommand, customServerUrl} = payload;
+    const {command, params, method, paramsType, fillCommandWith, getCommand, customServerUrl, formData} = payload;
     if (!!customServerUrl) {
         var url = new URL(`${customServerUrl}${command}`)
     }
@@ -26,12 +26,15 @@ export const serverRequest = payload => {
     } else {
         var url = new URL(`${SERVER_URL}${getCommand}`);
     }
+
+    console.log('form data', formData, params)
+
     const reqObj = {
         method,
-        body: JSON.stringify(params),
+        body: !formData ? JSON.stringify(params) : new FormData().append(formData.formalLabel, params[formData.label]),
         headers: {
             "Authorization": cookies.get('token'),
-            "Content-Type": "application/json",
+            "Content-Type": !formData ? "application/json" : "multipart/form-data",
         }
     };
     if (paramsType === constants.QUERY) {

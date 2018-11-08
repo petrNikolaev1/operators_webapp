@@ -44,9 +44,9 @@ export const commandsData = {
             resetChatHistory();
             initChatHistories()
         },
-        customErrorHandler: (err, actions)=>{
-          const {hideLoading} = actions;
-          hideLoading();
+        customErrorHandler: (err, actions) => {
+            const {hideLoading} = actions;
+            hideLoading();
         },
         withoutLoadingEnd: true
     },
@@ -74,6 +74,7 @@ export const commandsData = {
         },
         defaultSuccessHandler: {text: 'REGISTER_CUSTOMER_SUCCESS'},
         defaultErrorHandler: {text: 'REGISTER_CUSTOMER_ERROR'},
+        formData: {label: 'photo', formalLabel: 'image_file'}
     },
 
     [constants.getOptimalDrivers]: {
