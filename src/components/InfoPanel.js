@@ -29,7 +29,7 @@ export default class InfoPanel extends PureComponent {
                     <div className="top-panel-container-version-label">OperationsControl</div>
                     &nbsp;
                     <div className='top-panel-container-version-value'>
-                        0.1.0
+                        0.1.6
                     </div>
                 </div>
                 <div className='top-panel-container-item top-panel-container-lang'>
