@@ -1,0 +1,78 @@
+@import 'index.scss';
+
+.customer-registration.-show {
+  width: 60%;
+}
+
+.customer-registration-container {
+  $headerHeight: 1.7vw;
+  $buttonHeight: 4vw;
+  $tableRowHeight: 3vw;
+  $headerVerPadding: 1.1vw;
+  $horPadding: 3vw;
+  $borderRadius: 1vw;
+
+  color: $black;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+
+  &-body {
+    background: white;
+    padding: $headerVerPadding $horPadding;
+
+    font-size: 1vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    &-table {
+      display: flex;
+      flex-flow: column nowrap;
+
+      &-row {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        margin-bottom: 1vw;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &-item {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+        }
+
+        &-form {
+          flex: 1;
+        }
+
+        &-notification {
+          margin-left: 3%;
+          flex-basis: 37%;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    transition: 0.5s ease-in-out;
+
+    &-rounded {
+      border-bottom-left-radius: $borderRadius;
+      border-bottom-right-radius: $borderRadius;
+    }
+  }
+  &-header-rounded {
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+  }
+  &-footer-rounded{
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+  }
+}

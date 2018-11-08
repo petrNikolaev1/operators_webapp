@@ -100,5 +100,20 @@ export default {
         [constants.IN_PROGRESS]: 'Delivering',
         [constants.DELIVERED]: 'Delivered',
         [constants.REJECTED]: 'Rejected'
+    },
+
+    CreateOrder: {
+        CREATE_ORDER: 'Create order'
+    },
+
+    CustomerRegistration:{
+        REGISTRATION: 'CustomerRegistration',
+        NAME: 'Name',
+        NAME_NOTIFICATION: 'Please, enter your name',
+        EMAIL: 'E-mail',
+        EMAIL_NOTIFICATION: 'Invalid email format',
+        PASSWORD: 'Password',
+        PASSWORD_NOTIFICATION: 'The minimum password length -\n 6 symbols',
+        REGISTER: 'Create an account'
     }
 };

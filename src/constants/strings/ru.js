@@ -94,7 +94,7 @@ export default {
     Settings: {
         SETTINGS: 'Настройки',
         BACK: 'Вернуться в главное меню',
-        ADMIN_PANEL: 'Панель администрирации',
+        ADMIN_PANEL: 'Панель администрации',
         SELECT_NUMBER: 'Выберите число водителей',
         PERSONAL_INFO: 'Персональная информация',
         FULL_NAME: 'ФИО',
@@ -109,5 +109,20 @@ export default {
         [constants.IN_PROGRESS]: 'Доставляется',
         [constants.DELIVERED]: 'Доставлен',
         [constants.REJECTED]: 'Отклонен',
+    },
+
+    CreateOrder: {
+        CREATE_ORDER: 'Создать заказ'
+    },
+
+    CustomerRegistration:{
+        REGISTRATION: 'Регистрация',
+        NAME: 'Имя',
+        NAME_NOTIFICATION: 'Пожалуйста, укажите имя',
+        EMAIL: 'E-mail',
+        EMAIL_NOTIFICATION: 'Неверный формат e-mail',
+        PASSWORD: 'Пароль',
+        PASSWORD_NOTIFICATION: 'Минимальная длина пароля -\n 6 символов',
+        REGISTER: 'Зарегистрироваться'
     }
 };
