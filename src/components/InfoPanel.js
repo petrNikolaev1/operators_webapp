@@ -4,7 +4,7 @@ import React, {PureComponent} from 'react';
 import '@/assets/styles/Panel.scss';
 import translate from '@/hocs/Translate'
 import logo from '@/assets/img/logo1_colored.svg'
-import Select from "@/common/Select";
+import Select from "@/forms/Select";
 import {langsOptions, langToSelectedOption} from "@/util/lang.js";
 import connect from "react-redux/es/connect/connect";
 import {changeLang} from "@/actions/stringActions";
@@ -29,7 +29,7 @@ export default class InfoPanel extends PureComponent {
                     <div className="top-panel-container-version-label">OperationsControl</div>
                     &nbsp;
                     <div className='top-panel-container-version-value'>
-                        0.1.0
+                        0.1.6
                     </div>
                 </div>
                 <div className='top-panel-container-item top-panel-container-lang'>

@@ -7541,6 +7541,11 @@ react-bootstrap@^0.32.4:
     uncontrollable "^5.0.0"
     warning "^3.0.0"
 
+react-country-flag@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-country-flag/-/react-country-flag-1.0.1.tgz#30594a8500f98fa30a3ff4b909d985c47b130a7f"
+  integrity sha512-kIdiwofJbNjkz3ZNiJuRzKttEZCyBVkT6AUmeLp6Y8W1b2Tng+1dSuMV4WmXZ1FDM6mfRcoSGiwAj4PUoE8kZw==
+
 react-datetime@^2.16.2:
   version "2.16.2"
   resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-2.16.2.tgz#d5d41fe3f6f3fa8fa1b068f2fae75cec25e1bb39"

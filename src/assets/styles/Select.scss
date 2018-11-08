@@ -63,12 +63,18 @@
     background: $selectBackground;
     padding: 0.5vw 1vw !important;
 
+
     input {
       width: 100% !important;
     }
     input:hover {
       cursor: pointer;
     }
+  }
+
+  &__single-value{
+    display: flex !important;
+    align-items: center !important;
   }
 
   &__indicators {
@@ -97,6 +103,8 @@
   &__option {
     padding: 0.8vw 1vw !important;
     transition: 0.5s ease-out;
+    display: flex !important;
+    align-items: center !important;
   }
 
   &__option:hover {
@@ -222,6 +230,8 @@
   &__option {
     padding: 1.5vh 1.5vh !important;
     transition: 0.5s ease-out;
+    display: flex;
+    align-items: center;
   }
 
   &__option:hover {

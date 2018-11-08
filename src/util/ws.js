@@ -14,7 +14,7 @@ export const initWs = (wsUrl = '18.188.231.179:14881') => {
     });
 
     ws.on('disconnect', () => {
-        console.log('WS Closed!')
+        console.log('WS Closed!')   
     });
 
     ws.on("get_message", (message) => {
