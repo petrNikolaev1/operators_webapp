@@ -94,6 +94,7 @@ export default class CustomerRegistration extends Component {
                             key={key}
                             handleChange={this.handleForm(key)}
                             mounted={true}
+                            content-Type="multipart/form-data"
                         />
                     </div>
                     <div

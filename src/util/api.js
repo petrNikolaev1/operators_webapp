@@ -63,7 +63,8 @@ export const commandsData = {
     },
 
     [constants.register]: {
-        command: constants.register,
+        command: 'personnel/register/operators',
+        customServerUrl: 'https://innodelivery.online:443/v1/admin/',
         method: 'POST',
         paramsType: constants.BODY,
         events: {
@@ -73,9 +74,6 @@ export const commandsData = {
         },
         defaultSuccessHandler: {text: 'REGISTER_CUSTOMER_SUCCESS'},
         defaultErrorHandler: {text: 'REGISTER_CUSTOMER_ERROR'},
-        customSuccessHandler: (res, actions) => {
-            cookies.set('token', res.auth_token);
-        },
     },
 
     [constants.getOptimalDrivers]: {
