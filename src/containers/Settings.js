@@ -81,10 +81,7 @@ export default class Settings extends Component {
                                 </div>
                             </div>
                             <div className="settings-info-register">
-                                <Button onClick={showCustomerRegistration} label="Register driver"
-                                        className="settings-info-register-button">
-                                </Button>
-                                <Button onClick={showCustomerRegistration} label="Register operator"
+                                <Button onClick={showCustomerRegistration} label="Register new employee"
                                         className="settings-info-register-button">
                                 </Button>
                             </div>

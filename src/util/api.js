@@ -61,6 +61,21 @@ export const commandsData = {
             onSuccess: constants.GET_ORDERS_SUCCESS
         }
     },
+
+    [constants.register]: {
+        command: 'personnel/register/operators',
+        customServerUrl: 'https://innodelivery.online:443/v1/admin/',
+        method: 'POST',
+        paramsType: constants.BODY,
+        events: {
+            onRequest: constants.REGISTER_CUSTOMER_REQUEST,
+            onError: constants.REGISTER_CUSTOMER_ERROR,
+            onSuccess: constants.REGISTER_CUSTOMER_SUCCESS,
+        },
+        defaultSuccessHandler: {text: 'REGISTER_CUSTOMER_SUCCESS'},
+        defaultErrorHandler: {text: 'REGISTER_CUSTOMER_ERROR'},
+    },
+
     [constants.getOptimalDrivers]: {
         command: constants.getOptimalDrivers,
         getCommand: orderId => `orders/${orderId}/nearest/vehicles`,
