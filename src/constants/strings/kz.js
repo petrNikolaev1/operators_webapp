@@ -79,18 +79,18 @@ export default {
     },
 
     Success: {
-        APPROVE_SUCCESS: 'Заказ успешно подтвержден!',
-        REJECT_SUCCESS: 'Заказ успешно отклонен!',
-        REGISTER_DRIVER_SUCCESS: 'Водитель успешно зарегистрирован!',
-        REGISTER_OPERATOR_SUCCESS: 'Оператор успешно зарегистрирован!',
+        APPROVE_SUCCESS: 'Тапсырыс сәтті расталған!',
+        REJECT_SUCCESS: 'Тапсырыс сәтті қабылданбады!',
+        REGISTER_DRIVER_SUCCESS: 'Жүргізуші сәтті тіркелді!',
+        REGISTER_OPERATOR_SUCCESS: 'Оператор сәтті тіркелді!',
     },
 
     Error: {
-        NO_OPTIMAL_DRIVERS: 'К сожалению, данный заказ не может быть выполнен в срок. Его придется отклонить',
-        APPROVE_ERROR: 'Не удалось подтвердить заказ. Возможны проблемы с сетью',
-        REJECT_ERROR: 'Не удалось отклонить заказ. Возможны проблемы с сетью',
-        REGISTER_DRIVER_ERROR: 'Не удалось зарегистрировать водителя. Возможны проблемы с сетью',
-        REGISTER_OPERATOR_ERROR: 'Не удалось зарегистрировать оператора. Возможны проблемы с сетью'
+        NO_OPTIMAL_DRIVERS: 'Өкінішке орай, бұл тапсырыс уақытында аяқталмайды. Ол қабылданбады.',
+        APPROVE_ERROR: 'Тапсырысты растау сәтсіз аяқталды. Желілік мәселелер болуы мүмкін.',
+        REJECT_ERROR: 'Тапсырысты қабылдамады. Желілік мәселелер болуы мүмкін.',
+        REGISTER_DRIVER_ERROR: 'Жүргізушіді тіркеу сәтсіз аяқталды. Желілік мәселелер болуы мүмкін.',
+        REGISTER_OPERATOR_ERROR: 'Операторды тіркеу сәтсіз аяқталды. Желілік мәселелер болуы мүмкін.'
     },
 
     Settings: {
@@ -114,20 +114,20 @@ export default {
     },
 
     StaffRegistration:{
-        REGISTRATION: 'StaffRegistration',
-        NAME: 'Name',
-        NAME_NOTIFICATION: 'Please, enter your name',
+        REGISTRATION: 'Қызметкерлерді тіркеу',
+        NAME: 'Атауы',
+        NAME_NOTIFICATION: 'Атыңызды енгізіңіз',
         EMAIL: 'E-mail',
-        EMAIL_NOTIFICATION: 'Invalid email format',
-        PASSWORD: 'Password',
-        PASSWORD_NOTIFICATION: 'The minimum password length -\n 6 symbols',
-        REGISTER: 'Create an account',
-        STAFF_TYPE: 'Staff type',
-        SELECT_STAFF_TYPE_PLACEHOLDER: 'Select the type of a registered staff',
-        DRIVER: 'Driver',
-        OPERATOR: 'Operator',
-        DROPZONE_PLACEHOLDER: 'Перетащите сюда файл или кликните, чтобы выбрать файл для загрузки',
-        DROPZONE_NOTIFICATION: 'Only *.jpeg and *.png images are supported',
+        EMAIL_NOTIFICATION: 'Жарамсыз e-mail пішімі',
+        PASSWORD: 'Пароль',
+        PASSWORD_NOTIFICATION: 'Ең аз пароль ұзындығы -\n 6 таңба',
+        REGISTER: 'Аккаунты жасау',
+        STAFF_TYPE: 'Қызметкердің түрі',
+        SELECT_STAFF_TYPE_PLACEHOLDER: 'Тіркелген қызметкерлердің түрін таңдаңыз',
+        DRIVER: 'Жүргізуші',
+        OPERATOR: 'Оператор',
+        DROPZONE_PLACEHOLDER: 'Файлды осы жерде сүйреңіз немесе жүктеп салатын файлды таңдау үшін басыңыз.',
+        DROPZONE_NOTIFICATION: 'Тек * .jpeg және * .png бейнелеріне қолдау көрсетіледі',
 
     }
 

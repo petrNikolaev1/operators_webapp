@@ -134,7 +134,7 @@ export default {
         OPERATOR: 'Оператор',
         PHOTO: 'Фото',
         DROPZONE_PLACEHOLDER: 'Перетащите сюда файл или кликните, чтобы выбрать файл для загрузки',
-        DROPZONE_NOTIFICATION: 'Only *.jpeg and *.png images are supported',
+        DROPZONE_NOTIFICATION: 'Поддерживаются только изображения формата *.jpeg и *.png',
 
     },
 

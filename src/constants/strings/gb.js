@@ -79,18 +79,18 @@ export default {
     },
 
     Success: {
-        APPROVE_SUCCESS: 'Заказ успешно подтвержден!',
-        REJECT_SUCCESS: 'Заказ успешно отклонен!',
-        REGISTER_DRIVER_SUCCESS: 'Водитель успешно зарегистрирован!',
-        REGISTER_OPERATOR_SUCCESS: 'Оператор успешно зарегистрирован!',
+        APPROVE_SUCCESS: 'Order successfully confirmed!',
+        REJECT_SUCCESS: 'Order successfully declined!',
+        REGISTER_DRIVER_SUCCESS: 'The driver is successfully registered!',
+        REGISTER_OPERATOR_SUCCESS: 'The operator is successfully registered!',
     },
 
     Error: {
-        NO_OPTIMAL_DRIVERS: 'К сожалению, данный заказ не может быть выполнен в срок. Его придется отклонить',
-        APPROVE_ERROR: 'Не удалось подтвердить заказ. Возможны проблемы с сетью',
-        REJECT_ERROR: 'Не удалось отклонить заказ. Возможны проблемы с сетью',
-        REGISTER_DRIVER_ERROR: 'Не удалось зарегистрировать водителя. Возможны проблемы с сетью',
-        REGISTER_OPERATOR_ERROR: 'Не удалось зарегистрировать оператора. Возможны проблемы с сетью'
+        NO_OPTIMAL_DRIVERS: 'Unfortunately, this order can not be completed on time. It would be rejected.',
+        APPROVE_ERROR: 'Failed to confirm the order. There may be network issues.',
+        REJECT_ERROR: 'Failed to decline the order. There may be network issues.',
+        REGISTER_DRIVER_ERROR: 'Failed to register driver. There may be network issues.',
+        REGISTER_OPERATOR_ERROR: 'Failed to register operator. There may be network issues.'
     },
 
     Settings: {
@@ -130,7 +130,7 @@ export default {
         SELECT_STAFF_TYPE_PLACEHOLDER: 'Select the type of a registered staff',
         DRIVER: 'Driver',
         OPERATOR: 'Operator',
-        DROPZONE_PLACEHOLDER: 'Перетащите сюда файл или кликните, чтобы выбрать файл для загрузки',
+        DROPZONE_PLACEHOLDER: 'Drag a file here or click to select a file to upload',
         DROPZONE_NOTIFICATION: 'Only *.jpeg and *.png images are supported',
 
     }

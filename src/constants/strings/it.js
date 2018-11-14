@@ -79,18 +79,18 @@ export default {
     },
 
     Success: {
-        APPROVE_SUCCESS: 'Заказ успешно подтвержден!',
-        REJECT_SUCCESS: 'Заказ успешно отклонен!',
-        REGISTER_DRIVER_SUCCESS: 'Водитель успешно зарегистрирован!',
-        REGISTER_OPERATOR_SUCCESS: 'Оператор успешно зарегистрирован!',
+        APPROVE_SUCCESS: 'Ordine confermato con successo!',
+        REJECT_SUCCESS: 'Ordine rifiutato con successo!',
+        REGISTER_DRIVER_SUCCESS: 'Il driver è stato registrato con successo!',
+        REGISTER_OPERATOR_SUCCESS: 'L\'operatore è stato registrato con successo!',
     },
 
     Error: {
-        NO_OPTIMAL_DRIVERS: 'К сожалению, данный заказ не может быть выполнен в срок. Его придется отклонить',
-        APPROVE_ERROR: 'Не удалось подтвердить заказ. Возможны проблемы с сетью',
-        REJECT_ERROR: 'Не удалось отклонить заказ. Возможны проблемы с сетью',
-        REGISTER_DRIVER_ERROR: 'Не удалось зарегистрировать водителя. Возможны проблемы с сетью',
-        REGISTER_OPERATOR_ERROR: 'Не удалось зарегистрировать оператора. Возможны проблемы с сетью'
+        NO_OPTIMAL_DRIVERS: 'Purtroppo, questo ordine non può essere completato in tempo. Sarebbe respinto.',
+        APPROVE_ERROR: 'Impossibile confermare l\'ordine. Potrebbero esserci problemi di rete.',
+        REJECT_ERROR: 'Impossibile declinare l\'ordine. Potrebbero esserci problemi di rete.',
+        REGISTER_DRIVER_ERROR: 'Impossibile registrare il driver. Potrebbero esserci problemi di rete.',
+        REGISTER_OPERATOR_ERROR: 'Impossibile registrare l\'operatore. Potrebbero esserci problemi di rete.'
     },
 
     Settings: {
@@ -114,20 +114,20 @@ export default {
     },
 
     StaffRegistration:{
-        REGISTRATION: 'StaffRegistration',
-        NAME: 'Name',
-        NAME_NOTIFICATION: 'Please, enter your name',
+        REGISTRATION: 'Registrazione del personale',
+        NAME: 'Nome',
+        NAME_NOTIFICATION: 'Per favore inserisci il tuo nome',
         EMAIL: 'E-mail',
-        EMAIL_NOTIFICATION: 'Invalid email format',
+        EMAIL_NOTIFICATION: 'Formato email non valido',
         PASSWORD: 'Password',
-        PASSWORD_NOTIFICATION: 'The minimum password length -\n 6 symbols',
-        REGISTER: 'Create an account',
-        STAFF_TYPE: 'Staff type',
-        SELECT_STAFF_TYPE_PLACEHOLDER: 'Select the type of a registered staff',
-        DRIVER: 'Driver',
-        OPERATOR: 'Operator',
-        DROPZONE_PLACEHOLDER: 'Перетащите сюда файл или кликните, чтобы выбрать файл для загрузки',
-        DROPZONE_NOTIFICATION: 'Only *.jpeg and *.png images are supported',
+        PASSWORD_NOTIFICATION: 'La lunghezza minima della password -\n 6 simboli',
+        REGISTER: 'Crea un account',
+        STAFF_TYPE: 'Tipo di personale',
+        SELECT_STAFF_TYPE_PLACEHOLDER: 'Seleziona il tipo di personale registrato',
+        DRIVER: 'Automobilista',
+        OPERATOR: 'Operatore',
+        DROPZONE_PLACEHOLDER: 'Trascina un file qui o fai clic per selezionare un file da caricare',
+        DROPZONE_NOTIFICATION: 'Sono supportate solo le immagini * .jpeg e * .png',
 
     }
 };
