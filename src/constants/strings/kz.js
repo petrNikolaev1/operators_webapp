@@ -79,7 +79,18 @@ export default {
     },
 
     Success: {
-        APPROVE_SUCCESS: 'Тапсырыс сәтті расталған!'
+        APPROVE_SUCCESS: 'Заказ успешно подтвержден!',
+        REJECT_SUCCESS: 'Заказ успешно отклонен!',
+        REGISTER_DRIVER_SUCCESS: 'Водитель успешно зарегистрирован!',
+        REGISTER_OPERATOR_SUCCESS: 'Оператор успешно зарегистрирован!',
+    },
+
+    Error: {
+        NO_OPTIMAL_DRIVERS: 'К сожалению, данный заказ не может быть выполнен в срок. Его придется отклонить',
+        APPROVE_ERROR: 'Не удалось подтвердить заказ. Возможны проблемы с сетью',
+        REJECT_ERROR: 'Не удалось отклонить заказ. Возможны проблемы с сетью',
+        REGISTER_DRIVER_ERROR: 'Не удалось зарегистрировать водителя. Возможны проблемы с сетью',
+        REGISTER_OPERATOR_ERROR: 'Не удалось зарегистрировать оператора. Возможны проблемы с сетью'
     },
 
     Settings: {
@@ -100,6 +111,24 @@ export default {
         [constants.IN_PROGRESS]: 'Жеткізіледі',
         [constants.DELIVERED]: 'Жеткізілді',
         [constants.REJECTED]: 'Қабылданбады'
+    },
+
+    StaffRegistration:{
+        REGISTRATION: 'StaffRegistration',
+        NAME: 'Name',
+        NAME_NOTIFICATION: 'Please, enter your name',
+        EMAIL: 'E-mail',
+        EMAIL_NOTIFICATION: 'Invalid email format',
+        PASSWORD: 'Password',
+        PASSWORD_NOTIFICATION: 'The minimum password length -\n 6 symbols',
+        REGISTER: 'Create an account',
+        STAFF_TYPE: 'Staff type',
+        SELECT_STAFF_TYPE_PLACEHOLDER: 'Select the type of a registered staff',
+        DRIVER: 'Driver',
+        OPERATOR: 'Operator',
+        DROPZONE_PLACEHOLDER: 'Перетащите сюда файл или кликните, чтобы выбрать файл для загрузки',
+        DROPZONE_NOTIFICATION: 'Only *.jpeg and *.png images are supported',
+
     }
 
 };

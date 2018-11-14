@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import Select, {components} from 'react-select';
-import ReactCountryFlag from "react-country-flag";
 
 import '@/assets/styles/Select.scss'
+import classNames from "classnames";
 
 export default class SelectComponent extends Component {
 
@@ -27,7 +27,7 @@ export default class SelectComponent extends Component {
     option = (props) => {
         return (
             <components.Option {...props}>
-                {props.data.icon(false)}
+                {!!props.data.icon ? props.data.icon(false) : null}
                 {props.label}
             </components.Option>
         );
@@ -36,40 +36,65 @@ export default class SelectComponent extends Component {
     singleValue = ({children, ...props}) => (
         <components.SingleValue {...props}>
             {children}
-            {props.data.icon(true)}
+            {!!props.data.icon ? props.data.icon(true) : null}
         </components.SingleValue>
     );
+
+    onChange = value => {
+        const {handleChange} = this.props;
+        const valid = !(!value || (value instanceof Array && !value.length));
+
+        handleChange({value, valid, empty: !valid})
+    };
 
 
     render() {
         const {
             noOptionsMessage, options, placeholder, isDisabled,
-            isSearchable, onChange, selectedOption, formClassName
+            isSearchable, handleChange, selectedOption, formClassName,
+            data, labelClass, style, transitionEnd, warning,
+            selectContainerClass,
         } = this.props;
 
-        const selectImgClass = `${formClassName}-container ${this.state.isMenuOpen ? 'open' : 'close'}`;
+        if (!!data) {
+            var {label} = data;
+        }
+
+        const selectImgClass = `${formClassName || 'default-select'}-container ${this.state.isMenuOpen ? 'open' : 'close'}`;
 
         return (
-            <Select
-                value={selectedOption}
-                onChange={onChange}
-                components={{Option: this.option, SingleValue: this.singleValue}}
+            <Fragment>
+                {label &&
+                <label style={style} onTransitionEnd={transitionEnd}
+                       className={classNames('select-label-default', `${labelClass}`)}>
+                    {data.label}
+                </label>}
+                <div
+                    className={classNames('default-select-container', `${selectContainerClass}`, {'warning': warning})}
+                    style={style} onTransitionEnd={transitionEnd}
+                >
+                    <Select
+                        value={selectedOption}
+                        onChange={this.onChange}
+                        components={{Option: this.option, SingleValue: this.singleValue}}
 
-                isSearchable={isSearchable}
-                autoSize={false}
-                onMenuOpen={this.onOpen}
-                onMenuClose={this.onClose}
+                        isSearchable={isSearchable}
+                        autoSize={false}
+                        onMenuOpen={this.onOpen}
+                        onMenuClose={this.onClose}
 
-                noOptionsMessage={() => noOptionsMessage}
+                        noOptionsMessage={() => noOptionsMessage}
 
-                placeholder={placeholder}
+                        placeholder={placeholder}
 
-                classNamePrefix={formClassName}
-                className={selectImgClass}
+                        classNamePrefix={formClassName || 'default-select'}
+                        className={selectImgClass}
 
-                options={options}
-                isDisabled={isDisabled}
-            />
+                        options={options}
+                        isDisabled={isDisabled}
+                    />
+                </div>
+            </Fragment>
         )
     }
 }

@@ -6,7 +6,7 @@ import OperatorPhoto from '@/assets/img/personal_photo.jpg'
 import {logout} from "@/actions/serverActions";
 import Button from "@/common/Button";
 import {showCustomerRegistration} from '@/actions/viewActions'
-import CustomerRegistration from "@/components/CustomerRegistration";
+import CustomerRegistration from "@/components/StaffRegistration";
 
 import '@/assets/styles/Settings.scss'
 import classNames from "classnames";

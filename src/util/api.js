@@ -62,18 +62,33 @@ export const commandsData = {
         }
     },
 
-    [constants.register]: {
+    [constants.registerOperator]: {
         command: 'personnel/register/operators',
         customServerUrl: 'https://innodelivery.online:443/v1/admin/',
         method: 'POST',
         paramsType: constants.BODY,
         events: {
-            onRequest: constants.REGISTER_CUSTOMER_REQUEST,
-            onError: constants.REGISTER_CUSTOMER_ERROR,
-            onSuccess: constants.REGISTER_CUSTOMER_SUCCESS,
+            onRequest: constants.REGISTER_OPERATOR_REQUEST,
+            onError: constants.REGISTER_OPERATOR_ERROR,
+            onSuccess: constants.REGISTER_OPERATOR_SUCCESS,
         },
-        defaultSuccessHandler: {text: 'REGISTER_CUSTOMER_SUCCESS'},
-        defaultErrorHandler: {text: 'REGISTER_CUSTOMER_ERROR'},
+        defaultSuccessHandler: {text: 'REGISTER_OPERATOR_SUCCESS'},
+        defaultErrorHandler: {text: 'REGISTER_OPERATOR_ERROR'},
+        formData: {label: 'photo', formalLabel: 'image_file'}
+    },
+
+    [constants.registerDriver]: {
+        command: 'personnel/register/drivers',
+        customServerUrl: 'https://innodelivery.online:443/v1/admin/',
+        method: 'POST',
+        paramsType: constants.BODY,
+        events: {
+            onRequest: constants.REGISTER_DRIVER_REQUEST,
+            onError: constants.REGISTER_DRIVER_ERROR,
+            onSuccess: constants.REGISTER_DRIVER_SUCCESS,
+        },
+        defaultSuccessHandler: {text: 'REGISTER_DRIVER_SUCCESS'},
+        defaultErrorHandler: {text: 'REGISTER_DRIVER_ERROR'},
         formData: {label: 'photo', formalLabel: 'image_file'}
     },
 

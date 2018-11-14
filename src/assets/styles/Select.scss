@@ -1,11 +1,18 @@
 @import 'index.scss';
 
+.select-label-default {
+  color: $black;
+  flex-shrink: 0;
+  flex-basis: 20%;
+  margin-right: 2%;
+}
+
 .css-rsyb7x {
   width: 100% !important;
 }
 
 .default-select {
-  $deviceSettingsBtnHeight: 3vw;
+  $height: 3vw;
 
   $controlFontSize: 1.15vw;
 
@@ -17,6 +24,15 @@
 
   $noOptionsFontSize: 1.2vw;
   $noOptionsHeight: 3vw;
+
+  &-container{
+    flex: 1;
+    height: $height;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
 
   &__input {
     width: 100% !important;
@@ -34,9 +50,7 @@
   }
 
   &__control {
-    min-height: $deviceSettingsBtnHeight !important;
-    line-height: $deviceSettingsBtnHeight !important;
-    height: $deviceSettingsBtnHeight !important;
+    height: $height !important;
 
     border-radius: 0 !important;
     background: $selectBackground !important;
@@ -45,21 +59,27 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 
+    width: 100%;
+
     &--is-focused {
       * {
         border: none !important;
       }
-      box-shadow: 0 0 0 1px $dooglysColor !important;
+      box-shadow: 0 0 0 0.1vw $dooglysColor !important;
     }
+
+    transition: box-shadow 0.3s ease-out, background 0.5s ease-in-out, opacity 1.0s ease !important;
   }
 
   &__placeholder {
+    height: $height !important;
+    font-size: 1vw !important;
     width: 100%;
   }
 
   &__value-container {
-    line-height: $deviceSettingsBtnHeight !important;
-    height: $deviceSettingsBtnHeight !important;
+    line-height: $height !important;
+    height: $height !important;
     background: $selectBackground;
     padding: 0.5vw 1vw !important;
 
@@ -138,7 +158,7 @@
 }
 
 .select-vh {
-  $deviceSettingsBtnHeight: 6vh;
+  $height: 6vh;
 
   $controlFontSize: 2.4vh;
 
@@ -167,9 +187,9 @@
   }
 
   &__control {
-    min-height: $deviceSettingsBtnHeight !important;
-    line-height: $deviceSettingsBtnHeight !important;
-    height: $deviceSettingsBtnHeight !important;
+    min-height: $height !important;
+    line-height: $height !important;
+    height: $height !important;
 
     border-radius: 0 !important;
     background: $selectBackground !important;
@@ -182,8 +202,10 @@
       * {
         border: none !important;
       }
-      box-shadow: 0 0 0 1px $dooglysColor !important;
+      box-shadow: 0 0 0 0.1vw $dooglysColor !important;
     }
+
+    transition: box-shadow 0.3s ease-out, background 0.5s ease-in-out, opacity 1.0s ease !important;
   }
 
   &__placeholder {
@@ -191,8 +213,8 @@
   }
 
   &__value-container {
-    line-height: $deviceSettingsBtnHeight !important;
-    height: $deviceSettingsBtnHeight !important;
+    line-height: $height !important;
+    height: $height !important;
     background: $selectBackground;
     padding: 1vh 1.5vh !important;
 

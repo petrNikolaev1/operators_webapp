@@ -6,7 +6,7 @@ import {newChatMessage} from "@/actions/chatActions";
 let ws = null;
 
 export const initWs = (wsUrl = '18.188.231.179:14881') => {
-    ws = io(wsUrl);
+    ws = io(wsUrl, { secure: true, reconnect: true, rejectUnauthorized : false });
 
     ws.on('connect', () => {
         console.log('WS Opened!');
@@ -14,7 +14,7 @@ export const initWs = (wsUrl = '18.188.231.179:14881') => {
     });
 
     ws.on('disconnect', () => {
-        console.log('WS Closed!')   
+        console.log('WS Closed!')
     });
 
     ws.on("get_message", (message) => {

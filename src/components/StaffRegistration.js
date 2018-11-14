@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
 import onClickOutside from "react-onclickoutside";
-import Dropzone from "react-dropzone";
 
-import '@/assets/styles/CustomerRegistration.scss'
+import '@/assets/styles/StaffRegistration.scss'
 import showBeforeHOC from "@/hocs/showBeforeHOC";
 import Form from "@/forms/Form";
 import constants from '@/constants'
@@ -19,15 +18,22 @@ import Select from '@/common/Select'
 @connect(
     store => ({}), {hideCustomerRegistration, apiReq}
 )
-@translate('CustomerRegistration')
+@translate('StaffRegistration')
 @showBeforeHOC('customer-registration')
 @onClickOutside
-export default class CustomerRegistration extends Component {
+export default class StaffRegistration extends Component {
     constructor(props) {
         super(props);
         const {strings} = props;
         this.state = {
             forms: {
+                type: {
+                    data: {label: strings.STAFF_TYPE},
+                    type: constants.SELECT,
+                    placeholder: strings.SELECT_STAFF_TYPE_PLACEHOLDER,
+                    isSearchable: false,
+                    options: [{label: strings.DRIVER, value: 0}, {label: strings.OPERATOR, value: 1}],
+                },
                 name: {
                     data: {label: strings.NAME},
                     type: constants.STRING_INPUT,
@@ -43,7 +49,12 @@ export default class CustomerRegistration extends Component {
                     type: constants.PASSWORD_INPUT,
                     notification: strings.PASSWORD_NOTIFICATION
                 },
-                photo: {}
+                photo: {
+                    data: {label: strings.PHOTO},
+                    type: constants.DROPZONE,
+                    placeholder: strings.DROPZONE_PLACEHOLDER,
+                    notification: strings.DROPZONE_NOTIFICATION
+                }
             },
             footerMounted: true,
         };
@@ -84,7 +95,7 @@ export default class CustomerRegistration extends Component {
 
     renderForms = (forms) => {
         return Object.keys(forms).map((key, index) => {
-            const {notification, onBlurNotificationShown} = forms[key];
+            const {notification, onBlurNotificationShown, notificationShown} = forms[key];
             return (
                 <div className='customer-registration-container-body-table-row' key={index}>
                     <div
@@ -95,17 +106,16 @@ export default class CustomerRegistration extends Component {
                             key={key}
                             handleChange={this.handleForm(key)}
                             mounted={true}
-                            content-Type="multipart/form-data"
                         />
                     </div>
                     <div
                         className='customer-registration-container-body-table-row-item customer-registration-container-body-table-row-notification'
                     >
-                        {<Notification
-                            mounted={onBlurNotificationShown}
+                        <Notification
+                            mounted={onBlurNotificationShown || notificationShown}
                             text={notification}
                             notificationClass="order-creation-notification"
-                        />}
+                        />
                     </div>
                 </div>
             )
@@ -117,7 +127,7 @@ export default class CustomerRegistration extends Component {
     onFooter = () => {
         if (!this.footerEnabled()) return;
         const {forms} = this.state;
-        this.props.apiReq('register',
+        this.props.apiReq(forms.type.value === 0 ? 'registerDriver' : 'registerOperator',
             {
                 email: forms.email.value,
                 name: forms.name.value,
@@ -129,9 +139,6 @@ export default class CustomerRegistration extends Component {
         this.props.hideCustomerRegistration()
     };
 
-    onDrop = (sslCertificateAccepted, sslCertificateRejected) => {
-        this.handleForm('photo')({value: sslCertificateAccepted[0], valid: true})
-    };
 
     render() {
         const {hideCustomerRegistration, strings, showBeforeClass} = this.props;
@@ -148,33 +155,10 @@ export default class CustomerRegistration extends Component {
                         headerContainerClass='customer-registration-container-header-rounded'
                 />
                 <div className={bodyClass}>
-                    <div className='customer-registration-container-body-table-row'>
-                        <Select
-                            isSerchable={true}
-                            noOptionsMessage={'No Options'}
-                            placeholder={'driver'}
-                            //TODO options={}
-                            formClassName='default-select'
-                        />
-                    </div>
                     <div className='customer-registration-container-body-table'>
                         {this.renderForms(forms)}
                     </div>
-                    <Dropzone ref={dropzone => this.dropzone = dropzone} disableClick={false}
-                              onDrop={this.onDrop}>
-                        {!forms.photo.value &&
-                        <div>Перетащите сюда SSL сертификат или кликните,
-                            чтобы выбрать файл для загрузки</div>}
-                        {!!forms.photo.value &&
-                        <div className='main-settings-container-ssl-body-dropzone-success'>
-                            <div className='main-settings-container-ssl-body-dropzone-success-label'>
-                                Загруженный файл:
-                            </div>
-                            <div className='main-settings-container-ssl-body-dropzone-success-value'>
-                                {forms.photo.value.name}
-                            </div>
-                        </div>}
-                    </Dropzone>
+
                 </div>
                 {footerMounted &&
                 <Footer

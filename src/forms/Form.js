@@ -1,9 +1,11 @@
 import React, {Component, Fragment} from 'react'
 
 import {StringInput, AmountInput, WeightInput, EmailInput, PasswordInput} from '@/forms/Input'
-import constants from '@/constants'
+import Select from '@/forms/Select'
+import DropZone from '@/forms/DropZone'
 import SelectLocation from '@/forms/SelectLocation'
 import DateTime from '@/forms/DateTime'
+import constants from '@/constants'
 
 export default class Form extends Component {
 
@@ -146,6 +148,22 @@ export default class Form extends Component {
             case constants.PASSWORD_INPUT:
                 return (
                     <PasswordInput
+                        {...this.props}
+                        style={this.state.style}
+                        transitionEnd={this.transitionEnd}
+                    />
+                );
+            case constants.SELECT:
+                return (
+                    <Select
+                        {...this.props}
+                        style={this.state.style}
+                        transitionEnd={this.transitionEnd}
+                    />
+                );
+            case constants.DROPZONE:
+                return (
+                    <DropZone
                         {...this.props}
                         style={this.state.style}
                         transitionEnd={this.transitionEnd}

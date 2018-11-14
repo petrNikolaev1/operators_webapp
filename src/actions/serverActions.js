@@ -1,5 +1,3 @@
-import serializeError from 'serialize-error';
-
 import {serverRequest} from "@/util/serverRequests";
 import constants from '@/constants'
 import api from '@/util/api'
@@ -27,7 +25,7 @@ export const apiReq = (command, params, actions, extra) => {
 
             dispatch({
                 type: onError,
-                error: serializeError(err),
+                error: err,
                 extra
             })
         };

@@ -17,7 +17,6 @@ import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
 import {apiReq} from "@/actions/serverActions";
 import {resetChatHistory} from "@/actions/chatActions";
 import constants from "@/constants";
-import Customer from '@/containers/Customer'
 
 @withRouter
 @connect(
@@ -54,15 +53,17 @@ export default class App extends Component {
         return (
             <Fragment>
                 <Switch>
+
                     <Route exact path="/" render={() => (
                         <Redirect to="/operator/"/>
                     )}/>
+                    <Route path='/operator/login/' component={Login}/>
+
                     <PrivateRoute exact path='/operator/' component={MainMenu}/>
                     <PrivateRoute path='/operator/settings/' component={Settings}/>
                     <PrivateRoute path='/operator/home/' component={Home}/>
-                    <Route path='/operator/login/' component={Login}/>
-                    <Route path='/operator/customer/' component={Customer}/>
                     <PrivateRoute path={'/operator/chat'} component={ChatWrap}/>
+
                 </Switch>
                 {loadingShow && <Loading/>}
                 {!!success && <Success/>}

@@ -118,16 +118,23 @@ export default keyMirror({
     AMOUNT_INPUT: null,
     WEIGHT_INPUT: null,
     DATETIME: null,
+    SELECT: null,
+    DROPZONE: null,
 
     order: null,
     CREATE_ORDER_REQUEST: null,
     CREATE_ORDER_ERROR: null,
     CREATE_ORDER_SUCCESS: null,
 
-    register: null,
-    REGISTER_CUSTOMER_REQUEST: null,
-    REGISTER_CUSTOMER_ERROR: null,
-    REGISTER_CUSTOMER_SUCCESS: null,
+    registerDriver: null,
+    REGISTER_DRIVER_REQUEST: null,
+    REGISTER_DRIVER_ERROR: null,
+    REGISTER_DRIVER_SUCCESS: null,
+
+    registerOperator: null,
+    REGISTER_OPERATOR_REQUEST: null,
+    REGISTER_OPERATOR_ERROR: null,
+    REGISTER_OPERATOR_SUCCESS: null,
 
     GET_TRACKING_ROUTE_REQUEST: null,
     GET_TRACKING_ROUTE_ERROR: null,

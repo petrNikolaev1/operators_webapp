@@ -129,4 +129,33 @@ export function orderRejectReducer(state = initOrderRejectState, action) {
     }
 }
 
+const initRegisterOperatorState = {};
 
+export function registerOperatorReducer(state = initRegisterOperatorState, action) {
+    switch (action.type) {
+        case constants.REGISTER_OPERATOR_REQUEST:
+            return {...state, loaded: false};
+        case constants.REGISTER_OPERATOR_SUCCESS:
+            return {...omit(state, 'error'), loaded: true, res: action.result};
+        case constants.REGISTER_OPERATOR_ERROR:
+            return {...omit(state, 'res'), loaded: true, error: action.error};
+        default:
+            return state;
+    }
+}
+
+
+const initRegisterDriverState = {};
+
+export function registerDriverReducer(state = initRegisterDriverState, action) {
+    switch (action.type) {
+        case constants.REGISTER_DRIVER_REQUEST:
+            return {...state, loaded: false};
+        case constants.REGISTER_DRIVER_SUCCESS:
+            return {...omit(state, 'error'), loaded: true, res: action.result};
+        case constants.REGISTER_DRIVER_ERROR:
+            return {...omit(state, 'res'), loaded: true, error: action.error};
+        default:
+            return state;
+    }
+}
