@@ -27,9 +27,8 @@ export default keyMirror({
     HIDE_SELECT_DRIVER: null,
     HIDE_CREATE_ORDER: null,
     SHOW_CREATE_ORDER: null,
-    SHOW_CUSTOMER_REGISTRATION: null,
-    HIDE_CUSTOMER_REGISTRATION: null,
-    SHOW_TRACKING_ORDER: null,
+    SHOW_STAFF_REGISTRATION: null,
+    HIDE_STAFF_REGISTRATION: null,
     HIDE_TRACKING_ORDER: null,
 
     FILTER: null,

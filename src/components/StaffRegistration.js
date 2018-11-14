@@ -8,15 +8,14 @@ import Form from "@/forms/Form";
 import constants from '@/constants'
 import Notification from '@/common/Notification'
 import Footer from "@/common/Footer";
-import {hideCustomerRegistration} from '@/actions/viewActions'
+import {hideStaffRegistration} from '@/actions/viewActions'
 import connect from "react-redux/es/connect/connect";
 import {apiReq} from '@/actions/serverActions'
 import translate from "@/hocs/Translate";
 import Header from "@/common/Header";
-import Select from '@/common/Select'
 
 @connect(
-    store => ({}), {hideCustomerRegistration, apiReq}
+    store => ({}), {hideStaffRegistration, apiReq}
 )
 @translate('StaffRegistration')
 @showBeforeHOC('customer-registration')
@@ -61,8 +60,8 @@ export default class StaffRegistration extends Component {
     }
 
     handleClickOutside = () => {
-        const {hideCustomerRegistration} = this.props;
-        hideCustomerRegistration()
+        const {hideStaffRegistration} = this.props;
+        hideStaffRegistration()
     };
 
     mountFooter = () => {
@@ -136,12 +135,12 @@ export default class StaffRegistration extends Component {
                 photo: forms.photo.value
             }
         );
-        this.props.hideCustomerRegistration()
+        this.props.hideStaffRegistration()
     };
 
 
     render() {
-        const {hideCustomerRegistration, strings, showBeforeClass} = this.props;
+        const {hideStaffRegistration, strings, showBeforeClass} = this.props;
         const {footerMounted, forms} = this.state;
 
         console.log('RENDER', forms);
@@ -151,7 +150,7 @@ export default class StaffRegistration extends Component {
         return (
             <div className={classNames("customer-registration-container", showBeforeClass)}>
                 <Header label="Register new employee"
-                        onClose={hideCustomerRegistration}
+                        onClose={hideStaffRegistration}
                         headerContainerClass='customer-registration-container-header-rounded'
                 />
                 <div className={bodyClass}>

@@ -5,8 +5,8 @@ import Select from '@/common/Select'
 import OperatorPhoto from '@/assets/img/personal_photo.jpg'
 import {logout} from "@/actions/serverActions";
 import Button from "@/common/Button";
-import {showCustomerRegistration} from '@/actions/viewActions'
-import CustomerRegistration from "@/components/StaffRegistration";
+import {showStaffRegistration} from '@/actions/viewActions'
+import StaffRegistration from "@/components/StaffRegistration";
 
 import '@/assets/styles/Settings.scss'
 import classNames from "classnames";
@@ -16,8 +16,8 @@ import translate from "@/hocs/Translate";
 @connect(
     store => ({
         login: store.loginReducer,
-        customerRegistrationShown: store.viewReducer.customerRegistrationShown,
-    }), {logout, showCustomerRegistration}
+        staffRegistrationShown: store.viewReducer.staffRegistrationShown,
+    }), {logout, showStaffRegistration}
 )
 @translate('Settings')
 export default class Settings extends Component {
@@ -39,7 +39,7 @@ export default class Settings extends Component {
 
         const administrationPanelOpened = administrationPanelShown;
         const personalInfoOpened = personalInfoShown;
-        const {logout, strings, showCustomerRegistration, customerRegistrationShown} = this.props;
+        const {logout, strings, showStaffRegistration, staffRegistrationShown} = this.props;
 
         return (
             <Fragment>
@@ -81,7 +81,7 @@ export default class Settings extends Component {
                                 </div>
                             </div>
                             <div className="settings-info-register">
-                                <Button onClick={showCustomerRegistration} label="Register new employee"
+                                <Button onClick={showStaffRegistration} label="Register new employee"
                                         className="settings-info-register-button">
                                 </Button>
                             </div>
@@ -145,7 +145,7 @@ export default class Settings extends Component {
                         </Link>
                     </div>
                 </div>
-                {customerRegistrationShown && <CustomerRegistration/>}
+                {staffRegistrationShown && <StaffRegistration/>}
             </Fragment>
         )
     }

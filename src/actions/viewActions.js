@@ -78,15 +78,15 @@ export const hideError = () => dispatch => {
     });
 };
 
-export const showCustomerRegistration = (payload) => dispatch => {
+export const showStaffRegistration = (payload) => dispatch => {
     dispatch({
-        type: constants.SHOW_CUSTOMER_REGISTRATION,
+        type: constants.SHOW_STAFF_REGISTRATION,
         payload
     });
 };
 
-export const hideCustomerRegistration = () => dispatch => {
+export const hideStaffRegistration = () => dispatch => {
     dispatch({
-        type: constants.HIDE_CUSTOMER_REGISTRATION
+        type: constants.HIDE_STAFF_REGISTRATION
     });
 };

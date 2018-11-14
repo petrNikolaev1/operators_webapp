@@ -4,7 +4,7 @@ const initialState = {
     orderModalShown: -1,
     orderDriversShown: -1,
     selectRouteShown: -1,
-    customerRegistrationShown: false,
+    staffRegistrationShown: false,
     loadingShow: false,
     success: null,
     error: null,
@@ -72,15 +72,15 @@ export function viewReducer(state = initialState, action) {
                 ...state,
                 error: null
             };
-        case constants.SHOW_CUSTOMER_REGISTRATION:
+        case constants.SHOW_STAFF_REGISTRATION:
             return {
                 ...state,
-                customerRegistrationShown: true
+                staffRegistrationShown: true
             };
-        case constants.HIDE_CUSTOMER_REGISTRATION:
+        case constants.HIDE_STAFF_REGISTRATION:
             return {
                 ...state,
-                customerRegistrationShown: false
+                staffRegistrationShown: false
             };
         default:
             return state;
