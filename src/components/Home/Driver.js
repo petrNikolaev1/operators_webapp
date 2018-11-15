@@ -26,20 +26,20 @@ export default class Driver extends Component {
                 <Fragment>
                     <Marker position={getStart(order)}/>
                     <Marker position={getEnd(order)}/>
-                    <Polyline
+                    {!!path && <Polyline
                         path={path}
                         options={{
                             strokeColor: colors[index],
                             strokeOpacity: 1.0,
                             strokeWeight: 6,
                         }}
-                    />
+                    />}
                 </Fragment>}
-                <MovingMarker
+                {!!path && <MovingMarker
                     option={{value: drivers[0].id, label: drivers[0].name}}
                     positionCur={path[stepId - 1]}
                     positionNext={stepId - 1 < path.length - 1 ? path[stepId] : path[stepId - 1]}
-                />
+                />}
             </Fragment>
         )
     }

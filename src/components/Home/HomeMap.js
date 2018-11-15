@@ -19,7 +19,7 @@ export default class HomeMap extends Component {
     render() {
         const {vehicles} = this.props;
 
-        const loaded = vehicles.loaded && vehicles.routesLoaded && !!vehicles.res;
+        const loaded = !!vehicles.res;
         if (loaded) {
             var vehiclesWithTasks = vehicles.res
                 .filter(vehicle => !!vehicle.task);

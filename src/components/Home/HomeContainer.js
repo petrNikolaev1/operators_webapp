@@ -28,15 +28,22 @@ export default class HomeContainer extends Component {
     };
 
     updateVehiclesPoitions = () => {
+        console.log('UPDATE')
         this.props.apiReq(constants.vehicles, undefined, this.props);
     };
 
     componentDidMount() {
-        this.updateVehiclesPoitions()
+        this.updateVehiclesPoitions();
+        clearTimeout(this.timer)
+        this.timer = setInterval(this.updateVehiclesPoitions, 2000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (!props.vehicles.loaded || !props.vehicles.res) return null;
+        if (!props.vehicles.res) return null;
         const {selectedDriver: selectedDriverOld, driversInfoShown: driversInfoShownOld} = state;
         const {selectedDriver: selectedDriverNew} = props.drivers;
 
@@ -58,13 +65,13 @@ export default class HomeContainer extends Component {
         const {drivers, homeSelectDriver, vehicles} = this.props;
         console.log(drivers && drivers.selectedDriver)
 
-        const loaded = vehicles.loaded && vehicles.routesLoaded && !!vehicles.res;
+        const loaded = !!vehicles.res;
         if (loaded) {
             var vehiclesWithTasks = vehicles.res
                 .filter(vehicle => !!vehicle.task);
         }
 
-        console.log('RENDER', drivers)
+        console.log('RENDER', loaded)
 
         const driversBlockOpened = driversInfoShown && !!drivers.selectedDriver;
 

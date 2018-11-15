@@ -167,9 +167,9 @@ export function vehiclesReducer(state = initVehiclesState, action) {
     switch (action.type) {
         case constants.GET_VEHICLES_REQUEST:
             return {...state, loaded: false};
-        case constants.GET_VEHICLES_ERROR:
-            return {...omit(state, 'error'), loaded: true, res: action.result};
         case constants.GET_VEHICLES_SUCCESS:
+            return {...omit(state, 'error'), loaded: true, res: action.result};
+        case constants.GET_VEHICLES_ERROR:
             return {...omit(state, 'res'), loaded: true, error: action.error};
 
         case constants.GET_VEHICLES_ROUTES_REQUEST:

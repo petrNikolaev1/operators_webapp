@@ -6,56 +6,28 @@ const initialState = {
     chats: [
         {
             chat_id: 1,
-            username: 'Тимур',
+            username: 'Timur Valiev',
             online: true,
             messages: [],
             textTyped: ""
         },
         {
             chat_id: 2,
-            username: 'Азат',
+            username: 'Azat Belgibaev',
             online: false,
             messages: [],
             textTyped: ""
         },
         {
             chat_id: 3,
-            username: 'Ильгизар',
+            username: 'Ilgizar Murzakov',
             online: false,
             messages: [],
             textTyped: ""
         },
         {
             chat_id: 4,
-            username: 'Ансат',
-            online: false,
-            messages: [],
-            textTyped: ""
-        },
-        {
-            chat_id: 5,
-            username: 'Тимур 2',
-            online: false,
-            messages: [],
-            textTyped: ""
-        },
-        {
-            chat_id: 6,
-            username: 'Азат 2',
-            online: false,
-            messages: [],
-            textTyped: ""
-        },
-        {
-            chat_id: 7,
-            username: 'Ильгизар 2',
-            online: false,
-            messages: [],
-            textTyped: ""
-        },
-        {
-            chat_id: 8,
-            username: 'Ансат 2',
+            username: 'Ansat Abirov',
             online: false,
             messages: [],
             textTyped: ""

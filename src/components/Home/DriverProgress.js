@@ -16,7 +16,6 @@ import connect from "react-redux/es/connect/connect";
 export default class DriverProgress extends Component {
     render() {
         const {selectChat, task, drivers} = this.props;
-        console.log(task)
         const {distanceTotal, durationTotal, percentTravelled} = task;
 
         const fractionPassed = percentTravelled;
@@ -25,14 +24,19 @@ export default class DriverProgress extends Component {
         const timePassed = Math.round(percentTravelled * durationTotal);
         const distancePassed = Math.round(percentTravelled * distanceTotal);
 
-        const timePassedConverted = secondsToHours(timePassed);
+        let timePassedConverted = secondsToHours(timePassed);
         const distancePassedConverted = metersToKm(distancePassed);
 
         const timeLeft = durationTotal - timePassed;
         const distanceLeft = distanceTotal - distancePassed;
 
-        const timeLeftConverted = secondsToHours(timeLeft);
+        let timeLeftConverted = secondsToHours(timeLeft);
         const distanceLeftConverted = metersToKm(distanceLeft);
+
+        if (isNaN(timeLeftConverted[0])) {
+            timeLeftConverted = ['...', '...']
+            timePassedConverted = ['...', '...']
+        }
 
         const percent = Math.floor(percentTravelled * 100);
 
@@ -63,7 +67,7 @@ export default class DriverProgress extends Component {
                                 Distance left:
                             </div>
                             <div className='driver-progress-table-row-item-value'>
-                                {distanceLeftConverted} km
+                                {isNaN(distanceLeftConverted) ? '...' : distanceLeftConverted} km
                             </div>
                         </div>
                         <div className='driver-progress-table-row-item'>
@@ -71,7 +75,7 @@ export default class DriverProgress extends Component {
                                 Distance passed
                             </div>
                             <div className='driver-progress-table-row-item-value'>
-                                {distancePassedConverted} km
+                                {isNaN(distancePassedConverted) ? '...' : distancePassedConverted} km
                             </div>
                         </div>
                     </div>
