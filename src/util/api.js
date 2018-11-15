@@ -66,7 +66,7 @@ export const commandsData = {
         command: 'personnel/register/operators',
         customServerUrl: 'https://innodelivery.online:443/v1/admin/',
         method: 'POST',
-        paramsType: constants.BODY,
+        paramsType: constants.QUERY,
         events: {
             onRequest: constants.REGISTER_OPERATOR_REQUEST,
             onError: constants.REGISTER_OPERATOR_ERROR,
@@ -81,7 +81,7 @@ export const commandsData = {
         command: 'personnel/register/drivers',
         customServerUrl: 'https://innodelivery.online:443/v1/admin/',
         method: 'POST',
-        paramsType: constants.BODY,
+        paramsType: constants.QUERY,
         events: {
             onRequest: constants.REGISTER_DRIVER_REQUEST,
             onError: constants.REGISTER_DRIVER_ERROR,
@@ -182,5 +182,22 @@ export const commandsData = {
             onSuccess: constants.GET_OPERATOR_PROFILE_SUCCESS,
         },
         withoutLoadingStart: true
-    }
+    },
+
+    [constants.vehicles]: {
+        command: constants.vehicles,
+        method: 'GET',
+        paramsType: constants.QUERY,
+        events: {
+            onRequest: constants.GET_VEHICLES_REQUEST,
+            onError: constants.GET_VEHICLES_ERROR,
+            onSuccess: constants.GET_VEHICLES_SUCCESS,
+        },
+        withoutLoading: true
+    },
+
+    customSuccessHandler: (res, actions) => {
+        const {getDriversRoutes} = actions;
+        getDriversRoutes()
+    },
 };

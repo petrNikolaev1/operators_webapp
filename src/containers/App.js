@@ -12,7 +12,7 @@ import PrivateRoute from '@/common/PrivateRoute'
 import Success from "@/common/Success";
 import Error from "@/common/Error";
 import ChatWrap from "@/Chat/containers/ChatWrap";
-import {getDriversRoutes} from "@/actions/routesActions";
+import {getDriversRoutes, getVehiclesRoutes} from "@/actions/routesActions";
 import {initGoogleMaps, getGoogleMaps} from "@/util/googleMapsRequests";
 import {apiReq} from "@/actions/serverActions";
 import {resetChatHistory} from "@/actions/chatActions";
@@ -27,16 +27,18 @@ import constants from "@/constants";
         orderApprove: store.orderApproveReducer,
         language: store.stringReducer.language,
         chats: store.chatReducer.chats,
-    }), {getDriversRoutes, apiReq, resetChatHistory}
+    }), {getDriversRoutes, apiReq, resetChatHistory, getVehiclesRoutes}
 )
 
 export default class App extends Component {
 
     componentDidMount() {
-        const {getDriversRoutes, language, chats, resetChatHistory, apiReq} = this.props;
+        const {getDriversRoutes, language, chats, resetChatHistory, apiReq, getVehiclesRoutes} = this.props;
         initGoogleMaps(language);
-        getDriversRoutes();
+        // getDriversRoutes();
 
+
+        apiReq(constants.vehicles, undefined, getDriversRoutes);
 
         if (!!cookies.get('token')) {
             resetChatHistory();

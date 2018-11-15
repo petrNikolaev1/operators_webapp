@@ -151,3 +151,38 @@ export const getDriversRoutes = (payload = {drivers: drivers}) => {
             })
     }
 };
+
+export const getVehiclesRoutes = (vehicles) => {
+    return async (dispatch) => {
+
+        // const {vehiclesReducer} = getState();
+
+        // const google = await getGoogleMaps();
+
+        console.log(vehicles)
+1
+        // Promise.all(
+        //     drivers
+        //         .map(driver => getRoute(google, {
+        //             origin: driver.origin,
+        //             destination: driver.destination
+        //         }))
+        // )
+        //     .then(res => {
+        //         dispatch({
+        //             type: constants.GET_VEHICLES_ROUTES_SUCCESS,
+        //             res: res.map((path, index) => ({
+        //                 ...drivers[index],
+        //                 path,
+        //             }))
+        //         })
+        //     })
+        //     .catch(err => {
+        //         dispatch({
+        //             type: constants.GET_VEHICLES_ROUTES_ERROR,
+        //             err,
+        //         });
+        //     })
+    }
+};
+

@@ -5,8 +5,8 @@ import {newChatMessage} from "@/actions/chatActions";
 
 let ws = null;
 
-export const initWs = (wsUrl = '18.188.231.179:14881') => {
-    ws = io(wsUrl, { secure: true, reconnect: true, rejectUnauthorized : false });
+export const initWs = (wsUrl = 'https://innodelivery.online:14881') => {
+    ws = io(wsUrl);
 
     ws.on('connect', () => {
         console.log('WS Opened!');

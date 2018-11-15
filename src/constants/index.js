@@ -139,4 +139,9 @@ export default keyMirror({
     GET_TRACKING_ROUTE_ERROR: null,
     GET_TRACKING_ROUTE_SUCCESS: null,
     RESET_TRACKING_ROUTE: null,
+
+    vehicles: null,
+    GET_VEHICLES_REQUEST: null,
+    GET_VEHICLES_SUCCESS: null,
+    GET_VEHICLES_ERROR: null,
 })

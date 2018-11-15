@@ -1,6 +1,8 @@
 import constants, {SERVER_URL} from "@/constants";
 import cookies from 'js-cookie'
 
+
+
 export const splitPath = (path) => {
     return new Promise((resolve, reject) => {
         return resolve(path);
@@ -13,7 +15,16 @@ export const splitPath = (path) => {
     })
 };
 
-export const serverRequest = payload => {
+function dropzoneFileToArrayBuffer(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsBinaryString(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error)
+    })
+}
+
+export const serverRequest = async payload => {
     const {command, params, method, paramsType, fillCommandWith, getCommand, customServerUrl, formData} = payload;
     if (!!customServerUrl) {
         var url = new URL(`${customServerUrl}${command}`)
@@ -27,20 +38,39 @@ export const serverRequest = payload => {
         var url = new URL(`${SERVER_URL}${getCommand}`);
     }
 
-    console.log('form data', formData, params)
+    if (!!formData) {
+        console.log('form data', params[formData.label])
+        const file = await dropzoneFileToArrayBuffer(params[formData.label]);
+        console.log('file', file)
+        var formDataBody = new FormData();
+
+        console.log(formDataBody.entries())
+
+        formDataBody.append(formData.formalLabel, file)
+        console.log(formDataBody.entries())
+    }
 
     const reqObj = {
         method,
-        body: !formData ? JSON.stringify(params) : new FormData().append(formData.formalLabel, params[formData.label]),
+        body: !formData ? JSON.stringify(params) : formDataBody,
         headers: {
             "Authorization": cookies.get('token'),
-            "Content-Type": !formData ? "application/json" : "multipart/form-data",
+            "Content-Type": !formData ? "application/json" : "multipart/form-data; boundary=----WebKitFormBoundaryYWOTSJcucb1yj723",
         }
     };
+
+    console.log('REQ OBJ', reqObj)
+
     if (paramsType === constants.QUERY) {
         url.search = new URLSearchParams(params);
-        delete reqObj.body
+        if (!formData) {
+            console.log('DELETED')
+            delete reqObj.body
+        }
     }
+
+    console.log('REQ OBJ', reqObj)
+
     return new Promise((resolve, reject) => {
         fetch(url, reqObj)
             .then(res => res.json())
