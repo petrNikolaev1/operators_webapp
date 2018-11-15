@@ -53,7 +53,7 @@ export default class SelectComponent extends Component {
             noOptionsMessage, options, placeholder, isDisabled,
             isSearchable, handleChange, selectedOption, formClassName,
             data, labelClass, style, transitionEnd, warning,
-            selectContainerClass,
+            selectContainerClass, onChange
         } = this.props;
 
         if (!!data) {
@@ -75,7 +75,7 @@ export default class SelectComponent extends Component {
                 >
                     <Select
                         value={selectedOption}
-                        onChange={this.onChange}
+                        onChange={onChange || this.onChange}
                         components={{Option: this.option, SingleValue: this.singleValue}}
 
                         isSearchable={isSearchable}
