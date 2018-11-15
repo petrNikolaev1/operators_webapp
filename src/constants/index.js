@@ -144,4 +144,7 @@ export default keyMirror({
     GET_VEHICLES_REQUEST: null,
     GET_VEHICLES_SUCCESS: null,
     GET_VEHICLES_ERROR: null,
+    GET_VEHICLES_ROUTES_REQUEST: null,
+    GET_VEHICLES_ROUTES_SUCCESS: null,
+    GET_VEHICLES_ROUTES_ERROR: null,
 })

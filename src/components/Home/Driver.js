@@ -5,27 +5,29 @@ import connect from "react-redux/es/connect/connect";
 import {selectRoute} from "@/actions/routesActions";
 import {colors, selectedColor} from '@/util/rainbow'
 import MovingMarker from '@/components/Home/MovingMarker'
+import {getEnd, getStart} from "@/util/googleMapsRequests";
 
 @connect(
     store => ({
-        selectedDriver: store.homeMapReducer.drivers.selectedDriver,
+        selectedDriver: store.homeMapReducer.selectedDriver,
     }),
     {selectRoute}
 )
 export default class Driver extends Component {
     render() {
-        const {index, driver, isSelected, handleSelectedDriver, selectedDriver} = this.props;
+        const {index, driver, selectedDriver, task, drivers} = this.props;
+        const {path, stepId, order} = task;
 
-        const {origin, destination, path, pathOriginal, lastSeen, progress} = driver;
-        const selected = !!selectedDriver && selectedDriver.value === index;
+        const selected = !!selectedDriver && drivers[0].id === selectedDriver.value;
+
         return (
             <Fragment>
                 {selected &&
                 <Fragment>
-                    <Marker position={origin}/>
-                    <Marker position={destination}/>
+                    <Marker position={getStart(order)}/>
+                    <Marker position={getEnd(order)}/>
                     <Polyline
-                        path={pathOriginal}
+                        path={path}
                         options={{
                             strokeColor: colors[index],
                             strokeOpacity: 1.0,
@@ -33,10 +35,10 @@ export default class Driver extends Component {
                         }}
                     />
                 </Fragment>}
-                <MovingMarker path={path}
-                              lastSeen={lastSeen}
-                              index={index}
-                              progress={progress}
+                <MovingMarker
+                    option={{value: drivers[0].id, label: drivers[0].name}}
+                    positionCur={path[stepId - 1]}
+                    positionNext={stepId - 1 < path.length - 1 ? path[stepId] : path[stepId - 1]}
                 />
             </Fragment>
         )

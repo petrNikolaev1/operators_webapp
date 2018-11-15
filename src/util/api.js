@@ -193,11 +193,10 @@ export const commandsData = {
             onError: constants.GET_VEHICLES_ERROR,
             onSuccess: constants.GET_VEHICLES_SUCCESS,
         },
-        withoutLoading: true
-    },
-
-    customSuccessHandler: (res, actions) => {
-        const {getDriversRoutes} = actions;
-        getDriversRoutes()
+        withoutLoading: true,
+        customSuccessHandler: (res, actions) => {
+            const {getVehiclesRoutes} = actions;
+            !!getVehiclesRoutes && getVehiclesRoutes(res)
+        },
     },
 };

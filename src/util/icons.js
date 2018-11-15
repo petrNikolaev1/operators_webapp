@@ -1,17 +1,15 @@
 export const rotationAngle = (a, b) => {
-    // const lat_1 = a.lat();
-    // const lat_2 = b.lat();
+    const lat_1 = a.lat();
+    const lat_2 = b.lat();
 
-    // const lon_1 = a.lng();
-    // const lon_2 = b.lng();
+    const lon_1 = a.lng();
+    const lon_2 = b.lng();
 
-    if (!a[0] || !b[0]) return 0;
+    // const lat_1 = a[0];
+    // const lat_2 = b[0];
 
-    const lat_1 = a[0];
-    const lat_2 = b[0];
-
-    const lon_1 = a[1];
-    const lon_2 = b[1];
+    // const lon_1 = a[1];
+    // const lon_2 = b[1];
 
     return Math.degrees(
         Math.atan2(

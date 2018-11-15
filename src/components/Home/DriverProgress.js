@@ -14,31 +14,27 @@ import connect from "react-redux/es/connect/connect";
     store => ({}), {selectChat}
 )
 export default class DriverProgress extends Component {
-    state = {
-        time: 0
-    };
-
-    componentDidMount() {
-        this.refreshProgress = setInterval(() => this.setState({time: Date.now()}), DRIVER_REFRESH_RATE)
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.refreshProgress);
-    }
-
     render() {
-        const {progress, duration, distance, selectChat, value} = this.props;
-        const fractionPassed = progress.percent / 100;
+        const {selectChat, task, drivers} = this.props;
+        console.log(task)
+        const {distanceTotal, durationTotal, percentTravelled} = task;
+
+        const fractionPassed = percentTravelled;
         const fractionLeft = 1 - fractionPassed;
 
+        const timePassed = Math.round(percentTravelled * durationTotal);
+        const distancePassed = Math.round(percentTravelled * distanceTotal);
 
-        const timePassed = secondsToHours(Math.round(fractionPassed * duration));
-        const distancePassed = metersToKm(Math.round(fractionPassed * distance));
+        const timePassedConverted = secondsToHours(timePassed);
+        const distancePassedConverted = metersToKm(distancePassed);
 
-        const timeLeft = secondsToHours(Math.round(fractionLeft * duration));
-        const distanceLeft = metersToKm(Math.round(fractionLeft * distance));
+        const timeLeft = durationTotal - timePassed;
+        const distanceLeft = distanceTotal - distancePassed;
 
-        const percent = Math.floor(progress.percent);
+        const timeLeftConverted = secondsToHours(timeLeft);
+        const distanceLeftConverted = metersToKm(distanceLeft);
+
+        const percent = Math.floor(percentTravelled * 100);
 
         return (
             <div className='driver-progress'>
@@ -49,7 +45,7 @@ export default class DriverProgress extends Component {
                                 Estimated time left:
                             </div>
                             <div className='driver-progress-table-row-item-value'>
-                                {timeLeft[0]} hours {timeLeft[1]} mins
+                                {timeLeftConverted[0]} hours {timeLeftConverted[1]} mins
                             </div>
                         </div>
                         <div className='driver-progress-table-row-item'>
@@ -57,7 +53,7 @@ export default class DriverProgress extends Component {
                                 Time taken:
                             </div>
                             <div className='driver-progress-table-row-item-value'>
-                                {timePassed[0]} hours {timePassed[1]} mins
+                                {timePassedConverted[0]} hours {timePassedConverted[1]} mins
                             </div>
                         </div>
                     </div>
@@ -67,7 +63,7 @@ export default class DriverProgress extends Component {
                                 Distance left:
                             </div>
                             <div className='driver-progress-table-row-item-value'>
-                                {distanceLeft} km
+                                {distanceLeftConverted} km
                             </div>
                         </div>
                         <div className='driver-progress-table-row-item'>
@@ -75,13 +71,14 @@ export default class DriverProgress extends Component {
                                 Distance passed
                             </div>
                             <div className='driver-progress-table-row-item-value'>
-                                {distancePassed} km
+                                {distancePassedConverted} km
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='driver-progress-right'>
-                    <Link to='/operator/chat' className='driver-progress-right-btn' onClick={() => selectChat(value + 1)}>
+                    <Link to='/operator/chat' className='driver-progress-right-btn'
+                          onClick={() => selectChat(drivers[0].id)}>
                         <Chat className='driver-progress-right-btn-icon'/>
                         Go to chat
                     </Link>

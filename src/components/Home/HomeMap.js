@@ -11,12 +11,20 @@ import Driver from '@/components/Home/Driver'
 @connect(
     store => ({
         drivers: store.homeMapReducer.drivers,
+        vehicles: store.vehiclesReducer,
     }), {}
 )
 @GoogleMapHoc('home-map')
 export default class HomeMap extends Component {
     render() {
-        const {drivers} = this.props;
+        const {vehicles} = this.props;
+
+        const loaded = vehicles.loaded && vehicles.routesLoaded && !!vehicles.res;
+        if (loaded) {
+            var vehiclesWithTasks = vehicles.res
+                .filter(vehicle => !!vehicle.task);
+        }
+
 
         return (
             <GoogleMap
@@ -30,15 +38,16 @@ export default class HomeMap extends Component {
                         />
                     )
                 })}
-                {drivers.loaded && drivers.res.map((driver, index) => {
-                    return (
-                        <Driver
-                            driver={driver}
-                            index={index}
-                            key={index}
-                        />
-                    )
-                })}
+                {loaded && !!vehiclesWithTasks && vehiclesWithTasks
+                    .map((vehicle, index) => {
+                        return (
+                            <Driver
+                                {...vehicle}
+                                index={index}
+                                key={index}
+                            />
+                        )
+                    })}
             </GoogleMap>
         )
     }

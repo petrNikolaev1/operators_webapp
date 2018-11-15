@@ -1,6 +1,6 @@
 import constants from '@/constants'
 import {drivers} from "@/util/fakeMarkers"
-import {getRoute, getGoogleMaps} from "@/util/googleMapsRequests";
+import {getRoute, getGoogleMaps, getEnd, getStart} from "@/util/googleMapsRequests";
 import {splitPath} from "../util/serverRequests";
 import React from "react";
 
@@ -90,10 +90,12 @@ export const assignTimerToDriver = (payload) => {
 };
 
 export const homeSelectDriver = (payload) => {
+    if (!payload || (payload instanceof Array && !payload.length)) return;
     return dispatch => {
+        console.log('ACTION', payload)
         dispatch({
             type: constants.HOME_SELECT_DRIVER,
-            ...payload
+            payload
         })
     }
 };
@@ -154,35 +156,55 @@ export const getDriversRoutes = (payload = {drivers: drivers}) => {
 
 export const getVehiclesRoutes = (vehicles) => {
     return async (dispatch) => {
+        dispatch({type: constants.GET_VEHICLES_ROUTES_REQUEST});
+        const google = await getGoogleMaps();
 
-        // const {vehiclesReducer} = getState();
+        let vehiclesWithTasks = vehicles
+            .filter(vehicle => !!vehicle.task);
 
-        // const google = await getGoogleMaps();
+        let vehiclesWithoutTasks = vehicles
+            .filter(vehicle => !vehicle.task);
 
-        console.log(vehicles)
-1
-        // Promise.all(
-        //     drivers
-        //         .map(driver => getRoute(google, {
-        //             origin: driver.origin,
-        //             destination: driver.destination
-        //         }))
-        // )
-        //     .then(res => {
-        //         dispatch({
-        //             type: constants.GET_VEHICLES_ROUTES_SUCCESS,
-        //             res: res.map((path, index) => ({
-        //                 ...drivers[index],
-        //                 path,
-        //             }))
-        //         })
-        //     })
-        //     .catch(err => {
-        //         dispatch({
-        //             type: constants.GET_VEHICLES_ROUTES_ERROR,
-        //             err,
-        //         });
-        //     })
+        Promise.all(
+            vehiclesWithTasks
+                .map(driver => {
+                    const {order} = driver.task;
+
+                    return getRoute(google, {
+                        origin: getStart(order),
+                        destination: getEnd(order)
+                    })
+                })
+        )
+            .then(res => {
+                vehiclesWithTasks = vehiclesWithTasks.map((vehicle, index) => {
+                    const {routeId} = vehicle.task;
+
+                    const leg = res[index].routes[routeId || 0].legs[0];
+                    const {distance, duration, steps} = leg;
+
+                    return ({
+                        ...vehicle,
+                        task: {
+                            ...vehicle.task,
+                            distanceTotal: distance.value,
+                            durationTotal: duration.value,
+                            path: steps.reduce((res, cur) => res.concat(cur.path), []),
+                        },
+                    })
+                });
+
+                dispatch({
+                    type: constants.GET_VEHICLES_ROUTES_SUCCESS,
+                    res: vehiclesWithoutTasks.concat(vehiclesWithTasks),
+                })
+            })
+            .catch(err => {
+                dispatch({
+                    type: constants.GET_VEHICLES_ROUTES_ERROR,
+                    err,
+                });
+            })
     }
 };
 

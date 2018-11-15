@@ -11,12 +11,15 @@ import {Reply, ExpandMore} from '@material-ui/icons';
 import Select from '@/common/Select'
 import {homeSelectDriver} from "@/actions/routesActions";
 import DriverProgress from "./DriverProgress";
-
+import {getVehiclesRoutes} from "@/actions/routesActions";
+import {apiReq} from "@/actions/serverActions";
+import constants from "@/constants";
 
 @connect(
     store => ({
-        drivers: store.homeMapReducer.drivers,
-    }), {homeSelectDriver}
+        drivers: store.homeMapReducer,
+        vehicles: store.vehiclesReducer,
+    }), {homeSelectDriver, getVehiclesRoutes, apiReq}
 )
 export default class HomeContainer extends Component {
     state = {
@@ -24,8 +27,16 @@ export default class HomeContainer extends Component {
         selectedDriver: '',
     };
 
+    updateVehiclesPoitions = () => {
+        this.props.apiReq(constants.vehicles, undefined, this.props);
+    };
+
+    componentDidMount() {
+        this.updateVehiclesPoitions()
+    }
+
     static getDerivedStateFromProps(props, state) {
-        if (!props.drivers.loaded || !props.drivers.res) return null;
+        if (!props.vehicles.loaded || !props.vehicles.res) return null;
         const {selectedDriver: selectedDriverOld, driversInfoShown: driversInfoShownOld} = state;
         const {selectedDriver: selectedDriverNew} = props.drivers;
 
@@ -44,8 +55,16 @@ export default class HomeContainer extends Component {
 
     render() {
         const {driversInfoShown} = this.state;
-        const {drivers, homeSelectDriver} = this.props;
+        const {drivers, homeSelectDriver, vehicles} = this.props;
         console.log(drivers && drivers.selectedDriver)
+
+        const loaded = vehicles.loaded && vehicles.routesLoaded && !!vehicles.res;
+        if (loaded) {
+            var vehiclesWithTasks = vehicles.res
+                .filter(vehicle => !!vehicle.task);
+        }
+
+        console.log('RENDER', drivers)
 
         const driversBlockOpened = driversInfoShown && !!drivers.selectedDriver;
 
@@ -60,22 +79,22 @@ export default class HomeContainer extends Component {
                         Back to main screen
                     </Link>
                 </div>
-                {drivers.loaded &&
+                {loaded &&
                 <div className='home-block'>
                     <div className='home-block-title'>
                         <div className='home-block-title-label'>Drivers</div>
                         <div className='home-block-title-select'>
-                            {drivers.loaded &&
                             <Select
-                                onChange={driver => drivers.selectedDriver && drivers.selectedDriver.value === driver.value ? null :
-                                    homeSelectDriver({driverId: driver.value})}
+                                onChange={homeSelectDriver}
                                 selectedOption={drivers.selectedDriver}
                                 isSerchable={true}
                                 noOptionsMessage={'There is no such driver'}
                                 placeholder={'Select a driver'}
-                                options={drivers.driversOptions}
+                                options={vehiclesWithTasks.map(vehicle => ({
+                                    label: vehicle.drivers[0].name, value: vehicle.drivers[0].id
+                                }))}
                                 formClassName='default-select'
-                            />}
+                            />
                         </div>
                         <div className='home-block-title-expand-container'>
                             {!!drivers.selectedDriver &&
@@ -90,7 +109,7 @@ export default class HomeContainer extends Component {
                         {drivers.selectedDriver.detailedInfo}
                         <DriverProgress
                             className='home-block-info-progress'
-                            {...drivers.selectedDriver}
+                            {...vehiclesWithTasks.find(vehicle => vehicle.drivers[0].id === drivers.selectedDriver.value)}
                         />
                     </div>}
                 </div>}

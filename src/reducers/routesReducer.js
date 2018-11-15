@@ -72,62 +72,18 @@ export function proposedRouteReducer(state = initialProposedRouteState, action) 
 
 
 const homeMapInitialState = {
-    drivers: {},
+
 };
 
 
 export function homeMapReducer(state = homeMapInitialState, action) {
     switch (action.type) {
-        case constants.GET_DRIVERS_ROUTES_REQUEST:
-            return {
-                ...state,
-                drivers: {
-                    ...state.drivers,
-                    loaded: false
-                },
-            };
-        case constants.GET_DRIVERS_ROUTES_SUCCESS:
-            return {
-                ...state,
-                drivers: {
-                    ...state.drivers,
-                    loaded: true,
-                    res: action.res,
-                    driversOptions: driversToOptions(action.res)
-                }
-            };
-        case constants.GET_DRIVERS_ROUTES_ERROR:
-            return {
-                ...state,
-                drivers: {
-                    ...state.drivers,
-                    loaded: true,
-                    err: action.err,
-                }
-            };
-        case constants.ASSIGN_TIMER_TO_DRIVER:
-            return {
-                ...state,
-                drivers: {
-                    ...state.drivers,
-                    res: state.drivers.res
-                        .map((driver, index) => (action.driverId !== index ? driver : {
-                            ...driver,
-                            lastSeen: action.lastSeen
-                        }))
-                }
-            };
+
         case constants.HOME_SELECT_DRIVER:
             return {
                 ...state,
-                drivers: {
-                    ...state.drivers,
-                    selectedDriver:
-                        state.drivers.selectedDriver && state.drivers.selectedDriver.value === action.driverId ? '' :
-                            state.drivers.driversOptions[action.driverId]
-                }
+                selectedDriver: action.payload
             };
-
 
         default:
             return state;

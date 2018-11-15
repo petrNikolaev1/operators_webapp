@@ -39,15 +39,9 @@ export const serverRequest = async payload => {
     }
 
     if (!!formData) {
-        console.log('form data', params[formData.label])
         const file = await dropzoneFileToArrayBuffer(params[formData.label]);
-        console.log('file', file)
         var formDataBody = new FormData();
-
-        console.log(formDataBody.entries())
-
         formDataBody.append(formData.formalLabel, file)
-        console.log(formDataBody.entries())
     }
 
     const reqObj = {
@@ -59,17 +53,12 @@ export const serverRequest = async payload => {
         }
     };
 
-    console.log('REQ OBJ', reqObj)
-
     if (paramsType === constants.QUERY) {
         url.search = new URLSearchParams(params);
         if (!formData) {
-            console.log('DELETED')
             delete reqObj.body
         }
     }
-
-    console.log('REQ OBJ', reqObj)
 
     return new Promise((resolve, reject) => {
         fetch(url, reqObj)
